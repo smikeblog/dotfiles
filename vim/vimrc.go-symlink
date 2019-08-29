@@ -1,0 +1,14 @@
+set runtimepath^="$HOME/.vim_go_runtime"
+
+source $HOME/.vim_go_runtime/vimrc/basic.vim
+source $HOME/.vim_go_runtime/vimrc/filetypes.vim
+source $HOME/.vim_go_runtime/vimrc/plugins.vim
+source $HOME/.vim_go_runtime/vimrc/extended.vim
+
+try
+  source $HOME/.vim_go_runtime/custom_config.vim
+catch
+endtry
+
+let g:neosnippet#snippets_directory="$HOME/.vim_go_runtime/neosnippets/"
+let g:go_snippet_engine = "neosnippet"

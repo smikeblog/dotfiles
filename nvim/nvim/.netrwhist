@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/sm1/go/src/smTEST'
+let g:netrw_dirhist_6='/home/sm1/go/src'
+let g:netrw_dirhist_5='/home/sm1/go'
+let g:netrw_dirhist_4='/home/sm1'
+let g:netrw_dirhist_3='/home/sm1/go/src/lynda/cc/00_language-fundamentals/01_getting-started/02_numeral-systems/02_binary'
+let g:netrw_dirhist_2='/home/sm1/go/src/lynda/cc/00_language-fundamentals/01_getting-started/02_numeral-systems'
+let g:netrw_dirhist_1='/home/sm1/go/src/lynda/cc/00_language-fundamentals/01_getting-started'

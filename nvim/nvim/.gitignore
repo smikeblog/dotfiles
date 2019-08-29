@@ -1,0 +1,3 @@
+core/local/local_settings.vim
+core/local/local_plugins.yaml
+dein/.DS_Store
