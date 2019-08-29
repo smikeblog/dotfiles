@@ -1,0 +1,32 @@
+
+## from : https://github.com/lvancrayelynghe/dotfiles/blob/dd31ac680ff88308fa85bb4d28e99ccfc8f18d52/zsh/functions.zsh 
+# Extract an archive
+function extract() {
+	if [ -z "$2" ]; then 2="."; fi
+	if [ -f "$1" ] ; then
+		case "$1" in
+			*.tar.bz2|*.tgz|*.tbz2|*.tbz) mkdir -v "$2" 2>/dev/null ; tar xvjf "$1" -C "$2"  ;;
+			*.tar.gz)                     mkdir -v "$2" 2>/dev/null ; tar xvzf "$1" -C "$2"  ;;
+			*.tar.xz)                     mkdir -v "$2" 2>/dev/null ; tar xvJf "$1"          ;;
+			*.tar)                        mkdir -v "$2" 2>/dev/null ; tar xvf  "$1" -C "$2"  ;;
+			*.rar)                        mkdir -v "$2" 2>/dev/null ; 7z x     "$1" -o"$2"   ;;
+			*.zip)                        mkdir -v "$2" 2>/dev/null ; unzip    "$1" -d "$2"  ;;
+			*.7z)                         mkdir -v "$2" 2>/dev/null ; 7z x     "$1" -o"$2"   ;;
+			*.lzo)                        mkdir -v "$2" 2>/dev/null ; lzop -d  "$1" -p "$2"  ;;
+			*.gz)                         gunzip "$1"                                        ;;
+			*.bz2)                        bunzip2 "$1"                                       ;;
+			*.Z)                          uncompress "$1"                                    ;;
+			*.xz|*.txz|*.lzma|*.tlz)      xz -d "$1"                                         ;;
+			*)
+		esac
+	else
+		echo "Sorry, '$1' could not be decompressed."
+		echo "Usage: extract <archive> <destination>"
+		echo "Example: extract PKGBUILD.tar.bz2 ."
+		echo "Valid archive types are:"
+		echo "tar.bz2, tar.gz, tar.xz, tar, bz2,"
+		echo "gz, tbz2, tbz, tgz, lzo,"
+		echo "rar, zip, 7z, xz and lzma"
+	fi
+}
+

@@ -1,0 +1,22 @@
+# List content of archive but don't extract
+function sm.ll-archive() {
+	if [ -f "$1" ]; then
+		case "$1" in
+			*.tar.bz2|*.tbz2|*.tbz)  tar -jtf "$1"     ;;
+			*.tar.gz)                tar -ztf "$1"     ;;
+			*.tar|*.tgz|*.tar.xz)    tar -tf  "$1"     ;;
+			*.gz)                    gzip -l  "$1"     ;;
+			*.rar)                   rar vb   "$1"     ;;
+			*.zip)                   unzip -l "$1"     ;;
+			*.7z)                    7z l     "$1"     ;;
+			*.lzo)                   lzop -l  "$1"     ;;
+			*.xz|*.txz|*.lzma|*.tlz) xz -l    "$1"     ;;
+		esac
+	else
+		echo "Sorry, '$1' is not a valid archive."
+		echo "Valid archive types are:"
+		echo "tar.bz2, tar.gz, tar.xz, tar, gz,"
+		echo "tbz2, tbz, tgz, lzo, rar"
+		echo "zip, 7z, xz and lzma"
+	fi
+}
