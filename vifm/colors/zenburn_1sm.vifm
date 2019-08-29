@@ -1,0 +1,73 @@
+" zenburn like color scheme for vifm
+" http://kippura.org/zenburnpage<Plug>(StopHL)/
+
+" Reset all styles first
+highlight clear
+
+highlight Border	cterm=none	ctermfg=235	ctermbg=237
+
+highlight TopLine	cterm=none	ctermfg=108	ctermbg=235
+highlight TopLineSel	cterm=bold	ctermfg=186	ctermbg=235
+
+highlight Win		cterm=none	ctermfg=188	ctermbg=237
+highlight Directory	cterm=none	ctermfg=108	ctermbg=237
+highlight CurrLine	cterm=none	ctermfg=223	ctermbg=235
+highlight OtherLine	cterm=none	ctermfg=247	ctermbg=237
+highlight Selected	cterm=none	ctermfg=116	ctermbg=238
+
+highlight JobLine	cterm=bold	ctermfg=116	ctermbg=238
+highlight StatusLine	cterm=bold	ctermfg=144	ctermbg=236
+highlight ErrorMsg	cterm=bold	ctermfg=115	ctermbg=237
+highlight WildMenu	cterm=bold	ctermfg=235	ctermbg=144
+highlight CmdLine	cterm=none	ctermfg=188	ctermbg=237
+
+" highlight Executable	cterm=none	ctermfg=172	ctermbg=237
+" highlight Link		cterm=none	ctermfg=142	ctermbg=237
+highlight BrokenLink	cterm=none	ctermfg=174	ctermbg=237
+highlight Device	cterm=none	ctermfg=228	ctermbg=237
+highlight Fifo		cterm=none	ctermfg=109	ctermbg=237
+highlight Socket	cterm=none	ctermfg=110	ctermbg=237
+
+
+
+" highlight Directory   cterm=bold ctermfg=123     ctermbg=default
+highlight Link        cterm=bold ctermfg=229     ctermbg=default
+highlight Executable  cterm=bold ctermfg=119     ctermbg=default
+" highlight Selected    cterm=bold ctermfg=213     ctermbg=default
+highlight CmpMismatch cterm=bold ctermfg=white   ctermbg=88
+
+" software documentation
+highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICEN[CS]E,NEWS,
+          \README*,AUTHORS,TODO,THANKS}
+        \ cterm=none ctermfg=187 ctermbg=default
+" build system files
+highlight {Makefile,Makefile.am,Makefile.in,Makefile.win,*.mak,*.mk,
+          \CMakeLists.txt}
+        \ cterm=none ctermfg=121 ctermbg=default
+" archives
+highlight {*.7z,*.ace,*.arj,*.bz2,*.cpio,*.deb,*.dz,*.gz,*.jar,*.lzh,*.lzma,
+          \*.rar,*.rpm,*.rz,*.tar,*.taz,*.tb2,*.tbz,*.tbz2,*.tgz,*.tlz,*.trz,
+          \*.txz,*.tz,*.tz2,*.xz,*.z,*.zip,*.zoo}
+        \ cterm=none ctermfg=215 ctermbg=default
+" documents
+highlight {*.djvu,*.htm,*.html,*.shtml,*.css,*.markdown,*.md,*[^0-9].[1-9],
+          \*.mkd,*.org,*.pandoc,*.pdc,*.pdf,*.epub,*.fb2,*.tex,*.txt,*.xhtml,
+          \*.xml,*.pptx,*.ppt,*.doc,*.docx,*.xls,*.xls[mx],*.mobi}
+        \ cterm=none ctermfg=217 ctermbg=default
+" media
+highlight {*.aac,*.anx,*.asf,*.au,*.avi,*.ts,*.axa,*.axv,*.divx,*.flac,*.m2a,
+          \*.m2v,*.m4a,*.m4p,*.m4v,*.mid,*.midi,*.mka,*.mkv,*.mov,*.mp3,*.mp4,
+          \*.flv,*.mp4v,*.mpc,*.mpeg,*.mpg,*.nuv,*.oga,*.ogg,*.ogv,*.ogx,*.pbm,
+          \*.pgm,*.qt,*.ra,*.ram,*.rm,*.spx,*.vob,*.wav,*.wma,*.wmv,*.xvid,
+          \*.ac3}
+        \ cterm=none ctermfg=49 ctermbg=default
+" images
+highlight {*.bmp,*.gif,*.jpeg,*.jpg,*.ico,*.png,*.ppm,*.svg,*.svgz,*.tga,*.tif,
+          \*.tiff,*.xbm,*.xcf,*.xpm,*.xspf,*.xwd}
+        \ cterm=none ctermfg=117 ctermbg=default
+" executables
+highlight {*.sh,*.bash,*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,*.msi}
+        \ cterm=none ctermfg=77 ctermbg=default
+" source code
+highlight {*.patch,*.diff,*.py,*.[ch]pp,*.mk,*.c,*.h,*.[ch]pp,*.cc,*.hs,*.php}
+        \ cterm=none ctermfg=193 ctermbg=default
