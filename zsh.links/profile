@@ -1,0 +1,49 @@
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+#export EDITOR=/usr/bin/vim
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
+# Set vim mode to the shell default is emacs
+set -o vi
+
+# Set vim as default editor  - as viriable
+export VISUAL="nvim"
+export EDITOR="$VISUAL"
+export BROWSER="palemoon"
+export READER="zathura"
+export TERMINAL="st"
+
+# sm add GO path -> moved to .profile
+# For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
+#export GOPATH="$HOME/go"
+#export GOBIN="$HOME/go/bin"
+#export PATH="$PATH:$GOBIN"
+#export PATH="$PATH:$GOPATH/exe"
+
+# Make local for single user bin and scripts directories i.e. not global apps
+## moved to zshfunc_custom
+#[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
+#[ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
+#[ -d $HOME/.dotfiles ] && export PATH="$HOME/.dotfiles:$PATH"
+
+# Executes commands at login before zshrc.
+#
+if [[ -z "$LANG" ]]; then
+    export LANG='en_US.UTF-8'
+    export LANGUAGE='en_US.UTF-8'
+fi
+
+# added by sm1 my preffered color scheme
+source "$HOME/scripts/gruvbox_256palette.sh"
+
+#source /usr/share/nvm/init-nvm.sh
+#export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+
+# export homebin dir - done in zshfunc.custom
+# [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
+
+# load alias list
+# [ -f $HOME/.aliases ] && source $HOME/.aliases
+
+
+# source ~/.dotfiles/profileSmike
