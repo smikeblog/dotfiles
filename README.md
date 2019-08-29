@@ -27,5 +27,15 @@ my dotfile configuration
 #  6.  Nerd fonts for Powerline and update fonts cache
        cp fonts/ ~/.local/share/
        fc-cache -vf ~/.local/share/fonts/
-#  7. logout && login for chsh to take effect
+#  7.  make links to zsh and vim lite configs
+### 7.1 zsh
+	  ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc
+	  ln -s ~/.dotfiles/zsh.links/zshrc.custom ~/.zshrc.custom
+	  ln -s ~/.dotfiles/zsh.links/zshfunc.custom ~/.zshfunc.custom
+### 7.2 vifm
+	  ln -s ~/.dotfiles/vifm/ ~/.config/
+### 7.3 nvim
+	  nvm -u ~/.dotfiles/vimrc +PlugInstall
+	  ln -s ~/.dotfiles/vim/vil ~/.vil
+#  7.  logout && login for chsh to take effect
 
