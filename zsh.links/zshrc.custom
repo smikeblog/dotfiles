@@ -1,0 +1,127 @@
+# . /usr/share/LS_COLORS/dircolors.sh
+# source $(dirname $(gem which colorls))/tab_complete.sh
+
+#eval $( dircolors -b $HOME/.dircolors )
+
+# Load ,profile file wich is common for bash and zsh
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
+
+# load some func one liners ...
+export ZSHCONFIG="${HOME}/.dotfiles"
+ZSH_INIT=${ZSHCONFIG}/_init.sh
+ZSH_COLORIZE_STYLE="native"
+
+if [[ -s ${ZSH_INIT} ]]; then
+    source ${ZSH_INIT}
+else
+    echo "Could not find the init script ${ZSH_INIT}"
+fi
+
+
+# Emacs mode
+# bindkey -e
+
+# Vi mode
+bindkey -v
+
+# load k script for ls
+# [ -f $HOME/scripts/k.sh ] && source "$HOME/scripts/k.sh"
+
+
+# show vim status
+# http://zshwiki.org/home/examples/zlewidgets
+#function zle-line-init zle-keymap-select {
+#    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+#    RPS2=$RPS1
+#    zle reset-prompt
+#}
+
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+## next 2 lines for NORMAL default mode
+#zle-line-init() { zle -K vicmd; }
+#zle -N zle-line-init
+
+# load marker
+[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
+
+## some aliases
+# nvim vim
+# Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
+alias vil="nvim -u ~/.vil/init.vim $1"
+alias vimp="vim -u ~/.vimm/vimrc $1"
+alias vin="nvim -N -u NONE -U NONE "
+alias vimgo='vim -u ~/.vimrc.go'
+
+# 3 days weather
+alias sm.weather='curl wttr.in/chisinau'
+
+# rootkit scanner
+alias sm.antivir='sudo rkhunter -c'
+
+# utils
+# https://github.com/athityakumar/colorls
+alias lcgt2='colorls --gs -t --tree=2 --sd'
+alias lc='colorls --sd -lA'
+
+# Pipe Aliases
+alias -g W=' | wc -l '
+alias -g S=' | sort '
+
+# define var to open in browser from cli ex - b ya.ru
+b='${(z)BROWSER}'
+
+# load user custom functions
+if [[ -f ~/.zshfunc.custom ]]; then
+  source ~/.zshfunc.custom
+fi
+
+### time consuming node ruby python env sol-s {{{
+#### NODE
+# Add yarn bin
+export PATH=$PATH:$HOME/.yarn/bin
+
+## solution from https://github.com/nvm-sh/nvm/issues/1277
+declare -a NODE_GLOBALS_NPM=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*'`)
+declare -a NODE_GLOBALS_YARN=(`find $HOME/.yarn/bin -maxdepth 3 -type l -wholename '*/bin/*'`)
+declare -a NODE_GLOBALS=(`echo $NODE_GLOBALS_NPM $NODE_GLOBALS_YARN | xargs -n1 basename | sort | uniq`)
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    export NODE_PATH="$NVM_BIN"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
+
+### }}}
+
+# us
+if _has rg; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+fi
+
+# fzf via system package manager
+if [ -e /usr/share/fzf/completion.zsh ]; then
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
+
+# fzf via local installation
+#if [ -e ~/.fzf ]; then
+#  _append_to_path ~/.fzf/bin
+#  source ~/.fzf/shell/key-bindings.zsh
+#  source ~/.fzf/shell/completion.zsh
+#fi
+
+# Modules
+autoload colors zsh/terminfo
+autoload -Uz compinit && compinit -u
+autoload -U is-at-least
+colors

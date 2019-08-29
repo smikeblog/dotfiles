@@ -1,0 +1,56 @@
+
+# Clone zgen if you haven't already
+if [[ ! -f $HOME/.zgen/zgen.zsh ]]; then
+  git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+fi
+# zgen
+export ZGEN_RESET_ON_CHANGE=($HOME/.zshrc ${HOME}/.zshrc.custom)
+source $HOME/.zgen/zgen.zsh
+
+if ! zgen saved; then
+	echo "Creating a zgen save"
+
+	#prezto options
+	zgen prezto editor key-bindings 'vi'
+	zgen prezto prompt theme 'sorin'
+#	zgen prezto tmux:auto-start local 'yes'
+	zgen prezto '*:*' case-sensitive 'yes'
+	zgen prezto '*:*' color 'yes'
+
+	# prezto and modules
+	zgen prezto
+	zgen prezto git
+	zgen prezto command-not-found
+	zgen prezto tmux
+	zgen prezto fasd
+	zgen prezto history-substring-search
+	zgen prezto syntax-highlighting
+
+	# plgins
+	zgen load djui/alias-tips
+	zgen load supercrabtree/k
+	zgen load caarlos0/zsh-git-sync
+#	zgen load TBSliver/zsh-plugin-colored-man
+	zgen load mafredri/zsh-async
+	zgen load junegunn/fzf shell
+
+	zgen load zdharma/fast-syntax-highlighting
+#	zgen load zsh-users/zsh-syntax-highlighting
+#	zgen load tarruda/zsh-autosuggestions
+
+	zgen save
+fi
+
+export LESS='-R'
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd newline-after-command
+
+function newline-after-command() {
+  print ''
+}
+
+# Load a custom configuration of zsh
+[ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

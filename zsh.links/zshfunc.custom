@@ -1,0 +1,321 @@
+## from : https://github.com/statico/dotfiles/blob/master/.zshrc
+# INTERNAL UTILITY FUNCTIONS {{{1
+
+# Returns whether the given command is executable or aliased.
+_has() {
+  return $( whence $1 &>/dev/null )
+}
+
+# Returns whether the given statement executed cleanly. Try to avoid this
+# because this slows down shell loading.
+_try() {
+  return $( eval $* &>/dev/null )
+}
+
+# Returns whether the current host type is what we think it is. (HOSTTYPE is
+# set later.)
+_is() {
+  return $( [ "$HOSTTYPE" = "$1" ] )
+}
+
+# Returns whether out terminal supports color.
+_color() {
+  return $( [ -z "$INSIDE_EMACS" ] )
+}
+
+# Returns the version of a command if present, or n/a if unavailable.
+_versionof() {
+  if _has "$1"; then
+    echo "$1 $($1 --version)"
+  else
+    echo "$1 n/a"
+  fi
+}
+
+# ENVIRONMENT VARIABLES {{{1
+
+# Yes, this defeats the point of the TERM variable, but everything pretty much
+# uses modern ANSI escape sequences. I've found that forcing everything to be
+# "rxvt" just about works everywhere. (If you want to know if you're in screen,
+# use SHLVL or TERMCAP.)
+if _color; then
+  if [ -n "$ITERM_SESSION_ID" ]; then
+    if [ "$TERM" = "screen" ]; then
+      export TERM=screen-256color
+    else
+      export TERM=xterm-256color
+    fi
+  elif [ "$TERM_PROGRAM" = "gnome-terminal" ]; then
+      export TERM=xterm-256color
+  else
+      export TERM=xterm-256color
+#    export TERM=rxvt
+  fi
+else
+  export TERM=xterm
+fi
+
+# Utility variables.
+if which hostname &>/dev/null; then
+  HOSTNAME=`hostname`
+elif which uname &>/dev/null; then
+  HOSTNAME=`uname -n`
+else
+  HOSTNAME=unknown
+fi
+export HOSTNAME
+
+# HOSTTYPE = { Linux | OpenBSD | SunOS | etc. }
+if which uname &>/dev/null; then
+  HOSTTYPE=`uname -s`
+else
+  HOSTTYPE=unknown
+fi
+export HOSTTYPE
+
+# PAGER
+if [ -n "$INSIDE_EMACS" ]; then
+  export PAGER=cat
+else
+  if _has less; then
+    export PAGER=less
+    if _color; then
+      export LESS='-R'
+    fi
+  fi
+fi
+
+# EDITOR
+if _has nvim; then
+  export EDITOR=nvim VISUAL=nvim
+elif _has vim; then
+  export EDITOR=vim VISUAL=vim
+elif _has vi; then
+  export EDITOR=vi VISUAL=vi
+elif _has micro; then
+  export EDITOR=micro VISUAL=micro
+fi
+
+# Overridable locale support.
+if [ -z $$LC_ALL ]; then
+  export LC_ALL=C
+fi
+if [ -z $LANG ]; then
+  export LANG=en_US
+fi
+
+# History control. Don't bother with history if we can't write to the file,
+# like if we're using sudo.
+if [ -w ~/.zsh_history -o -w ~ ]; then
+  SAVEHIST=100000
+  HISTSIZE=100000
+HISTFILE=~/.zsh_history
+fi
+
+# APPLICATION CUSTOMIZATIONS {{{1
+# APPLICATION CUSTOMIZATIONS {{{1
+
+# GNU grep
+if _color; then
+  export GREP_COLOR='1;32'
+fi
+
+# GNU and BSD ls colorization.
+if _color; then
+  export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=33:so=01;35:bd=33;01:cd=33;01:or=01;05;37;41:mi=01;37;41:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+  export LSCOLORS='ExGxFxdxCxDxDxcxcxxCxc'
+  export CLICOLOR=1
+fi
+
+# PATH MODIFICATIONS {{{1
+
+# Functions which modify the path given a directory, but only if the directory
+# exists and is not already in the path. (Super useful in ~/.zshlocal)
+
+_prepend_to_path() {
+  if [ -d $1 -a -z ${path[(r)$1]} ]; then
+    path=($1 $path);
+  fi
+}
+
+_append_to_path() {
+  if [ -d $1 -a -z ${path[(r)$1]} ]; then
+    path=($path $1);
+  fi
+}
+
+_force_prepend_to_path() {
+  path=($1 ${(@)path:#$1})
+}
+
+# Note that there is NO dot directory appended!
+
+_force_prepend_to_path /usr/local/sbin
+_force_prepend_to_path /usr/local/bin
+_force_prepend_to_path ~/bin
+_force_prepend_to_path ~/scripts
+
+# _append_to_path /usr/games
+_append_to_path /usr/sbin
+
+# Add our docs, too
+#export INFOPATH=$HOME/.dotfiles/info:$INFOPATH
+
+# ALIASES {{{1
+#-------------------------------------------------------
+# Print all histories
+function history-all { history -E 1 }
+
+#-------------------------------------------------------
+
+zsh_stats()
+{
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
+    | grep -v "./" \
+    | column -c3 -s " " -t \
+    | sort -nr \
+    | nl \
+    |  head -n20
+}
+
+smdirlist()
+{
+  du -x --max-depth=1|sort -rn|awk -F / -v c=$COLUMNS 'NR==1{t=$1} NR>1{r=int($1/t*c+.5);
+  b="\033[1;31m";
+  for (i=0;
+  i<r; i++) b=b"#";
+  printf " %5.2f%% %s\033[0m %s\n", $1/t*100, b, $2}'|tac
+}
+
+
+smmemuse()
+{
+ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
+}
+
+
+smopenports()
+{
+  declare -a array=($(tail -n +2 /proc/net/tcp | cut -d":" -f"3"|cut -d" " -f"1")) && for port in ${array[@]};
+  do echo $((0x$port));
+  done
+}
+
+
+# Use 'gnome-open' to "run" things
+smrun()
+{
+    [ -r "$*" ] &&
+    {
+        xdg-open "$*" >& /dev/null
+    } ||
+     {
+        echo "'$*' not found or not readable!"
+     }
+}
+
+
+function mkcd {
+  if [[ "$#" != 1 ]]; then
+    echo "Expects exactly one argument; provided $#" >&2
+    return 1
+  fi
+  mkdir -p "$1" && cd "$1"
+}
+
+## ================== taken from oh-my-zsh web plugin =======
+# web_search from terminal
+
+function web_search() {
+  emulate -L zsh
+
+
+function open_command() {
+  emulate -L zsh
+  setopt shwordsplit
+
+  local open_cmd
+
+  # define the open command
+  case "$OSTYPE" in
+    darwin*)  open_cmd='open' ;;
+    cygwin*)  open_cmd='cygstart' ;;
+    linux*)   open_cmd='xdg-open' ;;
+    msys*)    open_cmd='start ""' ;;
+    *)        echo "Platform $OSTYPE not supported"
+              return 1
+              ;;
+  esac
+
+  # don't use nohup on OSX
+  if [[ "$OSTYPE" == darwin* ]]; then
+    $open_cmd "$@" &>/dev/null
+  else
+    nohup $open_cmd "$@" &>/dev/null
+  fi
+}
+  # define search engine URLS
+  typeset -A urls
+  urls=(
+    google      "https://www.google.com/search?q="
+    bing        "https://www.bing.com/search?q="
+    yahoo       "https://search.yahoo.com/search?p="
+    duckduckgo  "https://www.duckduckgo.com/?q="
+    startpage   "https://www.startpage.com/do/search?q="
+    yandex      "https://yandex.ru/yandsearch?text="
+    github      "https://github.com/search?q="
+    baidu       "https://www.baidu.com/s?wd="
+    ecosia      "https://www.ecosia.org/search?q="
+    goodreads   "https://www.goodreads.com/search?q="
+    qwant       "https://www.qwant.com/?q="
+    givero      "https://www.givero.com/search?q="
+    stackoverflow  "https://stackoverflow.com/search?q="
+  )
+
+  # check whether the search engine is supported
+  if [[ -z "$urls[$1]" ]]; then
+    echo "Search engine $1 not supported."
+    return 1
+  fi
+
+  # search or go to main page depending on number of arguments passed
+  if [[ $# -gt 1 ]]; then
+    # build search url:
+    # join arguments passed with '+', then append to search engine URL
+    url="${urls[$1]}${(j:+:)@[2,-1]}"
+  else
+    # build main page url:
+    # split by '/', then rejoin protocol (1) and domain (2) parts with '//'
+    url="${(j://:)${(s:/:)urls[$1]}[1,2]}"
+  fi
+
+  open_command "$url"
+}
+
+
+alias bing='web_search bing'
+alias google='web_search google'
+alias yahoo='web_search yahoo'
+alias ddg='web_search duckduckgo'
+alias sp='web_search startpage'
+alias yandex='web_search yandex'
+alias github='web_search github'
+alias baidu='web_search baidu'
+alias ecosia='web_search ecosia'
+alias goodreads='web_search goodreads'
+alias qwant='web_search qwant'
+alias givero='web_search givero'
+alias stackoverflow='web_search stackoverflow'
+
+#add your own !bang searches here
+alias wiki='web_search duckduckgo \!w'
+alias news='web_search duckduckgo \!n'
+alias youtube='web_search duckduckgo \!yt'
+alias map='web_search duckduckgo \!m'
+alias image='web_search duckduckgo \!i'
+alias ducky='web_search duckduckgo \!'
+
+## ------------------------ end of web plugin functions
+
+#se() { du -a ~/scripts/* ~/.dotfiles/* | awk '{ print $2 }' | fzf | xargs -r $EDITOR ; }
+#vf() { fzf | xargs -r -I % $EDITOR % ; }
