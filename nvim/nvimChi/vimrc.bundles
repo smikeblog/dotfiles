@@ -8,7 +8,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   augroup END
 endif
 
-call plug#begin('~/.local/share/nvim/bundle')
+call plug#begin('~/.local/share/nvic/bundle')
 
 " List Plugins =====================================
 

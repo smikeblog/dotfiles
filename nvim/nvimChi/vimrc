@@ -957,8 +957,8 @@ augroup END
       endif
     endfun
 
-    nnoremap <silent> <leader>vr :call OpenConfigFile('~/.vimrc')<cr>
-    nnoremap <silent> <leader>vb :call OpenConfigFile('~/.vimrc.bundles')<cr>
+    " nnoremap <silent> <leader>vr :call OpenConfigFile('~/.vimrc')<cr>
+    " nnoremap <silent> <leader>vb :call OpenConfigFile('~/.vimrc.bundles')<cr>
 
   " toggle background light / dark
     fun! ToggleBackground()

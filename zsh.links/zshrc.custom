@@ -44,9 +44,6 @@ bindkey -v
 #zle-line-init() { zle -K vicmd; }
 #zle -N zle-line-init
 
-# load marker
-[[ -s "$HOME/.local/share/marker/marker.sh" ]] && source "$HOME/.local/share/marker/marker.sh"
-
 ## some aliases
 # nvim vim
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files

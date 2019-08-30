@@ -1,3 +1,3 @@
-set runtimepath^=~/.local/share/nvim runtimepath+=~/.local/share/nvim/after
+set runtimepath^=~/.local/share/nvic runtimepath+=~/.local/share/nvic/after
 let &packpath = &runtimepath
 source ~/.config/nvimChi/vimrc
