@@ -4,6 +4,7 @@ let mapleader =","
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
+Plug 'taigacute/gruvbox9'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
 " Plug 'PotatoesMaster/i3-vim-syntax'
@@ -25,6 +26,11 @@ set mouse=a
 set nohlsearch
 set clipboard=unnamedplus
 
+" Display hidden characters
+set list
+"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
+
 " Some basics:
 	nnoremap c "_c
 	set nocompatible
@@ -32,7 +38,7 @@ set clipboard=unnamedplus
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
-	colorscheme gruvbox
+	colorscheme gruvbox9
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
