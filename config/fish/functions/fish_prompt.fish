@@ -1,0 +1,1 @@
+/home/sm1/.local/share/omf/themes/nelsonjchen/fish_prompt.fish
