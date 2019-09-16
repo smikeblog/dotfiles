@@ -27,7 +27,7 @@ my dotfile configuration
        mv ~/dotfiles ~/.dotfiles
        cd ~/.dotfiles
 ##  6.  Nerd fonts for Powerline and update fonts cache
-	None: for polybar are used UbuntuMono and Fontawesome fonts
+	Note: for polybar are used UbuntuMono and Fontawesome fonts
 	https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/UbuntuMono.zip
 	https://fontawesome.com/download
        also for terminal , vim and tmux:
