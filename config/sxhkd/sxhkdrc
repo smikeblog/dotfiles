@@ -122,6 +122,12 @@ super + {Left,Down,Up,Right}
 # terminal emulator
 super + Return
 	st
+# terminal emulator
+super + alt + Return
+	gnome-terminal
+# tilix fish terminal emulator
+super + shift + Return
+	tilix --profile=fish
 # launch lynx web browser
 super + alt + l
     st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
