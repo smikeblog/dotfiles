@@ -119,6 +119,9 @@ super + {Left,Down,Up,Right}
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
 
+# browser
+super + w
+  palemoon
 # terminal emulator
 super + Return
 	st
