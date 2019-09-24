@@ -254,3 +254,14 @@ function fish_greeting
 
 	set_color normal
 end
+
+
+function ftmux
+    if [ (echo $TMUX) = "" ]
+        set ids (tmux list-sessions)
+            if test $status != 0
+                tmux new-session
+            end
+    end
+end
+ftmux

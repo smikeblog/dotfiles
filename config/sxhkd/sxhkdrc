@@ -151,6 +151,9 @@ super + alt + h
 # DMENU SCRIPTS (Alt+Ctrl+Key)
 
 # run program launcher
+shift+ ctrl + Return
+	rofi -show drun
+# run program launcher
 alt + ctrl + Return
 	dmenu_run
 # edit common config files

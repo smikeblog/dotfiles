@@ -43,7 +43,7 @@ on_start() {
   info '  _ / /_/ // /_/ // /_ / __// // //  __/(__  )  '
   info ' (_)\__,_/ \____/ \__//_/  /_//_/ \___//____/   '
   info '                                                '
-  info '              by @denysdovhan                   '
+  info '              by @smike                         '
   info '                                                '
 }
 #
@@ -56,9 +56,9 @@ on_finish() {
   echo -ne $YELLOW'-_-_-_-_-_-_-_-_-_-_-_-_-_-_'
   echo -e  $RESET$BOLD'|   /\_/\\'$RESET
   echo -ne $GREEN'-_-_-_-_-_-_-_-_-_-_-_-_-_-'
-  echo -e  $RESET$BOLD'~|__( ^ .^)'$RESET
+  echo -e  $RESET$BOLD'~|  ( ^..^)'$RESET
   echo -ne $CYAN'-_-_-_-_-_-_-_-_-_-_-_-_-_-_'
-  echo -e  $RESET$BOLD'""  ""'$RESET
+  echo -e  $RESET$BOLD'|__ ""--""'$RESET
   echo
 }
 
