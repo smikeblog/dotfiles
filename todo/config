@@ -55,6 +55,7 @@ export REPORT_FILE="$TODO_DIR/report.txt"
  export PRI_B=$GREEN         # color for B priority
  export PRI_C=$LIGHT_BLUE    # color for C priority
  export PRI_T=$CYAN          # color for T (tutorials) priority
+ export PRI_J=$LIGHT_PURPLE  # color for J (Job search) priority
 # export PRI_D=...            # define your own
 # export PRI_X=$WHITE         # color unless explicitly defined
 
