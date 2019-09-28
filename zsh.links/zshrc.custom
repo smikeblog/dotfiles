@@ -30,7 +30,7 @@ bindkey -v
 # [ -f $HOME/scripts/k.sh ] && source "$HOME/scripts/k.sh"
 
 
-# show vim status
+# show vim status {{{
 # http://zshwiki.org/home/examples/zlewidgets
 #function zle-line-init zle-keymap-select {
 #    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
@@ -43,6 +43,7 @@ bindkey -v
 ## next 2 lines for NORMAL default mode
 #zle-line-init() { zle -K vicmd; }
 #zle -N zle-line-init
+# }}}
 
 ## some aliases
 # nvim vim
@@ -62,6 +63,7 @@ alias sm.antivir='sudo rkhunter -c'
 # https://github.com/athityakumar/colorls
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias lc='colorls --sd -lA'
+alias ls='exa'
 
 # Pipe Aliases
 alias -g W=' | wc -l '
@@ -137,7 +139,7 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-
+# icons for lf experimental fiture {{{
 export LF_ICONS="\
 di=:\
 fi=:\
@@ -295,4 +297,4 @@ ex=:\
 *.xspf=:\
 *.pdf=:\
 "
-
+# }}}
