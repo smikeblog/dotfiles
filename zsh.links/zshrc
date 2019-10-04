@@ -21,6 +21,7 @@ if ! zgen saved; then
 	zgen prezto
 	zgen prezto git
 	zgen prezto command-not-found
+	zgen prezto completion
 	zgen prezto tmux
 	zgen prezto fasd
 	zgen prezto history-substring-search
