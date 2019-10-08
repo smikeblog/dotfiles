@@ -148,6 +148,10 @@ super + alt + v
 super + alt + h
     st -e htop
 
+# luncher F2
+alt + F2
+	xfce4-appfinder
+
 # DMENU SCRIPTS (Alt+Ctrl+Key)
 
 # run program launcher
