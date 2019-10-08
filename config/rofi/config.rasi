@@ -3,7 +3,7 @@ configuration {
 	show-icons: true;
 	width: 55;
 	lines: 25;
-	columns: 3;
+	columns: 2;
 	show-icons: true;
 	fullscreen: false;
 	theme: "~/.config/rofi/themes/lb.rasi";
