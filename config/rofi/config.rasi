@@ -6,7 +6,7 @@ configuration {
 	columns: 3;
 	show-icons: true;
 	fullscreen: false;
-	theme: "distrotube.rasi";
+	theme: "$HOME/.config/rofi/themes/distrotube.rasi";
 
 /*	modi: "window,run,ssh,drun";*/
 /*	width: 50;*/
