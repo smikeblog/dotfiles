@@ -1,0 +1,39 @@
+* {
+	padding: 2;
+	border-color:				#b6966990;
+	foreground-color:			#d9b47d;
+	background-color:           #4e5065;
+	text-color:                 #d9b47d;
+	yellow:                     #e6d3ef;
+	grey:						#776d21;
+	font: "Inconsolata Nerd Font 10";
+}
+
+window {
+	border: 		0 2 2 2;
+	location:	 	north west;
+	anchor:		 	north west;
+	width:		 	32;
+	height:			100;
+	y-offset: 		24;
+	orientation: 	horizontal;
+	children: [ listview ];
+	padding: 2;
+}
+
+
+listview {
+	border: 1 0 0 0;
+	border-color: @yellow;
+	expand: true;
+	layout: vertical;
+	spacing: 4;
+  }
+
+element {
+}
+
+element.selected {
+  text-color: @yellow;
+  border-color: @yellow;
+}

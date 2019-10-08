@@ -295,7 +295,15 @@ tray-background = ${colors.background}
 ################################################################################
 ################################################################################
 ############                  MAINBAR-BSPWM                         ############
-################################################################################
+[module/rofi]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${colors.foreground}
+content-background = ${colors.background}
+click-left = rofi -show drun -theme ~/.config/rofi/themes/lb.rasi
+click-right = ~/.config/rofi/powermenu.sh
+###############################################################################
 ################################################################################
 
 [bar/mainbar-bspwm]
@@ -343,7 +351,7 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = bspwm xwindow
+modules-left = rofi bspwm xwindow
 modules-center =
 modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arch-aur-updates arrow6 date
 
