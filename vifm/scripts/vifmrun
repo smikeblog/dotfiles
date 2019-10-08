@@ -9,7 +9,8 @@ function cleanup {
 rm "$FIFO_UEBERZUG" 2>/dev/null
 mkfifo "$FIFO_UEBERZUG"
 trap cleanup EXIT
-tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash &
+## tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash &
+source "`ueberzug library`"
 
 vifm
 cleanup
