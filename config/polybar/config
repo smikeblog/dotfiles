@@ -304,6 +304,12 @@ content-background = ${colors.background}
 click-left = rofi -show drun -theme ~/.config/rofi/themes/lb.rasi
 click-right = ~/.config/rofi/powermenu.sh
 ###############################################################################
+[module/keyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
 ################################################################################
 
 [bar/mainbar-bspwm]
@@ -351,10 +357,11 @@ font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=8;1"
 font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
-modules-left = rofi bspwm xwindow
+modules-left = keyboard rofi bspwm xwindow
 modules-center =
 ;modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arch-aur-updates arrow6 date
-modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arrow6 date
+modules-right = wireless-network arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arrow6 date
+;modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arrow6 date
 
 tray-detached = false
 tray-offset-x = 0
@@ -1189,7 +1196,7 @@ type = internal/network
 ;interface = wlp3s0
 ;interface = enp14s0
 ;interface = enp0s31f6
-interface = enp3s0
+interface = enp4s0
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
 format-connected-prefix = "  "

@@ -1,0 +1,8 @@
+# Print README file
+readme() {
+    for readme in {readme,README}.{md,MD,markdown,txt,TXT,mkd}; do
+        if [[ -f "$readme" ]]; then
+           	   bat "$readme"
+        fi
+    done
+}

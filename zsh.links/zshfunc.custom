@@ -223,6 +223,16 @@ function mkcd {
   mkdir -p "$1" && cd "$1"
 }
 
+# Print README file colored by bat ( https://github.com/sharkdp/bat )
+readme() {
+    for readme in {readme,README}.{md,MD,markdown,txt,TXT,mkd}; do
+        if [[ -f "$readme" ]]; then
+	   bat "$readme"
+        fi
+    done
+}
+
+
 ## ================== taken from oh-my-zsh web plugin =======
 # web_search from terminal
 
