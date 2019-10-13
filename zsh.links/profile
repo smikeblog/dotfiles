@@ -47,5 +47,5 @@ source "$HOME/scripts/gruvbox_256palette.sh"
 
 
 # source ~/.dotfiles/profileSmike
-
+export PATH="/usr/local/go/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
