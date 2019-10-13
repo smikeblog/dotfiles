@@ -15,15 +15,15 @@ export TERMINAL="st"
 
 # sm add GO path -> moved to .profile
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
-#export GOPATH="$HOME/go"
-#export GOBIN="$HOME/go/bin"
+[ -d $HOME/go ] && export GOPATH="$HOME/go"
+[ -d $GOPATH/bin ] && export GOBIN="$GOPATH/bin"
 #export PATH="$PATH:$GOBIN"
-#export PATH="$PATH:$GOPATH/exe"
+export PATH="$PATH:$GOPATH/exe"
 
 # Make local for single user bin and scripts directories i.e. not global apps
 ## moved to zshfunc_custom
 #[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
-#[ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
+[ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
 #[ -d $HOME/.dotfiles ] && export PATH="$HOME/.dotfiles:$PATH"
 
 # Executes commands at login before zshrc.
@@ -47,3 +47,5 @@ source "$HOME/scripts/gruvbox_256palette.sh"
 
 
 # source ~/.dotfiles/profileSmike
+
+export PATH="$HOME/.cargo/bin:$PATH"
