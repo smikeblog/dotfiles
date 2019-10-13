@@ -137,11 +137,13 @@ ${color1}[S]+[t,f,s,m]${alignr}${color2}Mode Select${color}
 ${color1}[S]+Esc (OB)${alignr}${color2}Reload sxhkd${color}
 ${color1}[S]+Shft+[q,r]${alignr}${color2}Quit/rst bspwm${color}
 ${color1}[S]+[Shift]+c${alignr}${color2}W Close & kill${color}
+${color1}[S+{Shift}]+n${alignr}${color2} cycle nodes${color}
 #${color1}[S] + Tab${alignr}${color2}Client Menu${color}
 ${color1}${hr}${color}
 ${color1}[S+Alt]+v${alignr}${color2}vifm File Manager${color}
 ${color1}[Ctrl+Alt]+e${alignr}${color2}Edit Configs${color}
 ${color1}[S]+g${alignr}${color2}Swap to Bigst${color}
+${color1}[S+{Shift}]+[h,j,k,l,]${alignr}${color2}focus n${color}
 ${color1}[S+Ctrl]+[h,j,k,l,]${alignr}${color2}Direction${color}
 ${color1}[S+Ctrl]+[1-9]${alignr}${color2}w Ratio${color}
 ${color1}[S+Ctrl]+Space${alignr}${color2}Cancel Dir${color}

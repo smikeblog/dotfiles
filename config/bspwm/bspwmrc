@@ -9,8 +9,9 @@ nitrogen --restore &
 conky &
 #./.config/bspwm/panel.sh &
 ./.config/polybar/launch.sh &
-setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll"
+setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
 # grp:caps_toggle,grp_led:scroll"
+$GOPATH/bin/btops &
 
 #### MONITORS ####
 
@@ -57,6 +58,7 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DisplayPort-1)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI-A-0)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DVI-I-1)
 
+bspc rule -a guake floating=on focus=on sticky=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a "Pale moon" desktop='^2' follow=on
@@ -73,7 +75,7 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Stacer state=floating
 
-pplications
+## applications
 bspc rule -a Gnome-disks state=tiled
 bspc rule -a Xfce4-settings-manager state=tiled
 

@@ -153,6 +153,8 @@ alt + F2
 	xfce4-appfinder
 
 # DMENU SCRIPTS (Alt+Ctrl+Key)
+super + alt + t
+	tdrop -ma -w -4 -y -h "45%" -s dropdown st
 
 # run program launcher
 shift+ ctrl + Return
