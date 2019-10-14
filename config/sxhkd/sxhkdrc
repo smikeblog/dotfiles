@@ -143,11 +143,12 @@ super + alt + n
 # launch vifm file manager
 super + alt + v
     st -e ./.config/vifm/scripts/vifmrun
-
 # launch htop
 super + alt + h
     st -e htop
-
+# audio mixer run
+super + alt + m
+  st -e ~/bin/pulsemixer
 # luncher F2
 alt + F2
 	xfce4-appfinder
@@ -155,11 +156,10 @@ alt + F2
 # DMENU SCRIPTS (Alt+Ctrl+Key)
 super + alt + t
 	tdrop -ma -w -4 -y -h "45%" -s dropdown st
-
-# run program launcher
+# run  rofi program launcher
 shift+ ctrl + Return
 	rofi -show drun
-# run program launcher
+# run dmenu program launcher
 alt + ctrl + Return
 	dmenu_run
 # edit common config files
@@ -179,4 +179,3 @@ alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
 # stock trading programs
 alt + ctrl + t
-   ~/.dmenu/dmenu-trading.sh
