@@ -17,7 +17,7 @@ export TERMINAL="st"
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
 [ -d $HOME/go ] && export GOPATH="$HOME/go"
 [ -d $GOPATH/bin ] && export GOBIN="$GOPATH/bin"
-#export PATH="$PATH:$GOBIN"
+export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$GOPATH/exe"
 
 # Make local for single user bin and scripts directories i.e. not global apps
