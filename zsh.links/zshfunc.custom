@@ -329,3 +329,15 @@ alias ducky='web_search duckduckgo \!'
 
 #se() { du -a ~/scripts/* ~/.dotfiles/* | awk '{ print $2 }' | fzf | xargs -r $EDITOR ; }
 #vf() { fzf | xargs -r -I % $EDITOR % ; }
+
+## use mpv to view youtube 
+btpl(){
+
+PAGE=$(curl -s $1)
+url="$(echo \"$PAGE\" | grep -Eoi '<source [^>]+>' | grep -Eo 'src="[^\"]+"' | grep -Eo '(http|https)://[^"]+')"
+# url="$(curl -s $1 | grep -Eoi '<source [^>]+>' | grep -Eo 'src="[^\"]+"' | grep -Eo '(http|https)://[^"]+')"
+TITLE=$(echo \"$PAGE\" | grep -oEi "<title>(.*)</title>" | cut -d '>' -f2 | cut -d '<' -f1)
+
+mpv --ontop=yes --title="$TITLE" --snap-window --autofit-larger='25%' --geometry='-10-10' --speed 1.75 $url &
+}
+
