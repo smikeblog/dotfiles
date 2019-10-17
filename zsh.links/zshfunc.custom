@@ -330,7 +330,7 @@ alias ducky='web_search duckduckgo \!'
 #se() { du -a ~/scripts/* ~/.dotfiles/* | awk '{ print $2 }' | fzf | xargs -r $EDITOR ; }
 #vf() { fzf | xargs -r -I % $EDITOR % ; }
 
-## use mpv to view youtube 
+## use mpv to view youtube
 btpl(){
 
 PAGE=$(curl -s $1)
@@ -341,3 +341,23 @@ TITLE=$(echo \"$PAGE\" | grep -oEi "<title>(.*)</title>" | cut -d '>' -f2 | cut 
 mpv --ontop=yes --title="$TITLE" --snap-window --autofit-larger='25%' --geometry='-10-10' --speed 1.75 $url &
 }
 
+## ------------------------------------------- {{{
+## form https://github.com/jotyGill/quickz-sh/blob/master/.zshrc
+speedtest() {
+    curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
+}
+
+dadjoke() {
+    curl https://icanhazdadjoke.com
+}
+
+dict() {
+    if [ "$3" ]; then
+        curl "dict://dict.org/d:$1 $2 $3"
+    elif [ "$2" ]; then
+        curl "dict://dict.org/d:$1 $2"
+    else
+        curl "dict://dict.org/d:$1"
+    fi
+}
+## ---- }}}
