@@ -1,0 +1,1 @@
+/home/sm1/.config/lf/lfcd.fish

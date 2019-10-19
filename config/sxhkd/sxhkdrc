@@ -153,6 +153,10 @@ super + alt + m
 alt + F2
 	xfce4-appfinder
 
+# luncher F3
+alt + F3
+	jgmenu_run >/dev/null 2>&1
+
 # DMENU SCRIPTS (Alt+Ctrl+Key)
 super + alt + t
 	tdrop -ma -w -4 -y -h "45%" -s dropdown st

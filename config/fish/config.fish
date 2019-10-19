@@ -20,6 +20,7 @@ test -d /usr/local/heroku/bin                ; and set PATH /usr/local/heroku/bi
 test -d /usr/local/sbin                      ; and set PATH /usr/local/sbin $PATH
 test -d /usr/local/bin                       ; and set PATH /usr/local/bin $PATH
 test -d ~/.cabal/bin                         ; and set PATH ~/.cabal/bin $PATH
+test -d ~/bin                                ; and set PATH ~/bin $PATH
 #test -d ~/Library/Android/sdk/platform-tools ; and set PATH ~/Library/Android/sdk/platform-tools $PATH
 # test -d ~/Library/Python/2.7/bin             ; and set PATH ~/Library/Python/2.7/bin $PATH
 # test -d /Applications/Araxis\ Merge.app/Contents/Utilities ; and set PATH /Applications/Araxis\ Merge.app/Contents/Utilities $PATH
@@ -265,3 +266,5 @@ function ftmux
     end
 end
 ftmux
+
+bind \co 'lfcd; commandline -f repaint'

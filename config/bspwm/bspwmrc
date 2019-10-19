@@ -12,6 +12,7 @@ conky &
 setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
 # grp:caps_toggle,grp_led:scroll"
 $GOPATH/bin/btops &
+nm-applet &
 
 #### MONITORS ####
 
