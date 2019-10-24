@@ -265,6 +265,7 @@ function ftmux
             end
     end
 end
-ftmux
+## ftmux
 
-bind \co 'lfcd; commandline -f repaint'
+bind \co 'lfcd; 
+## commandline -f repaint'
