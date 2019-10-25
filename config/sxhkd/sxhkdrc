@@ -20,7 +20,8 @@ super + Escape
 
 # Show keybindings
 super + F1
-	$TERMINAL -e keybindings.sh
+	st -e keybindings.sh
+#	$TERMINAL -e keybindings.sh
 
 # quit/restart bspwm
 super + shift + {q,r}
@@ -128,13 +129,14 @@ super + w
   palemoon
 # terminal emulator
 super + Return
-	$TERMINAL
+	st
+#	$TERMINAL
 # terminal emulator
 super + alt + Return
 	tilix --profile=fish
 # tilix fish terminal emulator
 super + shift + Return
-	$TERMINAL -e tmux
+	st -e tmux
 # launch lynx web browser
 super + alt + l
     st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
