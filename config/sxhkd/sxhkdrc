@@ -18,6 +18,10 @@ super + Escape
 
 # BSPWM HOTKEYS
 
+# Show keybindings
+super + F1
+	$TERMINAL -e keybindings.sh
+
 # quit/restart bspwm
 super + shift + {q,r}
 	bspc {quit,wm -r}
@@ -127,7 +131,7 @@ super + Return
 	$TERMINAL
 # terminal emulator
 super + alt + Return
-	tilix --profile=fish	
+	tilix --profile=fish
 # tilix fish terminal emulator
 super + shift + Return
 	$TERMINAL -e tmux

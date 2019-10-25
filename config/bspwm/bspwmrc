@@ -6,11 +6,10 @@ export WIRELESS=wlan0
 sxhkd &
 compton &
 nitrogen --restore &
-conky &
+#conky &
 #./.config/bspwm/panel.sh &
 ./.config/polybar/launch.sh &
 setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
-# grp:caps_toggle,grp_led:scroll"
 $GOPATH/bin/btops &
 nm-applet &
 
