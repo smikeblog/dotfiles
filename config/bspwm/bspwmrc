@@ -10,7 +10,8 @@ nitrogen --restore &
 #./.config/bspwm/panel.sh &
 ./.config/polybar/launch.sh &
 setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
-$GOPATH/bin/btops &
+btops &
+##$GOPATH/bin/btops &
 nm-applet &
 
 #### MONITORS ####
