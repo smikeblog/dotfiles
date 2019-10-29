@@ -62,8 +62,8 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }n
@@ -109,6 +109,14 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE
 
+# Mirror and flip leaves of tree
+super + {comma,period}
+	bspc node @/ -F {horizontal,vertical}
+
+# Rotate leaves of tree
+super + shift + {comma,period}
+	bspc node @/ -R {90,270}
+
 # expand a window by moving one of its side outward
 ctrl + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -120,6 +128,26 @@ ctrl + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Flip layout vertically/horizontally
+super + {_,shift + }a
+	bspc node @/ --flip {vertical,horizontal}
+
+# Increase/decrease window gap on focused desktop
+super + alt + bracket{left,right}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+# Balance tree
+super + alt + b
+	bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+super + shift + b
+	bspc node @brother -B
+
+# Undo balancing (equalize windows)
+super + ctrl + b
+	bspc node @/ -E
 
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
@@ -164,8 +192,6 @@ alt + F3
 	jgmenu_run >/dev/null 2>&1
 
 # DMENU SCRIPTS (Alt+Ctrl+Key)
-super + alt + t
-	tdrop -ma -w -4 -y -h "45%" -s dropdown st
 # run  rofi program launcher
 shift+ ctrl + Return
 	rofi -show drun
@@ -188,4 +214,4 @@ alt + ctrl + p
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
 # stock trading programs
-alt + ctrl + t
+# alt + ctrl + t

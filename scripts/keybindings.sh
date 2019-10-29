@@ -16,32 +16,42 @@
 
 	### Window manipulation ################################################################
 
-		Alt + Tab                     |- Cycle windows
-		Super + Tab                   |- Open window switcher
-		Super + x                     |- Close window
-		Super + shift + x             |- Kill window
+		Super + shift + {q,r}         |- quit/restart bspwm
+		Super + shift + c             |- close and kill
 		Super + <direction>           |- Move focus to the direction
-		Super + shift + <direction>   |- Move focused window to direction
-		Super + ctrl + <direction>    |- Resize focused window to direction
-		Alt + shift + <direction>     |- Preselect/split the rootwindow
+		Alt + ctrl + <direction>      |- Expand focused window to direction
 		Super + 1-9                   |- Focus the desktop with that number
+		Super + {_,shift + }n         |- Focus the next/prev node in that desktop
+		Super + bracket{left, right}  |- Focus the next/prev node in current monitor 
 		Super + shift + 1-9           |- Move focused window to desktop with that number
-		Super + Enter                 |- Move window to the biggest available space
-                              |  or preselection if there is one
-		Super + ctrl + Enter          |- Preselect where the next window will be opened
-		Ctrl + space                  |- Preselect where the next window will be opened
-		Alt + Enter                   |- Preselect/split the rootwindow
-		Super + b                     |- Balance windows
-		Alt + b                       |- Toggle automatic window balancing
-		Super + i                     |- Make window sticky
-		Super + t                     |- Toggle tiling/floating
-		Super + shift + t             |- Toggle pseudotiling
-		Super + shift + f             |- Toggle fullscreen
-		Super + f                     |- Toggle monocle
-		Super + o                     |- Make window private
-                              |  (Avoids splitting it automatically)
-		Super + Shift + q             |- Cleanly quit bspwm
-		Super + shift +r              |- Reload bspwms configuration file
+		Super + g                     |- Move window to the biggest available space
+                                              |  or preselection if there is one
+		Super + ctrl + <direction>    |- Preselect where the next window will be opened
+		Super + ctrl + 1-9            |- Preselect the next window ratio
+		Super + ctrl + <space>        |- Cancel the preselection for the focused node 
+		Super + {p,b,"m","."}         |- Focus the node for the given path jump 
+		Super + {o,i}                 |- Focus the older/newer node in the focus history
+		Super + s                     |- Set float
+		Super + t                     |- Set tiling
+		Super + shift + t             |- Set pseudotiling
+		Super + f                     |- Set fullscreen
+		Super + m                     |- Toggle monocle
+		Super + {grave,Tab}           |- Focus the last node/desktop
+		Super + ctrl + z              |- Make window private
+                                              |  (Avoids splitting it automatically)
+		Super + ctrl + m              |- Make window marked
+		Super + ctrl + x              |- Make window locked
+		Super + ctrl + y              |- Make window sticky
+	    ### Move/Resize  windcommands ######################################################
+
+		Alt + ctrl + <direction>      |- Expand window moving one of its side outwards  
+		Alt + ctrl + shift + <direct> |- Contract focused window to direction
+		Super + {Left,Down,Up,Right}  |- Move floating window  
+		Super + {_,shift + }a         |- Flip layout vertically/horizontally
+		Super + alt + brckt{lft,rt}   |- Increaze/decreaze window gap on focused desktop 
+		Super + alt + b               |- Balance tree (equalize windows)
+		Super + ctrl + b              |- Undo Balance tree 
+		Super + shift + b             |- Balance brother tree (equalize windows)
 	### Mousecommands ######################################################################
 
 		Leftclick menus	              |- Close menu
@@ -53,14 +63,36 @@
                               |  and spawn application menu
 	### Applications #######################################################################
 
-		Super + p                     |- Dmenu (Run applications)
-		Super + space                 |- Dmenu (Run applications)
-		Super + shift + b             |- Browser
-		Super + r                     |- File search
-		Super + e                     |- Explore files with SpaceFM
-		Super + shift + e             |- Explore files with Ranger
-		Super + shift + Return        |- Terminal
-		Super + z                     |- Terminal
+		Alt + F2                     |- AppFinder xfce
+		Alt + F3                     |- Jgmenu
+		Alt + ctrl + s	             |- Web search with surfraw
+		Super + w                    |- BROWSER
+		Super + alt + v              |- Explore files with Vifm
+		Super + alt + m              |- Audio Mixer (pulsemixer)
+		Super + alt + h              |- htop
+		Super + alt + n              |- newsboat
+		Super + Return               |- Terminal
+		Super + shift + Return       |- tmux Terminal
+	### Menu Applications ##################################################################
+
+		Alt + ctrl + Return          |- Dmenu (Run applications)
+		Shift + ctrl + Return        |- Run rofi (Run applications)
+		Alt + ctrl + e               |- Edit common Config Files 
+		Alt + ctrl + m               |- Common Sys Monitoring Files 
+		Alt + ctrl + r               |- reddio Reddit Viewer 
+
+	### Not used ######################################################################
+	### Applications #######################################################################
+
+	Super + p                     |- Dmenu (Run applications)
+	Super + space                 |- Dmenu (Run applications)
+	Super + x                     |- Close window
+	Super + shift + x             |- Kill window
+	Alt + shift + <direction>     |- Preselect/split the rootwindow
+	Alt + b                       |- Toggle automatic window balancing
+	Ctrl + space                  |- Preselect where the next window will be opened
+	Alt + Enter                   |- Preselect/split the root window
+
 
 
 

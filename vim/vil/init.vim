@@ -14,6 +14,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
+Plug 'elentok/plaintasks.vim'
 
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'

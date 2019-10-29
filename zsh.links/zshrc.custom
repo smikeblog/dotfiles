@@ -64,7 +64,7 @@ alias sm.antivir='sudo rkhunter -c'
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias lc='colorls --sd -lA'
 alias ll='exa -lh'
-
+alias  k='k -h'
 # Pipe Aliases
 alias -g W=' | wc -l '
 alias -g S=' | sort '
