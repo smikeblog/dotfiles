@@ -20,7 +20,7 @@ super + Escape
 
 # Show keybindings
 super + F1
-	st -e $HOME/scripts/keybindings.sh
+	tilix -e $HOME/scripts/keybindings.sh
 #	$TERMINAL -e keybindings.sh
 
 # quit/restart bspwm

@@ -32,7 +32,7 @@ bspc config left_padding         0
 bspc config right_padding        0
 bspc config single_monocle       false
 bspc config click_to_focus       true
-bspc config split_ratio          0.50
+bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_by_distance    true
@@ -59,9 +59,10 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DisplayPort-1)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI-A-0)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DVI-I-1)
 
+bspc rule -a tilix state=floating follow=on
 bspc rule -a guake floating=on focus=on sticky=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^2'
+bspc rule -a Chromium state=floating follow=on
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a Firefox desktop='^2' follow=on
 bspc rule -a Subl3 desktop='^3' follow=on
