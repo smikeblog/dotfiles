@@ -53,6 +53,9 @@ alias vimp="vim -u ~/.vimm/vimrc $1"
 alias vin="nvim -N -u NONE -U NONE "
 alias vimgo='vim -u ~/.vimrc.go'
 
+# cli translate  - https://github.com/soimort/translate-shell
+alias trans-enru='trans -shell en:ru '
+
 # 3 days weather
 alias sm.weather='curl wttr.in/chisinau'
 

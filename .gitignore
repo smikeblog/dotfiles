@@ -87,3 +87,6 @@ GitHub.sublime-settings
 sublime-text-3/Cache/
 sublime-text-3/local/
 sublime-text-3/Packages/User/
+
+# moc non set files
+moc/softmixer

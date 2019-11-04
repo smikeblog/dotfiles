@@ -17,4 +17,4 @@ while [ -z "$query" ]; do
 query=$(echo "" | $cmd -p "Searching $engine") || exit
 done
 
-st -e sr "$engine" "$query"
+st -e sr "$engine" "$query" &

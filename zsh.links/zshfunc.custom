@@ -178,7 +178,7 @@ zsh_stats()
     |  head -n20
 }
 
-smdirlist()
+sm.dirlist()
 {
   du -x --max-depth=1|sort -rn|awk -F / -v c=$COLUMNS 'NR==1{t=$1} NR>1{r=int($1/t*c+.5);
   b="\033[1;31m";
@@ -188,13 +188,13 @@ smdirlist()
 }
 
 
-smmemuse()
+sm.memuse()
 {
 ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
 }
 
 
-smopenports()
+sm.openports()
 {
   declare -a array=($(tail -n +2 /proc/net/tcp | cut -d":" -f"3"|cut -d" " -f"1")) && for port in ${array[@]};
   do echo $((0x$port));
@@ -437,5 +437,28 @@ fzf_git_reflog() {
 }
 
 alias grl='fzf_git_reflog'
+
+## }}}
+
+# Determine size of a file or total size of a directory
+function fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* ./*;
+	fi;
+}
+
+## swap function {{{
+function swap() {
+    mv "$1" "$1.tmp"
+    mv "$2" "$1"
+    mv "$1.tmp" "$2"
+}
 
 ## }}}
