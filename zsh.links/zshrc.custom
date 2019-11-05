@@ -142,6 +142,9 @@ bindkey -s '^o' 'lfcd\n'
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
+# pmy go zff helper
+eval "$(pmy init)"
+
 # icons for lf experimental fiture {{{
 export LF_ICONS="\
 di=:\
