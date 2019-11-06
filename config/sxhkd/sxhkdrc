@@ -182,7 +182,7 @@ super + alt + h
     st -e htop
 # audio mixer run
 super + alt + m
-  st -e ~/bin/pulsemixer
+  st -e ~/scripts/pulsemixer
 # luncher F2
 alt + F2
 	xfce4-appfinder

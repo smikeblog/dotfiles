@@ -509,3 +509,5 @@ command! FZFfind :set noquickview | :execute 'goto "'.system('find | fzf --heigh
 nnoremap <c-g> :FZFlocate<cr>
 nnoremap <c-f> :FZFfind<cr>
 
+map x :!sxiv -ft * 2>/dev/null &<CR>
+
