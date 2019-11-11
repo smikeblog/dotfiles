@@ -365,7 +365,8 @@ dict() {
 ## fzf     {{{
 fzf_find_edit() {
     local file=$(
-      fzf --no-multi --preview 'bat --color=always --line-range :500 {}'
+##      fzf --no-multi --preview 'bat --color=always --line-range :500 {}'
+      fzf --preview='pistol {}'
       )
     if [[ -n $file ]]; then
         $EDITOR $file

@@ -65,11 +65,11 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium state=floating follow=on
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a Firefox desktop='^2' follow=on
-bspc rule -a Subl3 desktop='^3' follow=on
+#bspc rule -a Subl3 follow=on
 bspc rule -a Atom desktop='^3' follow=on
 bspc rule -a mplayer2 state=floating
 bspc rule -a smplayer desktop='^6' follow=on
-bspc rule -a vlc desktop='^6' follow=on
+bspc rule -a vlc state=floating follow=on
 bspc rule -a Transmission-gtk desktop='^7' follow=on
 bspc rule -a Thunar desktop='^8' follow=on
 bspc rule -a Nemo desktop='^8' follow=on

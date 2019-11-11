@@ -2,7 +2,8 @@
 
 # Basic vars
 set shell sh
-set previewer ~/.config/lf/scope
+## set previewer ~/.config/lf/scope
+set previewer ~/.go/bin/pistol
 set shellopts '-eu'
 set ifs "\n"
 set scrolloff 10

@@ -13,6 +13,9 @@ export BROWSER="palemoon"
 export READER="zathura"
 export TERMINAL="st"
 
+# set preview colorscheme for pristol previewer
+export PISTOL_CHROMA_STYLE=monokai
+
 # sm add GO path -> moved to .profile
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
 [ -d $HOME/go ] && export GOPATH="$HOME/go"
