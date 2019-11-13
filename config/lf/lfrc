@@ -49,7 +49,18 @@ cmd copyto ${{
 	notify-send "📋 File(s) copied." "File(s) copies to $dest."
 }}
 
+cmd fzf_jump ${{
+   res="$(fd -a | fzf --reverse --header='Jump to location')"
+      if [ -f "$res" ]; then
+           cmd="select"
+	      elif [ -d "$res" ]; then
+	cmd="cd"
+      fi
+   lf -remote "send $id $cmd \"$res\""
+}}
+
 # Bindings
+map <c-f> :fzf_jump
 map c $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config/directories | fzf)"
 map J $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config/directories | fzf)"
 map gh

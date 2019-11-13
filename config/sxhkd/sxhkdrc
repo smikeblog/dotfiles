@@ -164,7 +164,7 @@ super + alt + Return
 	tilix --profile=fish
 # tilix fish terminal emulator
 super + shift + Return
-	st -e tmux
+	xfce4-terminal -e tmux
 # launch lynx web browser
 super + alt + l
     st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube

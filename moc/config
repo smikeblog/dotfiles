@@ -222,6 +222,7 @@ ShowTimePercent = no
 #Theme = darkdot_theme
 # Theme = transparent-background
 Theme = hringriin_theme
+#Theme = simple_theme
 
 # The theme used when running on an xterm.
 #
