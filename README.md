@@ -88,4 +88,5 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://github.com/peco/peco
 	https://github.com/sharkdp/bat
 	https://github.com/sharkdp/ripgrep
+	https://gitlab.com/wavexx/screenkey
 

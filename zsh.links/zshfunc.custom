@@ -374,7 +374,7 @@ fzf_find_edit() {
 }
 
 alias ffe='fzf_find_edit'
-
+bindkey -s '^y' 'ffe\n'
 
 fzf_grep_edit(){
     if [[ $# == 0 ]]; then
@@ -384,7 +384,7 @@ fzf_grep_edit(){
     local match=$(
       rg --color=never --line-number "$1" |
         fzf --no-multi --delimiter : \
-            --preview "bat --color=always --line-range {2}: {1}"
+           --preview "bat --color=always --line-range {2}: {1}"
       )
     local file=$(echo "$match" | cut -d':' -f1)
     if [[ -n $file ]]; then

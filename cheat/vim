@@ -1,5 +1,4 @@
 # File management
-
 :e              reload file
 :q              quit
 :q!             quit without saving changes
@@ -8,7 +7,6 @@
 :x              write file and exit
 
 # Movement
-
     k
   h   l         basic motion
     j
@@ -40,7 +38,6 @@ R               enter insert mode but replace instead of inserting chars
 :r {file}       insert from file
 
 # Editing
-
 u               undo
 yy              yank (copy) a line
 y{motion}       yank text that {motion} moves over
@@ -51,12 +48,14 @@ dd              delete a line
 d{motion}       delete text that {motion} moves over
 
 # Search and replace with the `:substitute` (aka `:s`) command
-
 :s/foo/bar/	replace the first match of 'foo' with 'bar' on the current line only
 :s/foo/bar/g	replace all matches (`g` flag) of 'foo' with 'bar' on the current line only
 :%s/foo/bar/g	replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
 :%s/foo/bar/gc	ask to manually confirm (`c` flag) each replacement 
+/\%>10l\%<20lsearch  search a pattern only in a line range (lines 10...20)
 :-10;+33s/foo/bar/	replace the match of 'foo' with 'bar' from 10 lines before current for the following 33 lines
+:%s//REPLACE/g	replace all occurrences of last search pattern with REPLACE
+:match(str, pattern)    check if a string contains a pattern
 
 # Preceding a motion or edition with a number repeats it 'n' times
 # Examples:
@@ -74,3 +73,18 @@ za - to toggle fold/unfold
 zR - to unfold all
 zM - to fold all
 
+# write the output of a command or builtin function to a buffer
+:put= + the function or execute() command. The output will be put below the current cursor line.
+:redir @a | echo strftime('%c') | redir END<CR>   - For functions
+:redir @a | silent scriptnames |redir END<CR>	  - For commands
+<C-R>= + function (e.g., strftime('%c')) or use execute() to run a command
+
+#open a terminal window inside neovim
+:vnew term://bash :vsplit term://bash :vnew term://zsh :vsplit term://zsh
+#set the working directory to where the currently opened file is
+:cd %:h
+
+##Rename multiple occurrences of a variable
+First, search the variable you want to rename. 
+Then press cgn to change it. Go back to normal mode, press . (dot), the next match will be replaced with the new name. 
+If you want to skip some match, press n.

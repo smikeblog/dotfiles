@@ -44,9 +44,10 @@
 		Super + ctrl + y              |- Make window sticky
 	    ### Move/Resize  windcommands ######################################################
 
-		Alt + ctrl + <direction>      |- Expand window moving one of its side outwards  
-		Alt + ctrl + shift + <direct> |- Contract focused window to direction
+		Alt + ctrl + <direction>      |- Expand focused window to <direction>
+		Alt + ctrl + shift + <direct> |- Contract focused window to <direction>
 		Super + {Left,Down,Up,Right}  |- Move floating window  
+		Super + shift + {comma,period}|- Rotate leaves of tree {90,270}
 		Super + {_,shift + }a         |- Flip layout vertically/horizontally
 		Super + alt + brckt{lft,rt}   |- Increaze/decreaze window gap on focused desktop 
 		Super + alt + b               |- Balance tree (equalize windows)

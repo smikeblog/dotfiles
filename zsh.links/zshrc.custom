@@ -8,6 +8,10 @@ if [ -f ~/.profile ]; then
     source ~/.profile
 fi
 
+# load user custom functions
+if [[ -f ~/.zshfunc.custom ]]; then
+  source ~/.zshfunc.custom
+fi
 # load some func one liners ...
 export ZSHCONFIG="${HOME}/.dotfiles"
 ZSH_INIT=${ZSHCONFIG}/_init.sh
@@ -45,13 +49,19 @@ bindkey -v
 #zle -N zle-line-init
 # }}}
 
-## some aliases
+## some aliases   {{{
 # nvim vim
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
-alias vil="nvim -u ~/.vil/init.vim $1"
-alias vimp="vim -u ~/.vimm/vimrc $1"
+if [ -e $HOME/.vil/init.vim ]; then
+  alias vil="nvim -u $HOME/.vil/init.vim $1"
+fi 
+if [ -e $HOME/.vimm/vimrc ]; then
+  alias vimp="vim -u $HOME/.vimm/vimrc $1"
+fi
+if [ -e $HOME/.vimrc.go ]; then
+  alias vimgo="vim -u $HOME/.vimrc.go $1"
+fi
 alias vin="nvim -N -u NONE -U NONE "
-alias vimgo='vim -u ~/.vimrc.go'
 
 # cli translate  - https://github.com/soimort/translate-shell
 alias trans-enru='trans -shell en:ru '
@@ -64,21 +74,24 @@ alias sm.antivir='sudo rkhunter -c'
 
 # utils
 # https://github.com/athityakumar/colorls
+if _has exa; then 
+  alias lx='exa'
+  alias ll='exa -lh'
+  alias lll='exa -lah'
+fi
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias lc='colorls --sd -lA'
-alias ll='exa -lh'
 alias  k='k -h'
 # Pipe Aliases
 alias -g W=' | wc -l '
 alias -g S=' | sort '
 
+   ##   }}}
+
+
 # define var to open in browser from cli ex - b ya.ru
 b='${(z)BROWSER}'
 
-# load user custom functions
-if [[ -f ~/.zshfunc.custom ]]; then
-  source ~/.zshfunc.custom
-fi
 
 ### time consuming node ruby python env sol-s {{{
 #### NODE
