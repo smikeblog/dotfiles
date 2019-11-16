@@ -54,7 +54,7 @@ bindkey -v
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
-fi 
+fi
 if [ -e $HOME/.vimm/vimrc ]; then
   alias vimp="vim -u $HOME/.vimm/vimrc $1"
 fi
@@ -74,7 +74,7 @@ alias sm.antivir='sudo rkhunter -c'
 
 # utils
 # https://github.com/athityakumar/colorls
-if _has exa; then 
+if _has exa; then
   alias lx='exa'
   alias ll='exa -lh'
   alias lll='exa -lah'
@@ -95,26 +95,27 @@ b='${(z)BROWSER}'
 
 ### time consuming node ruby python env sol-s {{{
 #### NODE
-# Add yarn bin
-export PATH=$PATH:$HOME/.yarn/bin
+if [ -d $HOME/.yarn/bin ]; then
+	# Add yarn bin
+	export PATH=$PATH:$HOME/.yarn/bin
 
-## solution from https://github.com/nvm-sh/nvm/issues/1277
-##declare -a NODE_GLOBALS_NPM=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*'`)
-declare -a NODE_GLOBALS_YARN=(`find $HOME/.yarn/bin -maxdepth 3 -type l -wholename '*/bin/*'`)
-declare -a NODE_GLOBALS=(`echo $NODE_GLOBALS_NPM $NODE_GLOBALS_YARN | xargs -n1 basename | sort | uniq`)
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
+	## solution from https://github.com/nvm-sh/nvm/issues/1277
+	##declare -a NODE_GLOBALS_NPM=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*'`)
+	declare -a NODE_GLOBALS_YARN=(`find $HOME/.yarn/bin -maxdepth 3 -type l -wholename '*/bin/*'`)
+	declare -a NODE_GLOBALS=(`echo $NODE_GLOBALS_NPM $NODE_GLOBALS_YARN | xargs -n1 basename | sort | uniq`)
+	NODE_GLOBALS+=("node")
+	NODE_GLOBALS+=("nvm")
 
-load_nvm () {
-    export NVM_DIR=~/.nvm
-    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-    export NODE_PATH="$NVM_BIN"
-}
+	load_nvm () {
+	    export NVM_DIR=~/.nvm
+	    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+	    export NODE_PATH="$NVM_BIN"
+	}
 
-for cmd in "${NODE_GLOBALS[@]}"; do
-    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
-
+	for cmd in "${NODE_GLOBALS[@]}"; do
+	    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+	done
+fi
 ### }}}
 
 # us

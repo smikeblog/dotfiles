@@ -52,7 +52,7 @@ choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'Edit a config file: ')
         exec st -e vim $HOME/.config/qtile/config.py
 	fi
 	if [ "$choice" == ' st ' ]; then
-        exec st -e vim $HOME/st/config.h
+        exec st -e vim $HOME/Downloads/build/st/config.h
 	fi
 	if [ "$choice" == ' sxhkd ' ]; then
         exec st -e vim $HOME/.config/sxhkd/sxhkdrc

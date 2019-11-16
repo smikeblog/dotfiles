@@ -60,14 +60,17 @@ cmd fzf_jump ${{
 }}
 
 # Bindings
+map za    # delete za setting map za set info size:time
+map za set hidden!
+map zv set info size:time
 map <c-f> :fzf_jump
-map c $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config/directories | fzf)"
-map J $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config/directories | fzf)"
+#map c $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
+#map J $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
 map gh
 map g top
 map D delete
-map C copyto
-map M moveto
+#map C copyto
+#map M moveto
 map a push %mkdir<space>
 map rc push :rename<space>
 map <enter> shell

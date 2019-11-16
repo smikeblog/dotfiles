@@ -89,5 +89,7 @@ sublime-text-3/local/
 sublime-text-3/Packages/User/
 
 # moc non set files
+moc/last_directory
+moc/equalizer
 moc/softmixer
 moc/pid
