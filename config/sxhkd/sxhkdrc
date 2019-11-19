@@ -56,6 +56,9 @@ super + ctrl + {m,x,y,z}
 
 
 # FOCUS/SWAP
+# when pressed again go to the previous state
+super + d
+    bspc node focused -t \~floating
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -63,6 +66,7 @@ super + {_,shift + }{h,j,k,l}
 
 # focus the node for the given path jump
 #super + {p,b,comma,period}
+#super + {_,shift + }{p,b}
 #	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
@@ -153,8 +157,12 @@ super + ctrl + b
 # APPLICATION KEYBINDINGS (Super + Alt + Key)
 
 # browser
+super + shift + w
+  qutebrowser
+# browser
 super + w
   palemoon
+
 # terminal emulator
 super + Return
 	st
@@ -192,8 +200,11 @@ alt + F3
 	jgmenu_run >/dev/null 2>&1
 
 # DMENU SCRIPTS (Alt+Ctrl+Key)
+# run  rofi open st bash in selected dir 
+alt + shift + F3
+	./scripts/rofi-terminal.sh 
 # run  rofi program launcher
-shift+ ctrl + Return
+shift + ctrl + Return
 	rofi -show drun
 # run dmenu program launcher
 alt + ctrl + Return
@@ -215,3 +226,41 @@ alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
 # stock trading programs
 # alt + ctrl + t
+
+# Audio mpd from LukeSmith
+XF86HomePage
+  firefox
+#super + x
+XF86AudioStop
+	mpc stop; pauseallmpv
+XF86Launch1
+	xset dpms force off
+XF86AudioMute
+#	lmc mute
+	lmc next
+XF86AudioLowerVolume
+	lmc down 5
+shift+XF86AudioLowerVolume
+	lmc down 10
+control+XF86AudioLowerVolume
+	lmc down 1
+XF86AudioRaiseVolume
+	lmc up 5
+shift+XF86AudioRaiseVolume
+	lmc up 10
+control+XF86AudioRaiseVolume
+	lmc up 1
+XF86AudioNext
+#	lmc next
+	lmc mute
+XF86Calculator
+	lmc toggle
+XF86AudioPlay
+#	lmc toggle
+	lmc prev
+XF86AudioPrev
+	lmc prev
+XF86AudioStop
+  lmc stop
+XF86Eject
+  lmc stop

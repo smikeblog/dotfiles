@@ -9,7 +9,8 @@ nitrogen --restore &
 #conky &
 #./.config/bspwm/panel.sh &
 ./.config/polybar/launch.sh &
-setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
+# setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
+setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
 btops &
 ##$GOPATH/bin/btops &
 nm-applet &
@@ -69,7 +70,7 @@ bspc rule -a Firefox desktop='^2' follow=on
 bspc rule -a Atom desktop='^3' follow=on
 bspc rule -a mplayer2 state=floating
 bspc rule -a smplayer desktop='^6' follow=on
-bspc rule -a vlc state=floating follow=on
+bspc rule -a Vlc state=floating follow=on
 bspc rule -a Transmission-gtk desktop='^7' follow=on
 bspc rule -a Thunar desktop='^8' follow=on
 bspc rule -a Nemo desktop='^8' follow=on
@@ -80,4 +81,10 @@ bspc rule -a Stacer state=floating
 ## applications
 bspc rule -a Gnome-disks state=tiled
 bspc rule -a Xfce4-settings-manager state=tiled
+bspc rule -a Pavucontrol state=floating sticky=on
+bspc rule -a Xfce4-appfinder state=floating sticky=on
+bspc rule -a vlc state=floating sticky=on
+bspc rule -a file-roller state=floating center=true
+bspc rule -a lxappearance state=floating center=true
+bspc rule -a gcolor2 state=floating center=true
 

@@ -1,0 +1,5 @@
+#!/bin/bash
+while true; do
+	echo "$(mpc | grep - | tr ';' '+' | sed 's/+/ + /g') - $(mpc | grep % | sed 's/   /_/g' | cut -d_ -f2 | sed 's/repeat/ /g' | sed 's/off/ /g' | sed 's/on/ /g' | sed 's/ :/ /g' | awk 'NF > 0')"
+	sleep 1
+done
