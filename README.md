@@ -81,6 +81,7 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
    #}}}
 
 ## Other used Tools
+	pip3 install awesome-finder
 	https://github.com/Peltoche/lsd
 	https://github.com/relastle/pmy
 	https://github.com/gokcehan/lf

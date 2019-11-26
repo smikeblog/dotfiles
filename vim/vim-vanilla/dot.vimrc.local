@@ -1,5 +1,5 @@
 " -- display -------------------------------------------------------------------
-
+hi MatchWord ctermfg=red guifg=blue cterm=underline gui=underline
 if exists("+colorcolumn")
   set colorcolumn=81          " display a marker after column 80
 endif

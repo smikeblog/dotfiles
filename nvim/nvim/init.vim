@@ -10,7 +10,7 @@ let mapleader = ","
 " Load vundle
 set nocompatible
 filetype off
-set rtp+=~/dev/others/base16/builder/templates/vim/
+" set rtp+=~/dev/others/base16/builder/templates/vim/
 call plug#begin()
 
 " Load plugins
@@ -18,6 +18,7 @@ call plug#begin()
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
+Plug 'vifm/vifm.vim'
 
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
@@ -25,10 +26,14 @@ Plug 'w0rp/ale'
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'chriskempson/base16-vim'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
+"" install fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"" install fzf-coalesce
+Plug 'relastle/fzf-coalesce.vim'
 Plug 'junegunn/fzf.vim'
 
 " Semantic language support
@@ -55,7 +60,7 @@ call plug#end()
 
 if has('nvim')
     set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
-    set inccommand=nosplit
+    set inccommand=split
     noremap <C-q> :confirm qall<CR>
 end
 
@@ -91,7 +96,7 @@ let g:secure_modelines_allowed_items = [
 
 " Base16
 let base16colorspace=256
-let g:base16_shell_path="~/dev/others/base16/builder/templates/shell/scripts/"
+let g:base16_shell_path="~/.config/base16-shell/scripts/"
 
 " Lightline
 " let g:lightline = { 'colorscheme': 'wombat' }
@@ -427,3 +432,49 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 if has('nvim')
 	runtime! plugin/python_setup.vim
 endif
+
+" local additions
+nnoremap <leader><Space> :<C-u>FzfCoalesce<CR>
+
+" Delimiter used to seperate tag and original line
+let g:fzf_coalesce_tag_delimiter = "\t"
+
+" Delimiter used to seperate icon and file path
+" Note that this must not include g:fzf_coalesce_tag_delimiter
+let g:fzf_coalesce_icon_delimiter = "  "
+
+" Dictionary that map source name to tag
+let g:fzf_coalesce_tag_dict = {
+  \ 'buf': "|BUF|",
+  \ 'git': "|GIT|",
+  \ 'mru': "|MRU|",
+  \ }
+
+" Dictionary that map source name to tag color
+let g:fzf_coalesce_tag_color_dict = {
+  \ 'buf': "green",
+  \ 'git': "yellow",
+  \ 'mru': "blue",
+  \ }
+
+
+    """""""""""""""""""""""""fzf.vim settings""""""""""""""""""
+    " Customize fzf colors to match your color scheme
+    let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
+
+" to avoid surprices with python2 specify python3
+let g:python3_host_prog = '/usr/bin/python3'

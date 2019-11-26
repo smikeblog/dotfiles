@@ -88,3 +88,32 @@ zM - to fold all
 First, search the variable you want to rename. 
 Then press cgn to change it. Go back to normal mode, press . (dot), the next match will be replaced with the new name. 
 If you want to skip some match, press n.
+
+## Vanilla packages use
+### Color theme
+Vim by default read colors from dir ~/.vim/colors
+
+### load Packages by vanilla vim
+Create pack/*/start directory under any of the directory provided by set packpath. 
+I did in ~/.config/nvim/pack/*/start. 
+Note that you can use any directory name you want in place of * but you can't omit it totally, I don't know why. 
+For example, you can use directory ~/.config/nvim/pack/foo/start 
+or ~/.config/nvim/pack/bar/start but not ~/.config/nvim/pack/start.
+
+Go to the pack/*/start directory and clone the package there.
+Fire up n/vim and do :scriptnames to check if everything is loaded. 
+Don't worry if not every part is loaded, because some files are meant 
+to loaded after some hook, e.g. autoload/plugin.vim.
+
+To uninstall, just remove the directory where you cloned the package. Don't need to do anything else.
+
+Do :helptags ALL to generate tags for all the help docs. 
+Do :helptags {dir} for generating tags for the help docs under directory dir. 
+For example, if you put your plugin in ~/.config/nvim/pack/foo/plugin_name, 
+then do :helptags ~/.config/nvim/pack/foo/plugin_name/doc. 
+That will generate a tags file in the doc directory of the plugin. 
+
+If you remove the plugin from the directory, the tags file will be gone 
+and vim will not find the help file, so you don't need to uninstall 
+the doc file manually.
+

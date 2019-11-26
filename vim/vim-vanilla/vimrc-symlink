@@ -13,12 +13,6 @@ set timeoutlen=500      " time in milliseconds for a key sequence to complete
 let mapleader=","       " change leader key to ,
 let maplocalleader=","  " change local leader key to ,
 
-" <leader>ev edits .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-
-" <leader>sv sources .vimrc
-nnoremap <leader>sv :source $MYVIMRC<CR>:redraw<CR>:echo $MYVIMRC 'reloaded'<CR>
-
 
 " -- ConEmu integration --------------------------------------------------------
 
@@ -760,6 +754,12 @@ endif
 
 
 " --user defined ---------------------------------------------------------------
+" Fuzzy search settings (fzf)
+" If installed using git
+set rtp+=~/.fzf
+nnoremap <silent> <C-p> :FZF<cr>
+
+nnoremap <silent> <C-o> :Vifm<cr>
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local

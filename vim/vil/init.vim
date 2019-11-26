@@ -6,8 +6,9 @@ Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
 Plug 'taigacute/gruvbox9'
 Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-" Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'jreybert/vimagit'
 Plug 'LukeSmithxyz/vimling'
 Plug 'vimwiki/vimwiki'
@@ -56,8 +57,11 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 	set splitbelow splitright
 
 " Nerd tree
+let NERDTreeShowHidden=1
 	" map <leader>n :NERDTreeToggle<CR>
 	map <leader>o :NERDTreeToggle<CR>
+	nnoremap <F3> :NERDTreeToggle<CR>
+	inoremap <F3> <Esc>:NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " vimling:

@@ -1,0 +1,33 @@
+# The install script will setup the following key bindings for bash, zsh, and fish.
+
+CTRL-T - Paste the selected files and directories onto the command-line
+
+CTRL-R - Paste the selected command from history onto the command-line
+  # to see the commands in chronological order, press CTRL-R again which toggles sorting by relevance
+
+# Files and directories
+	# Files under current directory
+	# - You can select multiple items with TAB key
+	vim **<TAB>
+
+	# Files under parent directory
+	vim ../**<TAB>
+
+	# Files under parent directory that match `fzf`
+	vim ../fzf**<TAB>
+
+	# Files under your home directory
+	vim ~/**<TAB>
+
+
+	# Directories under current directory (single-selection)
+	cd **<TAB>
+
+	# Directories under ~/github that match `fzf`
+	cd ~/github/fzf**<TAB>
+
+# Process IDs
+	# Can select multiple processes with <TAB> or <Shift-TAB> keys
+	kill -9 <TAB>
+
+

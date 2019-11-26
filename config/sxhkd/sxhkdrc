@@ -172,7 +172,7 @@ super + alt + Return
 	tilix --profile=fish
 # tilix fish terminal emulator
 super + shift + Return
-	xfce4-terminal -e tmux
+	xfce4-terminal -e ~/scripts/tat
 # launch lynx web browser
 super + alt + l
     st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
@@ -228,9 +228,10 @@ alt + ctrl + r
 # alt + ctrl + t
 
 # Audio mpd from LukeSmith
-XF86HomePage
+XF86HomePag
   firefox
-#super + x
+super + x
+  mpc stop
 XF86AudioStop
 	mpc stop; pauseallmpv
 XF86Launch1
