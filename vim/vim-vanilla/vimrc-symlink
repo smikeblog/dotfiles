@@ -759,7 +759,8 @@ endif
 set rtp+=~/.fzf
 nnoremap <silent> <C-p> :FZF<cr>
 
-nnoremap <silent> <C-o> :Vifm<cr>
+" nnoremap <silent> <C-o> :Vifm<cr>
+nnoremap <silent> <C-o> :VsplitVifm<cr>
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local

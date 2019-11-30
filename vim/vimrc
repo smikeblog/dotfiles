@@ -85,6 +85,9 @@ set undolevels=99
 set encoding=utf-8
 set fileencoding=utf-8
 
+set wildmenu
+set wildmode=longest:full,full
+
 " All three settings are necessary to avoid noise... "
 set noerrorbells
 set noerrorbells visualbell t_vb=
