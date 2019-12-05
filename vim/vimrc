@@ -36,6 +36,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'habamax/vim-asciidoctor'
 Plug 'aonemd/kuroi.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'tpope/vim-commentary'
+
 "Plug 'scrooloose/syntastic'
 "Plug 'joonty/vdebug'
 "
@@ -338,6 +340,9 @@ autocmd FileType vue syntax sync fromstart
 "
 " pangloss/vim-javascript
 "
+"" map for tpope/vim-commentary
+noremap <leader>/ :Commentary<cr>
+
 
 let g:javascript_plugin_jsdoc = 1
 "augroup javascript_folding
@@ -352,7 +357,6 @@ let g:javascript_plugin_jsdoc = 1
 "    endif
 "augroup END
 
-"
 " CUSTOM HELPERS
 "
 source ~/.vim/helpers/redir.vim

@@ -95,7 +95,7 @@ b='${(z)BROWSER}'
 
 ### time consuming node ruby python env sol-s {{{
 #### NODE
-if [ -d $HOME/.yarn/bin ]; then
+if [ -d $HOME/.yarn/bin ] && [ -d $HOME/.nvm ]; then
 	# Add yarn bin
 	export PATH=$PATH:$HOME/.yarn/bin
 
@@ -107,7 +107,7 @@ if [ -d $HOME/.yarn/bin ]; then
 	NODE_GLOBALS+=("nvm")
 
 	load_nvm () {
-	    export NVM_DIR=~/.nvm
+	    export NVM_DIR=$HOME/.nvm
 	    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 	    export NODE_PATH="$NVM_BIN"
 	}
