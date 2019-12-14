@@ -28,7 +28,7 @@ set matchtime=5
 set noshowmode
 " Mark 80th column with a highlight color
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=81
   highlight ColorColumn ctermbg=gray
 endif
 " Highlight current line

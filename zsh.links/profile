@@ -1,4 +1,5 @@
 
+
 export QT_QPA_PLATFORMTHEME="qt5ct"
 #export EDITOR=/usr/bin/vim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
@@ -16,14 +17,16 @@ export TERMINAL="st"
 # set preview colorscheme for pristol previewer
 export PISTOL_CHROMA_STYLE=monokai
 
+# sm add rust path -> moved to .profile
+export PATH="$HOME/.cargo/bin:$PATH"
 # sm add GO path -> moved to .profile
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
+export GOROOT="/usr/local/go"
+export PATH="$PATH:$GOROOT/bin"
 [ -d $HOME/go ] && export GOPATH="$HOME/go"
-[ -d $GOPATH/bin ] && export GOBIN="$GOPATH/bin"
-export PATH="$PATH:$GOBIN"
-export PATH="$PATH:$GOPATH/exe"
-export PATH="/usr/local/go/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+# [ -d $GOPATH/bin ] && export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOPATH/bin"
+export GOPATH="$GOPATH:$HOME/Code/go"
 
 # Make local for single user bin and scripts directories i.e. not global apps
 ## moved to zshfunc_custom
@@ -53,5 +56,5 @@ source "$HOME/scripts/gruvbox_256palette.sh"
 # source ~/.dotfiles/profileSmike
 
 # export path to ruby gem directory
-[ -d $HOME/.gem/ruby/2.6.0/bin ] && PATH=$HOME/.gem/ruby/2.6.0/bin:$PATH
+[ -d $HOME/.gem/ruby/2.6.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
 export PATH

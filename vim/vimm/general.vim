@@ -7,7 +7,7 @@
 " Make Vim more useful
 set nocompatible
 " Use path '~/.vim' even on non-unix machine
-set runtimepath+=~/.vim
+set runtimepath+=~/.vimm
 " Enhance command-line completion
 set wildmenu
 " Ignore when expanding wildcards
@@ -92,14 +92,14 @@ endif
   set undolevels=100
   " Change directory to save undo history
   if has('persistent_undo') && !has('nvim')
-    set undodir=~/.vim/cache
+    set undodir=~/.vimm/cache
     if !isdirectory(&undodir)
       " Create directory
       call mkdir(&undodir, 'p')
     endif
   endif
   " Don’t create backups when editing files in certain directories
-  set backupskip=/tmp/*
+  set backupskip=/.vimm/tmp/*
 """ }}}
 
 """ Encoding {{{

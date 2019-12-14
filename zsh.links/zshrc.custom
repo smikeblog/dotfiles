@@ -325,3 +325,4 @@ ex=:\
 
 
 alias vi="vim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
+alias nvi="nvim -u $HOME/.vimm/init.vim "

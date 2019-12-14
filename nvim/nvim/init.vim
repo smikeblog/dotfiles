@@ -368,7 +368,7 @@ nmap <silent> <C-g> :close<cr>
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
 
-" <leader>= reformats current tange
+" <leader>= reformats current range
 nnoremap <leader>= :'<,'>RustFmtRange<cr>
 
 " <leader>, shows/hides hidden characters
@@ -475,6 +475,8 @@ let g:fzf_coalesce_tag_color_dict = {
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
+" vert split using vifm 
+nnoremap <silent> <F4> :VsplitVifm<cr>
 
 " to avoid surprices with python2 specify python3
 let g:python3_host_prog = '/usr/bin/python3'

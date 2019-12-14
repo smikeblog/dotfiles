@@ -29,7 +29,7 @@
   Plug 'jnurmine/Zenburn'
 "" }}}
 "" Theme: Solarized {{{
-  Plug 'altercation/vim-colors-solarized'
+  Plug 'aonemd/kuroi.vim'
 "" }}}
 "" Theme: Seoul256 {{{
   Plug 'junegunn/seoul256.vim'

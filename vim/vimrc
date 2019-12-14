@@ -37,6 +37,9 @@ Plug 'habamax/vim-asciidoctor'
 Plug 'aonemd/kuroi.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-commentary'
+Plug 'vifm/vifm.vim'
+" post install (yarn install | npm install)
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 "Plug 'scrooloose/syntastic'
 "Plug 'joonty/vdebug'
@@ -182,6 +185,7 @@ let NERDTreeIgnore = ['\~$', 'node_modules', 'public/assets', 'public/fonts', 'p
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <Esc>:update<CR><Right>
 
+" open the omnicompletion manually
 inoremap <C-Space> <C-x><C-o>
 
 " Mapping for tabpages "
@@ -357,7 +361,12 @@ let g:javascript_plugin_jsdoc = 1
 "    endif
 "augroup END
 
+" Ctrl+O vifm vert split open
+nnoremap <silent> <c-o> :VsplitVifm<cr>
+
 " CUSTOM HELPERS
 "
 source ~/.vim/helpers/redir.vim
 
+execute pathogen#infect()
+call pathogen#helptags()

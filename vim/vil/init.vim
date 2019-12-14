@@ -3,6 +3,7 @@ let mapleader =","
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
+Plug 'aonemd/kuroi.vim'
 Plug 'morhetz/gruvbox'
 Plug 'taigacute/gruvbox9'
 Plug 'scrooloose/nerdtree'
@@ -10,13 +11,12 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
-Plug 'LukeSmithxyz/vimling'
 Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
-
+Plug 'sainnhe/gruvbox-material'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 
@@ -40,7 +40,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
-	colorscheme gruvbox9
+	colorscheme gruvbox9_hard
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:
@@ -52,6 +52,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	" map <leader>o :setlocal spell! spelllang=en_us<CR>
 	map <leader>ss :setlocal spell! spelllang=en_us<CR>
+	map <leader>sr :setlocal spell! spelllang=ru_ru<CR>
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
@@ -63,13 +64,6 @@ let NERDTreeShowHidden=1
 	nnoremap <F3> :NERDTreeToggle<CR>
 	inoremap <F3> <Esc>:NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" vimling:
-	nm <leader>d :call ToggleDeadKeys()<CR>
-	imap <leader>d <esc>:call ToggleDeadKeys()<CR>a
-	nm <leader>i :call ToggleIPA()<CR>
-	imap <leader>i <esc>:call ToggleIPA()<CR>a
-	nm <leader>q :call ToggleProse()<CR>
 
 " Shortcutting split navigation, saving a keypress:
 "	map <C-h> <C-w>h
@@ -199,28 +193,6 @@ let NERDTreeShowHidden=1
 	autocmd FileType html inoremap ,dt <dt></dt><Enter><dd><++></dd><Enter><++><esc>2kcit
 	autocmd FileType html inoremap ,dl <dl><Enter><Enter></dl><enter><enter><++><esc>3kcc
 	autocmd FileType html inoremap &<space> &amp;<space>
-	autocmd FileType html inoremap á &aacute;
-	autocmd FileType html inoremap é &eacute;
-	autocmd FileType html inoremap í &iacute;
-	autocmd FileType html inoremap ó &oacute;
-	autocmd FileType html inoremap ú &uacute;
-	autocmd FileType html inoremap ä &auml;
-	autocmd FileType html inoremap ë &euml;
-	autocmd FileType html inoremap ï &iuml;
-	autocmd FileType html inoremap ö &ouml;
-	autocmd FileType html inoremap ü &uuml;
-	autocmd FileType html inoremap ã &atilde;
-	autocmd FileType html inoremap ẽ &etilde;
-	autocmd FileType html inoremap ĩ &itilde;
-	autocmd FileType html inoremap õ &otilde;
-	autocmd FileType html inoremap ũ &utilde;
-	autocmd FileType html inoremap ñ &ntilde;
-	autocmd FileType html inoremap à &agrave;
-	autocmd FileType html inoremap è &egrave;
-	autocmd FileType html inoremap ì &igrave;
-	autocmd FileType html inoremap ò &ograve;
-	autocmd FileType html inoremap ù &ugrave;
-
 
 """.bib
 	autocmd FileType bib inoremap ,a @article{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>journal<Space>=<Space>{<++>},<Enter>volume<Space>=<Space>{<++>},<Enter>pages<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i

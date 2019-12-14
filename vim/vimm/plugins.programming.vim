@@ -236,6 +236,10 @@
   " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install'}
 "" }}}
 
+"" Plugin: Vim-go {{{
+"  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"" }}}
+
 "" Plugin: LanguageClient(NeoVIM only) {{{
   " Support Language Server Protocol for NeoVIM
   if has('nvim')
