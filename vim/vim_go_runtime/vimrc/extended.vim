@@ -4,9 +4,6 @@ set t_RV=
 " Switch between the last two files
 nnoremap <leader><leader> <C-^>
 
-" Switch between the last two files
-nnoremap <leader><leader> <C-^>
-
 " Allow to copy/paste between VIM instances
 "copy the current visual selection to ~/.vbuf
 vmap <leader>y :w! ~/.vbuf<cr>

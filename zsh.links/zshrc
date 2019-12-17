@@ -58,3 +58,5 @@ function newline-after-command() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="/home/sm1/scripts:/home/sm1/bin:/usr/local/bin:/usr/local/sbin:/home/sm1/.cargo/bin:/home/sm1/.cargo/bin:/home/sm1/.local/bin:/usr/bin:/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/usr/local/go/bin:/home/sm1/go/bin:/home/sm1/.gem/ruby/2.6.0/bin:/usr/local/go/bin:/home/sm1/go/bin:/home/sm1/.gem/ruby/2.6.0/bin:/usr/sbin:/home/sm1/.vimm/plugged/fzf/bin:/home/sm1/.vimpkg/bin"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

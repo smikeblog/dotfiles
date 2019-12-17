@@ -1,6 +1,6 @@
 let mapleader =","
 " let g: highlightedyank_highlight_duration = 1000
-
+""" Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
@@ -21,19 +21,22 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'machakann/vim-highlightedyank'
 
 call plug#end()
+""" }}}
 
 set bg=dark
 set go=a
 set mouse=a
 set nohlsearch
+set foldmethod=marker
 set clipboard=unnamedplus
 
 " Display hidden characters
-set list
+" inverts display of unprintable characters
+nnoremap <silent> <leader>l :set list! list?<CR>
 "set listchars=tab:▸\ ,eol:¬
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 
-" Some basics:
+" Some basics: {{{
 	nnoremap c "_c
 	set nocompatible
 	filetype plugin on
@@ -47,7 +50,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
-	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+	map <leader>f :Goyo \| set bg=dark \| set linebreak<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
 	" map <leader>o :setlocal spell! spelllang=en_us<CR>
@@ -65,21 +68,22 @@ let NERDTreeShowHidden=1
 	inoremap <F3> <Esc>:NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" nnoremap <silent> <C-o> :VsplitVifm<cr>
+nnoremap <silent> <F4> :VsplitVifm<cr>
+
 " Shortcutting split navigation, saving a keypress:
 "	map <C-h> <C-w>h
 "	map <C-j> <C-w>j
 "	map <C-k> <C-w>k
 "	map <C-l> <C-w>l
 
-" Check file in shellcheck:
-	map <leader>s :!clear && shellcheck %<CR>
+" Replace all is aliased to S.
+	nnoremap S :%s//g<Left><Left>
+""" }}}
 
 " Open my bibliography file in split
 	map <leader>b :vsp<space>$BIB<CR>
 	map <leader>r :vsp<space>$REFER<CR>
-
-" Replace all is aliased to S.
-	nnoremap S :%s//g<Left><Left>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler <c-r>%<CR>
@@ -130,7 +134,8 @@ let NERDTreeShowHidden=1
   xnoremap <leader>k :m-2<cr>gv=gv
   xnoremap <leader>j :m'>+<cr>gv=gv
 
-"""LATEX
+""" mapped Snippets {{{
+"""--------LATEX {{{
 	" Word count:
 	autocmd FileType tex map <leader>w :w !detex \| wc -w<CR>
 	" Code snippets
@@ -169,8 +174,9 @@ let NERDTreeShowHidden=1
 	autocmd FileType tex inoremap ,nu $\varnothing$
 	autocmd FileType tex inoremap ,col \begin{columns}[T]<Enter>\begin{column}{.5\textwidth}<Enter><Enter>\end{column}<Enter>\begin{column}{.5\textwidth}<Enter><++><Enter>\end{column}<Enter>\end{columns}<Esc>5kA
 	autocmd FileType tex inoremap ,rn (\ref{})<++><Esc>F}i
+" }}}
 
-"""HTML
+"""--------HTML {{{
 	autocmd FileType html inoremap ,b <b></b><Space><++><Esc>FbT>i
 	autocmd FileType html inoremap ,it <em></em><Space><++><Esc>FeT>i
 	autocmd FileType html inoremap ,1 <h1></h1><Enter><Enter><++><Esc>2kf<i
@@ -193,13 +199,15 @@ let NERDTreeShowHidden=1
 	autocmd FileType html inoremap ,dt <dt></dt><Enter><dd><++></dd><Enter><++><esc>2kcit
 	autocmd FileType html inoremap ,dl <dl><Enter><Enter></dl><enter><enter><++><esc>3kcc
 	autocmd FileType html inoremap &<space> &amp;<space>
+" }}}
 
-""".bib
+"""--------.bib {{{
 	autocmd FileType bib inoremap ,a @article{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>journal<Space>=<Space>{<++>},<Enter>volume<Space>=<Space>{<++>},<Enter>pages<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
 	autocmd FileType bib inoremap ,b @book{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>6kA,<Esc>i
 	autocmd FileType bib inoremap ,c @incollection{<Enter>author<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>booktitle<Space>=<Space>{<++>},<Enter>editor<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
+" }}}
 
-"MARKDOWN
+"--------MARKDOWN {{{
 	autocmd Filetype markdown,rmd map <leader>w yiWi[<esc>Ea](<esc>pa)
 	autocmd Filetype markdown,rmd inoremap ,n ---<Enter><Enter>
 	autocmd Filetype markdown,rmd inoremap ,b ****<++><Esc>F*hi
@@ -215,14 +223,15 @@ let NERDTreeShowHidden=1
 	autocmd Filetype rmd inoremap ,r ```{r}<CR>```<CR><CR><esc>2kO
 	autocmd Filetype rmd inoremap ,p ```{python}<CR>```<CR><CR><esc>2kO
 	autocmd Filetype rmd inoremap ,c ```<cr>```<cr><cr><esc>2kO
+" }}}
 
-""".xml
+"""--------.xml {{{
 	autocmd FileType xml inoremap ,e <item><Enter><title><++></title><Enter><guid<space>isPermaLink="false"><++></guid><Enter><pubDate><Esc>:put<Space>=strftime('%a, %d %b %Y %H:%M:%S %z')<Enter>kJA</pubDate><Enter><link><++></link><Enter><description><![CDATA[<++>]]></description><Enter></item><Esc>?<title><enter>cit
 	autocmd FileType xml inoremap ,a <a href="<++>"><++></a><++><Esc>F"ci"
-
-
+" }}}
+""" }}}
 "*****************************************************************************
-"" Convenience variables
+"" Convenience variables {{{
 "*****************************************************************************
 
     highlight SpecialKey ctermfg=19 guifg=#333333
@@ -271,7 +280,7 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
-
+""" }}}
 
 "*****************************************************************************
 "" Window Splits

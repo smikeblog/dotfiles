@@ -3,7 +3,7 @@
 "call pathogen#infect('~/.vim_go_runtime/bundle/pristine/{}')
 "call pathogen#helptags()
 
-call plug#begin('~/.vim/plugins')
+call plug#begin('~/.vim_go_runtime/plugins')
 	Plug 'mileszs/ack.vim'
 	Plug 'jiangmiao/auto-pairs.git'
 	" NERDTree: {{{
