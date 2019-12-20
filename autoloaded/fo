@@ -1,0 +1,27 @@
+# fo - Modified version of fe() where you can press
+#   - CTRL-O to open with $OPENER,
+#   - CTRL-E or Enter key to open with $EDITOR
+fo() {
+  local IFS=$'\n'
+  local out=()
+  local key
+  local file
+
+  out=(
+    "$(
+        fzf-tmux \
+          --query="$1" \
+          --exit-0 \
+          --expect=ctrl-o,ctrl-e
+    )"
+  )
+  key="$(head -1 <<< "${out[@]}")"
+  file="$(head -2 <<< "${out[@]}" | tail -1)" || return
+
+  if [[ "$key" == ctrl-o ]]; then
+    "${OPENER:-xdg-open}" "$file"
+  else
+    "${EDITOR:-vim}" "$file"
+  fi
+}
+

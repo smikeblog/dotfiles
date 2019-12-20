@@ -14,8 +14,9 @@ export BROWSER="palemoon"
 export READER="zathura"
 export TERMINAL="st"
 
-# set preview colorscheme for pristol previewer
-export PISTOL_CHROMA_STYLE=monokai
+# se tpreview colorscheme for pristol previewer
+export PISTOL_CHROMA_FORMATTER=terminal256
+export PISTOL_CHROMA_STYLE=dracula
 
 # sm add rust path -> moved to .profile
 export PATH="$HOME/.cargo/bin:$PATH"

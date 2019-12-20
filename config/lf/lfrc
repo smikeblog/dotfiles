@@ -3,6 +3,7 @@
 # Basic vars
 #set shell sh
 ## set previewer ~/.config/lf/scope
+set color256
 set previewer ~/go/bin/pistol
 set icons
 
@@ -141,7 +142,13 @@ map x $$f
 map X !$f
 map o &mimeopen $f
 map O $mimeopen --ask $f
-map ra $lf -remote "send $id push :rename<space>$f"
-map re $lf -remote "send $id push :rename<space>$f<a-b><a-d>"
 
+## Unmap the default mapping so the rest of the following mapping won't collide
+map r
+# Simple rename:
+map rc push :rename<space>
+# Rename with the filename on the command line
+map ra $lf -remote "send $id push :rename<space>$f"
+# Rename with the filename without the extension
+map re $lf -remote "send $id push :rename<space>$f<a-b><a-d>"
 

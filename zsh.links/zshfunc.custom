@@ -162,80 +162,10 @@ _append_to_path /usr/sbin
 #export INFOPATH=$HOME/.dotfiles/info:$INFOPATH
 
 # ALIASES {{{1
-#-------------------------------------------------------
-# Print all histories
-function history-all { history -E 1 }
-
-#-------------------------------------------------------
-
-zsh_stats()
-{
-  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
-    | grep -v "./" \
-    | column -c3 -s " " -t \
-    | sort -nr \
-    | nl \
-    |  head -n20
-}
-
-sm.dirlist()
-{
-  du -x --max-depth=1|sort -rn|awk -F / -v c=$COLUMNS 'NR==1{t=$1} NR>1{r=int($1/t*c+.5);
-  b="\033[1;31m";
-  for (i=0;
-  i<r; i++) b=b"#";
-  printf " %5.2f%% %s\033[0m %s\n", $1/t*100, b, $2}'|tac
-}
-
-
-sm.memuse()
-{
-ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
-}
-
-
-sm.openports()
-{
-  declare -a array=($(tail -n +2 /proc/net/tcp | cut -d":" -f"3"|cut -d" " -f"1")) && for port in ${array[@]};
-  do echo $((0x$port));
-  done
-}
-
-
-# Use 'gnome-open' to "run" things
-sm.run()
-{
-    [ -r "$*" ] &&
-    {
-        xdg-open "$*" >& /dev/null
-    } ||
-     {
-        echo "'$*' not found or not readable!"
-     }
-}
-
-
-function mkcd {
-  if [[ "$#" != 1 ]]; then
-    echo "Expects exactly one argument; provided $#" >&2
-    return 1
-  fi
-  mkdir -p "$1" && cd "$1"
-}
-
-# Print README file colored by bat ( https://github.com/sharkdp/bat )
-readme() {
-    for readme in {readme,README}.{md,MD,markdown,txt,TXT,mkd}; do
-        if [[ -f "$readme" ]]; then
-	   bat "$readme"
-        fi
-    done
-}
-
 
 ## ================== taken from oh-my-zsh web plugin =======
-# web_search from terminal
-
+# web_search from terminal {{{5 
+## tool body {{{
 function web_search() {
   emulate -L zsh
 
@@ -301,7 +231,7 @@ function open_command() {
 
   open_command "$url"
 }
-
+# }}}
 
 alias bing='web_search bing'
 alias google='web_search google'
@@ -324,24 +254,11 @@ alias youtube='web_search duckduckgo \!yt'
 alias map='web_search duckduckgo \!m'
 alias image='web_search duckduckgo \!i'
 alias ducky='web_search duckduckgo \!'
-
+#
+# 5}}}
 ## ------------------------ end of web plugin functions
 
-#se() { du -a ~/scripts/* ~/.dotfiles/* | awk '{ print $2 }' | fzf | xargs -r $EDITOR ; }
-#vf() { fzf | xargs -r -I % $EDITOR % ; }
-
-## use mpv to view youtube
-btpl(){
-
-PAGE=$(curl -s $1)
-url="$(echo \"$PAGE\" | grep -Eoi '<source [^>]+>' | grep -Eo 'src="[^\"]+"' | grep -Eo '(http|https)://[^"]+')"
-# url="$(curl -s $1 | grep -Eoi '<source [^>]+>' | grep -Eo 'src="[^\"]+"' | grep -Eo '(http|https)://[^"]+')"
-TITLE=$(echo \"$PAGE\" | grep -oEi "<title>(.*)</title>" | cut -d '>' -f2 | cut -d '<' -f1)
-
-mpv --ontop=yes --title="$TITLE" --snap-window --autofit-larger='25%' --geometry='-10-10' --speed 1.75 $url &
-}
-
-## ------------------------------------------- {{{
+## ---------- Utilityty Funcs  ------------------ {{{3 
 ## form https://github.com/jotyGill/quickz-sh/blob/master/.zshrc
 speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
@@ -360,9 +277,11 @@ dict() {
         curl "dict://dict.org/d:$1"
     fi
 }
-## ---- }}}
-
-## fzf     {{{
+## ---- 3}}}
+#
+## FZF functions {{{4
+#
+## ffe find with preview and edit in vim     {{{
 fzf_find_edit() {
     local file=$(
 ##      fzf --no-multi --preview 'bat --color=always --line-range :500 {}'
@@ -372,10 +291,11 @@ fzf_find_edit() {
         $EDITOR $file
     fi
 }
-
+# }}}
 alias ffe='fzf_find_edit'
 bindkey -s '^y' 'ffe\n'
 
+# fge grep edit {{{
 fzf_grep_edit(){
     if [[ $# == 0 ]]; then
         echo 'Error: search term was not provided.'
@@ -391,9 +311,10 @@ fzf_grep_edit(){
         $EDITOR $file +$(echo "$match" | cut -d':' -f2)
     fi
 }
-
+# }}}
 alias fge='fzf_grep_edit'
 
+# git log {{{
 fzf_git_log() {
     local commits=$(
       git ll --color=always "$@" |
@@ -406,9 +327,10 @@ fzf_git_log() {
         git show $hashes
     fi
 }
-
+# }}}
 alias gll='fzf_git_log'
 
+# git log pickaxe {{{
 fzf_git_log_pickaxe() {
      if [[ $# == 0 ]]; then
          echo 'Error: search term was not provided.'
@@ -424,9 +346,10 @@ fzf_git_log_pickaxe() {
          git show $hashes
      fi
  }
+# }}}
 alias glS='fzf_git_log_pickaxe'
 
-
+# alias grl git ref log {{{
 fzf_git_reflog() {
     local hash=$(
       git reflog --color=always "$@" |
@@ -435,10 +358,16 @@ fzf_git_reflog() {
       )
     echo $hash
 }
+# }}}
 alias grl='fzf_git_reflog'
-
-
-# interactive cd
+#
+## --- 4}}}
+## -- 1}}}
+#
+## ================== not Aliased =======
+### funcs not aliased {{{2 
+#
+# cdi - interactive cd {{{
 function cdi() {
     if [[ "$#" != 0 ]]; then
         builtin cd "$@";
@@ -460,8 +389,7 @@ function cdi() {
 }
 ## }}}
 
-
-# Determine size of a file or total size of a directory
+# fs - Determine size of a file or total size of a dir {{{
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
 		local arg=-sbh;
@@ -474,13 +402,87 @@ function fs() {
 		du $arg .[^.]* ./*;
 	fi;
 }
+## }}}
 
-## swap function {{{
+## swap - files or dirs  {{{
 function swap() {
     mv "$1" "$1.tmp"
     mv "$2" "$1"
     mv "$1.tmp" "$2"
 }
-
 ## }}}
+#
+#-------------------------------------------------------
+# Print all histories
+function history-all { history -E 1 }
 
+#-------------------------------------------------------
+zsh_stats()
+{
+  fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
+    | grep -v "./" \
+    | column -c3 -s " " -t \
+    | sort -nr \
+    | nl \
+    |  head -n20
+}
+
+#-------------------------------------------------------
+sm.dirlist()
+{
+  du -x --max-depth=1|sort -rn|awk -F / -v c=$COLUMNS 'NR==1{t=$1} NR>1{r=int($1/t*c+.5);
+  b="\033[1;31m";
+  for (i=0;
+  i<r; i++) b=b"#";
+  printf " %5.2f%% %s\033[0m %s\n", $1/t*100, b, $2}'|tac
+}
+
+#-------------------------------------------------------
+sm.memuse()
+{
+ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
+}
+
+#-------------------------------------------------------
+sm.openports()
+{
+  declare -a array=($(tail -n +2 /proc/net/tcp | cut -d":" -f"3"|cut -d" " -f"1")) && for port in ${array[@]};
+  do echo $((0x$port));
+  done
+}
+
+#-------------------------------------------------------
+# Use 'gnome-open' to "run" things
+sm.run()
+{
+    [ -r "$*" ] &&
+    {
+        xdg-open "$*" >& /dev/null
+    } ||
+     {
+        echo "'$*' not found or not readable!"
+     }
+}
+
+#-------------------------------------------------------
+function mkcd {
+  if [[ "$#" != 1 ]]; then
+    echo "Expects exactly one argument; provided $#" >&2
+    return 1
+  fi
+  mkdir -p "$1" && cd "$1"
+}
+
+#-------------------------------------------------------
+# Print README file colored by bat ( https://github.com/sharkdp/bat )
+readme() {
+    for readme in {readme,README}.{md,MD,markdown,txt,TXT,mkd}; do
+        if [[ -f "$readme" ]]; then
+	   bat "$readme"
+        fi
+    done
+}
+
+## 2}}}
+
+##### THE END ***
