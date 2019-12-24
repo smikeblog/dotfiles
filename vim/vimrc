@@ -44,7 +44,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 "Plug 'scrooloose/syntastic'
 "Plug 'joonty/vdebug'
 "
-"Plug '~/Dropbox/vim/vim-uploader'
 "Plug '~/Projects/vim/vim-tasklist-asciidoctor'
 
 "'file:///~/.vim/bundle/dbext'
@@ -67,7 +66,7 @@ set timeoutlen=350
 set mouse=a
 
 " Indentation with SPACES
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 set breakindent
 
@@ -76,13 +75,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize,resi
 let g:netrw_browsex_viewer= 'xdg-open'
 
 "let mapleader = "_"
-let mapleader = ","
-
-" Indentation with HARD TABS
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
-" set noexpandtab
+let mapleader=","
 
 set history=999
 set undolevels=99
@@ -362,7 +355,7 @@ let g:javascript_plugin_jsdoc = 1
 "augroup END
 
 " Ctrl+O vifm vert split open
-nnoremap <silent> <c-o> :VsplitVifm<cr>
+nnoremap <silent> <F4> :VsplitVifm<cr>
 
 " CUSTOM HELPERS
 "

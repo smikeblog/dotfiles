@@ -4,28 +4,23 @@ set nocompatible    " the future is now, use vim defaults instead of vi ones
 set nomodeline      " disable mode lines (security measure)
 set history=1000    " boost commands and search patterns history
 set undolevels=1000 " boost undo levels
-
-if exists("+shellslash")
-  set shellslash    " expand filenames with forward slash
-endif
-
 set timeoutlen=500      " time in milliseconds for a key sequence to complete
+
+" -- Colorscheme default ~/.vim/colors/kuroi <leader> = "," --------------------
+set background=dark
+colorscheme kuroi
 let mapleader=","       " change leader key to ,
 let maplocalleader=","  " change local leader key to ,
 
 " -- ConEmu integration -------------------------------------------- {{{
-
 if !empty($CONEMUBUILD)
   set term=xterm
   set t_Co=256
   let &t_AB="\e[48;5;%dm"
   let &t_AF="\e[38;5;%dm"
 endif
-" }}}
 
-" -- Colorscheme  default ~/.vim/colors/kuroi ----------------------------------
-set background=dark
-colorscheme kuroi
+" }}}
 
 " -- tmux integration -----------------------------------------------------  {{{
 
@@ -58,7 +53,7 @@ if exists('$TMUX') && (system("tmux show-options -wg xterm-keys | cut -d' ' -f2"
 endif
 " }}}
 
-" -- backup and swap files ------------------------------------------------- {{{
+" -- dirs for backup and swap ----------------------------------------------  {{{
 
 set backup      " enable backup files
 set writebackup " enable backup files
@@ -90,14 +85,14 @@ endif
 let &viminfo=&viminfo . ",n" . s:vimdir . "/.viminfo" " viminfo location
 " }}}
 
-" -- file type detection --------------------------------------------------- {{{
+" -- file type detect -----------------------------------------------------  {{{
 
 filetype on         " /!\ doesn't play well with compatible mode
 filetype plugin on  " trigger file type specific plugins
 filetype indent on  " indent based on file type syntax
 " }}}
 
-" -- command mode ---------------------------------- {{{
+" -- command mode ------------------ <ctrl>[a,e,c] w!! --------------------  {{{
 
 set wildmenu                    " enable tab completion menu
 set wildmode=longest:full,full  " complete till longest common string, then full
@@ -124,7 +119,7 @@ if has("autocmd")
 endif
 " }}}
 
-" -- display --------------------------------------- {{{
+" -- display ----------------------- <l>ch,<l>n,<l>l -----------------------  {{{
 
 set title       " change the terminal title
 set lazyredraw  " do not redraw when executing macros
@@ -145,8 +140,20 @@ endif
 if has("gui_running")
   set cursorcolumn  " highlight current column
 endif
+nnoremap <leader>ch :set cursorcolumn!<CR>
 
-if exists("+relativenumber")
+" change cursor to vertical bar in insert mode when using iTerm2
+" if $TERM_PROGRAM == 'iTerm.app'
+   if exists('$TMUX')
+     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+   else
+     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+   endif
+" endif
+
+if exists("+relativenumber")   " RelativeNumberToggle   {{{2
   if v:version >= 400
     set number
   endif
@@ -179,13 +186,13 @@ if exists("+relativenumber")
         set relativenumber relativenumber?
       endif
     endfunc
-  endif
+  endif                               
   nnoremap <silent> <leader>n :call RelativeNumberToggle()<CR>
 else                  " fallback
   set number          " show line numbers
   " inverts numbering
   nnoremap <silent> <leader>n :set number! number?<CR>
-endif
+endif                          "   }}}2
 
 set nolist                            " hide unprintable characters
 if has("multi_byte")                  " if multi_byte is available,
@@ -216,7 +223,7 @@ if exists("+showtabline")
 endif
 " }}}
 
-" Statusline --------------------------------------  {{{
+" Statusline --------------------------------------------------------------  {{{
 if has("statusline")
 
   function! StatusLineUTF8()
@@ -297,7 +304,7 @@ set shortmess=astT  " abbreviate messages
 set shortmess+=I    " disable the welcome screen
 " }}}
 "
-" {{{
+" Fold Tab Gui -------------------- za,zM,zR,zj,zk,[z,]z ------------  {{{
 if (&t_Co > 2 || has("gui_running")) && has("syntax")
    syntax on  " turn syntax highlighting on, when terminal has colors or in GUI
 endif
@@ -321,7 +328,7 @@ if has("folding")
   vnoremap <Space> za
 
   set foldtext=FoldText()
-  function! FoldText()
+  function! FoldText()   "   {{{2
     let l:lpadding = &fdc
     redir => l:signs
       execute 'silent sign place buffer='.bufnr('%')
@@ -354,15 +361,11 @@ if has("folding")
     let l:text = l:start . ' … ' . l:end
 
     return l:text . repeat(' ', l:width - strlen(substitute(l:text, ".", "x", "g"))) . l:info
-  endfunction
+  endfunction            "   }}}2
 endif
 " }}}
-"
-" highlight SCM merge conflict markers
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-
-" -- buffers --------------------------------------------------------------- {{{
+" -- buffers ---------------------- <l>[cd,Tab],<l>[w,W] ------------------  {{{
 
 set nobomb            " don't clutter files with Unicode BOMs
 set hidden            " enable switching between buffers without saving
@@ -400,7 +403,7 @@ nnoremap <silent> <leader>W :wa!<CR>
 inoremap <silent> <leader>W <ESC>:wa!<CR>
 " }}}
 
-" -- navigation ------------------------------------------------------------ {{{
+" -- navigation --- j,k,Up,Dn,<C-[b,e,y,Up,Dn,h,j,k,l]>,<S-b>,<Tab><Tab> --  {{{
 
 " scroll slightly faster
 nnoremap <C-e> 4<C-e>
@@ -422,16 +425,6 @@ set scrolloff=4     " number of lines to keep above and below the cursor
                     "   typing zz sets current line at the center of window
 set sidescroll=1    " minimal number of columns to scroll horizontally
 set sidescrolloff=4 " minimal number of columns to keep around the cursor
-
-if has("vertsplit")
-  nnoremap <leader>_ <C-w>v<C-w>l
-  set splitright  " when splitting vertically, split to the right
-endif
-if has("windows")
-  " split current window horizontally
-  nnoremap <leader>- <C-w>s
-  set splitbelow  " when splitting horizontally, split below
-endif
 
 " window navigation
 nnoremap <C-h> <C-w>h
@@ -457,18 +450,6 @@ endtry
 " switch between windows by hitting <Tab> twice
 nnoremap <silent> <Tab><Tab> <C-w>w
 
-" window resizing
-map <S-Left> <C-w><
-map <S-Down> <C-w>-
-map <S-Up> <C-w>+
-map <S-Right> <C-w>>
-
-" <leader>q quits the current window
-nnoremap <silent> <leader>q :q<CR>
-inoremap <silent> <leader>q <ESC>:q<CR>
-
-" create a new tab
-nnoremap <silent> <leader>t :tabnew<CR>
 
 " next/previous buffer navigation
 nnoremap <silent> <C-b> :bnext<CR>
@@ -494,8 +475,40 @@ nnoremap ' `
 nnoremap ` '
 " }}}
 
-" -- editing --------------------------------------------------------------- {{{
+" Win Tab Split ---------- <l>[_,-],<S-[Left,Dn,Up,Rt]>,<l>[q,t] ----------  {{{
+if has("vertsplit")
+  nnoremap <leader>_ <C-w>v<C-w>l
+  set splitright  " when splitting vertically, split to the right
+endif
+if has("windows")
+  " split current window horizontally
+  nnoremap <leader>- <C-w>s
+  set splitbelow  " when splitting horizontally, split below
+endif
 
+" window resizing                                               
+map <S-Left> <C-w><
+map <S-Down> <C-w>-
+map <S-Up> <C-w>+
+map <S-Right> <C-w>>
+
+" <leader>q quits the current window
+nnoremap <silent> <leader>q :q<CR>
+inoremap <silent> <leader>q <ESC>:q<CR>
+
+" create a new tab
+nnoremap <silent> <leader>t :tabnew<CR>
+"netrw
+let g:netrw_banner=0
+let g:netrw_winsize=20
+let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
+nnoremap <F3> :Lexplore<CR>
+
+" }}}
+
+" -- edit --- _,-,Q,<C-Space>,<Tab>,<S-Tab>,<l>[pp,s,rt,Y,P,U,J,S],jj,Y ---  {{{
+""" == set {{{2
 set showmode      " always show the current editing mode
 set nowrap        " don't wrap lines
 set linebreak     " yet if enabled break at word boundaries
@@ -537,6 +550,17 @@ set copyindent    " copy the previous indentation on autoindenting
 set shiftwidth=2  " indent with 2 spaces
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 
+set cpoptions+=$  " display $ at the end of the replacement zone instead of
+                  " deleting text with 'cw' and alike
+
+set formatoptions-=t  " don't auto-wrap text using textwidth
+set formatoptions+=c  " auto-wrap comments using textwidth
+set formatoptions+=r  " auto-insert current comment leader,  C-u to undo
+
+set completeopt=longest,menuone,preview " better completion
+
+""" == }}}2
+
 " make Y consistent with C and D by yanking up to end of line
 noremap Y y$
 
@@ -548,14 +572,14 @@ nnoremap <silent> <leader>pp :set paste! paste?<CR>
 " same in insert mode
 set pastetoggle=<leader>pp
 
-function! Preserve(command)
+function! Preserve(command)         " {{{2        
   let l:search=@/
   let l:line = line(".")
   let l:col = col(".")
   execute a:command
   let @/=l:search
   call cursor(l:line, l:col)
-endfunction
+endfunction                         " }}}2
 
 " <leader>rt retabs the file, preserve cursor position
 nnoremap <silent> <leader>rt :call Preserve(":retab")<CR>
@@ -569,9 +593,6 @@ noremap <silent> <leader>Y "+Y
 noremap <silent> <leader>p "+p
 noremap <silent> <leader>P "+P
 
-" always share the OS clipboard
-"set clipboard+=unnamed
-
 " autofix typos
 iabbrev teh the
 
@@ -581,25 +602,23 @@ vnoremap > >gv
 vmap <Tab> >
 vmap <S-Tab> <
 
-set cpoptions+=$  " display $ at the end of the replacement zone instead of
-                  " deleting text with 'cw' and alike
-
-set formatoptions-=t  " don't auto-wrap text using textwidth
-set formatoptions+=c  " auto-wrap comments using textwidth
-set formatoptions+=r  " auto-insert current comment leader,  C-u to undo
-
 " exit from insert mode without cursor movement
-inoremap jk <ESC>`^
+inoremap jj <ESC>`^
 
+""""" Commented by smike   {{{2 
 " quick insertion of newline in normal mode with <CR>
-if has("autocmd")
-  nnoremap <silent> <CR> :put=''<CR>
-  augroup newline
-    autocmd!
-    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-    autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
-  augroup END
-endif
+" if has("autocmd")           
+  " nnoremap <silent> <CR> :put=''<CR>
+  " augroup newline
+    " autocmd!                     
+    " autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+    " autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+  " augroup END
+" endif                      
+         
+" always share the OS clipboard
+"set clipboard+=unnamed
+"""" END Commented code   }}}2 
 
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
@@ -619,8 +638,6 @@ inoremap <C-Space> <C-P>
   inoremap <C-@> <C-P>
 endif
 
-set completeopt=longest,menuone,preview " better completion
-
 " move current line down
 noremap <silent>- :m+<CR>
 " move current line up
@@ -630,31 +647,16 @@ vnoremap <silent>- :m '>+1<CR>gv=gv
 " move visual selection up
 vnoremap <silent>_ :m '<-2<CR>gv=gv
 
-" change cursor to vertical bar in insert mode when using iTerm2
-" if $TERM_PROGRAM == 'iTerm.app'
-   if exists('$TMUX')
-     let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-   else
-     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-   endif
-" endif
-
 nnoremap Q <NOP>
 
 " make dot work in visual mode
 vnoremap . :normal .<CR>
 
-" make v enter blockwise visual mode, and CTRL-V enter visual mode
-nnoremap v <C-V>
-nnoremap <C-V> v
-vnoremap v <C-V>
-vnoremap <C-V> v
-" }}}
+" 1}}}
 
-" -- searching ------------------------------------------------------------- {{{
+" -- searching ----------- <l>[hc,hs,h1,h2,h3,;,S],n,N,/,#,*,& ------------  {{{
 
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab "use two spaces for indentation
 set wrapscan    " wrap around when searching
 set incsearch   " show match results while typing search pattern
 if (&t_Co > 2 || has("gui_running"))
@@ -685,14 +687,6 @@ nnoremap <silent> <leader>hs :setl hls<CR>:let @/="\\<<C-r><C-w>\\>"<CR>
 nnoremap <silent> <leader>h1 :highlight Highlight1 ctermfg=0 ctermbg=226 guifg=Black guibg=Yellow<CR> :execute 'match Highlight1 /\<<C-r><C-w>\>/'<cr>
 nnoremap <silent> <leader>h2 :highlight Highlight2 ctermfg=0 ctermbg=51 guifg=Black guibg=Cyan<CR> :execute '2match Highlight2 /\<<C-r><C-w>\>/'<cr>
 nnoremap <silent> <leader>h3 :highlight Highlight3 ctermfg=0 ctermbg=46 guifg=Black guibg=Green<CR> :execute '3match Highlight3 /\<<C-r><C-w>\>/'<cr>
-
-" very magic search patterns
-" everything but '0'-'9', 'a'-'z', 'A'-'Z' and '_' has a special meaning
-"nnoremap / /\v
-"vnoremap / /\v
-"nnoremap ? ?\v
-"vnoremap ? ?\v
-"cnoremap %s/ %s/\v
 
 " replace word under cursor
 nnoremap <leader>; :%s/\<<C-r><C-w>\>//<Left>
@@ -737,6 +731,9 @@ nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 " }}}
 
 " -- spell checking -------------------------------------------------------- {{{
+"
+" highlight SCM merge conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 set spelllang=en  " English only
 set nospell       " disabled by default
@@ -749,7 +746,11 @@ if has("autocmd")
 endif
 " }}}
 
-" --user defined ----------------------------------------------------------- {{{
+" --user defined --------------- <l>[",'],<C-p>,<F4> -------------------------------- {{{
+" indent without kill the selection in vmode
+vmap < <gv
+vmap > >gv
+
 " Fuzzy search settings (fzf)
 " If installed using git
 set rtp+=~/.fzf
@@ -766,9 +767,39 @@ nnoremap <silent> <F4> :VsplitVifm<cr>
   " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 " endif
+" }}}
+"{{{
+ " This is the default extra key bindings
+"let g:fzf_action = {
+"  \ 'ctrl-t': 'tab split',
+"  \ 'ctrl-x': 'split',
+"  \ 'ctrl-v': 'vsplit' }
 
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+"    let $FZF_DEFAULT_COMMAND = 'ag -l -g ""'
+"    let $FZF_DEFAULT_OPTS="--preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null'"
+"    let g:fzf_layout = { 'down': '40%' }
+"    let g:fzf_nvim_statusline = 0
+"    let g:fzf_colors =
+"    \ { 'fg':      ['fg', 'Normal'],
+"      \ 'bg':      ['bg', 'Normal'],
+"      \ 'hl':      ['fg', 'Comment'],
+"      \ 'fg+':     ['fg', 'Conditional', 'CursorColumn', 'Normal'],
+"      \ 'bg+':     ['bg', 'Conditional', 'Conditional'],
+"      \ 'hl+':     ['fg', 'Statement'],
+"      \ 'info':    ['fg', 'PreProc'],
+"      \ 'border':  ['fg', 'Ignore'],
+"      \ 'prompt':  ['fg', 'Conditional'],
+"      \ 'pointer': ['fg', 'Exception'],
+"      \ 'marker':  ['fg', 'Keyword'],
+"      \ 'spinner': ['fg', 'Label'],
+"      \ 'header':  ['fg', 'Comment'] }
+"}}}
+
+""" ====== LOCALIZATION =================
+if filereadable(expand("$HOME/.vimrc.local"))
+  source $HOME/.vimrc.local"{{{}}}
+endif
+if filereadable(expand("$HOME/.dotfiles/vim/vim-vanilla/fzf.nvimrc"))
+  source $HOME/.dotfiles/vim/vim-vanilla/fzf.nvimrc "{{{}}}
 endif
 
-" }}}

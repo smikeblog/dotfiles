@@ -56,10 +56,10 @@ if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
 fi
 if [ -e $HOME/.vimm/vimrc ]; then
-  alias vimp="vim -u $HOME/.vimm/vimrc $1"
+  alias nvi="nvim -u $HOME/.vimm/init.vim $1"
 fi
-if [ -e $HOME/.vimrc.go ]; then
-  alias vimgo="vim -u $HOME/.vimrc.go $1"
+if [ -e $HOME/.go.vimrc ]; then
+  alias vimgo="vim -u $HOME/.go.vimrc $1"
 fi
 alias vin="nvim -N -u NONE -U NONE "
 
@@ -325,4 +325,3 @@ ex=:\
 
 
 alias vi="vim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
-alias nvi="nvim -u $HOME/.vimm/init.vim "

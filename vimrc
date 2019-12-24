@@ -89,7 +89,8 @@ nnoremap <silent> <leader>l :set rl!<cr>
 "override system files by typing :w!!
 cnoremap w!! %!sudo tee > /dev/null %
 "remove search highlight
-nmap <leader>q :nohlsearch<CR>
+nmap <leader>hc :nohlsearch<CR>
+" nmap <leader>q :nohlsearch<CR>
 
 "move lines around
 nnoremap <leader>k :m-2<cr>==
@@ -107,8 +108,8 @@ nnoremap <leader>o :Lines<cr>
 nnoremap <leader>t :Tags<cr>
 nnoremap <leader>r :Buffers<cr>
 
-nnoremap \  :Ag<space>
-nnoremap \| :Ag <C-R><C-W><cr>:cw<cr>
+" nnoremap \  :Ag<space>
+" nnoremap \| :Ag <C-R><C-W><cr>:cw<cr>
 
 "Ctags
 set tags+=.git/tags

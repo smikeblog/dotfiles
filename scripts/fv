@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# usage {{{1
 usage() {
   LESS=-FEXR less <<'HELP'
 fv [OPTIONS] [SEARCH]
@@ -21,6 +21,7 @@ s) small=1 ;;
 HELP
 }
 
+# Declare vars {{{2
 declare cmd=''
 declare cmdopts=()
 declare search_str=''
@@ -35,6 +36,7 @@ colors[green]=$(tput setaf 2)
 colors[blue]=$(tput setaf 4)
 colors[reset]=$(tput sgr0)
 
+# some util funcs {{{1
 color() {
   local c
   c="$1"
@@ -106,7 +108,7 @@ has -v 'fzf' || die
 if [[ -v FV_CMD ]]; then
   cmd="$FV_CMD"
 elif [[ -z "$cmd" ]]; then
-  cmd=$(select_from 'v' 'vim')
+  cmd=$(select_from 'v' 'vim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink')
 fi
 
 

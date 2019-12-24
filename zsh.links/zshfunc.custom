@@ -113,7 +113,6 @@ HISTFILE=~/.zsh_history
 fi
 
 # APPLICATION CUSTOMIZATIONS {{{1
-# APPLICATION CUSTOMIZATIONS {{{1
 
 # GNU grep
 if _color; then
@@ -255,7 +254,7 @@ alias map='web_search duckduckgo \!m'
 alias image='web_search duckduckgo \!i'
 alias ducky='web_search duckduckgo \!'
 #
-# 5}}}
+# }}}5
 ## ------------------------ end of web plugin functions
 
 ## ---------- Utilityty Funcs  ------------------ {{{3 
@@ -277,7 +276,7 @@ dict() {
         curl "dict://dict.org/d:$1"
     fi
 }
-## ---- 3}}}
+## ---- }}}3
 #
 ## FZF functions {{{4
 #
@@ -361,8 +360,8 @@ fzf_git_reflog() {
 # }}}
 alias grl='fzf_git_reflog'
 #
-## --- 4}}}
-## -- 1}}}
+## --- }}}4
+## -- }}}1
 #
 ## ================== not Aliased =======
 ### funcs not aliased {{{2 
@@ -428,16 +427,6 @@ zsh_stats()
 }
 
 #-------------------------------------------------------
-sm.dirlist()
-{
-  du -x --max-depth=1|sort -rn|awk -F / -v c=$COLUMNS 'NR==1{t=$1} NR>1{r=int($1/t*c+.5);
-  b="\033[1;31m";
-  for (i=0;
-  i<r; i++) b=b"#";
-  printf " %5.2f%% %s\033[0m %s\n", $1/t*100, b, $2}'|tac
-}
-
-#-------------------------------------------------------
 sm.memuse()
 {
 ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
@@ -483,6 +472,6 @@ readme() {
     done
 }
 
-## 2}}}
+## }}}2
 
 ##### THE END ***

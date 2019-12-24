@@ -16,7 +16,7 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
-Plug 'sainnhe/gruvbox-material'
+Plug 'liuchengxu/space-vim-dark'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 
@@ -44,6 +44,8 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 	set encoding=utf-8
 	set number relativenumber
 	colorscheme gruvbox9_hard
+	hi Comment cterm=italic
+
 " Enable autocompletion:
 	set wildmode=longest,list,full
 " Disables automatic commenting on newline:

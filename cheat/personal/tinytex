@@ -1,0 +1,24 @@
+# Installation
+  wget -qO- "https://yihui.org/gh/tinytex/tools/install-unx.sh" | sh
+
+# Search for missing package (forward slash before for an exact match)
+  tlmgr search --global --file "/<fileName.sty>"
+
+# Install a package
+  tlmgr install <pkgName>
+
+# If you still see error messages you may update everything
+  tlmgr update --self --all
+  tlmgr path add
+  fmtutil-sys --all
+
+# R users  all the above for missing times.sty
+  library(tinytex)
+  tlmgr_search('/times.sty')   # search for times.sty
+  tlmgr_install('psnfss')      # install the psnfss package
+  tlmgr_update()               # update everything
+
+# R users upgrade (reinstall) TinyTeX manually
+  tinytex::reinstall_tinytex()
+
+#
