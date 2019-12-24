@@ -324,4 +324,4 @@ ex=:\
 # }}}
 
 
-alias vi="vim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
+alias vi="nvim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
