@@ -5,6 +5,7 @@ set nomodeline      " disable mode lines (security measure)
 set history=1000    " boost commands and search patterns history
 set undolevels=1000 " boost undo levels
 set timeoutlen=500      " time in milliseconds for a key sequence to complete
+set rtp+=~/.dotfiles/vim/dot.vim/
 
 " -- Colorscheme default ~/.vim/colors/kuroi <leader> = "," --------------------
 set background=dark
@@ -137,11 +138,6 @@ if has("autocmd")
   augroup END
 endif
 
-if has("gui_running")
-  set cursorcolumn  " highlight current column
-endif
-nnoremap <leader>ch :set cursorcolumn!<CR>
-
 " change cursor to vertical bar in insert mode when using iTerm2
 " if $TERM_PROGRAM == 'iTerm.app'
    if exists('$TMUX')
@@ -186,7 +182,7 @@ if exists("+relativenumber")   " RelativeNumberToggle   {{{2
         set relativenumber relativenumber?
       endif
     endfunc
-  endif                               
+  endif
   nnoremap <silent> <leader>n :call RelativeNumberToggle()<CR>
 else                  " fallback
   set number          " show line numbers
@@ -486,7 +482,7 @@ if has("windows")
   set splitbelow  " when splitting horizontally, split below
 endif
 
-" window resizing                                               
+" window resizing
 map <S-Left> <C-w><
 map <S-Down> <C-w>-
 map <S-Up> <C-w>+
@@ -572,7 +568,7 @@ nnoremap <silent> <leader>pp :set paste! paste?<CR>
 " same in insert mode
 set pastetoggle=<leader>pp
 
-function! Preserve(command)         " {{{2        
+function! Preserve(command)         " {{{2
   let l:search=@/
   let l:line = line(".")
   let l:col = col(".")
@@ -605,20 +601,20 @@ vmap <S-Tab> <
 " exit from insert mode without cursor movement
 inoremap jj <ESC>`^
 
-""""" Commented by smike   {{{2 
+""""" Commented by smike   {{{2
 " quick insertion of newline in normal mode with <CR>
-" if has("autocmd")           
+" if has("autocmd")
   " nnoremap <silent> <CR> :put=''<CR>
   " augroup newline
-    " autocmd!                     
+    " autocmd!
     " autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
     " autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
   " augroup END
-" endif                      
-         
+" endif
+
 " always share the OS clipboard
-"set clipboard+=unnamed
-"""" END Commented code   }}}2 
+set clipboard+=unnamed
+"""" END Commented code   }}}2
 
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>

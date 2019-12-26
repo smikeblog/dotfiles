@@ -361,5 +361,3 @@ nnoremap <silent> <F4> :VsplitVifm<cr>
 "
 source ~/.vim/helpers/redir.vim
 
-execute pathogen#infect()
-call pathogen#helptags()
