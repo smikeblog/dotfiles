@@ -1,42 +1,133 @@
-" -- display -------------------------------------------------------------------
-hi MatchWord ctermfg=red guifg=blue cterm=underline gui=underline
-if exists("+colorcolumn")
-  set colorcolumn=81          " display a marker after column 80
-endif
+" open FZF in current file's directory
+    nnoremap <silent> <Leader>1 :Files <C-R>=expand('%:h')<CR><CR>
 
-" Use lf to select and open file(s) in vim (adapted from ranger).
-"
-" You need to either copy the content of this file to your ~/.vimrc or source
-" this file directly:
-"
-"     let lfvim = "/path/to/lf.vim"
-"     if filereadable(lfvim)
-"         exec "source " . lfvim
-"     endif
-"
-" You may also like to assign a key to this command:
-"
-"     nnoremap <leader>l :LF<cr>
-"
+  " fold file based on syntax
+    nnoremap <silent> <leader>zs :setlocal foldmethod=syntax<CR>
+    nnoremap <silent> <leader>zm :setlocal foldmethod=marker<CR>
 
-function! LF()
-    let temp = tempname()
-    exec 'silent !lf -selection-path=' . shellescape(temp)
-    if !filereadable(temp)
-        redraw!
-        return
-    endif
-    let names = readfile(temp)
-    if empty(names)
-        redraw!
-        return
-    endif
-    exec 'edit ' . fnameescape(names[0])
-    for name in names[1:]
-        exec 'argadd ' . fnameescape(name)
-    endfor
-    redraw!
+  " rename current file
+    nnoremap <Leader>rn :Move <C-R>=expand("%")<CR>
+"
+hi MatchWord ctermfg=magenta guifg=blue cterm=underline gui=underline
+
+  "" comment toggle mapped to <leader><Space> {{{
+let s:comment_map = {
+    \   "c": '\/\/',
+    \   "cpp": '\/\/',
+    \   "go": '\/\/',
+    \   "java": '\/\/',
+    \   "javascript": '\/\/',
+    \   "lua": '--',
+    \   "scala": '\/\/',
+    \   "php": '\/\/',
+    \   "python": '#',
+    \   "ruby": '#',
+    \   "rust": '\/\/',
+    \   "sh": '#',
+    \   "zsh": '#',
+    \   "desktop": '#',
+    \   "fstab": '#',
+    \   "conf": '#',
+    \   "profile": '#',
+    \   "bashrc": '#',
+    \   "bash_profile": '#',
+    \   "mail": '>',
+    \   "eml": '>',
+    \   "bat": 'REM',
+    \   "ahk": ';',
+    \   "vim": '"',
+    \   "vimrc": '"',
+    \   "tex": '%',
+    \ }
+
+function! ToggleComment()
+    if has_key(s:comment_map, &filetype)
+        let comment_leader = s:comment_map[&filetype]
+        if getline('.') =~ "^\\s*" . comment_leader . " "
+            " Uncomment the line
+            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
+        else
+            if getline('.') =~ "^\\s*" . comment_leader
+                " Uncomment the line
+                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
+            else
+                " Comment the line
+                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
+            end
+        end
+    else
+        echo "No comment leader found for filetype"
+    end
 endfunction
-command! -bar LF call LF()
+  "" ---------------------------------------------------------
 
+nnoremap <leader><Space> :call ToggleComment()<cr>
+vnoremap <leader><Space> :call ToggleComment()<cr>
+" }}}
+"
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
+" toggle cursor line, column
+nnoremap <leader>hl :set cursorline!<cr>
+nnoremap <leader>hc :set cursorcolumn!<cr>
+
+" Search in selected region
+vnoremap / :<C-U>call feedkeys('/\%>'.(line("'<")-1).'l\%<'.(line("'>")+1)."l")<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Filetype {{{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Css {{{2
+autocmd FileType scss,sass,css setlocal expandtab shiftwidth=2 softtabstop=2 textwidth=0
+" }}}2
+"
+" "" HTML5 {{{2
+ autocmd FileType html,jinja2.html setlocal expandtab shiftwidth=2 softtabstop=2 textwidth=0
+" " }}}2
+"
+" "" Javascript {{{2
+ autocmd FileType javascript,jst,ezt setlocal expandtab shiftwidth=2 softtabstop=2
+ autocmd FileType javascript.jsx set syntax=javascript
+" " }}}2
+"
+" "" Markdown {{{2
+ autocmd FileType markdown setlocal expandtab shiftwidth=2 colorcolumn=90 textwidth=90 fo+=t fo-=l
+" autocmd FileType markdown setlocal expandtab shiftwidth=2 softtabstop=2
+" colorcolumn=90 conceallevel=0
+" let g:mkdp_auto_close                  = 0
+" let g:vim_markdown_auto_insert_bullets = 0
+" let g:vim_markdown_conceal             = 0
+" let g:vim_markdown_fenced_languages    = ['csharp = cs']
+" let g:vim_markdown_folding_disabled    = 1
+" let g:vim_markdown_folding_level       = 6
+" let g:vim_markdown_frontmatter         = 1
+" let g:vim_markdown_json_frontmatter    = 1
+" let g:vim_markdown_math                = 1
+" let g:vim_markdown_toml_frontmatter    = 1
+" " }}}2
+"
+" "" Php {{{2
+ autocmd FileType php setlocal expandtab shiftwidth=4 softtabstop=4
+" " }}}2
+"
+" "" Python {{{2
+ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 colorcolumn=80
+" " }}}2
+"
+" "" Json {{{2
+ autocmd FileType json setlocal expandtab shiftwidth=2 softtabstop=2
+ autocmd FileType json syntax match Comment +\/\/.\+$+
+" " }}}2
+"
+" "" Gitcommit {{{2
+ autocmd FileType gitcommit setlocal colorcolumn=80 textwidth=80 fo+=t fo-=l
+" " }}}2
+"
+" "" Lua {{{2
+ autocmd FileType lua setlocal expandtab shiftwidth=2 softtabstop=2
+" " }}}2
+" " }}}
+" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Language texts check
+let g:languagetool_jar='$HOME/.vim/LanguageTool/languagetool-commandline.jar'

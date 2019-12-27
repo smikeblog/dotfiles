@@ -361,3 +361,12 @@ nnoremap <silent> <F4> :VsplitVifm<cr>
 "
 source ~/.vim/helpers/redir.vim
 
+
+
+" When completion menu is shown, use <cr> to select an item
+" and do not add an annoying newline. Otherwise, <enter> is what it is.
+" For more info , see https://goo.gl/KTHtrr and https://goo.gl/MH7w3b
+inoremap <expr> <cr> ((pumvisible())?("\<C-Y>"):("\<cr>"))
+" Use <esc> to close auto-completion menu
+inoremap <expr> <esc> ((pumvisible())?("\<C-e>"):("\<esc>"))
+
