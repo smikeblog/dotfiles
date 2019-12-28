@@ -11,7 +11,8 @@ let mapleader = ","
 set nocompatible
 filetype off
 " set rtp+=~/dev/others/base16/builder/templates/vim/
-call plug#begin()
+"call plug#begin()
+call plug#begin('~/.local/share/nvic/bundle')
 
 " Load plugins
 " VIM enhancements
@@ -468,7 +469,7 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 
-let $FZF_DEFAULT_OPTS="--preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null'"
+"let $FZF_DEFAULT_OPTS="--preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || ( bat --style=numbers --color=always {} || highlight -O ansi -l {} || coderay {} || rougify {} || cat {}) 2> /dev/null'"
 " Default fzf layout
 " - down / up / left / right
 let g:fzf_layout = { 'down': '~40%' }
@@ -489,7 +490,7 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" vert split using vifm 
+" vert split using vifm
 nnoremap <silent> <F4> :VsplitVifm<cr>
 
 " to avoid surprices with python2 specify python3
