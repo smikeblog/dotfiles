@@ -474,4 +474,8 @@ readme() {
 
 ## }}}2
 
+if [[ -f $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh ]]; then 
+	source $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh
+fi
+
 ##### THE END ***

@@ -36,6 +36,7 @@ if ! zgen saved; then
 	zgen load junegunn/fzf shell
 
 	zgen load zdharma/fast-syntax-highlighting
+  zgen load wfxr/forgit
 #	zgen load zsh-users/zsh-syntax-highlighting
 #	zgen load tarruda/zsh-autosuggestions
 #	zgen load softmoth/zsh-vim-mode
