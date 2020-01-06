@@ -75,9 +75,10 @@ alias sm.antivir='sudo rkhunter -c'
 # utils
 # https://github.com/athityakumar/colorls
 if _has exa; then
-  alias lx='exa'
-  alias ll='exa -lh'
-  alias lll='exa -lah'
+  alias lx='exa --color=always --group-directories-first'
+  alias ll='exa -lh --color=always --group-directories-first'
+  alias lll='exa -lah --color=always --group-directories-first'
+  alias lt='exa -aT --color=always --group-directories-first' # tree listing
 fi
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias lc='colorls --sd -lA'
@@ -325,3 +326,5 @@ ex=:\
 
 
 alias vi="nvim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
+
+export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
