@@ -1,5 +1,7 @@
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export QT_SCALE_FACTOR=1
 #export EDITOR=/usr/bin/vim
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -26,7 +28,7 @@ export PATH="$PATH:$GOROOT/bin"
 [ -d $HOME/go ] && export GOPATH="$HOME/go"
 # [ -d $GOPATH/bin ] && export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOPATH/bin"
-export GOPATH="$GOPATH:$HOME/Code/go"
+export GOBIN="$HOME/Code/go/bin"
 
 # Make local for single user bin and scripts directories i.e. not global apps
 ## moved to zshfunc_custom
@@ -42,7 +44,8 @@ if [[ -z "$LANG" ]]; then
 fi
 
 # added by sm1 my preffered color scheme
-source "$HOME/scripts/gruvbox_256palette.sh"
+# source "$HOME/scripts/gruvbox_256palette.sh"
+source "$HOME/scripts/base16-snazzy.sh"
 
 #source /usr/share/nvm/init-nvm.sh
 #export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
@@ -58,3 +61,5 @@ source "$HOME/scripts/gruvbox_256palette.sh"
 # export path to ruby gem directory
 [ -d $HOME/.gem/ruby/2.6.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
 export PATH
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

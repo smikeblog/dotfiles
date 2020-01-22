@@ -1,0 +1,2 @@
+# function enables to choose a cheatsheet to view
+eval `cheat -l | tail -n +2 | fzf | awk -v vars="$*" '{ print "cheat " $1 " -t " $3, vars }'`

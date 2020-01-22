@@ -40,6 +40,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'ptzz/lf.vim'
 
 "Plug 'scrooloose/syntastic'
 "Plug 'joonty/vdebug'
@@ -167,6 +168,9 @@ let g:vim_json_syntax_conceal = 0
 "
 " NERDTree
 "
+let g:lf_map_keys = 0
+map <leader>f :Lf<CR>
+
 nnoremap <F3> :NERDTreeToggle<CR>
 inoremap <F3> <Esc>:NERDTreeToggle<CR>
 nnoremap <Leader>nf :NERDTreeFind<CR>

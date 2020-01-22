@@ -1,3 +1,6 @@
+[core]
+  pager = delta --dark --plus-color="#12800" --minus-color="#340001" --theme='Sublime Snazzy' 
+
 [color]
  ui = true
  branch = auto

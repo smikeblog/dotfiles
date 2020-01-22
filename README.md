@@ -1,4 +1,4 @@
-my dotfile configuration
+My dotfile configuration
 # Default Configuration (as base XFCE or Cinnamon DEs)   #{{{
 ##  1. Install zsh and git
 ### 1.1 on Debian
@@ -88,9 +88,11 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://github.com/relastle/pmy
 	https://github.com/gokcehan/lf
 	https://github.com/sharkdp/fd
+	https://github.com/doronbehar/pistol
 	https://github.com/peco/peco
 	https://github.com/sharkdp/bat
 	https://github.com/sharkdp/ripgrep
 	https://gitlab.com/wavexx/screenkey
 	https://github.com/wfxr/forgit
+	https://github.com/dandavison/delta
 

@@ -23,6 +23,12 @@ super + F1
 	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 #	$TERMINAL -e keybindings.sh
 
+# Toggle panels
+super + shift + space
+#	{pkill xfce4-panel; bspc config top_padding 0 ,\
+#	bspc config top_padding 30; xfce4-panel -d & }
+	{pkill polybar; bspc config top_padding +0 & }
+
 # quit/restart bspwm
 super + shift + {q,r}
 	bspc {quit,wm -r}
@@ -40,8 +46,8 @@ super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest node
-super + g
-	bspc node -s biggest
+super + alt + g
+	bspc node -s biggest.local
 
 
 # STATE/FLAGS
@@ -61,8 +67,11 @@ super + d
     bspc node focused -t \~floating
 
 # focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+#super + {_,shift + }{h,j,k,l}
+#	bspc node -{f,s} {west,south,north,east}
+super + {h,j,k,l}
+	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
+
 
 # focus the node for the given path jump
 #super + {p,b,comma,period}
@@ -113,13 +122,32 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE
 
-# Mirror and flip leaves of tree
+#Resize nodes
+alt + shift + {h,j,k,l}
+  $HOME/.config/bspwm/bspwm_resize {west,south,north,east} 50
+
 super + {comma,period}
 	bspc node @/ -F {horizontal,vertical}
 
 # Rotate leaves of tree
 super + shift + {comma,period}
 	bspc node @/ -R {90,270}
+
+# move the floating windows
+super + alt + {h,j,k,l}
+  $HOME/.config/bspwm/floating_motions {west,south,north,east}
+
+# Expand/contract a floating window on all sides.
+super + alt + Left
+	bspc node -z left -20 0; \
+	bspc node -z bottom 0 10; \
+	bspc node -z top 0 -10; \
+	bspc node -z right 20 0
+super + alt + Right
+	bspc node -z left 20 0; \
+	bspc node -z bottom 0 -10; \
+	bspc node -z top 0 10; \
+	bspc node -z right -20 0
 
 # expand a window by moving one of its side outward
 ctrl + alt + {h,j,k,l}
@@ -131,7 +159,7 @@ ctrl + alt + shift + {h,j,k,l}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-40 0,0 40,0 -40,40 0}
 
 # Flip layout vertically/horizontally
 super + {_,shift + }a
@@ -169,8 +197,8 @@ super + Return
 #	$TERMINAL
 # terminal emulator
 super + alt + Return
-	tilix --profile=fish
-# tilix fish terminal emulator
+	tilix --profile=bspwm
+# xfce4-terminal emulator
 super + shift + Return
 	xfce4-terminal -e ~/scripts/tat
 # launch lynx web browser
@@ -186,23 +214,81 @@ super + alt + n
 super + alt + v
     st -e ./.config/vifm/scripts/vifmrun
 # launch htop
-super + alt + h
-    st -e htop
+#super + alt + h
+#    st -e htop
 # audio mixer run
 super + alt + m
   st -e ~/scripts/pulsemixer
+
+## LUNCHERs Alt+{F2,F3,F4,F5}
 # luncher F2
 alt + F2
 	xfce4-appfinder
-
 # luncher F3
 alt + F3
 	jgmenu_run >/dev/null 2>&1
+alt + F4
+  rofi -show window
+alt + F5
+	BspwmWindowMenu >/dev/null 2>&1
+alt + F6
+	BspwmDesktopMenu >/dev/null 2>&1
+
+# GUI
+super + g ; {1-5}
+   { \
+     notify-send -i qutebrowser "Run GUI program" "Launching Web Browser" && qutebrowser, \
+     notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
+     notify-send -i vscodium "Run GUI program" "Launching VS Codium" && vscodium, \
+     notify-send -i system-file-manager "Run GUI program" "Launching File Manager" && pcmanfm, \
+     notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
+   }
+
+# CLI
+super + x ; {3-5}
+  xfce4-terminal -x {newsboat,xed,ncmpcpp}
+
+# ----------------------------------
+#
+# # Screenshots (requires `scrot`).  First one is for the focused window.
+# # The other is of the entire X session (including all active monitors).
+# # Note that `scrot` also has an interactive mode that I do not use.
+Print
+  scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Window view screenshot" "Saved image to Desktop"
+shift + Print
+  scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Screen view screenshot" "Saved image to Desktop"
+
+## from https://gitlab.com/protesilaos/dotfiles/blob/master/bspwm/.config/sxhkd/sxhkdrc_bspc
+# Continuous input mode
+# # =====================
+# # EXPLAIN: The following key chords have a colon sign `:' before their
+# # last part.  By pressing the keys to the left of the colon, you can
+# # then pass the commands by only using the keys to the right of the
+# # colon.  This eliminates the need for repeated chord presses that
+# # involve the modifier keys.  Exit the mode with "Escape".
+# #
+# # NOTE: All of the following are mirrors of their afore-mentioned
+# # couterparts.
+#
+# # Resize node in the given direction.
+super + c : {h,j,k,l}
+  bspwm_resize {west,south,north,east} 50
+
+#   # Mode for dynamic gaps.
+super + c : bracket{left,right}
+  bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
+
+#     # Move floating windows with the arrow keys
+super + c : {Left,Down,Up,Right}
+  bspc node -v {-20 0,0 20,0 -20,20 0}
+
 
 # DMENU SCRIPTS (Alt+Ctrl+Key)
-# run  rofi open st bash in selected dir 
+# run  rofi open st bash in selected dir
 alt + shift + F3
-	./scripts/rofi-terminal.sh 
+	./scripts/rofi-terminal.sh
 # run  rofi program launcher
 shift + ctrl + Return
 	rofi -show drun
@@ -225,7 +311,8 @@ alt + ctrl + p
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
 # stock trading programs
-# alt + ctrl + t
+alt + ctrl + t
+   ~/.dmenu/dmenu-scrot.sh
 
 # Audio mpd from LukeSmith
 XF86HomePag
@@ -265,3 +352,13 @@ XF86AudioStop
   lmc stop
 XF86Eject
   lmc stop
+
+
+#
+# Commands for receptacles are defined in the "advanced operations"
+# section.
+#
+# NOTE the leading `;` runs this command asynchronously.
+super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
+	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
+

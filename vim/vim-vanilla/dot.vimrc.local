@@ -1,3 +1,8 @@
+" Spell-check set to <leader>o, 'o' for 'orthography':
+	" map <leader>o :setlocal spell! spelllang=en_us<CR>
+	map <leader>ss :setlocal spell! spelllang=en_us<CR>
+	map <leader>sr :setlocal spell! spelllang=ru_ru<CR>
+
 " open FZF in current file's directory
     nnoremap <silent> <Leader>1 :Files <C-R>=expand('%:h')<CR><CR>
 
@@ -131,3 +136,10 @@ autocmd FileType scss,sass,css setlocal expandtab shiftwidth=2 softtabstop=2 tex
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language texts check
 let g:languagetool_jar='$HOME/.vim/LanguageTool/languagetool-commandline.jar'
+
+" if colorscheme == 'space-vim-dark'
+  hi Normal     ctermbg=NONE guibg=NONE
+  hi LineNr     ctermbg=NONE guibg=NONE
+  hi SignColumn ctermbg=NONE guibg=NONE
+  set termguicolors
+" end

@@ -306,6 +306,9 @@ filetype *.rar
        \ fuse_mount|rar2fs %source_file %destination_dir,
 fileviewer *.rar unrar v %c
 
+" rare formats; only view
+fileviewer *.7z 7z l %c
+
 " isomount
 filetype *.iso
        \ {mount with fuseiso}
@@ -343,6 +346,10 @@ filextype */
         \ {view in thunar}
         \ pcmanfm %f &,
 "        \ thunar %f &,
+
+" 'l' toggles showing a git log of entry (whether it is a directory or a file)
+nnoremap l :if &previewprg == '' | set previewprg='git -c color.status=always s; git log --stat --decorate=short --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
+
 
 " syntax highlighting in preview
 "
@@ -500,4 +507,8 @@ nnoremap <c-g> :FZFlocate<cr>
 nnoremap <c-f> :FZFfind<cr>
 
 map x :!sxiv -ft * 2>/dev/null &<CR>
+
+" nnoremap cp :!!cp -v -r --parents %f %D<CR>
+nnoremap dv :!vimdiff %c %D/%c<CR>
+nnoremap dV :!vimdiff %c %C<CR>
 

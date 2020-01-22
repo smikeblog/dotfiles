@@ -4,9 +4,9 @@ MUSIC_LIBRARY=$HOME/Music/
 
 MPC_BIN=/usr/bin/mpc
 
-PROMPT=fzf
+#PROMPT=fzf
 
-#PROMPT="rofi -fuzzy -dmenu"
+PROMPT="rofi -fuzzy -dmenu"
 
 playlist(){
     $MPC_BIN playlist -f  " [%position% %artist% - %title%]"

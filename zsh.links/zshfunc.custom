@@ -121,9 +121,9 @@ fi
 
 # GNU and BSD ls colorization.
 if _color; then
-  export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=33:so=01;35:bd=33;01:cd=33;01:or=01;05;37;41:mi=01;37;41:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
-  export LSCOLORS='ExGxFxdxCxDxDxcxcxxCxc'
-  export CLICOLOR=1
+#  export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=33:so=01;35:bd=33;01:cd=33;01:or=01;05;37;41:mi=01;37;41:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+#  export LSCOLORS='ExGxFxdxCxDxDxcxcxxCxc'
+#  export CLICOLOR=1
 fi
 
 # PATH MODIFICATIONS {{{1
@@ -474,8 +474,60 @@ readme() {
 
 ## }}}2
 
+#-------------------------------------------------------
+## show .md files with in terminal glow and less pager
+mdless() {
+  glow "$@" -s dark | less -r
+}
+
 if [[ -f $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh ]]; then 
 	source $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh
 fi
 
+#-------------------------------------------------------
+# from : https://gist.github.com/yuttie/2aeaecdba24256c73bf2
+# Search shell history with peco: https://github.com/peco/peco
+# Adapted from: https://github.com/mooz/percol#zsh-history-search
+if which peco &> /dev/null; then
+  function peco_select_history() {
+    local tac
+    { which gtac &> /dev/null && tac="gtac" } || \
+      { which tac &> /dev/null && tac="tac" } || \
+      tac="tail -r"
+    BUFFER=$(fc -l -n 1 | eval $tac | \
+                peco --layout=bottom-up --query "$LBUFFER")
+    CURSOR=$#BUFFER # move cursor
+    zle -R -c       # refresh
+  }
+
+  zle -N peco_select_history
+  bindkey '^K' peco_select_history
+fi
+#---------list-all-man-pages----------------------------  {{{
+# http://qiita.com/Linda_pp/items/9ff801aa6e00459217f7
+function list-all-man-pages() {
+    local parent dir file
+    local paths=("${(s/:/)$(man -aw)}")
+    for parent in $paths; do
+        for dir in $(/bin/ls -1 $parent); do
+            local p="${parent}/${dir}"
+            if [ -d "$p" ]; then
+                IFS=$'\n' local lines=($(/bin/ls -1 "$p"))
+                for file in $lines; do
+                    echo "${p}/${file}"
+                done
+            fi
+        done
+    done
+}
+
+function fzf-man() {
+    local selected=$(list-all-man-pages | fzf --prompt='man> ')
+    if [[ "$selected" != "" ]]; then
+        man "$selected"
+    fi
+}
+zle -N fzf-man
+bindkey '^ m' fzf-man
+### }}}
 ##### THE END ***

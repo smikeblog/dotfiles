@@ -4,7 +4,7 @@ let mapleader =","
 set bg=dark
 set go=a
 set mouse=a
-set nohlsearch
+set hlsearch
 set foldmethod=marker
 set clipboard=unnamedplus
 
@@ -14,6 +14,9 @@ nnoremap <silent> <leader>l :set list! list?<CR>
 "set listchars=tab:▸\ ,eol:¬
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 
+" Clears the current search
+nnoremap <silent> <F5> :nohlsearch<CR><C-l>
+
 " Some basics: {{{
 	nnoremap c "_c
 	set nocompatible
@@ -21,7 +24,7 @@ set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
-	colorscheme gruvbox9_hard
+	colorscheme gruvbox
 	hi Comment cterm=italic
 
 " Enable autocompletion:

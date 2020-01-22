@@ -2,11 +2,10 @@
 
 # Basic vars
 #set shell sh
-## set previewer ~/.config/lf/scope
+set previewer ~/.config/lf/lib/preview
 set color256
-set previewer ~/go/bin/pistol
+#set previewer ~/go/bin/pistol
 set icons
-
 
 
 # interpreter for shell commands (needs to be POSIX compatible)
