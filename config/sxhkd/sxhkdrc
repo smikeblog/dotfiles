@@ -67,10 +67,10 @@ super + d
     bspc node focused -t \~floating
 
 # focus the node in the given direction
-#super + {_,shift + }{h,j,k,l}
-#	bspc node -{f,s} {west,south,north,east}
-super + {h,j,k,l}
-	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+#super + shift +  {h,j,k,l}
+#	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
 
 
 # focus the node for the given path jump
@@ -212,7 +212,7 @@ super + alt + n
     st -e newsboat
 # launch vifm file manager
 super + alt + v
-    st -e ./.config/vifm/scripts/vifmrun
+     st -e ./.config/vifm/scripts/vifmrun
 # launch htop
 #super + alt + h
 #    st -e htop
@@ -228,7 +228,18 @@ alt + F2
 alt + F3
 	jgmenu_run >/dev/null 2>&1
 alt + F4
-  rofi -show window
+  rofi -show drun -sidebar-mode \
+    -modi run,drun,window \
+    -hide-scrollbar true \
+    -bw 2 \
+    -lines 12 \
+    -padding 24 \
+    -width 60 \
+    -location 0 \
+    -columns 3 \
+    -font "Noto Sans 9" \
+    -color-enabled true
+#  rofi -show window
 alt + F5
 	BspwmWindowMenu >/dev/null 2>&1
 alt + F6
@@ -288,7 +299,7 @@ super + c : {Left,Down,Up,Right}
 # DMENU SCRIPTS (Alt+Ctrl+Key)
 # run  rofi open st bash in selected dir
 alt + shift + F3
-	./scripts/rofi-terminal.sh
+	~/scripts/rofi-terminal.sh
 # run  rofi program launcher
 shift + ctrl + Return
 	rofi -show drun

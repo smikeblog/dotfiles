@@ -22,6 +22,10 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load config modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" disable Python 2 support:
+let g:loaded_python_provider = 0
+
 source $HOME/.dotfiles/vim/vil/Sinit.vim
 "source $HOME/.config/nvim/general.vim
 "source $HOME/.config/nvim/plugins.vim

@@ -59,7 +59,7 @@ source "$HOME/scripts/base16-snazzy.sh"
 # source ~/.dotfiles/profileSmike
 
 # export path to ruby gem directory
-[ -d $HOME/.gem/ruby/2.6.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.6.0/bin"
+[ -d $HOME/.gem/ruby/2.7.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

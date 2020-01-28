@@ -1,0 +1,4 @@
+## writecmd - utility function used to write the command in the shell
+	writecmd() {
+	  perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do { chomp($_ = <>); $_ }'
+	}

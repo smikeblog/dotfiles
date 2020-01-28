@@ -47,7 +47,7 @@ alias sm.weather='curl wttr.in/chisinau'
 # rootkit scanner
 alias sm.antivir='sudo rkhunter -c'
 
-alias s3='/home/sm1/space/sublime_text_3/sublime_text -a '
+alias s3='$HOME/space/sublime_text_3/sublime_text -a '
 
 # utils
 # https://github.com/athityakumar/colorls
@@ -62,10 +62,22 @@ alias lc='lsd -lhA --group-dirs=first'
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias  k='k -h'
 # Pipe Aliases
-alias -g W=' | wc -l '
+alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
 
+alias mrofi='rofi -show drun -sidebar-mode \
+  -modi run,drun,window \
+  -hide-scrollbar true \
+  -bw 2 \
+  -lines 12 \
+  -padding 24 \
+  -width 60 \
+  -location 0 \
+  -columns 3 \
+  -font "Noto Sans 9" \
+  -color-enabled true
+'
    ##   }}}
 
 ### time consuming node ruby python env sol-s {{{

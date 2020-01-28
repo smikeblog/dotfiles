@@ -1,1 +1,1 @@
-/home/sm1/.vimm/plugged/fzf/shell/key-bindings.fish
+/home/sm1/.fzf/shell/key-bindings.fish
