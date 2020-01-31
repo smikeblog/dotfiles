@@ -6,6 +6,7 @@ export WIRELESS=wlan0
 sxhkd &
 exec compton &
 nitrogen --restore &
+pcmanfm -d &
 #conky &
 ./.config/polybar/launch.sh &
 # setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
@@ -73,3 +74,5 @@ bspc rule -a file-roller state=floating center=true
 bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
+bspc rule -a Firefox private=on
+

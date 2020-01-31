@@ -3,6 +3,10 @@
 	map <leader>ss :setlocal spell! spelllang=en_us<CR>
 	map <leader>sr :setlocal spell! spelllang=ru_ru<CR>
 
+  " When the type of shell script is /bin/sh, assume a POSIX-compatible
+  " " shell for syntax highlighting purposes.
+  let g:is_posix = 1
+
 " open FZF in current file's directory
     nnoremap <silent> <Leader>1 :Files <C-R>=expand('%:h')<CR><CR>
 

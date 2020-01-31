@@ -95,8 +95,8 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://gitlab.com/wavexx/screenkey
 	https://github.com/wfxr/forgit
 	https://github.com/dandavison/delta
-  https://prettier.io/docs/en/install.html
-  https://github.com/mvdan/sh
-  https://github.com/charmbracelet/glow
-  https://github.com/cheat/cheat
-
+	https://prettier.io/docs/en/install.html
+	https://github.com/mvdan/sh
+	https://github.com/charmbracelet/glow
+	https://github.com/cheat/cheat
+	https://github.com/dalance/procs
