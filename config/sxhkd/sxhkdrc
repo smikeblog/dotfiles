@@ -240,6 +240,8 @@ alt + F4
     -font "Noto Sans 9" \
     -color-enabled true
 #  rofi -show window
+super + @space
+  rofi -show window  
 alt + F5
 	BspwmWindowMenu >/dev/null 2>&1
 alt + F6
@@ -372,4 +374,5 @@ XF86Eject
 # NOTE the leading `;` runs this command asynchronously.
 super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
 	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
+
 

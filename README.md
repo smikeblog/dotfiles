@@ -100,3 +100,6 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://github.com/charmbracelet/glow
 	https://github.com/cheat/cheat
 	https://github.com/dalance/procs
+  https://github.com/ggreer/the_silver_searcher
+  https://github.com/Canop/broot
+

@@ -36,7 +36,8 @@ nnoremap <silent> <F5> :nohlsearch<CR><C-l>
 	map <leader>f :Goyo \| set bg=dark \| set linebreak<CR>
 
 " Spell-check set to <leader>o, 'o' for 'orthography':
-	" map <leader>o :setlocal spell! spelllang=en_us<CR>
+set spelllang=en,ru
+" map <leader>o :setlocal spell! spelllang=en_us<CR>
 	map <leader>ss :setlocal spell! spelllang=en_us<CR>
 	map <leader>sr :setlocal spell! spelllang=ru_ru<CR>
 

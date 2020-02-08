@@ -3,7 +3,7 @@
 ## ytp
 ## by drew
 ## also anjune
-## uoou@posteo.net
+## uoou@posteo.net 
 ## https://gitlab.com/uoou/ytp
 ## GPL v. 2
 
@@ -28,7 +28,7 @@ for thing in jq youtube-dl mktemp $player; do
 		echo -en "This script requires ${magenta}$thing${nc}. It's probably in your repos. "
 		if [[ "$thing" = "youtube-dl" ]] ;
 		then
-			echo -n "Older versions of youtube-dl might not be able to process all videos. If playback fails, try grabbing the latest version with Python's package installer, using 'sudo -H pip3 install youtube-dl'."
+			echo -n "Older versions of youtube-dl might not be able to process all videos. If playback fails, try installing/upgrading to the latest version with Python's package installer, using 'pip3 install --user --upgrade youtube-dl'."
 		fi
 		echo ""
 		exit
@@ -211,8 +211,8 @@ draw_search () {
 
 play_audio_only () {
     echo -e "Opening ${red}${vidtitles_array[$playvid]}${nc} (audio only) in $player"
-    if [ -z "$DISPLAY" ]; then
-        $player --no-video $video_url${vidids_array[$playvid]} 1>/dev/null 2>&1
+    if [ -z "$DISPLAY" ]; then 
+        $player --no-video $video_url${vidids_array[$playvid]} 1>/dev/null 2>&1 
         echo # insert newline to compensate for ^C
     else
         $player --no-video --player-operation-mode=pseudo-gui $video_url${vidids_array[$playvid]} 1>/dev/null 2>&1 &
@@ -244,7 +244,7 @@ handle_input () {
 			else
 				command_line "Invalid command"
 			fi
-			;;
+			;;			
 		[1-9]!|10! )
 			addvid=$(( $(echo $userinput | cut -d "!" -f 1) - 1 ))
 			if [[ $(( $addvid + 1 )) -le $maxresults ]]; then
@@ -305,7 +305,7 @@ handle_input () {
 			fi
 			;;
 		"?" )
-			if $showhelp; then
+			if $showhelp; then 
 				showhelp=false
 				echo "Help is now off"
 			else
@@ -339,4 +339,3 @@ handle_input () {
 }
 
 ytsearch
-

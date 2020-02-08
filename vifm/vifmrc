@@ -118,8 +118,12 @@ set statusline="  hint: %z%= %a %10u:%-7g %15s %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark r /
 mark h ~/
+mark b ~/bin/
+mark c ~/Code
+mark d ~/Downloads
+mark p ~/Pictures
 
 " ------------------------------------------------------------------------------
 
@@ -283,8 +287,10 @@ fileviewer *.torrent dumptorrent -v %c
 
 " fusezipmount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
-       \ {mount with fuse-zip}
-       \ fuse_mount|fuse-zip %source_file %destination_dir,
+	\ {open with file-roller}
+	\ file-roller %f &,
+""       \ {mount with fuse-zip}
+""       \ fuse_mount|fuse-zip %source_file %destination_dir,
        \ {view contents}
        \ zip -sf %c | less,
        \ {extract here}
@@ -293,8 +299,10 @@ fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
 
 " archivemount
 filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
-       \ {mount with archivemount}
-       \ fuse_mount|archivemount %source_file %destination_dir,
+	\ {open with file-roller}
+	\ file-roller %f &,
+"""       \ {mount with archivemount}
+"       \ fuse_mount|archivemount %source_file %destination_dir,
 fileviewer *.tgz,*.tar.gz tar -tzf %c
 fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer *.tar.txz,*.txz xz --list %c
@@ -302,32 +310,34 @@ fileviewer *.tar tar -tf %c
 
 " rar2fsmount and rar archives
 filetype *.rar
-       \ {mount with rar2fs}
-       \ fuse_mount|rar2fs %source_file %destination_dir,
+	\ {open with file-roller}
+	\ file-roller %f &,
+""       \ {mount with rar2fs}
+""       \ fuse_mount|rar2fs %source_file %destination_dir,
 fileviewer *.rar unrar v %c
 
 " rare formats; only view
 fileviewer *.7z 7z l %c
 
 " isomount
-filetype *.iso
-       \ {mount with fuseiso}
-       \ fuse_mount|fuseiso %source_file %destination_dir,
+""filetype *.iso
+""       \ {mount with fuseiso}
+""       \ fuse_mount|fuseiso %source_file %destination_dir,
 
 " sshmount
-filetype *.ssh
-       \ {mount with sshfs}
-       \ fuse_mount2|sshfs %param %destination_dir %foreground,
+""filetype *.ssh
+""       \ {mount with sshfs}
+""       \ fuse_mount2|sshfs %param %destination_dir %foreground,
 
 " ftpmount
-filetype *.ftp
-       \ {mount with curlftpfs}
-       \ fuse_mount2|curlftpfs -o ftp_port=-,,disable_eprt %param %destination_dir %foreground,
+""filetype *.ftp
+""       \ {mount with curlftpfs}
+""       \ fuse_mount2|curlftpfs -o ftp_port=-,,disable_eprt %param %destination_dir %foreground,
 
 " fuse7z and 7z archives
-filetype *.7z
-       \ {mount with fuse-7z}
-       \ fuse_mount|fuse-7z %source_file %destination_dir,
+""filetype *.7z
+""       \ {mount with fuse-7z}
+""       \ fuse_mount|fuse-7z %source_file %destination_dir,
 fileviewer *.7z 7z l %c
 
 " office files
@@ -507,6 +517,9 @@ nnoremap <c-g> :FZFlocate<cr>
 nnoremap <c-f> :FZFfind<cr>
 
 map x :!sxiv -ft * 2>/dev/null &<CR>
+
+" spacebar to select/unselect files
+nmap <space> t
 
 " nnoremap cp :!!cp -v -r --parents %f %D<CR>
 nnoremap dv :!vimdiff %c %D/%c<CR>
