@@ -524,10 +524,10 @@ function list-all-man-pages() {
 function fzf-man() {
     local selected=$(list-all-man-pages | fzf --prompt='man> ')
     if [[ "$selected" != "" ]]; then
-        man "$selected"
+         man "$selected" 
     fi
 }
-zle -N fzf-man
-bindkey '^ m' fzf-man
+#zle -N fzf-man
+#bindkey '^ m' fzf-man
 ### }}}
 ##### THE END ***

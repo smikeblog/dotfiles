@@ -33,13 +33,17 @@ if ! zgen saved; then
 	zgen load caarlos0/zsh-git-sync
 #	zgen load TBSliver/zsh-plugin-colored-man
 	zgen load mafredri/zsh-async
-	zgen load junegunn/fzf shell
+#	zgen load junegunn/fzf shell
 
 	zgen load zdharma/fast-syntax-highlighting
 	zgen load wfxr/forgit
 #	zgen load zsh-users/zsh-syntax-highlighting
 #	zgen load tarruda/zsh-autosuggestions
 #	zgen load softmoth/zsh-vim-mode
+  zgen load sitdisch/zsh-vim-inclusive-v
+  zgen load zsh-vi-more/evil-registers
+  zgen load chrissicool/zsh-256color
+	
 
 	zgen save
 fi
@@ -61,3 +65,5 @@ function newline-after-command() {
 
 
 eval $(thefuck --alias)
+
+source /home/sm/.config/broot/launcher/bash/br

@@ -20,9 +20,9 @@ fi
 
 # Vi mode
 bindkey -v
+export KEYTIMEOUT=1
 
 ## some aliases   {{{
-# nvim vim
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
@@ -122,7 +122,8 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+# export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="nvim +set\ filetype=man -"
 
 # Modules
 autoload colors zsh/terminfo
@@ -344,6 +345,8 @@ ex=:\
 *.ppt=:\
 "
 # }}}
+
+alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
 # show vim status {{{
 # http://zshwiki.org/home/examples/zlewidgets
