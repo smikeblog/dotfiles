@@ -1,0 +1,34 @@
+# Render markdown on the CLI, with pizzazz!
+
+## Usage
+  # Read from file
+  glow README.md
+
+  # Read from stdin
+  glow -
+
+  # Fetch README from GitHub / GitLab
+  glow github.com/charmbracelet/glow
+
+  # Fetch markdown from HTTP
+  glow https://host.tld/file.md
+
+## Word Wrapping
+  The -w flag lets you set a maximum width at which the output will be wrapped:
+    glow -w 60
+
+## Paging
+  The output can be displayed in the user's preferred pager with the -p flag.
+  This defaults to the ANSI-aware less -r if $PAGER is not explicitly set.
+
+## Styles
+  You can choose a style with the -s flag.
+    glow -s [dark|light]
+  Alternatively you can also supply a custom JSON stylesheet:
+    glow -s mystyle.json
+
+For additional usage details see:
+    glow --help
+
+
+Note: home  https://github.com/charmbracelet/glow

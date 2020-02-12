@@ -1,0 +1,22 @@
+# A syntax-highlighting pager for git and diff output
+
+## Configure git to use delta
+  git config --global core.pager "delta --dark"  # --light for light terminal backgrounds
+or
+  [core]
+    pager = delta --dark --plus-color="#012800" --minus-color="#340001" --theme="base16-ocean.dark"
+
+## All git commands that display diff output should now display syntax-highlighted output
+```sh
+    git diff
+    git show
+    git log -p
+    git stash show -p
+    git reflog -p
+```
+also handles unified diff output:
+  diff -u a.txt b.txt | delta
+
+
+Note: homepage https://github.com/dandavison/delta
+
