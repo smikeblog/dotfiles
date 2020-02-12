@@ -163,7 +163,7 @@ _append_to_path /usr/sbin
 # ALIASES {{{1
 
 ## ================== taken from oh-my-zsh web plugin =======
-# web_search from terminal {{{5 
+# web_search from terminal {{{5
 ## tool body {{{
 function web_search() {
   emulate -L zsh
@@ -257,7 +257,7 @@ alias ducky='web_search duckduckgo \!'
 # }}}5
 ## ------------------------ end of web plugin functions
 
-## ---------- Utilityty Funcs  ------------------ {{{3 
+## ---------- Utilityty Funcs  ------------------ {{{3
 ## form https://github.com/jotyGill/quickz-sh/blob/master/.zshrc
 speedtest() {
     curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -
@@ -316,7 +316,7 @@ alias fge='fzf_grep_edit'
 # git log {{{
 fzf_git_log() {
     local commits=$(
-      git ll --color=always "$@" |
+      git l --color=always "$@" |
         fzf --ansi --no-sort --height 100% \
             --preview "echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
                        xargs -I@ sh -c 'git show --color=always @'"
@@ -364,7 +364,7 @@ alias grl='fzf_git_reflog'
 ## -- }}}1
 #
 ## ================== not Aliased =======
-### funcs not aliased {{{2 
+### funcs not aliased {{{2
 #
 # cdi - interactive cd {{{
 function cdi() {
@@ -480,9 +480,16 @@ mdless() {
   glow "$@" -s dark | less -r
 }
 
-if [[ -f $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh ]]; then 
+if [[ -f $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh ]]; then
 	source $HOME/.zgen/wfxr/forgit-master/forgit.plugin.zsh
 fi
+
+#-------------------------------------------------------
+# kill process
+function peco-kill-process() {
+    ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill
+}
+alias killp='peco-kill-process'
 
 #-------------------------------------------------------
 # from : https://gist.github.com/yuttie/2aeaecdba24256c73bf2
@@ -495,13 +502,13 @@ if which peco &> /dev/null; then
       { which tac &> /dev/null && tac="tac" } || \
       tac="tail -r"
     BUFFER=$(fc -l -n 1 | eval $tac | \
-                peco --layout=bottom-up --query "$LBUFFER")
+                peco --query "$LBUFFER")
     CURSOR=$#BUFFER # move cursor
     zle -R -c       # refresh
   }
 
   zle -N peco_select_history
-  bindkey '^K' peco_select_history
+  bindkey '^H' peco_select_history
 fi
 #---------list-all-man-pages----------------------------  {{{
 # http://qiita.com/Linda_pp/items/9ff801aa6e00459217f7
@@ -524,10 +531,10 @@ function list-all-man-pages() {
 function fzf-man() {
     local selected=$(list-all-man-pages | fzf --prompt='man> ')
     if [[ "$selected" != "" ]]; then
-         man "$selected" 
+         man "$selected"
     fi
 }
-#zle -N fzf-man
-#bindkey '^ m' fzf-man
+zle -N fzf-man
+bindkey '^K' fzf-man
 ### }}}
 ##### THE END ***

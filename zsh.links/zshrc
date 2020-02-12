@@ -13,6 +13,7 @@ if ! zgen saved; then
 	#prezto options
 	zgen prezto editor key-bindings 'vi'
 	zgen prezto prompt theme 'sorin'
+#	zgen prezto prompt theme 'steeef'
 #	zgen prezto tmux:auto-start local 'yes'
 	zgen prezto '*:*' case-sensitive 'yes'
 	zgen prezto '*:*' color 'yes'
@@ -25,7 +26,7 @@ if ! zgen saved; then
 	zgen prezto tmux
 	zgen prezto fasd
 	zgen prezto history-substring-search
-	zgen prezto syntax-highlighting
+#	zgen prezto syntax-highlighting
 
 	# plgins
 	zgen load djui/alias-tips
