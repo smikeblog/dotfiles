@@ -193,7 +193,6 @@ endif                          "   }}}2
 set nolist                            " hide unprintable characters
 if has("multi_byte")                  " if multi_byte is available,
   set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
-"  set listchars=eol:¬,tab:▸\ ,trail:⌴ " use pretty Unicode unprintable symbols
 else                                  " otherwise,
   set listchars=eol:$,tab:>\ ,trail:. " use ASCII characters
 endif
@@ -510,6 +509,7 @@ nnoremap <F2> :Lf<CR>
 set showmode      " always show the current editing mode
 set nowrap        " don't wrap lines
 set linebreak     " yet if enabled break at word boundaries
+set breakindentopt=shift:2
 
 if has("multi_byte")  " if multi_byte is available,
   set showbreak=↪     " use pretty Unicode marker
