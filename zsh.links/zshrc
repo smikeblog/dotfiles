@@ -44,7 +44,7 @@ if ! zgen saved; then
   zgen load sitdisch/zsh-vim-inclusive-v
   zgen load zsh-vi-more/evil-registers
   zgen load chrissicool/zsh-256color
-	
+
 
 	zgen save
 fi
@@ -65,6 +65,6 @@ function newline-after-command() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-eval $(thefuck --alias)
+# eval $(thefuck --alias)
 
 source /home/sm/.config/broot/launcher/bash/br

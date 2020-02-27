@@ -227,7 +227,7 @@ alt + F2
 # luncher F3
 alt + F3
 	jgmenu_run >/dev/null 2>&1
-alt + F4
+alt + F5
   rofi -show drun -sidebar-mode \
     -modi run,drun,window \
     -hide-scrollbar true \
@@ -242,7 +242,7 @@ alt + F4
 #  rofi -show window
 super + @space
   rofi -show window  
-alt + F5
+alt + F4
 	BspwmWindowMenu >/dev/null 2>&1
 alt + F6
 	BspwmDesktopMenu >/dev/null 2>&1
@@ -259,7 +259,7 @@ super + g ; {1-5}
 
 # CLI
 super + x ; {3-5}
-  xfce4-terminal -x {newsboat,xed,ncmpcpp}
+  xfce4-terminal -x {newsboat,xed,mocp}
 
 # ----------------------------------
 #
