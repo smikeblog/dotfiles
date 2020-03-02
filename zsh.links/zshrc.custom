@@ -71,7 +71,7 @@ alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
 
-alias mrofi='rofi -show drun -sidebar-mode \
+alias msrofi='rofi -show drun -sidebar-mode \
   -modi run,drun,window \
   -hide-scrollbar true \
   -bw 2 \
@@ -376,4 +376,4 @@ alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \"
 #fi
 ## }}}
 
-source <(cod init $$ zsh)
+# source <(cod init $$ zsh)

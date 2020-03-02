@@ -1,0 +1,22 @@
+# forgit is a utility tool powered by fzf for using git interactively
+
+## Commands
+### ga - interactive gat add selector
+
+### glo - interactive git log viewer
+
+### gi - Interactive .gitignore generator
+
+### gd - Interactive git diff viewer
+
+### grh - Interactive git reset HEAD <file> selector
+
+### gcf - Interactive git checkout <file> selector
+
+### gss - Interactive git stash viewer
+
+### gclean - Interactive git clean selector
+
+
+NOTE: https://github.com/wfxr/forgit
+

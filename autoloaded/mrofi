@@ -1,0 +1,12 @@
+rofi -show drun -sidebar-mode \
+   -modi run,drun,window \
+   -hide-scrollbar true \
+   -bw 2 \
+   -lines 12 \
+   -padding 24 \
+   -width 60 \
+   -location 0 \
+   -columns 3 \
+   -font "Noto Sans 9" \
+   -color-enabled true
+

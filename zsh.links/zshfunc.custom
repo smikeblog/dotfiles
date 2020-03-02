@@ -536,5 +536,18 @@ function fzf-man() {
 }
 zle -N fzf-man
 bindkey '^K' fzf-man
+
+## from: https://github.com/knqyf263/pet/blob/master/README.md
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^s' pet-select
+
 ### }}}
 ##### THE END ***
+function ru() { trans en:ru "$*" }
+function en() { trans ru:en "$*" }

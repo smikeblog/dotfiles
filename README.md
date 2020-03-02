@@ -83,6 +83,7 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 ## Other used Tools
 	pip3 install awesome-finder
 	cargo install runiq
+  https://www.soimort.org/translate-shell/
 	pacman -S shellcheck
 	https://github.com/Peltoche/lsd
 	https://github.com/relastle/pmy
@@ -101,6 +102,6 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://github.com/cheat/cheat
  	https://github.com/ggreer/the_silver_searcher
  	https://github.com/Canop/broot
-  	https://github.com/knqyf263/pet
+  https://github.com/knqyf263/pet
 	https://github.com/dalance/procs
 
