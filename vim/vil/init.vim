@@ -16,6 +16,9 @@ Plug 'liuchengxu/space-vim-dark'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 
+Plug 'skywind3000/vim-auto-popmenu'
+Plug 'skywind3000/vim-dict'
+
 call plug#end()
 """ }}}
 

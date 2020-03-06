@@ -6,7 +6,7 @@ https://www.archlinux.org/feeds/news/ "tech"
 ------------------------
 -------NEWSFEEDS--------
 ------------------------
-https://distrowatch.com/news/dw.xml "~NEWSFEED: DistroWatch" 
+https://distrowatch.com/news/dw.xml "~NEWSFEED: DistroWatch"
 http://lxer.com/module/newswire/headlines.rss "~NEWSFEED: LXer"
 https://www.linux.com/feeds/news/rss "~NEWSFEED: Linux.com"
 https://www.linuxjournal.com/news/feed "~NEWSFEED: Linux Journal"
@@ -23,14 +23,9 @@ https://www.linuxinsider.com/perl/syndication/rssfull.pl "~NEWSFEED: Linux Insid
 -------------------------
 https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg "~YOUTUBE: DistroTube"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCHugE6eRhqB9_AZQh4DDbIw "~YOUTUBE: Jupiter Broadcasting"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCkK9UDm_ZNrq_rIXCz3xCGA "~YOUTUBE: Bryan Lunduke"
 https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "~YOUTUBE: Luke Smith"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCbHXJGd7c8Hy4z0-YX1Jf3Q "~YOUTUBE: Matt Hartley"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCWJUSpXVHTaHErtGWC5qPlQ "~YOUTUBE: Destination Linux"
-https://www.youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "~YOUTUBE: Level1Techs"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCOWcZ6Wicl-1N34H0zZe38w "~YOUTUBE: Level1Linux"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCRBHiacaQb5S70pljtJYB2g "~YOUTUBE: EposVox"
-https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tnw "~YOUTUBE: Linus Tech Tips"
 -------------------------
 -------REDDIT------------
 -------------------------

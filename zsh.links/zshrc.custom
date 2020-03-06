@@ -71,15 +71,15 @@ alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
 
-alias msrofi='rofi -show drun -sidebar-mode \
-  -modi run,drun,window \
+alias msrofi='rofi -show window -sidebar-mode \
+  -modi run,window,drun,keys \
   -hide-scrollbar true \
   -bw 2 \
   -lines 12 \
   -padding 24 \
   -width 60 \
   -location 0 \
-  -columns 3 \
+  -columns 2 \
   -font "Noto Sans 9" \
   -color-enabled true
 '
@@ -377,3 +377,5 @@ alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \"
 ## }}}
 
 # source <(cod init $$ zsh)
+#  
+alias l.="ls -A | egrep '^\.' "

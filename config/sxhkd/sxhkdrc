@@ -220,7 +220,7 @@ super + alt + v
 super + alt + m
   st -e ~/scripts/pulsemixer
 
-## LUNCHERs Alt+{F2,F3,F4,F5}
+## LUNCHERs Alt+{F2,F3,F5,F6}
 # luncher F2
 alt + F2
 	xfce4-appfinder
@@ -241,7 +241,7 @@ alt + F5
     -color-enabled true
 #  rofi -show window
 super + @space
-  rofi -show window  
+  rofi -modi window -show window -show-icons -sidebar-mode
 alt + F4
 	BspwmWindowMenu >/dev/null 2>&1
 alt + F6
@@ -326,46 +326,6 @@ alt + ctrl + r
 # stock trading programs
 alt + ctrl + t
    ~/.dmenu/dmenu-scrot.sh
-
-# Audio mpd from LukeSmith
-XF86HomePag
-  firefox
-super + x
-  mpc stop
-XF86AudioStop
-	mpc stop; pauseallmpv
-XF86Launch1
-	xset dpms force off
-XF86AudioMute
-#	lmc mute
-	lmc next
-XF86AudioLowerVolume
-	lmc down 5
-shift+XF86AudioLowerVolume
-	lmc down 10
-control+XF86AudioLowerVolume
-	lmc down 1
-XF86AudioRaiseVolume
-	lmc up 5
-shift+XF86AudioRaiseVolume
-	lmc up 10
-control+XF86AudioRaiseVolume
-	lmc up 1
-XF86AudioNext
-#	lmc next
-	lmc mute
-XF86Calculator
-	lmc toggle
-XF86AudioPlay
-#	lmc toggle
-	lmc prev
-XF86AudioPrev
-	lmc prev
-XF86AudioStop
-  lmc stop
-XF86Eject
-  lmc stop
-
 
 #
 # Commands for receptacles are defined in the "advanced operations"

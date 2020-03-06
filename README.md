@@ -48,7 +48,7 @@ My dotfile configuration
    #}}}
 
 # development environment setup (bspwm or dwm WMs)  #{{{
-Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to have more memory
+Note: I install WM for development environment alongside with DE (cinnamon or xfce) to have more memory
 ### bspwm (https://github.com/baskerville/bspwm/wiki )
 #### bspwm is compiled from github sources
 	git clone https://github.com/baskerville/bspwm.git ~/Downloads/build/
@@ -70,7 +70,7 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 #### manjaro
 	yay -S polybar
 
-### install btops (show only used workspaces and add additional dinamically) need Golang
+### install btops (to show only used workspaces and add additional dinamically) depends on Golang
 #### install and config golang according instructions from its site golang.org (look for current version ...)
 	wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
 	sudo tar -C /usr/local tar -xzf go1.13.1.linux-amd64.tar.gz
@@ -83,7 +83,7 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 ## Other used Tools
 	pip3 install awesome-finder
 	cargo install runiq
-  https://www.soimort.org/translate-shell/
+	https://www.soimort.org/translate-shell/
 	pacman -S shellcheck
 	https://github.com/Peltoche/lsd
 	https://github.com/relastle/pmy
@@ -102,6 +102,6 @@ Note: I install WM for dev environment alongside to DE (cinnamon or xfce) to hav
 	https://github.com/cheat/cheat
  	https://github.com/ggreer/the_silver_searcher
  	https://github.com/Canop/broot
-  https://github.com/knqyf263/pet
+	https://github.com/knqyf263/pet
 	https://github.com/dalance/procs
 
