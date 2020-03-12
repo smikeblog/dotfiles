@@ -19,7 +19,7 @@ super + Escape
 # BSPWM HOTKEYS
 
 # Show keybindings
-super + F1
+super + @F1
 	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 #	$TERMINAL -e keybindings.sh
 
@@ -45,12 +45,9 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
-super + alt + g
-	bspc node -s biggest.local
 
 
-# STATE/FLAGS
+# STATE/FLAGS ============================ {{{
 
 # set the window state
 super + {t,shift + t,s,f}
@@ -60,18 +57,24 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-
-# FOCUS/SWAP
 # when pressed again go to the previous state
 super + d
     bspc node focused -t \~floating
+
+### }}}
+
+# FOCUS/SWAP ============================= {{{
+#
+
+# swap the current node and the biggest node
+super + alt + g
+	bspc node -s biggest.local
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 #super + shift +  {h,j,k,l}
 #	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
-
 
 # focus the node for the given path jump
 #super + {p,b,comma,period}
@@ -100,8 +103,10 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+### }}}
 
-# PRESELECT
+
+# PRESELECT ============================= {{{
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -119,6 +124,7 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
+### }}}
 
 # MOVE/RESIZE
 
@@ -222,12 +228,12 @@ super + alt + m
 
 ## LUNCHERs Alt+{F2,F3,F5,F6}
 # luncher F2
-alt + F2
+alt + @F2
 	xfce4-appfinder
 # luncher F3
-alt + F3
+alt + @F3
 	jgmenu_run >/dev/null 2>&1
-alt + F5
+alt + @F5
   rofi -show drun -sidebar-mode \
     -modi run,drun,window \
     -hide-scrollbar true \
@@ -242,9 +248,9 @@ alt + F5
 #  rofi -show window
 super + @space
   rofi -modi window -show window -show-icons -sidebar-mode
-alt + F4
+alt + @F4
 	BspwmWindowMenu >/dev/null 2>&1
-alt + F6
+alt + @F6
 	BspwmDesktopMenu >/dev/null 2>&1
 
 # GUI

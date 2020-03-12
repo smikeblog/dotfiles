@@ -1,7 +1,7 @@
 #!/bin/bash
 
-##	less 	<<-EOF
-	bat -l zsh	<<-EOF
+	less 	<<-EOF
+##	bat -l zsh	<<-EOF
 	List of some useful keybindings.
 	More can be found from the file ~/.config/sxhkd/sxhkdrc.
 
