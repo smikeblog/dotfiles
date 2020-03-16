@@ -104,4 +104,4 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
  	https://github.com/Canop/broot
 	https://github.com/knqyf263/pet
 	https://github.com/dalance/procs
-
+	https://github.com/denisidoro/navi

@@ -238,7 +238,7 @@ fileviewer *.[1-8] man ./%c | col -b
 " images
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ {view in sxiv}
-        \ sxiv %f,
+        \ rotdir %f | setsid sxiv -ai >/dev/null 2>&1 &,
         \ {view in gpicview}
         \ gpicview %c,
         \ {view in shotwell}
