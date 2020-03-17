@@ -548,6 +548,26 @@ stty -ixon
 bindkey '^s' pet-select
 
 ### }}}
-##### THE END ***
+
+# aur pkg
+aget () {
+  git clone https://aur.archlinux.org/"$1".git
+  # curl -fO https://aur.archlinux.org/cgit/aur.git/snapshot/"$1".tar.gz
+  cd $1
+  makepkg -s
+  # makepkg -s --sign
+  cd ..
+}
+
+# fzf
+zzh() {
+  du -a ~/ | awk '{print $2}' | fzf | xargs -r $EDITOR
+}
+zz() {
+  du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR
+}
+
 function ru() { trans en:ru "$*" }
 function en() { trans ru:en "$*" }
+
+##### THE END ***

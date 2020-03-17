@@ -379,6 +379,17 @@ alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \"
 # source <(cod init $$ zsh)
 #
 alias l.="ls -A | egrep '^\.' "
+alias ez="$EDITOR $HOME/.zshrc"
+alias efz="$EDITOR $HOME/.zshfunc.custom"
+alias ecz="$EDITOR $HOME/.zshrc.custom"
+
+alias -s {mp3,m4a,flac}="mpv"
+alias -s {png,jpg,tiff,bmp}="sxiv"
+
+if [ -f /usr/bin/pacman ]; then
+  alias pkglist="pacman -Qneq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-pkglist.txt"
+fi
+  alias aurlist="pacman -Qmeq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-aurlist.txt"
 
 if [ -e $HOME/.config/navi ]; then
   source "$(navi widget zsh)"
