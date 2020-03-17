@@ -1,0 +1,29 @@
+openbox.tint2.urxvt
+from : https://gist.github.com/downthecrop/ca982f8f8d906437b5932d0515e8897d
+video: https://www.youtube.com/watch?v=v0yk6BCY1Tg   https://www.youtube.com/watch?v=r5HzpWK7SBY
+       https://www.youtube.com/watch?v=aXzB_BHjQHk    
+
+Openbox
+Tint2
+Urxvt
+lxappearance
+breeze dark
+
+for system-wide mouse configuration, one can edit /usr/share/icons/default/index.theme
+
+tint2conf is the customizer
+sudo xbps-query -Rs rxvt
+
+~/.config/openbox/autostart
+tint2 &
+nitrogen --restore
+
+https://img4.goodfon.com/original/1920x1080/8/f6/chelovecheskii-cherep-malyshka-seryi-fon-chernaia-magiia-zlo.jpg
+
+https://gist.github.com/downthecrop/be27f699429c46875e43198e4425d466 Openbox Aero Snap
+
+https://github.com/downthecrop/URxvt-themes
+https://github.com/downthecrop/tint2-theme-collections
+https://github.com/downthecrop/openbox-theme-collections
+
+

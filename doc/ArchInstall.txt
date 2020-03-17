@@ -1,0 +1,97 @@
+ArchInstall
+
+01. Preparation
+https://www.youtube.com/watch?v=315qks3HoFk&list=PLIXhUtjbeUQtsEwCGkSvE4xRX68SokKJS&index=5
+Through ssh (video5:36)
+01. Boot from installation media
+    a) check WWW connection
+        $ ip addr
+    aa) if wifi card then connect
+        $ wifi-menu
+
+    b) create a root password to be able to start sshd.service
+        $ passwd
+    c) start sshd.service
+        $ systemctl start sshd.service
+    cc) verify service status
+        $ systemctl status sshd.service
+    d) find ip address of the computer
+        $ ip addr
+    e) from other computer ssh into the instalation computer
+        $ ssh root@192.168.0.3 # 192.168.0.3 is my ip from p d)
+            NOTE: if error check ~/.ssh/known_hosts file and delete your ip entry
+    NOTE: ssh finished - logged as root on instalation computer
+
+02. Partition (usually I use root home swap(swap not always) partitions)
+    a) list the available partitions
+        $ fdisk -l
+    b) root and home is recommended to format using EXT4 file system
+        $ mkfs.ext4 /dev/sdxx   # sdxx isyour drive i.e sda1, sda2 ...
+    c)  setup swap
+        $ free -m  # check sys memory
+        $ mkswap /dev/sdxx # sdxx is drive for swap
+        $ swapon /dev/sdxx
+        $ free -m  # check swap and sys memory
+    d) mount created partiotions my (root - sda1 and home -sda5 no swap)
+        $ mount /dev/sda1 /mnt
+        $ mkdir /mnt/home
+        $ mount /dev/sda5 /mnt/home
+    d) check mounting points
+        $ lsblk   # or
+        $ gdisk -l /dev/sda
+03. start the installation process
+    a)  time setup
+        $ timedatectl set-ntp true
+    b) install base system
+        $ pacstrap -i /mnt base base-devel linux linux-firmware linux-headers vim
+    c) generate the fstab file
+        $ genfstab -U -p /mnt >> /mnt/etc/fstab
+    cc) check
+        $ cat /mnt/etc/fstab
+    d) chroot using the BASH environment
+        $ arch-chroot /mnt /bin/bash
+    e) set the localization
+        $ vim /etc/locale.gen
+    f) generate the locale
+        $ locale-gen
+    g) set the time zone
+        $ ln -sf /usr/share/zoneinfo/Europe/Chisinau /etc/localtime
+    h) set the time on your PC
+        $ hwclock --systohc --utc
+    i) set hostname - let it be smarch
+        $ echo smarch > /etc/hostname
+    ii) add this name to the hosts file
+        $ echo '127.0.01    localhost'
+        $ echo '::1 localhost'
+        $ echo '127.0.1.1 smarch.localdomain smarch' >> /etc/hosts
+    iii)check
+        $ cat /etc/hosts
+    j) install the network manager then enable it to run it on boot
+        $ pacman -S networkmanager
+        $ systemctl enable NetworkManager
+    k) set (reset at the chrooted sys) root password
+        $ passwd
+    l) create a user account with root privileges and set its password
+        $ useradd -m -g users -G wheel -s /bin/bash username
+        $ passwd username
+    m) install vim to enable username privileges
+        $ pacman -S openssh
+        $ EDITOR=vim visudo # uncomment the line # %wheel ALL=(ALL) ALL
+    n) exit the system and login as username
+        $ exit
+    nn) connect to wifi after reboot whith nmtui(from networkmanager package)
+        $ nmtui  #
+        $ systemctl status sshd  # if down then enable and start
+        $ ssh username@192.168.0.3
+04. install network applet and xfce
+    a) utilities
+        $ pacman -S network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools 
+    b) X11 graphics
+        $ pacman -S xorg
+    c) display manager
+        $ pacman -S lxdm
+        $ sudo systemctl enable lxdm.service
+    d) install xfce and audio
+        $ pacman -S xfce4 xfce4-goodies pulseaudio pavucontrol xdg-user-dirs
+        $ exit   # exit ssh session
+05. reboot the installed system
