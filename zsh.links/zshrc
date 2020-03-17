@@ -65,6 +65,3 @@ function newline-after-command() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
-# eval $(thefuck --alias)
-
-source /home/sm/.config/broot/launcher/bash/br

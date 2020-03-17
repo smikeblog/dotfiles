@@ -146,7 +146,7 @@ bindkey '^e' edit-command-line
 bindkey -s '^u' 'fzf-url.sh\n'
 
 # pmy go zff helper
-eval "$(pmy init)"
+[ -f /usr/local/bin/pmy ] && eval "$(pmy init)"
 
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
@@ -394,4 +394,10 @@ fi
 if [ -e $HOME/.config/navi ]; then
   source "$(navi widget zsh)"
 fi
+
+# eval $(thefuck --alias)
+if [ -f /usr/bin/broot ]; then
+  source /home/sm/.config/broot/launcher/bash/br
+fi
+
 
