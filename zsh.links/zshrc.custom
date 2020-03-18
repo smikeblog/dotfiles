@@ -385,7 +385,8 @@ fi
 
 # navi cli cheat completion utility Ctrl+G
 if [ -e $HOME/.config/navi ]; then
-  source "$(navi widget zsh)"
+#  source "$(navi widget zsh)"
+  source <(navi widget zsh)
 fi
 # ls alternative file manip utility  - br
 if [ -f /usr/bin/broot ]; then

@@ -22,30 +22,30 @@ if ! zgen saved; then
 
 	# prezto and modules
 	zgen prezto
-	zgen prezto git
 	zgen prezto command-not-found
 	zgen prezto completion
 	zgen prezto tmux
 	zgen prezto fasd
+#	zgen prezto git
 #	zgen prezto history-substring-search
 #	zgen prezto syntax-highlighting
 
 	# plgins
+  zgen load chrissicool/zsh-256color
 	zgen load djui/alias-tips
 	zgen load supercrabtree/k
-	zgen load caarlos0/zsh-git-sync
-#	zgen load TBSliver/zsh-plugin-colored-man
 	zgen load mafredri/zsh-async
-#	zgen load junegunn/fzf shell
-
 	zgen load zdharma/fast-syntax-highlighting
+  zgen load unixorn/git-extra-commands
 	zgen load wfxr/forgit
+#	zgen load caarlos0/zsh-git-sync
+#	zgen load TBSliver/zsh-plugin-colored-man
+#	zgen load junegunn/fzf shell
 #	zgen load zsh-users/zsh-syntax-highlighting
 #	zgen load tarruda/zsh-autosuggestions
 #	zgen load softmoth/zsh-vim-mode
 #  zgen load sitdisch/zsh-vim-inclusive-v
 #  zgen load zsh-vi-more/evil-registers
-  zgen load chrissicool/zsh-256color
 
 
 	zgen save
