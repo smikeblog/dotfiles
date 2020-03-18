@@ -4,7 +4,9 @@ if [[ ! -f $HOME/.zgen/zgen.zsh ]]; then
   git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 fi
 # zgen
-export ZGEN_RESET_ON_CHANGE=($HOME/.zshrc ${HOME}/.zshrc.custom)
+export ZGEN_RESET_ON_CHANGE=($HOME/.zshrc ${HOME}/.zshrc.custom ${HOME}/.zshfunc.custom ${HOME}/.profile)
+export ZGEN_AUTOLOAD_COMPINIT=0
+
 source $HOME/.zgen/zgen.zsh
 
 if ! zgen saved; then
@@ -60,8 +62,4 @@ function newline-after-command() {
 
 # Load a custom configuration of zsh
 [ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 
