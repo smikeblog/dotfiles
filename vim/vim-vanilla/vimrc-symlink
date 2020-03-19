@@ -726,6 +726,10 @@ xnoremap & <ESC>:%s/<C-r>=substitute(escape(GetVisualSelection(), '\/.*$^~[]'), 
 
 " Substitute the word under the cursor.
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
+
+" Clean search
+map //  :nohlsearch<CR>:echo 'Search highlight cleared'<CR>
+
 " }}}
 
 " -- spell checking -------------------------------------------------------- {{{

@@ -66,16 +66,21 @@ Through ssh (video5:36)
         $ echo '127.0.1.1 smarch.localdomain smarch' >> /etc/hosts
     iii)check
         $ cat /etc/hosts
-    j) install the network manager then enable it to run it on boot
+    j) install and run reflector to rank mirrorlist
+        $ pacman -S reflector
+          sudo pacman -S reflector
+          sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+          sudo reflector --verbose -l 200 -p http --sort rate --save /etc/pacman.d/mirrorlist
+    jj) install the network manager then enable it to run it on boot
         $ pacman -S networkmanager
         $ systemctl enable NetworkManager
     k) set (reset at the chrooted sys) root password
         $ passwd
     l) create a user account with root privileges and set its password
-        $ useradd -m -g users -G wheel -s /bin/bash username
+        $ useradd -m -g users -G wheel,lp,sys,network,storage,power -s /bin/bash username
         $ passwd username
     m) install vim to enable username privileges
-        $ pacman -S openssh
+        $ pacman -S openssh bash-completion
         $ EDITOR=vim visudo # uncomment the line # %wheel ALL=(ALL) ALL
     n) exit the system and login as username
         $ exit
@@ -85,7 +90,7 @@ Through ssh (video5:36)
         $ ssh username@192.168.0.3
 04. install network applet and xfce
     a) utilities
-        $ pacman -S network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools 
+        $ pacman -S network-manager-applet dialog wireless_tools wpa_supplicant os-prober mtools
     b) X11 graphics
         $ pacman -S xorg
     c) display manager

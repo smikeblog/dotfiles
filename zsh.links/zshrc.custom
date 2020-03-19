@@ -80,6 +80,7 @@ bindkey '^e' edit-command-line
 # bind o to open urls from terminal screen
 # [[ -n "$TMUX" ]] && tmux bind-key 'o' run-shell -b "$HOME/scripts/fzf-url.sh";
 # bindkey -s '^u' 'fzf-url.sh\n'
+ bindkey -s '^u' 'mrofi\n'
 
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
@@ -339,7 +340,7 @@ alias s3='$HOME/space/sublime_text_3/sublime_text -a '
 # https://github.com/athityakumar/colorls
 if _has exa; then
   alias lx='exa --color=always --group-directories-first'
-  alias ll='exa -lh --color=always --group-directories-first'
+  alias lld='exa -lh --color=always --group-directories-first'
   alias lll='exa -lah --color=always --group-directories-first'
   alias lt='exa -aT --color=always --group-directories-first' # tree listing
 fi
@@ -352,7 +353,7 @@ alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
 
-alias msrofi='rofi -show window -sidebar-mode \
+alias rofim='rofi -show window -sidebar-mode \
   -modi run,window,drun,keys \
   -hide-scrollbar true \
   -bw 2 \
