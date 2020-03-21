@@ -1,0 +1,21 @@
+##  tiny script that does some simple operations
+##  without needing to look at youtube-dl man pages
+## from https://bbs.archlinux.org/viewtopic.php?id=244565
+
+#!/bin/bash
+
+[[ ! $1 ]] && exit
+
+shopt -s lastpipe
+
+url="$1"
+youtube-dl -F --no-playlist "$url"
+echo "choose quality (from first column), to merge use x+y"
+read quality
+echo choose "p) play d) download"
+read -n 1 choice 
+case $choice in
+    p) mpv --ytdl-format="$quality" --no-resume-playback "$url" ;;
+    d) youtube-dl -f "$quality"  "$url" ;;
+esac
+

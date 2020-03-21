@@ -272,10 +272,10 @@ super + x ; {3-5}
 # # Screenshots (requires `scrot`).  First one is for the focused window.
 # # The other is of the entire X session (including all active monitors).
 # # Note that `scrot` also has an interactive mode that I do not use.
-Print
+alt + ctrl + t
   scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Window view screenshot" "Saved image to Desktop"
-shift + Print
+Print
   scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Screen view screenshot" "Saved image to Desktop"
 
@@ -330,7 +330,7 @@ alt + ctrl + p
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
 # stock trading programs
-alt + ctrl + t
+shift + Print
    ~/.dmenu/dmenu-scrot.sh
 
 #

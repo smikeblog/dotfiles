@@ -1,0 +1,17 @@
+ddgr
+gksu-polkit
+gotop-bin
+keepassx
+libxft-bgra
+masterpdfeditor-free
+neovim-nightly
+pandoc-bin
+python2-qrtools
+qtqr
+screenkey
+st-luke-git
+ttf-symbola-free
+urxvtconfig
+viber
+vscodium-bin
+youtube-mpv-git
