@@ -127,7 +127,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
 modules-left = i3 xwindow
 modules-center =
-modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arch-aur-updates arrow6 date
+modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 date arrow6 date
 
 separator =
 
@@ -294,7 +294,17 @@ tray-background = ${colors.background}
 
 ################################################################################
 ################################################################################
-############                  MAINBAR-BSPWM                         ############
+###########                  MAINBAR-BSPWM                         ############
+################################################################################
+
+[module/title]
+type = internal/xwindow
+format-padding = 1
+label = "%title:0:20:...%"
+label-maxlen = 20
+
+################################################################################
+
 [module/rofi]
 type = custom/text
 content = 
@@ -310,6 +320,7 @@ type = internal/xkeyboard
 ; List of indicators to ignore
 blacklist-0 = num lock
 blacklist-1 = scroll lock
+
 ################################################################################
 
 [bar/mainbar-bspwm]
@@ -612,7 +623,7 @@ label-focused-foreground = ${colors.foreground}
 
 label-occupied = %icon%
 label-occupied-padding = 2
-label-occupied-underline = #6790eb 
+label-occupied-underline = #6790eb
 label-occupied-background = ${colors.background}
 
 label-urgent = %icon%
@@ -932,13 +943,15 @@ interval = 5
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
 date = " %a %b %d, %Y"
 date-alt = " %a %b %d, %Y"
-time = %l:%M%p
-time-alt = %l:%M%p
+;time = %l:%M%p
+time =  %I:%M %p
+time-alt =  %Y-%m-%d%
+;time-alt = %l:%M%p
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
-label = "%date% %time% "
+label = " %time% "
 
 #################################################################
 

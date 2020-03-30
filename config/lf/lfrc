@@ -3,13 +3,18 @@
 # Basic vars
 #set shell sh
 set previewer ~/.config/lf/lib/preview
+#set previewer ~/.config/lf/scope
 set color256
 #set previewer ~/go/bin/pistol
 set icons
 
+set EDITOR vim
 
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell sh
+#set shell zsh
+
+set shellopts '-e:--shwordsplit'
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -74,8 +79,8 @@ cmd trash %set -f; mv $fx ~/.trash
 # delete current file or selected files (prompting)
 cmd delete ${{
     set -f
-    printf "$fx\n"
-    printf "delete?[y/n]"
+    printf "%s\n\t" "$fx"
+    printf "delete?[y/N]"
     read ans
     [ $ans = "y" ] && rm -rf $fx
 }}
@@ -142,12 +147,38 @@ map X !$f
 map o &mimeopen $f
 map O $mimeopen --ask $f
 
-## Unmap the default mapping so the rest of the following mapping won't collide
+
+
+# Unmap the default binding
 map r
+# Rename the file with a completely different name
+map rc push :rename<space>
+# Edit the current filename
+map ra ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename"
+}}
+# Edit filename before the extension
+map re ${{
+	# get 'basename' of the selection
+	filename="${f##*/}"
+	# quote it so we won't deal with quotes in the lf -remote command
+	filename="$(printf '%q' "$filename")"
+	filename="${filename// /<space>}"
+	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
+}}
+
+
+## Unmap the default mapping so the rest of the following mapping won't collide
+#map r
 # Simple rename:
 map rc push :rename<space>
 # Rename with the filename on the command line
-map ra $lf -remote "send $id push :rename<space>$f"
+#map ra $lf -remote "send $id push :rename<space>$f"
 # Rename with the filename without the extension
-map re $lf -remote "send $id push :rename<space>$f<a-b><a-d>"
+#map re $lf -remote "send $id push :rename<space>$f<a-b><a-d>"
 

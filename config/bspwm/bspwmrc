@@ -4,7 +4,8 @@
 export WIRELESS=wlan0
 
 sxhkd &
-exec picom -b &
+# exec picom -b &
+#exec compton -b &
 nitrogen --restore &
 # pcmanfm -d &
 #conky &
@@ -13,11 +14,19 @@ nitrogen --restore &
 setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
 killall btops
 btops &
+
 nm-applet &
+
+numlockx &
+xsettinsd &
+
+# prevent monitor to sleep when view movies
+xset -dpms; xset s off &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
-
+xfce4-power-manager &
+clipit &
 ### MONITORS ####
 
 #bspc monitor DisplayPort-0 -d 1 2 3

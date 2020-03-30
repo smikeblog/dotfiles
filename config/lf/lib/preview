@@ -9,7 +9,7 @@ vvimview () {
 case "$1" in
   *.png|*.gif) mediainfo "$1";;
   *.md|*.markdown) glow -s dark "$1";;
-  *.zsh*|*.bash*|*.git*) pistol "$1";;
+  *.zsh*|*.bash*|*.git*|*.sh*) pistol "$1";;
   *.vim*) bat -l VimL "$1";;
 #  *.vim*) vvimview "$1";;
   *) pistol "$1";;

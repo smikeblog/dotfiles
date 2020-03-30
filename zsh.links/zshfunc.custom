@@ -87,9 +87,9 @@ fi
 
 # EDITOR
 if _has nvim; then
-  export EDITOR=nvim VISUAL=nvim
-elif _has vim; then
   export EDITOR=vim VISUAL=vim
+elif _has vim; then
+  export EDITOR=nvim VISUAL=nvim
 elif _has vi; then
   export EDITOR=vi VISUAL=vi
 elif _has micro; then
