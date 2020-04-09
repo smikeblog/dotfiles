@@ -63,3 +63,5 @@ function newline-after-command() {
 # Load a custom configuration of zsh
 [ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

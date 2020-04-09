@@ -156,6 +156,8 @@ if [ -e  $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink ]; then
 fi
 alias vin="nvim -N -u NONE -U NONE "
 
+alias vidt="nvim -u ~/.dotfiles/initDT.vim" 
+
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
 # cli translate  - https://github.com/soimort/translate-shell
@@ -206,8 +208,8 @@ alias rofim='rofi -show window -sidebar-mode \
 
 alias l.="ls -A | egrep '^\.' "
 alias ez="$EDITOR $HOME/.zshrc"
-alias efz="$EDITOR $HOME/.zshfunc.custom"
-alias ecz="$EDITOR $HOME/.zshrc.custom"
+alias ezf="$EDITOR $HOME/.zshfunc.custom"
+alias ezc="$EDITOR $HOME/.zshrc.custom"
 
 alias -s {mp3,m4a,flac}="mpv"
 alias -s {png,jpg,tiff,bmp}="sxiv"
@@ -233,3 +235,4 @@ if [ -f /usr/bin/broot ]; then
 fi
 
 
+alias vis="nvim -u ~/.vim/vim-init/init.vim" 

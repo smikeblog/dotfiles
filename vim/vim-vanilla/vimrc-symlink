@@ -531,8 +531,8 @@ set virtualedit+=block    " allow the cursor to go everywhere (visual block)
 set backspace=indent,eol,start " allow backspacing over everything (insert)
 
 set expandtab     " insert spaces instead of tab, CTRL-V+Tab inserts a real tab
-set tabstop=2     " 1 tab == 2 spaces
-set softtabstop=2 " number of columns used when hitting TAB in insert mode
+set tabstop=4     " 1 tab == 4 spaces
+set softtabstop=4 " number of columns used when hitting TAB in insert mode
 set smarttab      " insert tabs on the start of a line according to shiftwidth
 
 if has("autocmd")
@@ -545,7 +545,7 @@ endif
 
 set autoindent    " enable autoindenting
 set copyindent    " copy the previous indentation on autoindenting
-set shiftwidth=2  " indent with 2 spaces
+set shiftwidth=4  " indent with 4 spaces
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 
 set cpoptions+=$  " display $ at the end of the replacement zone instead of
@@ -654,7 +654,7 @@ vnoremap . :normal .<CR>
 
 " -- searching ----------- <l>[hc,hs,h1,h2,h3,;,S],n,N,/,#,*,& ------------  {{{
 
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab "use two spaces for indentation
+set tabstop=4 shiftwidth=4 softtabstop=4 expandtab "use two spaces for indentation
 set wrapscan    " wrap around when searching
 set incsearch   " show match results while typing search pattern
 if (&t_Co > 2 || has("gui_running"))

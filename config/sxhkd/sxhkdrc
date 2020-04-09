@@ -126,7 +126,7 @@ super + ctrl + shift + space
 
 ### }}}
 
-# MOVE/RESIZE
+# MOVE/RESIZE {{{2
 
 #Resize nodes
 alt + shift + {h,j,k,l}
@@ -186,18 +186,22 @@ super + shift + b
 # Undo balancing (equalize windows)
 super + ctrl + b
 	bspc node @/ -E
+# 2}}}
 
+# APPLICATION KEYBINDINGS (Super + Alt + Key) {{{2
 
-# APPLICATION KEYBINDINGS (Super + Alt + Key)
-
-# browser
+# browsers {{{3
 super + shift + w
   qutebrowser
 # browser
 super + w
   palemoon
+# launch lynx web browser
+super + alt + l
+    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
+# 3}}}
 
-# terminal emulator
+# terminal emulator {{{3
 super + Return
 	st
 #	$TERMINAL
@@ -207,26 +211,29 @@ super + alt + Return
 # xfce4-terminal emulator
 super + shift + Return
 	xfce4-terminal -e ~/scripts/tat
-# launch lynx web browser
-super + alt + l
-    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
+# 3}}}
+
 # launch irssi chat client
 super + alt + i
     st -e irssi
+
 # launch newsboat feed reeder
 super + alt + n
     st -e newsboat
+
 # launch vifm file manager
 super + alt + v
      st -e ./.config/vifm/scripts/vifmrun
+
 # launch htop
 #super + alt + h
 #    st -e htop
+
 # audio mixer run
 super + alt + m
   st -e ~/scripts/pulsemixer
 
-## LUNCHERs Alt+{F2,F3,F5,F6}
+## LUNCHERs Alt+{F2,F3,F5,F6} {{{3
 # luncher F2
 alt + @F2
 	xfce4-appfinder
@@ -252,6 +259,9 @@ alt + @F4
 	BspwmWindowMenu >/dev/null 2>&1
 alt + @F6
 	BspwmDesktopMenu >/dev/null 2>&1
+# 3}}}
+
+# 2}}}
 
 # GUI
 super + g ; {1-5}
@@ -304,7 +314,7 @@ super + c : {Left,Down,Up,Right}
   bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
-# DMENU SCRIPTS (Alt+Ctrl+Key)
+# DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
 # run  rofi open st bash in selected dir
 alt + shift + F3
 	~/scripts/rofi-terminal.sh
@@ -332,13 +342,12 @@ alt + ctrl + r
 # stock trading programs
 shift + Print
    ~/.dmenu/dmenu-scrot.sh
+# 3}}}
 
-#
 # Commands for receptacles are defined in the "advanced operations"
 # section.
 #
 # NOTE the leading `;` runs this command asynchronously.
 super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
 	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
-
 

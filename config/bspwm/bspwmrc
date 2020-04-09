@@ -17,7 +17,7 @@ btops &
 
 nm-applet &
 
-numlockx &
+# numlockx &
 xsettinsd &
 
 # prevent monitor to sleep when view movies
