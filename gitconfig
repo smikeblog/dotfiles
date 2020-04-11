@@ -1,5 +1,5 @@
 [core]
-  pager = delta --dark --plus-color="green" --minus-color="magenta" --theme='Sublime Snazzy' 
+  pager = delta --dark --plus-color="#2F4F4F" --minus-color="#660033" --theme='Sublime Snazzy' 
 
 [color]
  ui = true

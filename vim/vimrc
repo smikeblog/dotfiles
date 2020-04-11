@@ -201,11 +201,11 @@ nnoremap cd :cd %:h<CR>:pwd<CR>
 
 if hostname() == 'sm1-pc' || hostname() == 'vbsmidiawork1'
 "    colorscheme mytheme1
-    colorscheme kuroi
+    colorscheme gruvbox
     highlight Visual ctermbg=235 " For dark backgrounds.
 else
 "    colorscheme mytheme1
-    colorscheme kuroi
+    colorscheme gruvbox
 endif
 
 set background=dark
