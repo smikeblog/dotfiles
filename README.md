@@ -102,6 +102,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/charmbracelet/glow
 	https://github.com/cheat/cheat
  	https://github.com/ggreer/the_silver_searcher
+    https://github.com/monochromegane/the_platinum_searcher
  	https://github.com/Canop/broot
 	https://github.com/knqyf263/pet
 	https://github.com/dalance/procs

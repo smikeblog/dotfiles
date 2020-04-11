@@ -31,13 +31,15 @@ if ! zgen saved; then
 #	zgen prezto syntax-highlighting
 
 	# plgins
-  zgen load chrissicool/zsh-256color
+    zgen load chrissicool/zsh-256color
 	zgen load djui/alias-tips
 	zgen load supercrabtree/k
 	zgen load mafredri/zsh-async
 	zgen load zdharma/fast-syntax-highlighting
-  zgen load unixorn/git-extra-commands
+    zgen load unixorn/git-extra-commands
 	zgen load wfxr/forgit
+#zgen load kutsan/zsh-system-clipboard
+
 #	zgen load caarlos0/zsh-git-sync
 #	zgen load TBSliver/zsh-plugin-colored-man
 #	zgen load junegunn/fzf shell
