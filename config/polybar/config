@@ -35,8 +35,10 @@ compositing-underline = over
 compositing-border = over
 
 ; Define fallback values used by all module formats
-format-foreground = #FF0000
-format-background = #00FF00
+format-foreground = #c0c5ce
+;#FF0000
+format-background = #282828
+; #00FF00
 format-underline =
 format-overline =
 format-spacing =
@@ -369,10 +371,11 @@ font-3 = "Font Awesome 5 Free:style=Solid:pixelsize=8;1"
 font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
 ;modules-left = keyboard rofi bspwm xwindow
-modules-left = keyboard bspwm xwindow
+modules-left = keyboard sep bspwm sep xwindow
+#modules-left = keyboard bspwm xwindow
 modules-center =
 ;modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arch-aur-updates arrow6 date
-modules-right = wireless-network arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arrow6 date
+modules-right = wireless-network arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 date
 ;modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow4 pavolume arrow5 arrow6 date
 
 tray-detached = false
@@ -672,7 +675,8 @@ fuzzy-match = true
 [module/arrow1]
 ; grey to Blue
 type = custom/text
-content = "%{T2} %{T-}"
+;content = "%{T2} %{T-}"
+content = "%{T4}%{T-}"
 content-font = 2
 content-foreground = #C3E88D
 content-background = #292d3e
@@ -681,6 +685,7 @@ content-background = #292d3e
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
+;content = "%{T4}%{T-}"
 content-font = 2
 content-foreground = #82AAFF
 content-background = #C3E88D
@@ -706,7 +711,8 @@ content-background = #C792EA
 type = custom/text
 content = "%{T2} %{T-}"
 content-font = 2
-content-foreground = #F07178
+;content-foreground = #F07178
+content-foreground = #1D2330
 content-background = #FFE585
 
 [module/arrow6]
@@ -717,6 +723,101 @@ content-font = 2
 content-foreground = #1D2330
 content-background = #F07178
 
+
+; arrows gelow are from https://github.com/loki7990/Eternity/blob/master/polybar/config
+
+; Active Shade
+shade0 = ${xrdb:color0}
+shade1 = ${xrdb:color1}
+shade2 = ${xrdb:color2}
+shade3 = ${xrdb:color3}
+shade4 = ${xrdb:color4}
+shade5 = ${xrdb:color5}
+shade6 = ${xrdb:color6}
+shade7 = ${xrdb:color7}
+shade8 = ${xrdb:color8}
+
+[module/right]
+type = custom/text
+content-foreground = #82AAFF
+; ${colors.shade0}
+content = "%{T4}%{T-}"
+
+[module/left]
+type = custom/text
+content-foreground = #82AAFF
+; ${colors.shade0}
+content = "%{T4}%{T-}"
+
+[module/right1]
+type = custom/text
+content-background = ${colors.shade2}
+content-foreground = ${colors.shade1}
+content = "%{T4}%{T-}"
+
+[module/right2]
+type = custom/text
+content-background = ${colors.shade3}
+content-foreground = ${colors.shade2}
+content = "%{T4}%{T-}"
+
+[module/right3]
+type = custom/text
+content-background = ${colors.shade4}
+content-foreground = ${colors.shade3}
+content = "%{T4}%{T-}"
+
+[module/right4]
+type = custom/text
+;content-background = ${colors.shade5}
+content-foreground = ${colors.shade4}
+content = "%{T4}%{T-}"
+
+[module/right5]
+type = custom/text
+content-background = ${colors.shade6}
+content-foreground = ${colors.shade5}
+content = "%{T4}%{T-}"
+
+[module/right6]
+type = custom/text
+;content-background = ${colors.shade7}
+content-foreground = ${colors.shade6}
+content = "%{T4}%{T-}"
+
+[module/rightend]
+type = custom/text
+content-foreground = ${colors.shade4}
+content = "%{T4}%{T-}"
+
+[module/left1]
+type = custom/text
+content-background = ${colors.shade2}
+content-foreground = ${colors.shade1}
+content = "%{T4}%{T-}"
+
+[module/left2]
+type = custom/text
+content-background = ${colors.shade3}
+content-foreground = ${colors.shade2}
+content = "%{T4}%{T-}"
+
+[module/left3]
+type = custom/text
+content-background = ${colors.shade4}
+content-foreground = ${colors.shade3}
+content = "%{T4}%{T-}"
+
+[module/left4]
+type = custom/text
+;content-background =
+content-foreground = ${colors.shade4}
+content = "%{T4}%{T-}"
+
+[module/leftend]
+type = custom/text
+content-foreground = ${colors.shade4}
+content = "%{T4}%{T-}"
 
 
 ################################################################################

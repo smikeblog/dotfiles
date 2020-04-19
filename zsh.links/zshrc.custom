@@ -236,3 +236,4 @@ fi
 
 
 alias vis="nvim -u ~/.vim/vim-init/init.vim" 
+alias exa2="exa --long --tree --level=2" 

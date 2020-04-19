@@ -1,0 +1,7 @@
+# To display a list of files, with the largest at the top:
+    exa --reverse --sort=size
+
+# To display a tree of files, three levels deep:
+    exa --long --tree --level=3
+
+

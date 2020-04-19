@@ -323,7 +323,7 @@ Plug 'leafgarland/typescript-vim'
   Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
   " integration with Deckset macOS app
-  Plug 'bwmcadams/vim-deckset', { 'for': 'markdown' }
+  "Plug 'bwmcadams/vim-deckset', { 'for': 'markdown' }
 " }}}
 
 " Terraform: {{{
