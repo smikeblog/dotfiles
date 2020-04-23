@@ -1,14 +1,14 @@
-"                                 ___     
-"        ___        ___          /__/\    
-"       /__/\      /  /\        |  |::\   
-"       \  \:\    /  /:/        |  |:|:\  
-"        \  \:\  /__/::\      __|__|:|\:\ 
+"                                 ___
+"        ___        ___          /__/\
+"       /__/\      /  /\        |  |::\
+"       \  \:\    /  /:/        |  |:|:\
+"        \  \:\  /__/::\      __|__|:|\:\
 "    ___  \__\:\ \__\/\:\__  /__/::::| \:\
 "   /__/\ |  |:|    \  \:\/\ \  \:\~~\__\/
-"   \  \:\|  |:|     \__\::/  \  \:\      
-"    \  \:\__|:|     /__/:/    \  \:\     
-"     \__\::::/      \__\/      \  \:\    
-"         ~~~~                   \__\/    
+"   \  \:\|  |:|     \__\::/  \  \:\
+"    \  \:\__|:|     /__/:/    \  \:\
+"     \__\::::/      \__\/      \  \:\
+"         ~~~~                   \__\/
 
  " Set compatibility to Vim only.
 set nocompatible
@@ -34,7 +34,7 @@ set noshiftround
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Don't redraw while executing macros (good performance config)
@@ -61,8 +61,8 @@ set matchpairs+=<:>
 "set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 
 " Show line numbers
-set number
-highlight LineNr ctermfg=black
+set number relativenumber
+highlight LineNr ctermfg=darkgray
 
 " Set status line display
 set laststatus=2

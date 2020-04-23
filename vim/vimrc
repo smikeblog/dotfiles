@@ -169,7 +169,7 @@ let g:vim_json_syntax_conceal = 0
 " NERDTree
 "
 let g:lf_map_keys = 0
-map <leader>f :Lf<CR>
+map <leader>ff :Lf<CR>
 
 nnoremap <F3> :NERDTreeToggle<CR>
 inoremap <F3> <Esc>:NERDTreeToggle<CR>
@@ -201,11 +201,11 @@ nnoremap cd :cd %:h<CR>:pwd<CR>
 
 if hostname() == 'sm1-pc' || hostname() == 'vbsmidiawork1'
 "    colorscheme mytheme1
-    colorscheme gruvbox
+    colorscheme dracula
     highlight Visual ctermbg=235 " For dark backgrounds.
 else
 "    colorscheme mytheme1
-    colorscheme gruvbox
+    colorscheme dracula
 endif
 
 set background=dark
