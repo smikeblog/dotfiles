@@ -1,4 +1,4 @@
-" plugins.appearance.vim
+e plugins.appearance.vim
 "
 " Maintained by Claud D. Park <posquit0.bj@gmail.com>
 " http://www.posquit0.com/
@@ -14,7 +14,7 @@
     let g:airline_powerline_fonts=1
   endif
   " Specify theme for airline
-  let g:airline_theme='tomorrow'
+  let g:airline_theme='angr'
   " Show warning and error counts from neomake in vim-airline
   let g:airline#extensions#neomake#enabled=1
   " Show warning and error counts from ALE in vim-airline

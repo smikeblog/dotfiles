@@ -215,11 +215,11 @@
   " Run deoplete automatically
   let g:deoplete#enable_at_startup=1
   " When a capital letter is included in input, does not ignore
-  let g:deoplete#enable_smart_case=1
+  let g:deoplete#custom#option#smart_case=1
   " Set the number of the input completion at the time of key input
-  let g:deoplete#auto_complete_start_length=2
+  let g:deoplete#custom#option#start_length=2
   " Set the limit of candidates
-  let g:deoplete#max_list=32
+  let g:deoplete#custom#option#max_list=32
   " Close the preview window after completion is done
   autocmd CompleteDone * pclose!
   " Disable the preview window

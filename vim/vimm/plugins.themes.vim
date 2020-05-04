@@ -11,6 +11,7 @@
   " Bring the 256 color version
   let g:rehash256=1
 "" }}}
+
 "" Theme: Gruvbox {{{
   Plug 'morhetz/gruvbox'
   " Uses 256 color palette

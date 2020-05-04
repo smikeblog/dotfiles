@@ -98,7 +98,7 @@
   " using vifm in Vim as a file selector
   Plug 'vifm/vifm.vim'
   " nnoremap <silent> <C-o> :Vifm<cr>
-  nnoremap <silent> <C-o> :VsplitVifm<cr>
+  nnoremap <silent> <F4> :VsplitVifm<cr>
 "" }}}
 
 "" Plugin: NERDTree Tabs {{{

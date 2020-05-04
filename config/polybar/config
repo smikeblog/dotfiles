@@ -676,7 +676,7 @@ fuzzy-match = true
 ; grey to Blue
 type = custom/text
 ;content = "%{T2} %{T-}"
-content = "%{T4}%{T-}"
+content = "%{T2}%{T-}"
 content-font = 2
 content-foreground = #C3E88D
 content-background = #292d3e
@@ -685,7 +685,7 @@ content-background = #292d3e
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
-;content = "%{T4}%{T-}"
+;content = "%{T2}%{T-}"
 content-font = 2
 content-foreground = #82AAFF
 content-background = #C3E88D
@@ -694,6 +694,7 @@ content-background = #C3E88D
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
+;content = "%{T2}%{T-}"
 content-font = 2
 content-foreground = #C792EA
 content-background = #82AAFF
@@ -702,6 +703,7 @@ content-background = #82AAFF
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
+;content = "%{T2}%{T-}"
 content-font = 2
 content-foreground = #FFE585
 content-background = #C792EA
@@ -710,6 +712,7 @@ content-background = #C792EA
 ; grey to Blue
 type = custom/text
 content = "%{T2} %{T-}"
+;content = "%{T2}%{T-}"
 content-font = 2
 ;content-foreground = #F07178
 content-foreground = #1D2330
@@ -718,7 +721,8 @@ content-background = #FFE585
 [module/arrow6]
 ; grey to Blue
 type = custom/text
-content = "%{T2} %{T-}"
+icontent = "%{T2} %{T-}"
+content = "%{T4}%{T-}"
 content-font = 2
 content-foreground = #1D2330
 content-background = #F07178

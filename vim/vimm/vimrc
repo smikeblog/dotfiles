@@ -5,6 +5,9 @@
 
 let $VIM_HOME=$HOME.'/.vimm'
 
+" disable Python 2 support:
+let g:loaded_python_provider = 0
+
 """ General Configuration
 if filereadable(expand('$VIM_HOME/general.vim'))
   source $VIM_HOME/general.vim
