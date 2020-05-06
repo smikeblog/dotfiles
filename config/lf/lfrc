@@ -53,13 +53,14 @@ map O $mimeopen --ask-default $f
 # text files and a file opener for the rest.
 cmd open ${{
     case $(file --mime-type $f -b) in
-    	text/troff) man ./ $f;;
+        image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
+        text/troff) man ./ $f;;
         text/*) $EDITOR $fx;;
-	image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
-	image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
-	audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
-	video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
-	application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
+	    image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
+	    image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
+	    audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
+	    video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
+	    application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
         *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
     esac
 }}

@@ -37,7 +37,7 @@ compositing-border = over
 ; Define fallback values used by all module formats
 format-foreground = #c0c5ce
 ;#FF0000
-format-background = #282828
+format-background = #3a5b5b
 ; #00FF00
 format-underline =
 format-overline =
@@ -54,6 +54,7 @@ alert = #bd2c40
 volume-min = #a3be8c
 volume-med = #ebcb8b
 volume-max = #bf616a
+marked = #2aa889
 ; =======================
 
 ; Gotham theme ==========
@@ -647,11 +648,13 @@ label-floating-foreground = ${colors.foreground}
 label-pseudotiled = "  "
 label-pseudotiled-foreground = ${colors.foreground}
 label-locked = "  "
-label-locked-foreground = ${colors.foreground}
+label-locked-foreground = ${colors.marked}
 label-sticky = "  "
-label-sticky-foreground = ${colors.foreground}
-label-private =  "     "
-label-private-foreground = ${colors.foreground}
+label-sticky-foreground = ${colors.marked}
+label-private =  "  "
+label-private-foreground = ${colors.marked}
+label-marked =  "  "
+label-marked-foreground = ${colors.marked}
 
 ; Separator in between workspaces
 ;label-separator = |
@@ -1317,7 +1320,7 @@ type = internal/network
 interface = enp4s0
 label-connected = "%upspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = " "
+format-connected-prefix = ""
 format-connected-prefix-foreground = #292d3e
 format-connected-foreground = #292d3e
 format-connected-background = #C3E88D
@@ -1333,7 +1336,7 @@ type = internal/network
 interface = enp4s0
 label-connected = "%downspeed:7%"
 format-connected = <label-connected>
-format-connected-prefix = "  "
+format-connected-prefix = " "
 format-connected-prefix-foreground = #292d3e
 format-connected-foreground = #292d3e
 format-connected-background = #C3E88D
