@@ -21,16 +21,9 @@ super + Escape
 # Show keybindings
 super + @F1
 	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
-#	$TERMINAL -e keybindings.sh
 
-#Hide polybar
-#super + y
-#    polybar-msg cmd toggle
-# Toggle panels
+#Hide-show polybar
 super + shift + space
-#	{pkill xfce4-panel; bspc config top_padding 0 ,\
-#	bspc config top_padding 30; xfce4-panel -d & }
-#	{pkill polybar; bspc config top_padding +0 & }
 	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
      polybar-msg cmd toggle; bspc config top_padding 20 }
 
@@ -42,11 +35,11 @@ ctrl + alt + o
 super + shift + {q,r}
 	bspc {quit,wm -r}
 
-# close and kill
+# close and kill window
 super + shift + c
 	bspc node -c
 
-# alternate between the tiled and monocle layout
+# alternate the tiled/monocle layout
 super + m
 	bspc desktop -l next
 
@@ -58,15 +51,15 @@ super + y
 
 # STATE/FLAGS ============================ {{{
 
-# set the window state
+# set the window state tiled,pseudo-tiled,float,fullscreen
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
+# set the node flags marked,locked,sticky,private
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-# when pressed again go to the previous state
+# toggle tiled/float state
 super + d
     bspc node focused -t \~floating
 
@@ -75,23 +68,18 @@ super + d
 # FOCUS/SWAP ============================= {{{
 #
 
-# swap the current node and the biggest node
+# swap the current<=>biggest nodes
 super + alt + g
 	bspc node -s biggest.local
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{focus,swap} {west,south,north,east}
+	bspc node -{f,s} {west,south,north,east}
 #super + shift +  {h,j,k,l}
 #	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
 
-# focus the node for the given path jump
-#super + {p,b,comma,period}
-#super + {_,shift + }{p,b}
-#	bspc node -f @{parent,brother,first,second}
-
 # focus the next/previous node in the current desktop
-super + {_,shift + }n
+super + {_,shift + }i
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
@@ -102,8 +90,8 @@ super + bracket{left,right}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-super + {o,i}
+# focus the Older or Newer node in the focus history
+super + {o,n}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
@@ -121,7 +109,7 @@ super + {_,shift + }{1-9,0}
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-# preselect the ratio
+# preselect the ratio as %-ge of the window
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
@@ -141,10 +129,11 @@ super + ctrl + shift + space
 alt + shift + {h,j,k,l}
   $HOME/.config/bspwm/bspwm_resize {west,south,north,east} 50
 
+# Mirror leaves horizontal,vertical
 super + {comma,period}
 	bspc node @/ -F {horizontal,vertical}
 
-# Rotate leaves of tree
+# Rotate leaves of tree 90,270 degrees
 super + shift + {comma,period}
 	bspc node @/ -R {90,270}
 
@@ -172,7 +161,7 @@ super + alt + Right
 #ctrl + alt + shift + {h,j,k,l}
 #	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# expand/contract a window 
+# expand/contract a window
 alt + control + {h,j,k,l}
  	bspc node -z {left -20 0 || bspc node -z right -20 0, \
                  bottom 0 20 || bspc node -z top 0 20,\
@@ -279,7 +268,7 @@ alt + @F6
 
 # 2}}}
 
-# GUI
+# GUI -ctrl+g (0-xed,1-qutebrowser,2-vlc,3-vscodium,4-pcmanfm,5-thunderbird)
 super + g ; {0-5}
    { \
      notify-send -i xed "Run GUI program" "Launching Xed TextEditor" && xed, \
@@ -290,8 +279,8 @@ super + g ; {0-5}
      notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
    }
 
-  ~/.dmenu/dmenu-sysmon.sh
-# CLI
+#  ~/.dmenu/dmenu-sysmon.sh
+# CLI ctrl+x (0-dmenu-sysmon,1-htop,2-vil,3-vim,4-vimgo,5-vimm,6-newsboat,7-mocp)
 super + x ; {0-7}
   st -e {~/.dmenu/dmenu-sysmon.sh, \
                      htop, \
@@ -308,9 +297,12 @@ super + x ; {0-7}
 # # Screenshots (requires `scrot`).  First one is for the focused window.
 # # The other is of the entire X session (including all active monitors).
 # # Note that `scrot` also has an interactive mode that I do not use.
+# Scrot Window
 alt + ctrl + t
   scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Window view screenshot" "Saved image to Desktop"
+
+# Scrot Screen
 Print
   scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Screen view screenshot" "Saved image to Desktop"
@@ -327,29 +319,30 @@ Print
 # # NOTE: All of the following are mirrors of their afore-mentioned
 # # couterparts.
 #
-# # Resize node in the given direction.
+# Resize node in the given direction.
 super + c : {h,j,k,l}
   bspwm_resize {west,south,north,east} 50
 
-#   # Mode for dynamic gaps.
+# Mode for dynamic gaps.
 super + c : bracket{left,right}
   bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
 
-#     # Move floating windows with the arrow keys
+# Move floating windows with the arrow keys
 super + c : {Left,Down,Up,Right}
   bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 # DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
-alt +  ctrl + Delete 
+# Dmenu sys - Restart, Poweroff
+alt +  ctrl + Delete
 	~/scripts/sysact
-# run  rofi open st bash in selected dir
+# Run  rofi-terminal
 alt + shift + F3
 	~/scripts/rofi-terminal.sh
-# run  rofi program launcher
+# run  rofi program drun
 shift + ctrl + Return
 	rofi -show drun
-# run dmenu program launcher
+# run dmenu_run program
 alt + ctrl + Return
 	dmenu_run
 # edit common config files
@@ -367,7 +360,7 @@ alt + ctrl + p
 # reddio Reddit viewer
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
-# stock trading programs
+# Screenshot take/upload scripts dmenu
 shift + Print
    ~/.dmenu/dmenu-scrot.sh
 # 3}}}
@@ -379,3 +372,9 @@ shift + Print
 super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
 	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
 
+# fzf keybinding show
+super + F7
+	st -e $HOME/scripts/sxhkd_help.sh
+
+#super + @F7
+#	urxvt -geometry 80x30 -name urxvt_keys_help -e $HOME/scripts/sxhkd_help.sh

@@ -425,6 +425,9 @@ source ~/.config/vifm/scripts/vifm_icons
 
 " sample mappings
 
+"Open directory under the cursor in other pane
+nnoremap zt :sync %c<CR><Tab>
+
 " start shell in current directory
 nnoremap S :shell<cr>
 

@@ -1,18 +1,14 @@
 #settings
 
 # Basic vars
-#set shell sh
 set previewer ~/.config/lf/lib/preview
-#set previewer ~/.config/lf/scope
 set color256
-#set previewer ~/go/bin/pistol
 set icons
 
 set EDITOR vim
 
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell sh
-#set shell zsh
 
 set shellopts '-e:--shwordsplit'
 

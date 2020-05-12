@@ -44,12 +44,12 @@ bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0
 bspc config single_monocle       false
-#bspc config click_to_focus       true
+bspc config click_to_focus       on 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 # bspc config focus_by_distance    true
-bspc config focus_follows_pointer true
+bspc config focus_follows_pointer on 
 # bspc config history_aware_focus  true
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move

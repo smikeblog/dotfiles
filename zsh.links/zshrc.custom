@@ -156,7 +156,7 @@ if [ -e  $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink ]; then
 fi
 alias vin="nvim -N -u NONE -U NONE "
 
-alias vidt="nvim -u ~/.dotfiles/initDT.vim" 
+alias vidt="nvim -u ~/.dotfiles/initDT.vim"
 
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
@@ -235,5 +235,12 @@ if [ -f /usr/bin/broot ]; then
 fi
 
 
-alias vis="nvim -u ~/.vim/vim-init/init.vim" 
-alias exa2="exa --long --tree --level=2" 
+alias vis="nvim -u ~/.vim/vim-init/init.vim"
+alias exa2="exa --long --tree --level=2"
+
+alias bspk="~/.config/sxhkd/show_help.sh"
+
+alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
+alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
+alias npec='glow ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | peco)'
+#

@@ -1,5 +1,29 @@
 ArchInstall
 
+High level overview
+from : https://www.youtube.com/watch?v=rUEnS1zj1DM
+
+0.  Download your iso
+1.  Boot from the .iso (either in VirtualBox or by making a bootable USB)
+2.  Partition your disks
+3.  Format your disks (ext4 for boot and root)
+4.  Mount your disks
+5.  pacstrap /mnt base base-devel linux linux-firmware vim
+6.  Generate your fstab file genfstab -U /mnt export to /mnt/etc/fstab
+7.  Chroot into Arch arch-chroot /mnt
+
+8.  Install grub and network manager pacman -S networkmanager grub
+9.  Make network manager run at startup systemctl enable NetworkManager
+10. Configure Grub grub-install /dev/sda && grub-mkconfig -o /boot/grub/grub.cfg
+11. set password for root user
+12. Configure local and timezone
+
+13. exit chroot, unmount, and reboot into your arch environment
+14. Enjoy a feeling of superiority and bully people who use Ubuntu.
+
+===============================================================================
+
+
 XX. Preparation
 https://www.youtube.com/watch?v=315qks3HoFk&list=PLIXhUtjbeUQtsEwCGkSvE4xRX68SokKJS&index=5
 Through ssh (video5:36)
@@ -18,12 +42,12 @@ Through ssh (video5:36)
     d) find ip address of the computer
         $ ip addr
     e) from other computer ssh into the instalation computer(my local is 192.168.0.3)
-        $ ssh root@192.168.0.3 # 192.168.0.3 
+        $ ssh root@192.168.0.3 # 192.168.0.3
             NOTE: if connection error - check ~/.ssh/known_hosts file and delete old ip entry
     NOTE: ssh finished - logged as root on instalation computer
 
 02. (NON-EFI) Partition (usually I use root home swap(swap not always) partitions)
-        NOTE: EFI section is at the end of this file 
+        NOTE: EFI section is at the end of this file
     a) list the available partitions
         $ fdisk -l
     b) root and home is recommended to format using EXT4 file system
@@ -86,7 +110,7 @@ Through ssh (video5:36)
     a) exit the system and login as username
         $ exit
     b) connect to wifi after reboot with nmtui(from networkmanager package)
-        $ nmtui  
+        $ nmtui
         $ systemctl status sshd  # if down then enable and start
         $ ssh username@192.168.0.3
 12. install XORG and network applet
@@ -98,11 +122,11 @@ Through ssh (video5:36)
         $ pacman -S gdm
         $ sudo systemctl enable gdm.service
 14. install audio
-        $ pacman -S pulseaudio pavucontrol 
+        $ pacman -S pulseaudio pavucontrol
 15. user dirs maker install
         $ pacman -S xdg-user-dirs
 16. Enable multilib (remove trailing hash #)
-        # vim /etc/pacman.conf 
+        # vim /etc/pacman.conf
          [multilib]
          Include=/etc/pacman.d/mirrorlist
         # pacman -Syu
@@ -128,7 +152,7 @@ EFI system install step 02:
     a) list partitions
         $ fdisk -l
     b) set swap
-        # free -m 
+        # free -m
         # mkswap /dev/sda2
         # swapon /dev/sda2
         # free -m
@@ -138,7 +162,7 @@ EFI system install step 02:
         # mkfs.ext4 /dev/sda4
 03. mount sda3 - root
         # mount dev/sda3 /mnt
-04. install essential packages 
+04. install essential packages
         # pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
 05. mount remaining partitions
         # mkdir /mnt/home
@@ -148,7 +172,7 @@ EFI system install step 02:
 06. generate fstab
         # genfstab -U /mnt >> /mnt/etc/fstab
         # cat /mnt/etc/fstab
-07. chroot 
+07. chroot
         # arch-chroot /mnt
 08. set timezone
 ...

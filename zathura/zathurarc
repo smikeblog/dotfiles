@@ -1,3 +1,36 @@
+set completion-group-bg         "#3F4551"
+set completion-group-fg         "#FFFFFF"
+set completion-bg               "#2e3440"
+set completion-fg               "#FFFFFF"
+set completion-highlight-bg     "#546e7A"
+set completion-highlight-fg     "#FFFFFF"
+set notification-error-bg       "#BF616A"
+set notification-error-fg       "#FFFFFF"
+set notification-warning-bg     "#EBCB8B"
+set notification-warning-fg     "#FFFFFF"
+set notification-bg             "#546E7A"
+set notification-fg             "#FFFFFF"
+set index-bg                    "#032A23"
+set index-fg                    "#E5E5E5"
+set index-active-bg             "#586e75"
+set index-active-fg             "#eee8d5"
+set inputbar-bg                 "#2e3440"
+set inputbar-fg                 "#FFFFFF"
+set statusbar-bg                "#1d2330"
+set statusbar-fg                "#FFFFFF"
+set highlight-color             "#A3BE8C"
+set highlight-active-color      "#81A1C1"
+set recolor                     true
+set default-bg                  "#2e3440"
+set default-fg                  "#FFFFFF"
+set recolor-lightcolor          "#2e3440"
+set recolor-darkcolor           "#FFFFFF"
+set font "JetBrainsMono Nerd Font 10"
+set pages-per-row 1
+set statusbar-basename          true
+set page-padding 3 
+
+## 
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 map u scroll half-up
