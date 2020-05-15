@@ -27,6 +27,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
+Plug 'laher/fuzzymenu.vim'
 
 call plug#end()
 """ }}}

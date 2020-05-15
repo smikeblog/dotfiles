@@ -2,7 +2,7 @@
 " Last Change: 2001 November 29
 
 " Maintainer: xaizek <xaizek@posteo.net>
-" Last Change: 2019 May 26
+" Last Change: 2020 May 1
 
 " vifm and vifm.vim can be found at https://vifm.info/
 
@@ -24,13 +24,15 @@ let s:script_path = expand('<sfile>')
 " :DiffVifm - load file for :vert diffsplit.
 " :TabVifm - load file or files in tabs.
 
-" Check whether :drop command is available
+" Check whether :drop command is available.  Do not use exist(':drop'), it's
+" deceptive.
+let s:has_drop = 0
 try
 	drop
-catch E471
+catch /E471:/ " argument required
 	let s:has_drop = 1
-catch E319
-	let s:has_drop = 0
+catch /E319:/ " command is not available
+catch /E492:/ " not an editor command
 endtry
 
 let s:tab_drop_cmd = (s:has_drop ? 'tablast | tab drop' : 'tabedit')
@@ -48,13 +50,32 @@ command! -bar -nargs=* -count -complete=dir DiffVifm
 command! -bar -nargs=* -count -complete=dir TabVifm
 			\ :call s:StartVifm('<mods>', <count>, s:tab_drop_cmd, <f-args>)
 
-function! s:StartVifm(mods, count, editcmd, ...)
+function! s:StartVifm(mods, count, editcmd, ...) abort
 	echohl WarningMsg | echo 'vifm executable wasn''t found' | echohl None
 endfunction
 
 call vifm#globals#Init()
 
-function! s:StartVifm(mods, count, editcmd, ...)
+if !has('nvim') && exists('*term_start')
+	function! VifmExitCb(data, job, code) abort
+		let data = a:data
+		if (bufnr('%') == bufnr('#') || !bufexists(0)) && !data.split
+			enew
+		else
+			buffer #
+		endif
+		silent! bdelete! #
+		if data.split
+			silent! close
+		endif
+		if has('job') && type(data.cwdjob) == v:t_job
+			call job_stop(data.cwdjob)
+		endif
+		call s:HandleRunResults(a:code, data.listf, data.typef, data.editcmd)
+	endfunction
+endif
+
+function! s:StartVifm(mods, count, editcmd, ...) abort
 	if a:0 > 2
 		echohl WarningMsg | echo 'Too many arguments' | echohl None
 		return
@@ -102,27 +123,10 @@ function! s:StartVifm(mods, count, editcmd, ...)
 			let env = { 'TERM' : has('gui_running') ? $TERM :
 			          \          &term =~ 256 ? 'xterm-256color' : &term }
 			let options = { 'term_name' : 'vifm: '.a:editcmd, 'curwin' : 1,
-			              \ 'exit_cb': 'VifmExitCb', 'env' : env }
-
-			function! VifmExitCb(job, code)
-				let data = b:data
-				if bufnr('%') == bufnr('#') && !data.split
-					enew
-				else
-					buffer #
-				endif
-				silent! bdelete! #
-				if data.split
-					silent! close
-				endif
-				if has('job') && type(data.cwdjob) == v:t_job
-					call job_stop(data.cwdjob)
-				endif
-				call s:HandleRunResults(a:code, data.listf, data.typef, data.editcmd)
-			endfunction
+			              \ 'exit_cb': funcref('VifmExitCb', [data]), 'env' : env }
 		else
-			function! data.on_exit(id, code, event)
-				if bufnr('%') == bufnr('#') && !self.split
+			function! data.on_exit(id, code, event) abort
+				if (bufnr('%') == bufnr('#') || !bufexists(0)) && !self.split
 					enew
 				else
 					buffer #
@@ -148,9 +152,11 @@ function! s:StartVifm(mods, count, editcmd, ...)
 					\ .rdir.' '.pickargsstr
 
 		if !has('nvim')
-			keepalt let buf = term_start(['/bin/sh', '-c', termcmd], options)
-
-			call setbufvar(buf, 'data', data)
+			if has('win32')
+				keepalt let buf = term_start(termcmd, options)
+			else
+				keepalt let buf = term_start(['/bin/sh', '-c', termcmd], options)
+			endif
 		else
 			call termopen(termcmd, data)
 
@@ -179,7 +185,7 @@ function! s:StartVifm(mods, count, editcmd, ...)
 	endif
 endfunction
 
-function! s:StartCwdJob()
+function! s:StartCwdJob() abort
 	if get(g:, 'vifm_embed_cwd', 0) && (has('job') || has('nvim'))
 		let cwdf = tempname()
 		silent! exec '!mkfifo '. cwdf
@@ -190,7 +196,7 @@ function! s:StartCwdJob()
 		if !has('nvim')
 			let cwdopts = { 'out_cb': 'VifmCwdCb' }
 
-			function! VifmCwdCb(channel, data)
+			function! VifmCwdCb(channel, data) abort
 				call s:HandleCwdOut(a:data)
 			endfunction
 
@@ -198,7 +204,7 @@ function! s:StartCwdJob()
 		else
 			let cwdopts = {}
 
-			function! cwdopts.on_stdout(id, data, event)
+			function! cwdopts.on_stdout(id, data, event) abort
 				if a:data[0] ==# ''
 					return
 				endif
@@ -213,11 +219,11 @@ function! s:StartCwdJob()
 	return ['', 0]
 endfunction
 
-function! s:HandleCwdOut(data)
+function! s:HandleCwdOut(data) abort
 	exec 'cd ' . fnameescape(a:data)
 endfunction
 
-function! s:HandleRunResults(exitcode, listf, typef, editcmd)
+function! s:HandleRunResults(exitcode, listf, typef, editcmd) abort
 	if a:exitcode != 0
 		echohl WarningMsg
 		echo 'Got non-zero code from vifm: ' . a:exitcode
@@ -244,13 +250,15 @@ function! s:HandleRunResults(exitcode, listf, typef, editcmd)
 	let opentype = file_readable(a:typef) ? readfile(a:typef) : []
 	call delete(a:typef)
 
-	call map(flist, 'fnameescape(v:val)')
-
 	" User exits vifm without selecting a file.
 	if empty(flist)
 		echohl WarningMsg | echo 'No file selected' | echohl None
 		return
 	endif
+
+	let unescaped_firstfile = flist[0]
+	call map(flist, 'fnameescape(v:val)')
+	let firstfile = flist[0]
 
 	if !empty(opentype) && !empty(opentype[0]) &&
 		\ opentype[0] != '"%VIFM_OPEN_TYPE%"'
@@ -260,7 +268,6 @@ function! s:HandleRunResults(exitcode, listf, typef, editcmd)
 	endif
 
 	" Don't split if current window is empty
-	let firstfile = flist[0]
 	if empty(expand('%')) && editcmd =~ '^v\?split$'
 		execute 'edit' fnamemodify(flist[0], ':.')
 		let flist = flist[1:-1]
@@ -281,7 +288,12 @@ function! s:HandleRunResults(exitcode, listf, typef, editcmd)
 
 	" Go to the first file working around possibility that :drop command is not
 	" evailable, if possible
-	if editcmd == 'edit'
+	if editcmd == 'edit' || !s:has_drop
+		" Linked folders must be resolved to successfully call 'buffer'
+		let firstfile = unescaped_firstfile
+		let firstfile = resolve(fnamemodify(firstfile, ':h'))
+					\ .'/'.fnamemodify(firstfile, ':t')
+		let firstfile = fnameescape(firstfile)
 		execute 'buffer' fnamemodify(firstfile, ':.')
 	elseif s:has_drop
 		" Mind that drop replaces arglist, so don't use it with :edit.
@@ -289,7 +301,7 @@ function! s:HandleRunResults(exitcode, listf, typef, editcmd)
 	endif
 endfunction
 
-function! s:PreparePath(path)
+function! s:PreparePath(path) abort
 	let path = substitute(a:path, '\', '/', 'g')
 	if has('win32')
 		if len(path) != 0
@@ -325,14 +337,14 @@ augroup END
 " Modifies 'runtimepath' to include directory with vifm documentation and runs
 " help.  Result should be processed with :execute to do not print stacktrace
 " on exception.
-function! s:DisplayVifmHelp()
+function! s:DisplayVifmHelp() abort
 	let runtimepath = &runtimepath
 	let vimdoc = substitute(s:script_path, '[/\\]plugin[/\\].*', '', '')
 	execute 'set runtimepath+='.vimdoc.'/../vim-doc'
 
 	try
 		execute 'help '.s:GetVifmHelpTopic()
-	catch E149
+	catch /E149:/
 		let msg = substitute(v:exception, '[^:]\+:', '', '')
 		return 'echoerr "'.escape(msg, '\"').'"'
 	finally
@@ -341,7 +353,7 @@ function! s:DisplayVifmHelp()
 	return ''
 endfunction
 
-function! s:GetVifmHelpTopic()
+function! s:GetVifmHelpTopic() abort
 	let col = col('.') - 1
 	while col && getline('.')[col] =~# '\k'
 		let col -= 1
@@ -366,7 +378,7 @@ endfunction
 " }}}1
 
 if get(g:, 'vifm_replace_netrw')
-	function! s:HandleBufEnter(fname)
+	function! s:HandleBufEnter(fname) abort
 		if a:fname !=# '' && isdirectory(a:fname)
 			buffer #
 			silent! bdelete! #
@@ -377,7 +389,6 @@ if get(g:, 'vifm_replace_netrw')
 		endif
 	endfunction
 
-	let g:loaded_netrwPlugin = 'disable'
 	augroup neovimvifm
 		au BufEnter * silent call s:HandleBufEnter(expand('<amatch>'))
 	augroup END
