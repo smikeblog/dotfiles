@@ -14,13 +14,14 @@
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
-
+#	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/sxhkd_help.sh
 
 # BSPWM HOTKEYS
 
 # Show keybindings
 super + @F1
-	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
+	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
+#	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 
 #Hide-show polybar
 super + shift + space
@@ -373,8 +374,9 @@ super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
 	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
 
 # fzf keybinding show
-super + F7
-	st -e $HOME/scripts/sxhkd_help.sh
+#isuper + @F7
+#	st -e $HOME/scripts/sxhkd_help.sh
 
-#super + @F7
-#	urxvt -geometry 80x30 -name urxvt_keys_help -e $HOME/scripts/sxhkd_help.sh
+super + shift +  @F1
+	$HOME/scripts/sxhkd_help.sh
+#	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/sxhkd_help.sh

@@ -51,7 +51,7 @@ My dotfile configuration
 # development environment setup (bspwm or dwm WMs)  #{{{
 Note: I install WM for development environment alongside with DE (cinnamon or xfce) to have more memory
 ### bspwm (https://github.com/baskerville/bspwm/wiki )
-#### bspwm is compiled from github sources
+[[####]] bspwm is compiled from github sources
 	git clone https://github.com/baskerville/bspwm.git ~/Downloads/build/
 	git clone https://github.com/baskerville/sxhkd.git ~/Downloads/build/
 	cd ~/Downloads/build/bspwm && make && sudo make install
