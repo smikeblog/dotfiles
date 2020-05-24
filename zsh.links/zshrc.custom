@@ -121,6 +121,19 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
+ranger_cd() {
+    temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+    ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+    if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+        cd -- "$chosen_dir"
+    fi
+    rm -f -- "$temp_file"
+}
+# This will run the function by Ctrl+O through returning
+# the string "ranger-cd" in addition to a new-line character
+# to act as Enter key-press
+bindkey -s "^P" "ranger_cd\n"
+
 ###   2}}}
 ## 1}}}
 
@@ -183,9 +196,12 @@ if _has exa; then
   alias lld='exa -lh --color=always --group-directories-first'
   alias lll='exa -lah --color=always --group-directories-first'
   alias lt='exa -aT --color=always --group-directories-first' # tree listing
+  alias exa2="exa --long --tree --level=2"
 fi
-alias lct2='lsd -t --tree=2 --group-dirs=first'
-alias lc='lsd -lhA --group-dirs=first'
+if _has lsd; then
+  alias lct2='lsd -t --tree=2 --group-dirs=first'
+  alias lc='lsd -lhA --group-dirs=first'
+fi
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias  k='k -h'
 # Pipe Aliases
@@ -234,11 +250,8 @@ if [ -f /usr/bin/broot ]; then
   source /home/sm/.config/broot/launcher/bash/br
 fi
 
-
-alias vis="nvim -u ~/.vim/vim-init/init.vim"
-alias exa2="exa --long --tree --level=2"
-
 alias bspk="~/.config/sxhkd/show_help.sh"
+alias vis="nvim -u ~/.vim/vim-init/init.vim"
 
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
