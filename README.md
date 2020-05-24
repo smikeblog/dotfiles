@@ -82,6 +82,8 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
    #}}}
 
 ## Other used Tools
+    https://github.com/dbrgn/tealdeer
+    https://github.com/bvaisvil/zenith
 	pip3 install awesome-finder
 	cargo install runiq
 	https://www.soimort.org/translate-shell/
