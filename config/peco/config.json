@@ -1,0 +1,20 @@
+{
+    "Prompt": "> ",
+    "InitialFilter": "SmartCase",
+    "Style": {
+		"Prompt": ["green", "default"],
+		"Basic": ["default", "on_default"],
+		"SavedSelection": ["default", "on_black", "bold"],
+		"Selected": ["green", "on_yellow", "reverse"],
+		"Query": ["cyan", "bold"],
+		"Matched": ["underline", "on_black", "magenta"]
+    },
+    "Keymap": {
+        "M-v": "peco.ScrollPageUp",
+        "C-v": "peco.ScrollPageDown",
+        "C-q": "peco.DeleteForwardWord",
+        "C-g": "peco.Cancel",
+        "C-[": "peco.ScrollPageUp",
+        "C-]": "peco.ScrollPageDown"
+    }
+}

@@ -1,2 +1,4 @@
+#! /bin/dash
+
 # List content when changing directory
-cdl () { builtin cd "$@"; ls -lh; }
+cdl () { builtin cd "$@"; exa -l --group-directories-first; }

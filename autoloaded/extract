@@ -1,3 +1,4 @@
+#! /bin/dash
 
 ## from : https://github.com/lvancrayelynghe/dotfiles/blob/dd31ac680ff88308fa85bb4d28e99ccfc8f18d52/zsh/functions.zsh 
 # Extract an archive

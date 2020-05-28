@@ -1,3 +1,5 @@
+#! /bin/dash
+
 rofi -show window -sidebar-mode \
    -modi run,window,drun,keys \
    -hide-scrollbar true \

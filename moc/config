@@ -69,12 +69,12 @@
 #
 # Example:    MusicDir = "/home/joe/music"
 #
-MusicDir = "/home/sm/music"
+MusicDir = "$HOME/Music"
 
 # Start in the music directory by default?  If set to 'no', start
 # in the current directory by default.  A single directory on
 # the command line takes precedence.
-#StartInMusicDir = no
+StartInMusicDir = yes
 
 # How to sort?  FileName is the option's only value for now.
 #Sort = FileName
@@ -186,15 +186,15 @@ MusicDir = "/home/sm/music"
 #HideFileExtension = no
 
 # Show file format in menu?
-ShowFormat = yes
+#ShowFormat = yes
 
 # Show file time in menu?  Possible values: 'yes', 'no' and 'IfAvailable'
 # (meaning show the time only when it is already known, which often works
 # faster).
-ShowTime = IfAvailable
+#ShowTime = IfAvailable
 
 # Show time played as a percentage in the time progress bar.
-ShowTimePercent = no
+#ShowTimePercent = no
 
 # Values of the TERM environment variable which are deemed to be managed by
 # screen(1).  If you are setting a specific terminal using screen(1)'s
@@ -219,17 +219,14 @@ ShowTimePercent = no
 #
 # Example:    Theme = laras_theme
 #
-#Theme = darkdot_theme
-# Theme = transparent-background
+#Theme = hringriin_theme
 Theme = hringriin_theme
-#Theme = simple_theme
 
 # The theme used when running on an xterm.
 #
 # Example:    XTermTheme = transparent-background
 #
-# XTermTheme =  transparent-background
-
+XTermTheme = dt_theme
 # Should MOC try to autoload the default lyrics file for an audio?  (The
 # default lyrics file is a text file with the same file name as the audio
 # file name with any trailing "extension" removed.)
@@ -237,7 +234,7 @@ Theme = hringriin_theme
 
 # MOC directory (where pid file, socket and state files are stored).
 # You can use ~ at the beginning.
-MOCDir = ~/.moc
+#MOCDir = ~/.moc
 
 # Use mmap() to read files.  mmap() is much slower on NFS.
 #UseMMap = no
@@ -435,7 +432,7 @@ Precache = yes
 # zero.  Note that if you decrease the cache size below the number of items
 # currently in the cache, the number will not decrease immediately (if at
 # all).
-TagsCacheSize = 2048
+#TagsCacheSize = 256
 
 # Number items in the playlist.
 #PlaylistNumbering = yes
@@ -486,7 +483,7 @@ TagsCacheSize = 2048
 
 # When the song changes, should the menu be scrolled so that the currently
 # played file is visible?
-FollowPlayedFile = yes
+#FollowPlayedFile = yes
 
 # What to do if the interface was started and the server is already playing
 # something from the playlist?  If CanStartInPlaylist is set to 'yes', the
@@ -625,7 +622,6 @@ FollowPlayedFile = yes
 # Set it to 'no' if you don't have any configuration file.
 # Otherwise set it to the name of a specific file.
 #TiMidity_Config =
-TiMidity_Config = /etc/timidity.cfg
 
 # Self-describing SidPlay2 audio characteristic options.
 #SidPlay2_DefaultSongLength = 180   # If not in database (in seconds)

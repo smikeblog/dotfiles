@@ -239,8 +239,12 @@ set cmdheight=1
 set matchpairs+=<:>
 
 " Display different types of white spaces.
-"set list
+set list
 "set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+
+set fillchars=diff:⣿,vert:│
+set fillchars=diff:⣿,vert:\|
 
 " Show line numbers
 set number relativenumber
@@ -287,7 +291,19 @@ set viminfo='100,<9999,s100
 " Sort lines in alphabetical order
 vnoremap <leader>s :'<,'>!sort -f<cr>
 
+" Visual Mode */# from Scrooloose {{{
 
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" }}}
 
 
 

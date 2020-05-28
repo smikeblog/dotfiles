@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/dash
 
 #### AUTOSTART ####
 export WIRELESS=wlan0
@@ -33,7 +33,7 @@ clipit &
 #bspc monitor DisplayPort-1 -d 4 5 6
 #bspc monitor HDMI-A-0 -d 7 8 9
 #bspc monitor DVI-I-1 -d 1 2 3 4 5 6 7 8 9 0
-bspc monitor -d 1 2 3 4 5 6 7 8 9 0
+bspc monitor -d 1 2 3 4 5 6 7 8 9
 
 #### BSPWM configuration ####
 #bspc config border_radius       8
@@ -44,12 +44,12 @@ bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0
 bspc config single_monocle       false
-bspc config click_to_focus       on 
+bspc config click_to_focus       on
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 # bspc config focus_by_distance    true
-bspc config focus_follows_pointer on 
+bspc config focus_follows_pointer on
 # bspc config history_aware_focus  true
 bspc config pointer_modifier mod4
 bspc config pointer_action1 move
@@ -87,6 +87,10 @@ bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a "qutebrowser" desktop='^3' follow=on
-bspc rule -a Firefox private=pc 
-bspc rule -a XTerm:xterm_keys_help state=floating
+bspc rule -a Firefox private=pc
+bspc rule -a XTerm:dropXterm state=floating
+bspc rule -a Xterm state=floating center=true
+bspc rule -a dropdown sticky=on state=floating hidden=on
+
+tilix -q --geometry=105x34 --class dropdown -e "zsh -i" &
 

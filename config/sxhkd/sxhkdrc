@@ -8,8 +8,17 @@
 # https://github.com/baskerville/sxhkd
 # https://github.com/baskerville/bspwm
 
+# With `alt` focus {next,previous} window in the current desktop.  With
+# `mod3` focus {next,previous} desktop in the current monitor.
+# Cyclical behaviour.  Move in the opposite direction while also holding
+# down `shift`.
+{super,alt} + {_,shift +} Tab
+	bspc {desktop,node} -f {next,prev}.local
 
 # WM INDEPENDENT KEYBINDINGS
+@F4
+    tdrop -a -y 27 -x 500 xterm
+#    scratchpod.sh dropdown
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -24,7 +33,7 @@ super + @F1
 #	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 
 #Hide-show polybar
-super + shift + space
+super + b
 	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
      polybar-msg cmd toggle; bspc config top_padding 20 }
 
@@ -69,6 +78,18 @@ super + d
 # FOCUS/SWAP ============================= {{{
 #
 
+# Flip layout vertically/horizontally
+super + {_,shift + }a
+	bspc node @/ --flip {vertical,horizontal}
+
+# Mirror leaves horizontal,vertical
+super + {comma,period}
+	bspc node @/ -F {horizontal,vertical}
+
+# Rotate leaves of tree 90,270 degrees
+super + shift + {comma,period}
+	bspc node @/ -R {90,270}
+
 # swap the current<=>biggest nodes
 super + alt + g
 	bspc node -s biggest.local
@@ -88,18 +109,18 @@ super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
+#super + {grave,Tab}
+#	bspc {node,desktop} -f last
 
 # focus the Older or Newer node in the focus history
-super + {o,n}
+super + {_,shift +}o
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9}'
 
 ### }}}
 
@@ -126,21 +147,22 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE {{{2
 
+# bspwm_smart_move is part of my dotfiles (link in the description).
+super + alt + {h,j,k,l}
+	bspwm_smart_move {west,south,north,east}
+
+# move the floating windows
+#super + alt + {_,shift + }{h,j,k,l}
+ctrl + shift + {h,j,k,l}
+   $HOME/.config/bspwm/floating_motions {_,edge-}{west,south,north,east}
+
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-40 0,0 40,0 -40,40 0}
+
 #Resize nodes
 alt + shift + {h,j,k,l}
   $HOME/.config/bspwm/bspwm_resize {west,south,north,east} 50
-
-# Mirror leaves horizontal,vertical
-super + {comma,period}
-	bspc node @/ -F {horizontal,vertical}
-
-# Rotate leaves of tree 90,270 degrees
-super + shift + {comma,period}
-	bspc node @/ -R {90,270}
-
-# move the floating windows
-super + alt + {_,shift + }{h,j,k,l}
-  $HOME/.config/bspwm/floating_motions {_,edge-}{west,south,north,east}
 
 # Expand/contract a floating window on all sides.
 super + alt + Left
@@ -169,14 +191,6 @@ alt + control + {h,j,k,l}
                  top 0 -20 || bspc node -z bottom 0 -20,\
                  right 20 0 || bspc node -z left 20 0}
 
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-40 0,0 40,0 -40,40 0}
-
-# Flip layout vertically/horizontally
-super + {_,shift + }a
-	bspc node @/ --flip {vertical,horizontal}
-
 # Increase/decrease window gap on focused desktop
 super + alt + bracket{left,right}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
@@ -203,8 +217,8 @@ super + shift + w
 super + w
   palemoon
 # launch lynx web browser
-super + alt + l
-    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
+#super + alt + l
+#    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
 # 3}}}
 
 # terminal emulator {{{3
@@ -219,7 +233,8 @@ super + shift + Return
 	xfce4-terminal -e ~/scripts/tat
 # 3}}}
 
-# launch irssi chat client
+#
+ launch irssi chat client
 super + alt + i
     st -e irssi
 
@@ -370,8 +385,8 @@ shift + Print
 # section.
 #
 # NOTE the leading `;` runs this command asynchronously.
-super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
-	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {0-9}
+super + {_,shift + ,ctrl + shift +,ctrl +}{1-9}
+	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {1-9}
 
 # fzf keybinding show
 #isuper + @F7
@@ -380,3 +395,31 @@ super + {_,shift + ,ctrl + shift +,ctrl +}{0-9}
 super + shift +  @F1
 	$HOME/scripts/sxhkd_help.sh
 #	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/sxhkd_help.sh
+
+# Kill/remove the first matching receptacle from the current desktop.
+# With shift, kill them all at once.
+super + n ; super + {_, shift + }r
+	{ \
+	bspc node 'any.leaf.!window.local' -k, \
+	bspwm_multifaceted_operation --kill-all-receptacles \
+	}
+
+# Summon all marked windows across all desktops to the current desktop.
+super + n ; m
+	bspwm_multifaceted_operation --summon-all-marked
+
+# Bring the windows of the given desktop to the current one.  With
+# shift, send the current window to the given one.
+super + n ; super + {_, shift + }{1-9}
+	bspwm_multifaceted_operation {--bring-desktop-here,--send-desktop-there} {1-9}
+
+# Close {or kill} all windows in the present desktop except the focused
+# or any marked ones.
+super + n ; super + {_,shift + }q
+	bspwm_multifaceted_operation --{close,kill}-all-local-non-focused
+
+# Assign the locked flag to all windows in the current desktop.  With
+# shift, remove the locked flag from all.
+super + n ; {_, shift + }l
+	bspwm_multifaceted_operation {--lock-all-local,--unlock-all-local}
+

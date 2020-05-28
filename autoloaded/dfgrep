@@ -1,3 +1,5 @@
+#! /bin/dash
+
 # A recursive, case-insensitive grep that excludes binary files
 # and returns only unique filenames
 

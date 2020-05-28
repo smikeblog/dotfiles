@@ -1,3 +1,5 @@
+#! /bin/dash
+
 # fhi - repeat history
 fhi() {
 	# runcmd - utility function used to run the command in the shell
