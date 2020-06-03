@@ -1,6 +1,16 @@
 #show-read-feeds no
 auto-reload yes
 
+# define
+browser "firefox %u"
+external-url-viewer "urlscan"
+html-renderer "w3m -T text/html"
+player "mpv"
+download-retries 4
+pager internal
+article-sort-order date-asc
+datetime-format "%Y-%m-%d"
+
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 bind-key j down

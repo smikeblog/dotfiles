@@ -29,7 +29,7 @@ super + Escape
 
 # Show keybindings
 super + @F1
-	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
+	xterm -geometry 125x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
 #	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 
 #Hide-show polybar
@@ -154,7 +154,7 @@ super + alt + {h,j,k,l}
 # move the floating windows
 #super + alt + {_,shift + }{h,j,k,l}
 ctrl + shift + {h,j,k,l}
-   $HOME/.config/bspwm/floating_motions {_,edge-}{west,south,north,east}
+ 	floating_motions {_,edge-}{west,south,north,east}
 
 # move a floating window
 super + {Left,Down,Up,Right}
@@ -162,7 +162,7 @@ super + {Left,Down,Up,Right}
 
 #Resize nodes
 alt + shift + {h,j,k,l}
-  $HOME/.config/bspwm/bspwm_resize {west,south,north,east} 50
+ 	bspwm_resize {west,south,north,east} 50
 
 # Expand/contract a floating window on all sides.
 super + alt + Left

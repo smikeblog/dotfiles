@@ -305,5 +305,27 @@ vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 " }}}
 
+function! OpenUrlUnderCursor()
+    let url=matchstr(getline("."), '[a-z]*:\/\/[^>,;]*')
+    if url != ""
+        silent exec "!xdg-open '".url."'" | redraw!
+    endif
+endfunction
+map <leader>o :call OpenUrlUnderCursor()<CR>
 
-
+"next function is from https://github.com/FuDesign2008/OpenUrl.vim/blob/master/after/plugin/openUrl.vim
+function! OpenUrlUndCursor()
+    let text=matchstr(getline("."), '[a-z]*:\/\/[^>,;]*')
+    let url = matchstr(text, '[A-Za-z]\{3,9\}:\(\/\{2,3\}\)\?[A-Za-z0-9\.\-;:&=+\$,\w~%\/\!?#_]\+')
+        if !strlen(url)
+            "www.
+            let url = matchstr(text, 'www\.[A-Za-z0-9\.\-;:&=+\$,\w~%\/\!?#_]\+')
+            if strlen(url)
+                let url = 'http://' . url
+            endif
+        endif
+    if url != ""
+        silent exec "!xdg-open '".url."'" | redraw!
+    endif
+endfunction
+map <leader>l :call OpenUrlUndCursor()<CR>

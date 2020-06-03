@@ -227,6 +227,8 @@ alias ez="$EDITOR $HOME/.zshrc"
 alias ezf="$EDITOR $HOME/.zshfunc.custom"
 alias ezc="$EDITOR $HOME/.zshrc.custom"
 
+# bulk association
+alias -s {tex,md,rmd,txt}=vil
 alias -s {mp3,m4a,flac}="mpv"
 alias -s {png,jpg,tiff,bmp}="sxiv"
 
@@ -257,3 +259,4 @@ alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
 alias npec='glow ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | peco)'
 #
+source ~/tmp/scripts_sh/currentwordcompletion.zsh

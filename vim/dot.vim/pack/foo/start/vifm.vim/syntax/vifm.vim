@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: July 12, 2019
+" Last Change: May 26, 2020
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -21,8 +21,8 @@ syntax keyword vifmCommand contained
 		\ mes[sages] mkdir m[ove] noh[lsearch] on[ly] popd pushd pu[t] pw[d] qa[ll]
 		\ q[uit] redr[aw] reg[isters] regular rename restart restore rlink screen
 		\ sh[ell] siblnext siblprev sor[t] sp[lit] s[ubstitute] tabc[lose] tabm[ove]
-		\ tabname tabnew tabn[ext] tabp[revious] touch tr trashes tree sync
-		\ undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite] wq wqa[ll]
+		\ tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr trashes tree
+		\ sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite] wq wqa[ll]
 		\ xa[ll] x[it] y[ank]
 		\ nextgroup=vifmArgs
 syntax keyword vifmCommandCN contained
@@ -87,7 +87,7 @@ syntax case ignore
 syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine
 		\ OtherLine Directory Link Socket Device Executable Selected BrokenLink
 		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg CmpMismatch
-		\ AuxWin OtherWin TabLine TabLineSel
+		\ AuxWin OtherWin TabLine TabLineSel HardLink
 		\ User1 User2 User3 User4 User5 User6 User7 User8 User9
 syntax keyword vifmHiStyles contained
 		\ bold underline reverse inverse standout italic none
@@ -144,9 +144,9 @@ syntax keyword vifmOption contained aproposprg autochpos caseoptions cdpath cd
 		\ numberwidth nuw previewprg quickview relativenumber rnu rulerformat ruf
 		\ runexec scrollbind scb scrolloff so sort sortgroups sortorder sortnumbers
 		\ shell sh shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs
-		\ smartcase scs statusline stl suggestoptions syncregs syscalls tabscope
-		\ tabstop timefmt timeoutlen title tm trash trashdir ts tuioptions to
-		\ undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd wildmenu wmnu
+		\ smartcase scs statusline stl suggestoptions syncregs syscalls tablabel
+		\ tabscope tabstop timefmt timeoutlen title tm trash trashdir ts tuioptions
+		\ to undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd wildmenu wmnu
 		\ wildstyle wordchars wrap wrapscan ws
 
 " Disabled boolean options

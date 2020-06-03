@@ -454,15 +454,6 @@ sm.run()
 }
 
 #-------------------------------------------------------
-function mkcd {
-  if [[ "$#" != 1 ]]; then
-    echo "Expects exactly one argument; provided $#" >&2
-    return 1
-  fi
-  mkdir -p "$1" && cd "$1"
-}
-
-#-------------------------------------------------------
 # Print README file colored by bat ( https://github.com/sharkdp/bat )
 readme() {
     for readme in {readme,README}.{md,MD,markdown,txt,TXT,mkd}; do

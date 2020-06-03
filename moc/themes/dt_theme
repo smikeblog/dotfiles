@@ -1,4 +1,6 @@
 # Author: Wim Speekenbrink <w.speek@wanadoo.nl>
+# purple
+colordef    magenta     =   694     384     525
 
 background           = blue      black
 frame                = magenta   black     bold
@@ -8,7 +10,7 @@ selected_directory   = black     magenta
 playlist             = blue      black     bold
 selected_playlist    = black     magenta
 file                 = blue      black     bold
-selected_file        = black     magenta
+selected_file        = black     magenta  
 marked_file          = green     black     bold
 marked_selected_file = black     magenta   bold
 info                 = green     black     bold

@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
+Plug 'liuchengxu/space-vim-dark'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -19,7 +20,6 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
-Plug 'liuchengxu/space-vim-dark'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'                           " Color previews for CSS
@@ -36,8 +36,9 @@ call plug#end()
 " Load config modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" disable Python 2 support:
-let g:loaded_python_provider = 0
+" disable python2 and set full path to python3
+let g:loaded_python_provider=0
+let g:python3_host_prog="/usr/bin/python3"
 
 source $HOME/.dotfiles/vim/vil/Sinit.vim
 "source $HOME/.config/nvim/general.vim

@@ -31,7 +31,8 @@ if ! zgen saved; then
 #	zgen prezto syntax-highlighting
 
 	# plgins
-    zgen load chrissicool/zsh-256color
+#	zgen load romkatv/powerlevel10k powerlevel10k
+	zgen load chrissicool/zsh-256color
 	zgen load djui/alias-tips
 	zgen load supercrabtree/k
 	zgen load mafredri/zsh-async
@@ -67,4 +68,3 @@ function newline-after-command() {
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
