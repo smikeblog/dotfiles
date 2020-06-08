@@ -65,7 +65,8 @@ fi
 
 # use vim as manpager
 # export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
-export MANPAGER="nvim +set\ filetype=man -"
+#export MANPAGER="nvim +set\ filetype=man -"
+export MANPAGER='nvim +Man!'
 
 # Modules
 autoload colors zsh/terminfo
