@@ -52,10 +52,12 @@ My dotfile configuration
 Note: I install WM for development environment alongside with DE (cinnamon or xfce) to have more memory
 ### bspwm (https://github.com/baskerville/bspwm/wiki )
 [[####]] bspwm is compiled from github sources
+```
 	git clone https://github.com/baskerville/bspwm.git ~/Downloads/build/
 	git clone https://github.com/baskerville/sxhkd.git ~/Downloads/build/
 	cd ~/Downloads/build/bspwm && make && sudo make install
 	cd ~/Downloads/build/sxhkd && make && sudo make install
+```
 #### make links to my .dotfiles
 	ln -s ~/.dotfiles/config/bspwm ~/.config/
 	ln -s ~/.dotfiles/config/sxhkd ~/.config/
