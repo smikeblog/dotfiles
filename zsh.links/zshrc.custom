@@ -260,4 +260,4 @@ alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
 alias npec='glow ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | peco)'
 #
-source ~/tmp/scripts_sh/currentwordcompletion.zsh
+source ~/scripts/currentwordcompletion.zsh
