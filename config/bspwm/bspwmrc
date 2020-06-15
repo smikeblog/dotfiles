@@ -1,11 +1,10 @@
-#! /bin/dash
+#! /bin/sh
 
 #### AUTOSTART ####
 export WIRELESS=wlan0
 
 sxhkd &
 exec picom -b &
-#exec compton -b &
 nitrogen --restore &
 # pcmanfm -d &
 #conky &
@@ -13,7 +12,7 @@ nitrogen --restore &
 # setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
 setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
 killall btops
-btops &
+~/bin/btops &
 
 nm-applet &
 
@@ -26,6 +25,7 @@ xset -dpms; xset s off &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 xfce4-power-manager &
+killall clipit
 clipit &
 ### MONITORS ####
 

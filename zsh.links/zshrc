@@ -37,7 +37,7 @@ if ! zgen saved; then
 	zgen load supercrabtree/k
 	zgen load mafredri/zsh-async
 	zgen load zdharma/fast-syntax-highlighting
-    zgen load unixorn/git-extra-commands
+	zgen load unixorn/git-extra-commands
 	zgen load wfxr/forgit
 #zgen load kutsan/zsh-system-clipboard
 
