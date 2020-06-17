@@ -176,6 +176,7 @@ alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \"
 
 # cli translate  - https://github.com/soimort/translate-shell
 alias trans-enru='trans -shell en:ru '
+alias trans-enen='gawk -f <(curl -Ls git.io/translate) -- -shell '
 
 # Naive linter for English prose need npm >= 5.2.0 ( https://github.com/btford/write-good )
 if _has npx; then
