@@ -20,7 +20,7 @@ export PISTOL_CHROMA_FORMATTER=terminal256
 export PISTOL_CHROMA_STYLE=dracula
 
 # sm add rust path -> moved to .profile
-export PATH="$HOME/.cargo/bin:$PATH"
+[ -d $HOME/.cargo ] && export PATH="$HOME/.cargo/bin:$PATH"
 # sm add GO path -> moved to .profile
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
 export GOROOT="/usr/local/go"
