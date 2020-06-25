@@ -4,7 +4,8 @@
 export WIRELESS=wlan0
 
 sxhkd &
-exec picom -b &
+picom --experimental-backends &
+## exec picom -b &
 nitrogen --restore &
 # pcmanfm -d &
 #conky &

@@ -1,5 +1,5 @@
 #EXTM3U
-#MOCSERIAL: 256
+#MOCSERIAL: 512
 #EXTINF:-1,Hit FM
 http://rmgradio.gcdn.co/hit_m.mp3
 #EXTINF:-1,Русское Радио
