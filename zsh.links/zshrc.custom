@@ -242,7 +242,7 @@ fi
 ##   1}}}
 
 # pmy go fzf helper  Ctrl-<Space>
-[ -f /usr/local/bin/pmy ] && eval "$(pmy init)"
+[ -f $HOME/.dotfiles/tools/pmy ] && eval "$(pmy init)"
 
 # navi cli cheat completion utility Ctrl+G
 if [ -e $HOME/.config/navi ]; then
