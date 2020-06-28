@@ -98,13 +98,13 @@ c.content.user_stylesheets = [stylesheetdir + 'default.css']
 #with config.pattern('*://github.com/') as p:
 #    p.content.user_stylesheets = [stylesheetdir + 'github.css']
 
-# config.source('nord-qutebrowser.py')
-import dracula.draw
+config.source('nord-qutebrowser.py')
+#import dracula.draw
 
-dracula.draw.blood(c, {
-    'spacing': {
-        'vertical': 6,
-        'horizontal': 8
-    }
-})
+#dracula.draw.blood(c, {
+#    'spacing': {
+#        'vertical': 6,
+#        'horizontal': 8
+#    }
+#})
 

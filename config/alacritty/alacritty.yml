@@ -527,6 +527,7 @@ dynamic_title: true
 # a no-op if you do not wish to receive input characters for that binding.
 key_bindings:
     # (Windows, Linux, and BSD only)
+  - { key: N,        mods: Control,       action: SpawnNewInstance }
   - { key: V,        mods: Control|Shift, action: Paste            }
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: Insert,   mods: Shift,         action: PasteSelection   }
