@@ -1,0 +1,22 @@
+[General]
+  snippetfile = "$HOME/.config/pet/snippet.toml"
+  editor = "nvim"
+  column = 40
+  selectcmd = "peco"
+  backend = "gist"
+  sortby = ""
+
+[Gist]
+  file_name = "pet-snippet.toml"
+  access_token = "d44ea09827aacfcf4c9a61f849d3ffa8e5d4cb00"
+  gist_id = ""
+  public = false
+  auto_sync = false
+
+[GitLab]
+  file_name = "pet-snippet.toml"
+  access_token = "NufC96E8LjhDbsJBCUva"
+  url = "https://gitlab.com"
+  id = ""
+  visibility = "private"
+  auto_sync = false

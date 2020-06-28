@@ -1,0 +1,24 @@
+[[snippets]]
+  description = "Obtain external IP address"
+  command = "curl ifconfig.co"
+  output = ""
+
+[[snippets]]
+  description = "Ping host with 5 packets."
+  command = "ping -c 5 <host=google.com>"
+  output = ""
+
+[[snippets]]
+  description = "Search a pattern in given dirs with bat"
+  command = "batgrep <Pattern=Hi> <Dirs=~/Code/go/src/**>"
+  output = ""
+
+[[snippets]]
+  description = "git push to the given branch"
+  command = "git push origin <branch=master>"
+  output = ""
+
+[[snippets]]
+  description = "Expand a shortened URL"
+  command = "curl --head --location <url=https://bit.ly/2yDyS4T> "
+  output = ""
