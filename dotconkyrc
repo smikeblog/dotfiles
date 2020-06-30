@@ -150,7 +150,7 @@ ${color1}[S+Ctrl]+Space${alignr}${color2}Cancel Dir${color}
 ${color1}[Ctrl+Alt]+[h,j,k,l]${alignr}${color2}Resize W${color}
 ${color1}[S]+[h,j,k,l]+m${alignr}${color2}Float move${color}
 ${color1}[S+Alt]+n${alignr}${color2}NewsReader${color}
-${color1}[Ctrl+Alt]+r${alignr}${color2}Reddio view${color}
+${color1}[S]+Space${alignr}${color2}Windows Menu${color}
 ${color1}${hr}${color}
 ${color1}${execi 6000 lsb_release -d | grep 'Descr'|awk {'print $2 " " $3" " $4" " $5'}}${alignr}${execi 6000 lsb_release -a | grep 'Release'|awk {'print $2""$3""$4""$5'}}${color}
 ]];
