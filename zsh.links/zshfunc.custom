@@ -280,6 +280,18 @@ dict() {
 #
 ## FZF functions {{{4
 #
+function fman(){
+	MAN="/usr/bin/man"
+	if [ -n "$1" ]; then
+		$MAN "$@"
+		return $?
+	else
+		$MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
+		return $?
+	fi
+}
+#alias man="myman"
+
 ## ffe find with preview and edit in vim     {{{
 fzf_find_edit() {
     local file=$(
