@@ -151,6 +151,10 @@ function! OpenUrlUndCursor()
 endfunction
 map <leader>l :call OpenUrlUndCursor()<CR>
 
+" Set syntax highlighting for specific file types
+autocmd BufRead,BufNewFile *.{md,rmd,Rmd} set filetype=markdown
+autocmd BufRead,BufNewFile .{zshrc,zshfunc}.custom set filetype=sh
 
 " source dracula theme
 source ~/.dotfiles/vim/dot.vim/colors/dracula.vim
+
