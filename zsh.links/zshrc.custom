@@ -166,11 +166,11 @@ if [ -e $HOME/.go.vimrc ]; then
   alias vimgo="vim -u $HOME/.go.vimrc $1"
 fi
 if [ -e  $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink ]; then
-  alias vi="nvim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink "
+  alias vi="nvim -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink $1"
 fi
-alias vin="nvim -N -u NONE -U NONE "
+alias vin="nvim -N -u NONE -U NONE $1"
 
-alias vidt="nvim -u ~/.dotfiles/initDT.vim"
+alias vidt="nvim -u ~/.dotfiles/initDT.vim $1"
 
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
@@ -225,6 +225,7 @@ alias rofim='rofi -show window -sidebar-mode \
 '
 
 alias l.="ls -A | egrep '^\.' "
+alias l..='cd .. && l'
 alias ez="$EDITOR $HOME/.zshrc"
 alias ezf="$EDITOR $HOME/.zshfunc.custom"
 alias ezc="$EDITOR $HOME/.zshrc.custom"
@@ -255,7 +256,6 @@ if [ -f /usr/bin/broot ]; then
 fi
 
 alias bspk="~/.config/sxhkd/show_help.sh"
-alias vis="nvim -u ~/.vim/vim-init/init.vim"
 
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
