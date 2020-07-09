@@ -1,20 +1,18 @@
 {
-    "Prompt": "> ",
-    "InitialFilter": "SmartCase",
-    "Style": {
-		"Prompt": ["green", "default"],
-		"Basic": ["default", "on_default"],
-		"SavedSelection": ["default", "on_black", "bold"],
-		"Selected": ["green", "on_yellow", "reverse"],
-		"Query": ["cyan", "bold"],
-		"Matched": ["underline", "on_black", "magenta"]
-    },
-    "Keymap": {
-        "M-v": "peco.ScrollPageUp",
-        "C-v": "peco.ScrollPageDown",
-        "C-q": "peco.DeleteForwardWord",
-        "C-g": "peco.Cancel",
-        "C-[": "peco.ScrollPageUp",
-        "C-]": "peco.ScrollPageDown"
-    }
+  "Prompt": "🐶  pet>",
+  "Style": {
+    "Basic": ["on_default", "default"],
+    "SavedSelection": ["bold", "on_yellow", "white"],
+    "Selected": ["bold", "on_cyan", "black"],
+    "Query": ["yellow", "bold"],
+    "Matched": ["white", "bold"]
+  },
+  "Keymap": {
+    "M-v": "peco.ScrollPageUp",
+    "C-v": "peco.ScrollPageDown",
+    "C-q": "peco.DeleteForwardWord",
+    "C-g": "peco.Cancel",
+    "C-[": "peco.ScrollPageUp",
+    "C-]": "peco.ScrollPageDown"
+  }
 }
