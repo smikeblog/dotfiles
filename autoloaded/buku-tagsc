@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+## from : https://github.com/jarun/buku/wiki/List-tags-usage-count-prefixed
+buku --np -t | awk 'gsub( /\(|\)$/, "" ) { $1 = $NF; $NF = ""; print }' | sort -nr
