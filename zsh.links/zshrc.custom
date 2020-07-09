@@ -255,7 +255,6 @@ if [ -f /usr/bin/broot ]; then
   source /home/sm/.config/broot/launcher/bash/br
 fi
 
-alias bb='b $(buku -p -f 10 | fzf)'
 alias bspk="~/.config/sxhkd/show_help.sh"
 
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'

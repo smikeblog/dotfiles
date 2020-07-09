@@ -84,7 +84,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
    #}}}
 
 ## Other used Tools
-    https://github.com/jarun/buku
 	pttps://github.com/lunaryorn/mdcat
     https://github.com/cjbassi/ytop/releases
     https://github.com/xxxserxxx/gotop
