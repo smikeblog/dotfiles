@@ -3,9 +3,9 @@
   "Style": {
     "Basic": ["on_default", "default"],
     "SavedSelection": ["bold", "on_yellow", "white"],
-    "Selected": ["bold", "on_cyan", "black"],
+    "Selected": ["bold", "on_white", "black"],
     "Query": ["yellow", "bold"],
-    "Matched": ["white", "bold"]
+    "Matched": ["magenta", "bold"]
   },
   "Keymap": {
     "M-v": "peco.ScrollPageUp",
