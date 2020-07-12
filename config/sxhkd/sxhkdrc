@@ -230,7 +230,7 @@ super + alt + Return
 	tilix --profile=bspwm
 # xfce4-terminal emulator
 super + shift + Return
-	xfce4-terminal -e ~/scripts/tat
+	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
 # 3}}}
 
 #
@@ -351,7 +351,7 @@ super + c : {Left,Down,Up,Right}
 # DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
 # Dmenu sys - Restart, Poweroff
 alt +  ctrl + Delete
-	~/scripts/sysact
+	$HOME/.dotfiles/home.local/bin/sysact
 # Run  rofi-terminal
 alt + shift + F3
 	~/scripts/rofi-terminal.sh

@@ -51,6 +51,8 @@ fi
 if _has rg; then
   export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 fi
+# defines the fuzzy completion trigger as **
+export FZF_COMPLETION_TRIGGER='**' # change ** to whatever
 
 # load completions and styles
 if [[ -f  $HOME/.dotfiles/zsh.links/zshcompletion ]]; then
@@ -62,6 +64,11 @@ if [ -e /usr/share/fzf/completion.zsh ]; then
   source /usr/share/fzf/completion.zsh
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -e $HOME/.dotfiles/tools/sk ]; then
+  source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
+  source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
+fi
 
 # use vim as manpager
 # export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
@@ -138,7 +145,6 @@ bindkey -s "^P" "ranger_cd\n"
 ###   2}}}
 ## 1}}}
 
-
 # show vim mode on RPS - insert or normal {{{2
 # http://zshwiki.org/home/examples/zlewidgets
 #function zle-line-init zle-keymap-select {
@@ -197,8 +203,9 @@ if _has exa; then
   alias lx='exa --color=always --group-directories-first'
   alias lld='exa -lh --color=always --group-directories-first'
   alias lll='exa -lah --color=always --group-directories-first'
+  alias ll='exa -lhF --git-ignore --group-directories-first --time-style=long-iso'
   alias lt='exa -aT --color=always --group-directories-first' # tree listing
-  alias exa2="exa --long --tree --level=2"
+  alias exa2='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
 fi
 if _has lsd; then
   alias lct2='lsd -t --tree=2 --group-dirs=first'
@@ -210,6 +217,9 @@ alias  k='k -h'
 alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
+
+# kill process fuzzy search with ~/.dotfiles/tools/sk (skim)
+alias pskl='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
 
 alias rofim='rofi -show window -sidebar-mode \
   -modi run,window,drun,keys \
@@ -224,6 +234,7 @@ alias rofim='rofi -show window -sidebar-mode \
   -color-enabled true
 '
 
+alias ...="cd ../.."
 alias l.="ls -A | egrep '^\.' "
 alias l..='cd .. && l'
 alias ez="$EDITOR $HOME/.zshrc"
@@ -255,11 +266,13 @@ if [ -f /usr/bin/broot ]; then
   source /home/sm/.config/broot/launcher/bash/br
 fi
 
-alias bb='b $(buku -p -f 10 | fzf)' 
+alias bb='b $(buku -p -f 10 | fzf)'
 alias bspk="~/.config/sxhkd/show_help.sh"
 
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
 alias npec='glow ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | peco)'
+
+bindkey "^b" fzf-cd-widget
 #
-source ~/scripts/currentwordcompletion.zsh
+source $HOME/.dotfiles/home.local/bin/currentwordcompletion.zsh

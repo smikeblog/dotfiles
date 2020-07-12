@@ -279,7 +279,26 @@ dict() {
 ## ---- }}}3
 #
 ## FZF functions {{{4
-#
+# Override the following functions used by fuzzy completion:
+
+# for more info see fzf/shell/completion.zsh
+_fzf_compgen_path() {
+    fd . "$1"
+}
+_fzf_compgen_dir() {
+    fd --type d . "$1"
+}
+# with above functions fd will power fzf, CTRL-T, ALT-C, and **
+
+# find-in-file - usage: fif <SEARCH_TERM>
+fif() {
+  if [ ! "$#" -gt 0 ]; then
+    echo "Need a string to search for! usage: fif <SEARCH_TERM>";
+    return 1;
+  fi  
+    rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
 function fman(){
 	MAN="/usr/bin/man"
 	if [ -n "$1" ]; then
@@ -532,7 +551,19 @@ function list-all-man-pages() {
 }
 
 function fzf-man() {
-    local selected=$(list-all-man-pages | fzf --prompt='man> ')
+    local selected=$(list-all-man-pages \
+                    | fzf --prompt='man> ' --pointer='▶' --marker='✓' \
+                    --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008' \
+                    --preview '([[ -f {} ]] && \
+                     (bat --style=numbers --color=always {} || \
+                        cat {})) || ([[ -d {} ]] && (tree -C {} | \
+                        less)) || echo {} 2> /dev/null | head -200' \
+                    --bind '?:toggle-preview'
+                    --bind 'ctrl-a:select-all'
+                    --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)'
+                    --bind 'ctrl-e:execute(echo {+} | xargs -o vim)'
+                    --bind 'ctrl-v:execute(code {+})'
+                    )
     if [[ "$selected" != "" ]]; then
          man "$selected"
     fi
