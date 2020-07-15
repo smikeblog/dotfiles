@@ -64,7 +64,7 @@ set list
 "set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 
-set fillchars=diff:⣿,vert:│
+"set fillchars=diff:⣿,vert:│
 set fillchars=diff:⣿,vert:\|
 
 " Show line numbers
@@ -174,9 +174,12 @@ endfunction
 map <leader>l :call OpenUrlUndCursor()<CR>
 
 " Set syntax highlighting for specific file types
-autocmd BufRead,BufNewFile *.{md,rmd,Rmd} set filetype=markdown
+autocmd BufRead,BufNewFile *.{cal,md,rmd,Rmd} set filetype=markdown
 autocmd BufRead,BufNewFile .{zshrc,zshfunc}.custom set filetype=sh
 
 " source dracula theme
 source ~/.dotfiles/vim/dot.vim/colors/dracula.vim
+
+" source calendar & diary script
+source ~/.dotfiles/vim/dot.vim/calendar.vim
 

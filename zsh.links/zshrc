@@ -12,7 +12,7 @@ source $HOME/.zgen/zgen.zsh
 if ! zgen saved; then
 	echo "Creating a zgen save"
 
-	#prezto options
+	# prezto options
 	zgen prezto editor key-bindings 'vi'
 	zgen prezto prompt theme 'sorin'
 #	zgen prezto prompt theme 'steeef'
@@ -30,7 +30,7 @@ if ! zgen saved; then
 #	zgen prezto history-substring-search
 #	zgen prezto syntax-highlighting
 
-	# plgins
+	# plugins
 #	zgen load romkatv/powerlevel10k powerlevel10k
 	zgen load chrissicool/zsh-256color
 	zgen load djui/alias-tips
@@ -39,7 +39,7 @@ if ! zgen saved; then
 	zgen load zdharma/fast-syntax-highlighting
 	zgen load unixorn/git-extra-commands
 	zgen load wfxr/forgit
-#zgen load kutsan/zsh-system-clipboard
+#	zgen load kutsan/zsh-system-clipboard
 
 #	zgen load caarlos0/zsh-git-sync
 #	zgen load TBSliver/zsh-plugin-colored-man
@@ -47,14 +47,14 @@ if ! zgen saved; then
 #	zgen load zsh-users/zsh-syntax-highlighting
 #	zgen load tarruda/zsh-autosuggestions
 #	zgen load softmoth/zsh-vim-mode
-#  zgen load sitdisch/zsh-vim-inclusive-v
-#  zgen load zsh-vi-more/evil-registers
+#	zgen load sitdisch/zsh-vim-inclusive-v
+#	zgen load zsh-vi-more/evil-registers
 
 
 	zgen save
 fi
 
-export LESS='-R'
+export LESS='-MhR'
 
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd newline-after-command

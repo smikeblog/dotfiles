@@ -1,0 +1,104 @@
+# Navigation
+ ## Movements
+  - move the cursor to different areas in the currently visible portion of the page:
+    -  H: Move cursor to the top of the currently visible page (think “high”)
+    -  M: Move cursor to the middle of the currently visible page
+    -  L: Move cursor to the bottom of the currently visible page (think “low”)
+
+  - move the page instead of the cursor (as in scrolling) :
+    -  CTRL-D: Page down
+    -  CTRL-U: Page up
+    -  CTRL-E: Scroll down one line
+    -  CTRL-Y: Scroll up one line
+
+ ## Navigate by logical blocks of information:
+  - basic:
+    -  ): Move to start of next sentence
+    -  (: Move to start of last sentence
+    -  }: Move to start of next paragraph (as delimited by a blank line)
+    -  {: Move to start of last paragraph (as delimited by a blank line)
+  - define your own points in the file to jump to setting marks:
+    -  m: Typing “m” followed by a letter creates a mark reference by that letter.
+            Lower-case letters are specific to the current document, while upper-case letters can only be used once 
+            (they can be used to jump to sections in different documents.
+    -  ’: The single quote followed by a mark letter (previously defined with the “m” as above), will move the cursor to the beginning of the line containing that mark.
+    -  `: The back-tick followed by a mark letter will move the cursor to the exact position of the mark.
+
+# Manage Documents (CTRL-g: Displays current file name)
+ ## Buffers
+  - open multiple files each in its own buffer:
+    -  vim file1 file2 file3
+  - commands to manage buffers:
+    -  :buffers: List available buffers
+    -  :ls: Same as above
+    -  :bn: Switch to next buffer
+    -  :bp: Switch to previous buffer
+    -  :bfirst: Switch to first buffer
+    -  :blast: Switch to last buffer
+    -  :bdelete: Delete the current buffer
+    -  :badd: Open a new buffer with the filename that follows
+    -  :e: Edit another file in a new buffer and switch to it.
+ ## Windows
+  - commands that we can use to create and manage windows:
+    -  :sp: Split the current window horizontally. Precede the “sp” with a number to set the new window height.
+    -  :vs: Split the current window vertically. Precede the “vs” with a number to set the new window width.
+    -  CTRL-ww: Change focus to the next window
+    -  CTRL-w(movement): Change focus to the window in the direction (h,j,k,l) indicated
+    -  CTRL-wc: Close the current window
+    -  CTRL-w+: Increase size of current window
+    -  CTRL-w-: Decrease size of current window
+    -  CTRL-w=: Set all windows to equal size
+    -  #CTRL-w_: Sets the height to the size indicated by the preceding “#”
+    -  :only: Close all windows but the current one
+    -  CTRL-wn: Opens a new window with a new buffer
+ ## Tabs
+  - commands :
+    -  :tabnew command to open a new tab.
+    -  :tabclose: Close current tab
+    -  :tabn: Switch to next tab
+    -  gt: Switch to next tab
+    -  :tabp: Switch to previous tab
+    -  gT: Switch to previous tab
+    -  :tab ball: Open all buffers in individual tabs
+    -  :tabs: List all available tabs
+
+# Document Specific Commands
+ ## Plain Text
+  - turn on spell checking
+    -  :set spell
+    -  :set spelllang=[language abbreviation]
+    -  ]s    # Jump to next mistake
+    -  [s    # Jump to previous mistake
+    -  z=    # put cursor over a misspelled word to see spelling suggestions
+  -  add the word to the “good” words lists:
+    -  zg    # Adds word to regular dictionary
+    -  zG    # Adds word to the current session dictionary
+  -  remove the word from the “good” words lists:
+    -  zug   # Remove word from regular dictionary
+    -  zuG   # Remove word from the current session dictionary
+  - you can add an abbreviations:
+    -  :ab Linux GNU/Linux  # Now, when we type “Linux”, vim will automatically substitute “GNU/Linux”.
+    -  :una Linux   # Remove abbreviation
+  -  insert unicode characters (called digraph):
+    -  :digraphs   # see a list of vim’s digraph
+    -  CTRL-k followed by the two letters on the left column.  # insert unicode character
+ ## Source Code
+  - syntax highlighting
+    -  :syntax on/off
+    -  :set filetype=[language]    # set the language
+  - use a system utility to modify some lines in the file by using the ! command in normal mode.
+    -  :![motion] filter   # !G sort sorts the input, alphabetically by default.
+  - insert the output of a command into the file, navigate to line where you want the output. Type:
+    -  !!command 
+    -  !command   # to only see the results of a command
+
+# Reducing Repetition
+ ## Macros
+  - recording a macro, you can type q followed by a letter to reference the macro.:
+    -  :qa    # will save macro "a"
+    -  :@a    # will execute macro "a"
+            # Example: qa0c3wDELETED<esc>q  -will macro (saved as “a”), go to the start of the line, and replace the next three words with the word “DELETED”. 
+  - to create a macro that ends in insert mode (to execute a normal mode command in insert mode precede it with CTRL-O)
+    -  :qi0f(lct)<CTRL-O>q  # macro “i” moves to the beginning of the line then finds "(" and moves right one character 
+                              (to move inside of the parentheses) then changes everything until the closing parenthesis.
+

@@ -6,10 +6,15 @@ set history=1000    " boost commands and search patterns history
 set undolevels=1000 " boost undo levels
 set timeoutlen=500      " time in milliseconds for a key sequence to complete
 set rtp+=~/.dotfiles/vim/dot.vim/
+" No swap files or backups
+set viminfo=
+set nobackup
+set nowritebackup
+set noswapfile
 
 " -- Colorscheme default ~/.vim/colors/kuroi <leader> = "," --------------------
 set background=dark
-colorscheme kuroi
+colorscheme space-vim-dark
 let mapleader=","       " change leader key to ,
 let maplocalleader=","  " change local leader key to ,
 
@@ -56,34 +61,7 @@ endif
 
 " -- dirs for backup and swap ----------------------------------------------  {{{
 
-set backup      " enable backup files
-set writebackup " enable backup files
-set swapfile    " enable swap files (useful when loading huge files)
-
 let s:vimdir=$HOME . "/.vim"
-let &backupdir=s:vimdir . "/backup"  " backups location
-let &directory=s:vimdir . "/tmp"     " swap location
-
-if exists("*mkdir")
-  if !isdirectory(s:vimdir)
-    call mkdir(s:vimdir, "p")
-  endif
-  if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p")
-  endif
-  if !isdirectory(&directory)
-    call mkdir(&directory, "p")
-  endif
-endif
-
-set backupskip+=*.tmp " skip backup for *.tmp
-
-if has("persistent_undo")
-  let &undodir=&backupdir
-  set undofile  " enable persistent undo
-endif
-
-let &viminfo=&viminfo . ",n" . s:vimdir . "/.vviminfo" " viminfo location
 " }}}
 
 " -- file type detect -----------------------------------------------------  {{{
@@ -500,7 +478,7 @@ let g:netrw_liststyle=3
 let g:netrw_localrmdir='rm -r'
 nnoremap <F3> :Lexplore<CR>
 
-nnoremap <F2> :Lf<CR>
+nnoremap <F2> :FloatermNew lf<cr><CR>
 
 " }}}
 
@@ -728,7 +706,8 @@ xnoremap & <ESC>:%s/<C-r>=substitute(escape(GetVisualSelection(), '\/.*$^~[]'), 
 nmap <leader>s :%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>
 
 " Clean search
-map //  :nohlsearch<CR>:echo 'Search highlight cleared'<CR>
+map <Space>\  :nohlsearch<CR>:echo 'Search highlight cleared'<CR>
+" map //  :nohlsearch<CR>:echo 'Search highlight cleared'<CR>
 
 " }}}
 
@@ -798,10 +777,15 @@ nnoremap <silent> <F4> :VsplitVifm<cr>
 "}}}
 
 """ ====== LOCALIZATION =================
+let g:calendar_weeknm = 1 " WK01
+
 if filereadable(expand("$HOME/.vimrc.local"))
   source $HOME/.vimrc.local"{{{}}}
 endif
 if filereadable(expand("$HOME/.dotfiles/vim/vim-vanilla/fzf.nvimrc"))
   source $HOME/.dotfiles/vim/vim-vanilla/fzf.nvimrc "{{{}}}
+endif
+if filereadable(expand("$HOME/.dotfiles/vim/dot.vim/calendar.vim"))
+  source $HOME/.dotfiles/vim/dot.vim/calendar.vim "{{{}}}
 endif
 

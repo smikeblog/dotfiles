@@ -72,14 +72,16 @@
  N  - Next result, backward
 
 # Search and replace with the `:substitute` (aka `:s`) command
- :s/foo/bar/	replace the first match of 'foo' with 'bar' on the current line only
- :s/foo/bar/g	replace all matches (`g` flag) of 'foo' with 'bar' on the current line only
- :%s/foo/bar/g	replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
- :%s/foo/bar/gc	ask to manually confirm (`c` flag) each replacement 
- /\%>10l\%<20lsearch  search a pattern only in a line range (lines 10...20)
- :-10;+33s/foo/bar/	replace the match of 'foo' with 'bar' from 10 lines before current for the following 33 lines
- :%s//REPLACE/g	replace all occurrences of last search pattern with REPLACE
- :match(str, pattern)    check if a string contains a pattern
+ :s/foo/bar/	                        - replace the first match of 'foo' with 'bar' on the current line only
+ :s/foo/bar/g	                        - replace all matches (`g` flag) of 'foo' with 'bar' on the current line only
+ :%s/foo/bar/g	                      - replace all matches of 'foo' with 'bar' in the entire file (`:%s`)
+ :%s/foo/bar/gc	                      - ask to manually confirm (`c` flag) each replacement 
+ :.,$s/German/French/g                - from Cursor to EOF Replace German by French  
+ :*s/Zune/iPod/gc                     - Visual Area chamge all Zune with iPod and confirm each
+ /\%>10l\%<20lsearch                  - search a pattern only in a line range (lines 10...20)
+ :-10;+33s/foo/bar/	                  - replace the match of 'foo' with 'bar' from 10 lines before current for the following 33 lines
+ :%s//REPLACE/g	                      - replace all occurrences of last search pattern with REPLACE
+ :match(str, pattern)                 - check if a string contains a pattern
 
 # Preceding a motion or edition with a number repeats it 'n' times
 # Examples:

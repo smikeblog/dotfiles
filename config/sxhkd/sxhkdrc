@@ -242,9 +242,10 @@ super + alt + i
 super + alt + n
     st -e newsboat
 
-# launch vifm file manager
+# launch vifm with ueberzug image preview
 super + alt + v
-     st -e ./.config/vifm/scripts/vifmrun
+     st -e ./.local/bin/vu
+#     st -e ./.config/vifm/scripts/vifmrun
 
 # launch htop
 #super + alt + h

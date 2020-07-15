@@ -23,7 +23,7 @@ Plug 'elentok/plaintasks.vim'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 Plug 'ap/vim-css-color'                           " Color previews for CSS
-Plug 'vimwiki/vimwiki'
+" Plug 'vimwiki/vimwiki'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
@@ -45,6 +45,8 @@ source $HOME/.dotfiles/vim/vil/Sinit.vim
 "source $HOME/.config/nvim/plugins.vim
 "source $HOME/.config/nvim/keys.vim
 source $HOME/.dotfiles/vim/vil/Snippets.vim
+
+source $HOME/.dotfiles/vim/dot.vim/calendar.vim
 " load local.vim environment specific config if it exists
 if !empty(glob("~/.local.vim"))
     source $HOME/.local.vim

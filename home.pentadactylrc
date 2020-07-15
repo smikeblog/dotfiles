@@ -13,8 +13,18 @@ hi Hints font-size: 11; border solid white 1px; color: #ccc !important; backgrou
 hi -l Hints Hint
 hi -l Hints Hint[active]
 
+map <S-T> :tabopen ya.ru<CR>
 map <S-J> :tabnext<CR>
 map <S-K> :tabprevious<CR>
+
+"" U list closed tabs
+nmap -builtin U :undo<Space>
+
+"" toggle menubar and toolbar
+nmap -builtin -ex ,M :set guioptions!=mT
+
+"" about:config
+nmap -builtin -ex ,c :tabopen about:config
 
 " Suggestions
 set complete=location,suggestion,bookmark,file
