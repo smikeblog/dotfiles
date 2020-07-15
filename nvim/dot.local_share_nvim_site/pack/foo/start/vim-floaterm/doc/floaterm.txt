@@ -1,0 +1,222 @@
+*floaterm.txt*  Neovim floating terminal plugin     Last change: 2019-02-07
+
+Author : voldikss <https://github.com/voldikss>
+License: MIT license
+NOTE: This is outdated, please refer to the README file:
+    ../README.md
+    or
+    https://github.com/voldikss/vim-floaterm/blob/master/README.md
+==============================================================================
+CONTENTS                                               *floaterm-contents*
+
+    Introduction                                       |floaterm-introduction|
+    Install                                            |floaterm-install|
+    Features                                           |floaterm-features|
+    Variables                                          |floaterm-variables|
+    Keymappings                                        |floaterm-key-mappings|
+    Commands                                           |floaterm-commands|
+    Highlight                                          |floaterm-highlight|
+    Extensions                                         |floaterm-extensions|
+    Q-A                                                |floaterm-q&a|
+    Repository                                         |floaterm-repository|
+
+
+==============================================================================
+INTRODUCTION                                        *floaterm-introduction*
+
+Use neovim terminal in the floating window.
+
+
+==============================================================================
+INSTALL                                                 *floaterm-install*
+
+    With vim-plug:
+ >
+	Plug 'voldikss/vim-floaterm'
+<
+
+==============================================================================
+FEATURES                                                 *floaterm-features*
+
+- Toggle terminal window quickly
+
+- Multiple terminal instances
+
+- Customizable floating terminal style
+
+- Switch/Preview floating terminal buffer using |vim-clap|
+  https://github.com/liuchengxu/vim-clap
+
+- Switch/Preview/Open floating terminal buffer using |denite.nvim|
+  https://github.com/Shougo/denite.nvim
+
+
+==============================================================================
+VARIABLES                                            *floaterm-variables*
+
+g:floaterm_wintype                             *g:floaterm_wintype*
+
+	Available: "floating"(neovim only), "normal"(vim8 and neovim)
+
+	Default: "floating"
+
+g:floaterm_width                            *g:floaterm_width*
+
+	Type: |v:t_number| (number of columns) or |v:t_float| (between 0 and 1).
+	If |v:t_float|, the width is relative to `&columns`.
+
+	Default: 0.6
+
+g:floaterm_height                           *g:floaterm_height*
+
+
+	Type: |v:t_number| (number of lines) or |v:t_float| (between 0 and 1).
+	If |v:t_float|, the height is relative to `&lines`.
+
+	Default: 0.6
+
+
+g:floaterm_winblend                         *g:floaterm_winblend*
+
+	Description: The transparency of the floating terminal
+
+	Default: 0
+
+g:floaterm_position                         *g:floaterm_position*
+
+	Available: "center", "topleft", "topright", "bottomleft",
+		    "bottomright", "auto"
+
+	Default: "center"
+
+g:floaterm_borderchars                      *g:floaterm_borderchars*
+
+	Default: "['─', '│', '─', '│', '┌', '┐', '┘', '└']"
+
+
+==============================================================================
+
+MAPPINGS                                       *floaterm-key-mappings*
+
+This plugin doesn't supply any default mappings.
+ >
+	""" Configuration example
+	let g:floaterm_keymap_new    = '<F7>'
+	let g:floaterm_keymap_prev   = '<F8>'
+	let g:floaterm_keymap_next   = '<F9>'
+	let g:floaterm_keymap_toggle = '<F10>'
+<
+
+==============================================================================
+COMMANDS                                                *floaterm-commands*
+
+:FloatermNew                                            *:FloatermNew*
+
+
+:FloatermNext                                           *:FloatermNext*
+
+
+:FloatermPrev                                           *:FloatermPrev*
+
+
+:FloatermToggle                                         *:FloatermToggle*
+
+==============================================================================
+HIGHLIGHT                                                *floaterm-highlight*
+
+This plugin supplies two `highlight-groups` to specify the
+background/foregrond color of floaterm(border) window
+
+By default, they are both linked to `Normal`
+ >
+	" Configuration example
+	hi Floaterm guibg=black
+	hi FloatermBorder guibg=gray guifg=blue
+<
+
+==============================================================================
+EXTENSIONS                                              *floaterm-extensions*
+
+------------------------------------------------------------------------------
+VIM-CLAP                                                *Clap-floaterm*
+
+Start |vim-clap| to manage floaterms.
+ >
+		:Clap floaterm
+<
+------------------------------------------------------------------------------
+DENITE.NVIM                                             *Denite-floaterm*
+
+							*denite-source-floaterm*
+SOURCES~
+
+floaterm	Gather floaterms as candidates. This accepts an argument
+		below.
+
+		Source arguments:
+		1. "new" adds a candidate to open a new floaterm.
+
+						       *denite-floaterm-actions*
+ACTIONS~
+
+open (default)
+		Open the selected floaterm.
+
+new
+		Open a new floaterm.
+
+preview
+		Preview the selected floaterm.
+
+							*denite-floaterm-usage*
+USAGE~
+
+Start to manage existent floaterms.
+ >
+		:Denite floaterm
+<
+Start to open a new floaterm.
+ >
+		:Denite floaterm:new
+<
+Start with all features and preview automatically with moving the cursor.
+ >
+		:Denite floaterm floaterm:new -auto-action=preview
+<
+
+==============================================================================
+Q-A                                                        *floaterm-q&a*
+
+- This plugin leaves an empty buffer on startify window
+
+  Put this code in "vimrc"
+    >
+  autocmd User Startified setlocal buflisted
+<
+- I want to use another shell in the terminal. (e.g. Use fish instead of bash)
+
+  Set 'shell' option in your "vimrc":
+ >
+  set shell=/path/to/shell
+
+- I would like to customize the style of the floating terminal window
+
+  Use |autocmd|. For example,
+ >
+  function s:floatermSettings()
+      setlocal number
+      " more settings
+  endfunction
+
+  autocmd FileType floaterm call s:floatermSettings()
+
+==============================================================================
+REPOSITORY                                          *floaterm-repository-page*
+
+    |vim-floaterm| is developed on GitHub.
+
+    https://github.com/voldikss/vim-floaterm
+
+
+==============================================================================
+vim:tw=78:nosta:noet:ts=8:sts=0:ft=help:noet:fen:fdm=marker:
