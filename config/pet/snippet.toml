@@ -22,3 +22,8 @@
   description = "Expand a shortened URL"
   command = "curl --head --location <url=https://bit.ly/2yDyS4T> "
   output = ""
+
+[[snippets]]
+  description = "dump iso image to disk-usb if=inputFile of=outputDisk"
+  command = "sudo dd bs=4M <InputISO=if-Downloads/My.iso> <OutputDisk=of-/dev/sdX> && sync"
+  output = ""

@@ -34,15 +34,6 @@ set scrolloff 10
 # use enter for shell commands
 map <enter> shell
 
-# execute current file (must be executable)
-map x $$f
-map X !$f
-
-# dedicated keys for file opener actions
-# map o &mimeopen $f
-map o &rifle $f
-map O $mimeopen --ask-default $f
-
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
@@ -145,6 +136,17 @@ map o &mimeopen $f
 map O $mimeopen --ask $f
 
 
+# execute current file (must be executable)
+#map x $$f
+#map X !$f
+
+# dedicated keys for file opener actions
+# map o &mimeopen $f
+#map o &rifle $f
+#map O $mimeopen --ask-default $f
+
+cmd aj %lf -remote "send $id cd '$(autojump $1)'"
+map A push :aj<space>
 
 # Unmap the default binding
 map r
@@ -178,4 +180,17 @@ map rc push :rename<space>
 #map ra $lf -remote "send $id push :rename<space>$f"
 # Rename with the filename without the extension
 #map re $lf -remote "send $id push :rename<space>$f<a-b><a-d>"
+
+## <Ctrl+f> - jump to a file or directory in lf using fuzzy matching
+cmd fzf_jump ${{
+   res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+   if [ -f "$res" ]; then
+     cmd="select"
+   elif [ -d "$res" ]; then
+     cmd="cd"                                                       
+   fi
+lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :fzf_jump
+
 

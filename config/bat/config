@@ -13,5 +13,8 @@
 # Use C++ syntax (instead of C) for .h header files
 --map-syntax h:cpp
 
+# Use Markdown syntax for .cal files
+--map-syntax "*.cal:Markdown"
+
 # Use "gitignore" highlighting for ".ignore" files
 --map-syntax .ignore:.gitignore
