@@ -2,16 +2,18 @@
 
 #### AUTOSTART ####
 export WIRELESS=wlan0
+export mNETWORK=eth1
 
-sxhkd &
-picom --experimental-backends &
+sxhkd -c ./config/sxhkd/sxhkdrc &
+# picom --experimental-backends &
 ## exec picom -b &
 nitrogen --restore &
 # pcmanfm -d &
 #conky &
 ./.config/polybar/launch.sh &
 # setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
-setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
+#setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
+setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll" &
 killall btops
 ~/bin/btops &
 

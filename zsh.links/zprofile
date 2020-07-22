@@ -1,6 +1,4 @@
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 ## icons for lf experimental fiture {{{2
 
 # This is the list for lf icons:

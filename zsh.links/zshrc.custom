@@ -205,6 +205,7 @@ if _has exa; then
   alias lll='exa -lah --color=always --group-directories-first'
   alias ll='exa -lhF --git-ignore --group-directories-first --time-style=long-iso'
   alias lt='exa -aT --color=always --group-directories-first' # tree listing
+  alias la='ll -a'
   alias exa2='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
 fi
 if _has lsd; then
