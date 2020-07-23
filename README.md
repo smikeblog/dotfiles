@@ -84,36 +84,43 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
    #}}}
 
 ## Other used Tools
-    https://github.com/lotabout/skim
+    Ranger filemaneger: https://github.com/ranger/ranger
+    and mpv image preview method: https://github.com/ranger/ranger/wiki/Image-Previews
+	pip install ranger-fm
+### provided from ~/.dotfiles/
+	https://github.com/sharkdp/bat
+	https://github.com/cheat/cheat
+	https://github.com/dandavison/delta
+	https://github.com/sharkdp/fd
+	https://github.com/charmbracelet/glow
+	https://github.com/xxxserxxx/gotop
+	https://github.com/gokcehan/lf
+	https://github.com/Peltoche/lsd
+	https://github.com/denisidoro/navi
+	https://github.com/peco/peco
+	https://github.com/knqyf263/pet
+	https://github.com/doronbehar/pistol
+	https://github.com/relastle/pmy
+	https://github.com/dalance/procs
+	https://github.com/ggreer/the_silver_searcher
+	https://github.com/lotabout/skim
+	https://github.com/lunaryorn/mdcat
+	https://github.com/dbrgn/tealdeer
+	https://github.com/cjbassi/ytop/releases
+	https://github.com/wfxr/forgit
+	https://github.com/bvaisvil/zenith
+
+### Other mandatory
+	https://github.com/sharkdp/ripgrep
+
     https://github.com/jarun/buku
-    https://github.com/lunaryorn/mdcat
-    https://github.com/cjbassi/ytop/releases
-    https://github.com/xxxserxxx/gotop
-    https://github.com/dbrgn/tealdeer
-    https://github.com/bvaisvil/zenith
 	pip3 install awesome-finder
 	cargo install runiq
 	https://www.soimort.org/translate-shell/
 	pacman -S shellcheck
-	https://github.com/Peltoche/lsd
-	https://github.com/relastle/pmy
-	https://github.com/gokcehan/lf
-	https://github.com/sharkdp/fd
-	https://github.com/doronbehar/pistol
-	https://github.com/peco/peco
-	https://github.com/sharkdp/bat
-	https://github.com/sharkdp/ripgrep
 	https://gitlab.com/wavexx/screenkey
-	https://github.com/wfxr/forgit
-	https://github.com/dandavison/delta
 	https://prettier.io/docs/en/install.html
 	https://github.com/mvdan/sh
-	https://github.com/charmbracelet/glow
-	https://github.com/cheat/cheat
-	https://github.com/ggreer/the_silver_searcher
 	https://github.com/monochromegane/the_platinum_searcher
 	https://github.com/Canop/broot
-	https://github.com/knqyf263/pet
-	https://github.com/dalance/procs
-	https://github.com/denisidoro/navi
 
