@@ -7,6 +7,7 @@ endif
 
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
 Plug 'liuchengxu/space-vim-dark'
@@ -22,7 +23,7 @@ Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
-Plug 'ap/vim-css-color'                           " Color previews for CSS
+" Plug 'ap/vim-css-color'                           " Color previews for CSS
 " Plug 'vimwiki/vimwiki'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'skywind3000/vim-auto-popmenu'
@@ -52,3 +53,23 @@ if !empty(glob("~/.local.vim"))
     source $HOME/.local.vim
 endif
 
+
+
+
+" let g:Hexokinase_highlighters = ['foregroundfull']
+" let g:Hexokinase_highlighters = ['backgroundfull']
+let g:Hexokinase_highlighters = [ 'background', 'backgroundfull', 'virtual']
+
+let g:Hexokinase_optInPatterns = [
+\     'full_hex',
+\     'triple_hex',
+\     'rgb',
+\     'rgba',
+\     'hsl',
+\     'hsla',
+\ ]
+
+" let g:Hexokinase_refreshEvents = ['BufWrite', 'BufRead', 'TextChanged', 'InsertLeave']
+" let g:Hexokinase_prioritizeHead = 0
+" let g:Hexokinase_highlighters = ['sign_column']
+" let g:Hexokinase_refreshEvents = ['TextChangedI', 'TextChanged']

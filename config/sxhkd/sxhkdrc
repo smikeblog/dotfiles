@@ -39,7 +39,8 @@ super + b
 
 #Picom Toggle
 ctrl + alt + o
-    ~/.config/picom/picom-toggle.sh
+    ~/scripts/toggle_compton
+##    ~/.config/picom/picom-toggle.sh
 
 # quit/restart bspwm
 super + shift + {q,r}
@@ -146,8 +147,8 @@ super + ctrl + shift + space
 # MOVE/RESIZE {{{2
 
 # bspwm_smart_move is part of my dotfiles (link in the description).
-super + alt + {h,j,k,l}
-	bspwm_smart_move {west,south,north,east}
+##super + alt + {h,j,k,l}
+##	bspwm_smart_move {west,south,north,east}
 
 # move the floating windows
 #super + alt + {_,shift + }{h,j,k,l}
@@ -159,8 +160,13 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-40 0,0 40,0 -40,40 0}
 
 #Resize nodes
+##super + alt + {h,j,k,l}
 alt + shift + {h,j,k,l}
- 	bspwm_resize {west,south,north,east} 50
+	bspc node {@west  -r -50 || bspc node @east  -r -50, \ 
+               @south -r +50 || bspc node @north -r +50, \ 
+               @south -r -50 || bspc node @north -r -50, \ 
+               @west  -r +50 || bspc node @east  -r +50] 
+## 	bspwm_resize {west,south,north,east} 50`
 
 # Expand/contract a floating window on all sides.
 super + alt + Left
@@ -283,6 +289,24 @@ alt + @F6
 
 # 2}}}
 
+#super + e : {1-4}
+#super + e : { Home,End,Delete,Left }
+#    { \
+#     bspc node @west -r -150 || bspc node @east -r -150, \
+#     bspc node @west -r +150 || bspc node @east -r +150, \
+#     bspc node @north -r -150 || bspc node @south -r -150, \
+#     bspc node @north -r +150 || bspc node @south -r +150 \
+#}
+
+# Set the node flags.  Locked is a node that cannot be closed with `bspc
+# # node --close`.  Marked is a specific selector that allows operating on
+# # the given item (such as sending the marked item to the newest
+# # preselection).  Sticky stays in the focused desktop.  Private tries to
+# # keep its dimensions and tiling position.
+super + e ; {l,m,s,p}
+    bspc node -g {locked,marked,sticky,private}
+
+
 # GUI -ctrl+g (0-xed,1-qutebrowser,2-vlc,3-vscodium,4-pcmanfm,5-thunderbird)
 super + g ; {0-5}
    { \
@@ -336,7 +360,11 @@ Print
 #
 # Resize node in the given direction.
 super + c : {h,j,k,l}
-  bspwm_resize {west,south,north,east} 50
+	bspc node {@west  -r -50 || bspc node @east  -r -50, \ 
+               @south -r +50 || bspc node @north -r +50, \ 
+               @south -r -50 || bspc node @north -r -50, \ 
+               @west  -r +50 || bspc node @east  -r +50} 
+#  bspwm_resize {west,south,north,east} 50
 
 # Mode for dynamic gaps.
 super + c : bracket{left,right}
