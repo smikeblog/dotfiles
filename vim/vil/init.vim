@@ -56,6 +56,9 @@ endif
 
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Temporary for testing modules
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let g:Hexokinase_highlighters = ['foregroundfull']
 " let g:Hexokinase_highlighters = ['backgroundfull']
@@ -75,7 +78,4 @@ let g:Hexokinase_optInPatterns = [
 " let g:Hexokinase_highlighters = ['sign_column']
 " let g:Hexokinase_refreshEvents = ['TextChangedI', 'TextChanged']
 
-command! LF FloatermNew lf
-
-command! Vifm FloatermNew vifm
 

@@ -44,6 +44,12 @@ set spelllang=en_us,ru_ru
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
 
+" File management
+"" Floaterm lf and vifm
+command! LF FloatermNew lf
+
+command! Vifm FloatermNew vifm
+
 " Nerd tree
 let NERDTreeShowHidden=1
 	" map <leader>n :NERDTreeToggle<CR>
@@ -53,7 +59,7 @@ let NERDTreeShowHidden=1
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " nnoremap <silent> <C-o> :VsplitVifm<cr>
-nnoremap <silent> <F4> :VsplitVifm<cr>
+nnoremap <silent> <F4> :Vifm<cr>
 
 " Shortcutting split navigation, saving a keypress:
 "	map <C-h> <C-w>h

@@ -103,6 +103,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/relastle/pmy
 	https://github.com/dalance/procs
 	https://github.com/ggreer/the_silver_searcher
+	https://github.com/sharkdp/ripgrep
 	https://github.com/lotabout/skim
 	https://github.com/lunaryorn/mdcat
 	https://github.com/dbrgn/tealdeer
@@ -111,9 +112,8 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/bvaisvil/zenith
 
 ### Other mandatory
-	https://github.com/sharkdp/ripgrep
 
-    https://github.com/jarun/buku
+        https://github.com/jarun/buku
 	pip3 install awesome-finder
 	cargo install runiq
 	https://www.soimort.org/translate-shell/
