@@ -105,16 +105,6 @@ cmd zip ${{
     rm -rf $1
 }}
 
-cmd fzf_jump ${{
-   res="$(fd -a | fzf --reverse --header='Jump to location')"
-      if [ -f "$res" ]; then
-           cmd="select"
-	      elif [ -d "$res" ]; then
-	cmd="cd"
-      fi
-   lf -remote "send $id $cmd \"$res\""
-}}
-
 
 # Bindings
 map za    # delete za setting map za set info size:time
@@ -183,7 +173,7 @@ map rc push :rename<space>
 
 ## <Ctrl+f> - jump to a file or directory in lf using fuzzy matching
 cmd fzf_jump ${{
-   res="$(find . -maxdepth 1 | fzf --reverse --header='Jump to location')"
+   res="$(find . -maxdepth 1 | sk --reverse --header='Jump to location')"
    if [ -f "$res" ]; then
      cmd="select"
    elif [ -d "$res" ]; then

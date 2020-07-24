@@ -7,6 +7,7 @@ endif
 
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'voldikss/vim-floaterm'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
@@ -19,7 +20,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
-Plug 'vifm/vifm.vim'
+"Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
@@ -73,3 +74,8 @@ let g:Hexokinase_optInPatterns = [
 " let g:Hexokinase_prioritizeHead = 0
 " let g:Hexokinase_highlighters = ['sign_column']
 " let g:Hexokinase_refreshEvents = ['TextChangedI', 'TextChanged']
+
+command! LF FloatermNew lf
+
+command! Vifm FloatermNew vifm
+
