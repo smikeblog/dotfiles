@@ -103,7 +103,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/doronbehar/pistol
 	https://github.com/relastle/pmy
 	https://github.com/dalance/procs
-	https://github.com/ggreer/the_silver_searcher
 	https://github.com/monochromegane/the_platinum_searcher
 	https://github.com/sharkdp/ripgrep
 	https://github.com/lotabout/skim
@@ -118,6 +117,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://www.soimort.org/translate-shell/
 	https://gitlab.com/wavexx/screenkey
 	https://prettier.io/docs/en/install.html
+	https://github.com/ggreer/the_silver_searcher
 	https://github.com/jarun/buku
 
 ### Other Optional 
