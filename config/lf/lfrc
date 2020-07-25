@@ -183,4 +183,3 @@ lf -remote "send $id $cmd \"$res\""
 }}
 map <c-f> :fzf_jump
 
-

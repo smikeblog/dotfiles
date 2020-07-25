@@ -92,3 +92,11 @@
     lg = log --pretty=format:'%C(yellow)%h%Creset - %Cblue%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     llg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
+[gitidm "smike"]
+	name = SmikeR
+	email = smv31012007@yahoo.ru
+	sshKey = /home/sm/.ssh/id_rsa
+	sshCommand = ssh -i /home/sm/.ssh/id_rsa -o IdentitiesOnly=yes -F /dev/null
+[includeIf "gitdir:/home/sm/.dotfiles/"]
+	idm = smike
+	path = /home/sm/.gitconfig_idm_smike

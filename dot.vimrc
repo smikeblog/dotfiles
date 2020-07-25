@@ -71,6 +71,25 @@ set fillchars=diff:⣿,vert:\|
 set number relativenumber
 highlight LineNr ctermfg=darkgray
 
+" Encoding
+set encoding=utf-8
+
+" Highlight matching search patterns
+set hlsearch
+
+" Enable incremental search
+set incsearch
+
+" Include matching uppercase words with lowercase search term
+set ignorecase
+
+" Include only uppercase words with uppercase search term
+set smartcase
+
+" Store info from no more than 100 files at a time, 9999 lines of text
+" 100kb of data. Useful for copying large amounts of data between files.
+set viminfo='100,<9999,s100
+
 " -----------------------------------------------------------------------------
 " Status line  from: https://github.com/nickjj/dotfiles/blob/master/.vimrc
 " -----------------------------------------------------------------------------
@@ -112,28 +131,41 @@ let &statusline = s:statusline_expr()
 "set statusline+=\  		    " Padding
 "" 2}}}
 
-" Encoding
-set encoding=utf-8
+""""""=== Y >,< <l>rc <l>cc <l>s ===================================== {{{
 
-" Highlight matching search patterns
-set hlsearch
+" Quickly select the text that was just pasted. This allows you to, e.g.,
+" indent it after pasting.
+noremap gV `[v`]
 
-" Enable incremental search
-set incsearch
+" Stay in visual mode when indenting. You will never have to run gv after
+" performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
 
-" Include matching uppercase words with lowercase search term
-set ignorecase
+" Make Y yank everything from the cursor to the end of the line. This makes Y
+" act more like C or D because by default, Y yanks the current line (i.e. the
+" same as yy).
+noremap Y y$
 
-" Include only uppercase words with uppercase search term
-set smartcase
+" In command mode (i.e. after pressing ':'), expand %% to the path of the current
+" buffer. This allows you to easily open files from the same directory as the
+" currently opened file.
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-" Store info from no more than 100 files at a time, 9999 lines of text
-" 100kb of data. Useful for copying large amounts of data between files.
-set viminfo='100,<9999,s100
+" Allows you to easily replace the current word and all its occurrences.
+nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
+vnoremap <Leader>rc y:%s/<C-r>"/
+
+" Allows you to easily change the current word and all occurrences to something
+" else. The difference between this and the previous mapping is that the mapping
+" below pre-fills the current word for you to change.
+nnoremap <Leader>cc :%s/\<<C-r><C-w>\>/<C-r><C-w>
+vnoremap <Leader>cc y:%s/<C-r>"/<C-r>"
 
 " Sort lines in alphabetical order
 vnoremap <leader>s :'<,'>!sort -f<cr>
 
+""""""======================================== }}}
 " Visual Mode */# from Scrooloose {{{
 
 function! s:VSetSearch()

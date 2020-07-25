@@ -27,3 +27,8 @@
   description = "dump iso image to disk-usb if=inputFile of=outputDisk"
   command = "sudo dd bs=4M <InputISO=if-Downloads/My.iso> <OutputDisk=of-/dev/sdX> && sync"
   output = ""
+
+[[snippets]]
+  description = "create a log file nvim.log with verbose level 10"
+  command = "nvim -V10nvim.log"
+  output = ""
