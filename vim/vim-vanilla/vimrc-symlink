@@ -766,3 +766,22 @@ if filereadable(expand("$HOME/.dotfiles/vim/dot.vim/calendar.vim"))
   source $HOME/.dotfiles/vim/dot.vim/calendar.vim "{{{}}}
 endif
 
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 9000)
+augroup END
+
+function! s:FzfSpellSink(word)
+  exe 'normal! "_ciw'.a:word
+endfunction
+
+
+function! FzfSpell()
+  let suggestions = spellsuggest(expand("<cword>"))
+  return fzf#run(fzf#wrap({'source': suggestions, 'sink': function("s:FzfSpellSink"), 'down':10}))
+endfunction
+
+nnoremap z= :call FzfSpell()<CR>
+
+let g:languagetool_server_jar='$HOME/.vim/LanguageTool/languagetool-server.jar'
+

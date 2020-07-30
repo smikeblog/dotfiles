@@ -16,6 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'bling/vim-airline'
@@ -30,6 +31,7 @@ Plug 'kovetskiy/sxhkd-vim'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
 Plug 'laher/fuzzymenu.vim'
+Plug 'SidOfc/mkdx'
 
 call plug#end()
 """ }}}
@@ -78,4 +80,14 @@ let g:Hexokinase_optInPatterns = [
 " let g:Hexokinase_highlighters = ['sign_column']
 " let g:Hexokinase_refreshEvents = ['TextChangedI', 'TextChanged']
 
+function! s:FzfSpellSink(word)
+  exe 'normal! "_ciw'.a:word
+endfunction
+
+function! FzfSpell()
+  let suggestions = spellsuggest(expand("<cword>"))
+  return fzf#run(fzf#wrap({'source': suggestions, 'sink': function("s:FzfSpellSink"), 'down':10}))
+endfunctio
+
+nnoremap z= :call FzfSpell()<CR>
 
