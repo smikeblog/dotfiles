@@ -754,7 +754,7 @@ command! Vifm FloatermNew vifm
 nnoremap <silent> <F4> :Vifm<cr>
 
 """ ====== LOCALIZATION =================
-let g:calendar_weeknm = 1 " WK01
+let g:calendar_weeknm=1 " WK01
 
 if filereadable(expand("$HOME/.vimrc.local"))
   source $HOME/.vimrc.local"{{{}}}

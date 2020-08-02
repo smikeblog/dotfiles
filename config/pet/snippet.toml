@@ -32,3 +32,8 @@
   description = "create a log file nvim.log with verbose level 10"
   command = "nvim -V10nvim.log"
   output = ""
+
+[[snippets]]
+  description = "find all broken sym links in current directory"
+  command = "find . -type l ! -exec test -e {} \\; -print"
+  output = ""

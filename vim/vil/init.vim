@@ -7,6 +7,7 @@ endif
 
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
+
 Plug 'voldikss/vim-floaterm'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'
@@ -21,6 +22,10 @@ Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/0.x'
+  \ }
 "Plug 'vifm/vifm.vim'
 Plug 'elentok/plaintasks.vim'
 " Highlight Yanked String
