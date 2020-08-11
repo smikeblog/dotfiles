@@ -91,7 +91,6 @@ c.aliases['burp'] = 'set content.proxy http://127.0.0.1:8080/'
 c.aliases['noburp'] = 'set content.proxy system'
 c.aliases['mystyles'] = 'set content.user_stylesheets ~/.local/share/qutebrowser/userstylesheets/default.css'
 c.aliases['nomystyles'] = 'set content.user_stylesheets ""'
-
 stylesheetdir='~/.local/share/qutebrowser/userstylesheets/'
 c.content.user_stylesheets = [stylesheetdir + 'default.css']
 

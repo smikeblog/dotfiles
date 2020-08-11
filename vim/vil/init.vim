@@ -8,6 +8,7 @@ endif
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'j5shi/CommandlineComplete.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'

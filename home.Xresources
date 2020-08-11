@@ -5,6 +5,15 @@
 ! |____/ |_|  	
 
 
+*.highlightColor:#3A3F4B
+*.foreground:    #ebdbb2 
+*.font: monospace:size=11
+*.alpha: 0.92
+*.alphaUnfocussed: 0.90
+*.background: #07080f
+!*.cursorColor: #01940b
+
+
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true

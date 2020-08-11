@@ -215,6 +215,8 @@ fi
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias  k='k -h'
 # Pipe Aliases
+alias -g V='| vim -'
+alias -g DN='&> /dev/null'
 alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '
