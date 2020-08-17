@@ -83,7 +83,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
    #}}}
 
-## Other used Tools
+## Other used Tools                                        {{{
     Ranger filemaneger: https://github.com/ranger/ranger
     and mpv image preview method: https://github.com/ranger/ranger/wiki/Image-Previews
 	pip install ranger-fm
@@ -112,19 +112,18 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/wfxr/forgit
 	https://github.com/bvaisvil/zenith
 
-### Other Mandatory 
-
+### Other Mandatory
 	https://www.soimort.org/translate-shell/
 	https://gitlab.com/wavexx/screenkey
 	https://prettier.io/docs/en/install.html
 	https://github.com/ggreer/the_silver_searcher
 	https://github.com/jarun/buku
 
-### Other Optional 
-
+### Other Optional
 	pacman -S shellcheck
 	https://github.com/mvdan/sh
 	pip3 install awesome-finder
 	cargo install runiq
+	https://github.com/athityakumar/colorls
 	https://github.com/Canop/broot
-
+#### }}}
