@@ -126,4 +126,5 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	cargo install runiq
 	https://github.com/athityakumar/colorls
 	https://github.com/Canop/broot
+	https://gitlab.com/dwt1/shell-color-scripts
 #### }}}

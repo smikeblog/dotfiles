@@ -7,6 +7,7 @@
 #
 # Dmenu script for editing some of my more frequently edited config files.
 
+sleep 0.2
 
 declare -a options=(" awesome 
  bash 
