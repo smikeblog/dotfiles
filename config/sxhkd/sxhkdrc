@@ -75,7 +75,7 @@ super + d
 
 ### }}}
 
-# FOCUS/SWAP ============================= {{{
+# FOCUS/ROTATE/SWAP ============================= {{{
 #
 
 # Flip layout vertically/horizontally
@@ -307,13 +307,13 @@ super + e ; {l,m,s,p}
     bspc node -g {locked,marked,sticky,private}
 
 
-# GUI -ctrl+g (0-xed,1-qutebrowser,2-vlc,3-vscodium,4-pcmanfm,5-thunderbird)
+# GUI -ctrl+g (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
 super + g ; {0-5}
    { \
      notify-send -i xed "Run GUI program" "Launching Xed TextEditor" && xed, \
      notify-send -i qutebrowser "Run GUI program" "Launching Web Browser" && qutebrowser, \
      notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
-     notify-send -i vscodium "Run GUI program" "Launching VS Codium" && vscodium, \
+     notify-send -i vscode "Run GUI program" "Launching VS Code" && code, \
      notify-send -i system-file-manager "Run GUI program" "Launching File Manager" && pcmanfm, \
      notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
    }

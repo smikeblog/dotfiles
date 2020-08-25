@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sleep 0.2
+
 # Move floating windows around
 
 # Defaults

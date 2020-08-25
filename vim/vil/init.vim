@@ -93,7 +93,7 @@ endfunction
 function! FzfSpell()
   let suggestions = spellsuggest(expand("<cword>"))
   return fzf#run(fzf#wrap({'source': suggestions, 'sink': function("s:FzfSpellSink"), 'down':10}))
-endfunctio
+endfunction
 
 nnoremap z= :call FzfSpell()<CR>
 
