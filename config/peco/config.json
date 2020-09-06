@@ -1,8 +1,8 @@
 {
-  "Prompt": "🐶  pet>",
+  "Prompt": "🦊  pet>",
   "Style": {
     "Basic": ["on_default", "default"],
-    "SavedSelection": ["bold", "on_yellow", "white"],
+    "SavedSelection": ["bold", "on_magenta", "white"],
     "Selected": ["bold", "on_white", "black"],
     "Query": ["yellow", "bold"],
     "Matched": ["magenta", "bold"]

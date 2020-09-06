@@ -66,3 +66,5 @@ export PATH
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # [ -f $HOME/scripts/linux-console-colors-from-xresources ] && source "$HOME/scripts/linux-console-colors-from-xresources"
+
+export PATH="$HOME/.cargo/bin:$PATH"
