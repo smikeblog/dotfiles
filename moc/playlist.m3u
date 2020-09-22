@@ -1,25 +1,21 @@
 #EXTM3U
 #MOCSERIAL: 256
-#EXTINF:-1,Hit FM
-http://rmgradio.gcdn.co/hit_m.mp3
 #EXTINF:-1,Русское Радио
-http://icecast.russkoeradio.cdnvideo.ru:8000/rr_m.mp3
+http://rusradio.hostingradio.ru/rusradio128.mp3
 #EXTINF:-1,Радиола
 http://online1.gkvr.ru:8000/radiola_eka_64.aac
 #EXTINF:-1,АвтоРадио
-http://ic2.101.ru:8000/v3_1
+http://pub0102.101.ru:8000/stream/air/aac/64/100
 #EXTINF:-1,Медляк FM
 http://air.radiorecord.ru:8102/mdl_320
+#EXTINF:-1,Вести ФМ
+http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps
 #EXTINF:-1,Эльдорадио
 http://emgspb.hostingradio.ru/eldoradio128.mp3
 #EXTINF:-1,Релакс ФМ
 http://ic7.101.ru:8000/v13_1
-#EXTINF:-1,Радио Дача
-http://listen10.vdfm.ru:8000/dacha
 #EXTINF:-1,Ретро FM
 http://retro256.streamr.ru
-#EXTINF:-1,Romantika
-http://ic3.101.ru:8000/s30
 #EXTINF:-1,Радио 7 на семи холмах
 http://radio7server.streamr.ru:8040/radio7256.mp3
 #EXTINF:-1,Маяк
