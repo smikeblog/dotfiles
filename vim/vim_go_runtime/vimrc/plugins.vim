@@ -1,14 +1,21 @@
+" disable Python 2 support:
+let g:loaded_python_provider = 0
+
 " Load pathogen paths
 "call pathogen#infect('~/.vim_go_runtime/bundle/forked/{}')
 "call pathogen#infect('~/.vim_go_runtime/bundle/pristine/{}')
 "call pathogen#helptags()
 
-call plug#begin('~/.vim_go_runtime/plugins')
+call plug#begin('~/.vim/plugins')
 	Plug 'mileszs/ack.vim'
 	Plug 'jiangmiao/auto-pairs.git'
 	" NERDTree: {{{
 	  " NERDTree... tree explorer for vim
-	  Plug 'scrooloose/nerdtree'
+	Plug 'scrooloose/nerdtree'
+	" Navigate and manipulate files in a tree view.
+    Plug 'lambdalisue/nerdfont.vim'
+    Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+	Plug 'lambdalisue/fern.vim'
 	Plug 'rbgrouleff/bclose.vim'
 	Plug 'corntrace/bufexplorer'
 	Plug 'godlygeek/csapprox'
@@ -20,6 +27,9 @@ call plug#begin('~/.vim_go_runtime/plugins')
 	Plug 'Shougo/neocomplete.vim'
 	Plug 'Shougo/neosnippet.vim'
 	Plug 'fatih/vim-go'
+    "Plug 'govim/govim'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'yami-beta/asyncomplete-omni.vim'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'majutsushi/tagbar'
 	Plug 'morhetz/gruvbox'
@@ -56,13 +66,14 @@ let NERDTreeShowLineNumbers = 1
 let NERDTreeAutoCenter = 1
 
 " Open NERDTree on startup, when no file has been specified
-autocmd VimEnter * if !argc() | NERDTree | endif
+"autocmd VimEnter * if !argc() | NERDTree | endif
 
 " Locate file in hierarchy quickly
 map <leader>T :NERDTreeFind<cr>
 
 " Toogle on/off
-nmap <leader>o :NERDTreeToggle<cr>
+"nmap <F3> :NERDTreeToggle<cr>
+nmap <F3> :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
 " nmap <leader>n :NERDTreeToggle<cr>
 
 "------------------------------------------------------------------------------
@@ -221,3 +232,41 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+"------------------------------------------------------------------------------
+" govim
+"------------------------------------------------------------------------------
+" for the appropriate setting for your terminal. Note that despite the
+" automated tests using xterm as the terminal, a setting of ttymouse=xterm
+" does not work correctly beyond a certain column number (citation needed)
+" hence we use ttymouse=sgr
+set ttymouse=sgr
+
+" Suggestion: By default, govim populates the quickfix window with diagnostics
+" reported by gopls after a period of inactivity, the time period being
+" defined by updatetime (help updatetime). Here we suggest a short updatetime
+" time in order that govim/Vim are more responsive/IDE-like
+set updatetime=500
+
+" Suggestion: To make govim/Vim more responsive/IDE-like, we suggest a short
+" balloondelay
+set balloondelay=250
+
+" Suggestion: Turn on the sign column so you can see error marks on lines
+" where there are quickfix errors. Some users who already show line number
+" might prefer to instead have the signs shown in the number column; in which
+" case set signcolumn=number
+set signcolumn=yes
+
+" Suggestion: define sensible backspace behaviour. See :help backspace for
+" more details
+set backspace=2
+
+" Suggestion: show info for completion candidates in a popup menu
+if has("patch-8.1.1904")
+  set completeopt+=popup
+  set completepopup=align:menu,border:off,highlight:Pmenu
+endif
+
+
+
