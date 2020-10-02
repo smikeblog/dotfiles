@@ -236,6 +236,10 @@ super + w
 #    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
 # 3}}}
 
+# description: show active window
+super + alt + space
+    st -e ~/.local/bin/bspwm-scripts/bspwm_show_active
+
 # description: terminal emulator {{{3
 super + Return
 	st
