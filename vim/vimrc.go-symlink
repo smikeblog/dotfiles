@@ -4,6 +4,7 @@ source $HOME/.vim_go_runtime/vimrc/basic.vim
 source $HOME/.vim_go_runtime/vimrc/filetypes.vim
 source $HOME/.vim_go_runtime/vimrc/plugins.vim
 source $HOME/.vim_go_runtime/vimrc/extended.vim
+source $HOME/.vim_go_runtime/vimrc/fernn.vim
 
 try
   source $HOME/.vim_go_runtime/minvimgo.vimrc
