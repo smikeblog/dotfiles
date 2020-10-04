@@ -140,7 +140,7 @@ sub open_smart
 					my $k = shift;
 					return $ENV{$k} if $ENV{$k};
 					my %backup = (
-						"TERM" => "urxvt",
+						"TERM" => "xterm",
 						"VISUAL" => "vim",
 					);
 					return $backup{$k} if $backup{$k};
