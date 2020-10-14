@@ -466,7 +466,7 @@ nnoremap cc cw<c-u>
 nnoremap A cw
 
 " Open console in current directory
-nnoremap ,t :!st &<cr>
+nnoremap ,t :!st 2>/dev/null &<CR>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart<cr>

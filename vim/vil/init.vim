@@ -38,6 +38,7 @@ Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
 Plug 'laher/fuzzymenu.vim'
 Plug 'SidOfc/mkdx'
+Plug 'chrisbra/vim-zsh'
 
 call plug#end()
 """ }}}

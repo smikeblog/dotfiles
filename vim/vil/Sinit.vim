@@ -1,4 +1,7 @@
 let mapleader =","
+" prevent clipboard regidter error 
+let g:yankring_clipboard_monitor=0
+
 " let g: highlightedyank_highlight_duration = 1000
 
 set bg=dark
