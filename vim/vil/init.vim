@@ -8,6 +8,10 @@ endif
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
+Plug 'haorenW1025/floatLf-nvim'
+
 Plug 'j5shi/CommandlineComplete.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }

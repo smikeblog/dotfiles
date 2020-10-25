@@ -295,3 +295,4 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
 fi
 
 source $HOME/.dotfiles/home.local/bin/currentwordcompletion.zsh
+alias vilu="nvim -u ~/.config/nvimDj/init.vim" 

@@ -19,6 +19,10 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
 # ,m opens page with mpv
+config.bind('M', 'hint links spawn mpv {hint-url}')
+config.bind('Z', 'hint links spawn st -e youtube-dl {hint-url}')
+config.bind('t', 'set-cmd-text -s :open -t')
+
 config.bind(',l', 'spawn --detach open-youtube {url}')
 # ,M hints and oens choice with mpv
 config.bind(',L', 'hint links spawn --detach open-youtube {hint-url}')
@@ -42,6 +46,8 @@ config.bind(',Q', 'hint links spawn --detach qrcode {hint-url}')
 c.tabs.position = 'left'
 
 c.tabs.show = 'switching'
+
+config.bind('xt', 'config-cycle tabs.show always never')
 
 # Width (in pixels or as percentage of the window) of the tab bar if
 # it's vertical.
