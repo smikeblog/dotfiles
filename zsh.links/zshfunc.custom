@@ -295,7 +295,7 @@ fif() {
   if [ ! "$#" -gt 0 ]; then
     echo "Need a string to search for! usage: fif <SEARCH_TERM>";
     return 1;
-  fi  
+  fi
     rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
@@ -442,9 +442,19 @@ function swap() {
 }
 ## }}}
 #
+function ff {
+  command fd -p "${PWD}.*$1" ${@:2}
+}
+#
 #-------------------------------------------------------
 # Print all histories
 function history-all { history -E 1 }
+
+# fh - "find [in] history"
+# Inspired by: https://github.com/junegunn/fzf/wiki/examples#command-history
+function fh() {
+  print -z $(fc -l 1 | sk --no-multi --tac -q "$*" | sed 's/ *[0-9]*\*\{0,1\} *//')
+}
 
 #-------------------------------------------------------
 zsh_stats()
@@ -514,24 +524,6 @@ function peco-kill-process() {
 alias killp='peco-kill-process'
 
 #-------------------------------------------------------
-# from : https://gist.github.com/yuttie/2aeaecdba24256c73bf2
-# Search shell history with peco: https://github.com/peco/peco
-# Adapted from: https://github.com/mooz/percol#zsh-history-search
-if which peco &> /dev/null; then
-  function peco_select_history() {
-    local tac
-    { which gtac &> /dev/null && tac="gtac" } || \
-      { which tac &> /dev/null && tac="tac" } || \
-      tac="tail -r"
-    BUFFER=$(fc -l -n 1 | eval $tac | \
-                peco --query "$LBUFFER")
-    CURSOR=$#BUFFER # move cursor
-    zle -R -c       # refresh
-  }
-
-  zle -N peco_select_history
-  bindkey '^H' peco_select_history
-fi
 #---------list-all-man-pages----------------------------  {{{
 # http://qiita.com/Linda_pp/items/9ff801aa6e00459217f7
 function list-all-man-pages() {
@@ -594,10 +586,10 @@ aget () {
 }
 
 # fzf
-zzh() {
+zzzh() {
   du -a ~/ | awk '{print $2}' | fzf | xargs -r $EDITOR
 }
-zz() {
+zzz() {
   du -a . | awk '{print $2}' | fzf | xargs -r $EDITOR
 }
 
@@ -605,4 +597,29 @@ function ru() { trans en:ru "$*" }
 function en() { trans ru:en "$*" }
 
 ##### THE END ***
+
+
+
+smfzf-cd-widget() {
+  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+    -o -type d -print 2> /dev/null | cut -b3-"}"
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+  if [[ -z "$dir" ]]; then
+    zle redisplay
+    return 0
+  fi
+  if [ -z "$BUFFER" ]; then
+    BUFFER="cd ${(q)dir}"
+    zle accept-line
+  else
+    print -sr "cd ${(q)dir}"
+    cd "$dir"
+  fi
+  local ret=$?
+  unset dir # ensure this doesn't end up appearing in prompt expansion
+  zle fzf-redraw-prompt
+  return $ret
+}
+zle -N smfzf-cd-widget
 

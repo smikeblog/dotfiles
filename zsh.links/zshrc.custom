@@ -22,52 +22,15 @@ fi
 bindkey -v
 export KEYTIMEOUT=1
 
-### time consuming node ruby python env sol-s {{{2
-#### NODE
-if [ -d $HOME/.yarn/bin ] && [ -d $HOME/.nvm ]; then
-	# Add yarn bin
-	export PATH=$PATH:$HOME/.yarn/bin
-
-	## solution from https://github.com/nvm-sh/nvm/issues/1277
-	##declare -a NODE_GLOBALS_NPM=(`find $HOME/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*'`)
-	declare -a NODE_GLOBALS_YARN=(`find $HOME/.yarn/bin -maxdepth 3 -type l -wholename '*/bin/*'`)
-	declare -a NODE_GLOBALS=(`echo $NODE_GLOBALS_NPM $NODE_GLOBALS_YARN | xargs -n1 basename | sort | uniq`)
-	NODE_GLOBALS+=("node")
-	NODE_GLOBALS+=("nvm")
-
-	load_nvm () {
-	    export NVM_DIR=$HOME/.nvm
-	    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-	    export NODE_PATH="$NVM_BIN"
-	}
-
-	for cmd in "${NODE_GLOBALS[@]}"; do
-	    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-	done
-fi
-### 2}}}
-
-# us
-if _has rg; then
-  export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-fi
-# defines the fuzzy completion trigger as **
-export FZF_COMPLETION_TRIGGER='**' # change ** to whatever
-
-# load completions and styles
-if [[ -f  $HOME/.dotfiles/zsh.links/zshcompletion ]]; then
-  source $HOME/.dotfiles/zsh.links/zshcompletion
-fi
-# fzf via system package manager
-if [ -e /usr/share/fzf/completion.zsh ]; then
-  source /usr/share/fzf/key-bindings.zsh
-  source /usr/share/fzf/completion.zsh
-fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if [ -e $HOME/.dotfiles/tools/sk ]; then
   source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
   source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
+fi
+
+# fzf via system package manager
+if [ -e $HOME/.fzf/shell/completion.zsh ]; then
+  source $HOME/.fzf/shell/key-bindings.zsh
+  source $HOME/.fzf/shell/completion.zsh
 fi
 
 # use vim as manpager
@@ -90,32 +53,6 @@ bindkey '^e' edit-command-line
 # bindkey -s '^u' 'fzf-url.sh\n'
  bindkey -s '^u' 'mrofi\n'
 
-# automatically remove duplicates from these arrays
-typeset -U path cdpath fpath manpath
-
-# Fix $TERM if a terminfo for the terminal is not available {{{1
-if ! infocmp "$TERM" >/dev/null 2>&1; then
-  if [ "$TERM" = "rxvt-unicode-256color" ]; then
-    if infocmp "rxvt-256color" >/dev/null 2>&1; then
-      TERM="rxvt-256color"
-    fi
-  fi
-  if [ "$TERM" = "tmux-256color" ]; then
-    if infocmp "screen-256color" >/dev/null 2>&1; then
-      TERM="screen-256color"
-    fi
-  fi
-fi
-
-# Force 256-colorization by correcting TERM variable
-if [[ "$TERM" == "xterm" && -e /usr/share/terminfo/x/xterm-256color ]]; then
-    TERM="xterm-256color"
-elif [[ "$TERM" == "screen" && -e /usr/share/terminfo/s/screen-256color ]]; then
-    TERM="screen-256color"
-elif [[ "$TERM" == "screen-bce" && -e /usr/share/terminfo/s/screen-256color-bce ]]; then
-    TERM="screen-256color-bce"
-fi
-###  1}}}
 ### ----------------------------------------------------
 ## use lf as cd utility with Ctrl+o binding  {{{1
 lfcd () {
@@ -145,23 +82,10 @@ bindkey -s "^P" "ranger_cd\n"
 ###   2}}}
 ## 1}}}
 
-# show vim mode on RPS - insert or normal {{{2
-# http://zshwiki.org/home/examples/zlewidgets
-#function zle-line-init zle-keymap-select {
-#    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#    RPS2=$RPS1
-#    zle reset-prompt
-#}
-
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-## next 2 lines for NORMAL default mode
-#zle-line-init() { zle -K vicmd; }
-#zle -N zle-line-init
-# 2}}}
-
 ## some aliases   {{{1
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
+alias vilu="nvim -u ~/.config/nvimDj/init.vim" 
+
 if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
 fi
@@ -178,7 +102,11 @@ alias vin="nvim -N -u NONE -U NONE $1"
 
 alias vidt="nvim -u ~/.dotfiles/initDT.vim $1"
 
-alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
+alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
+
+if _has vifm; then
+  alias vv='COLORTERM=tmux-256color vifm -c "vsplit" . ' # vi file manager
+fi
 
 # cli translate  - https://github.com/soimort/translate-shell
 alias trans-enru='trans -shell en:ru '
@@ -257,16 +185,12 @@ fi
 ##   1}}}
 
 # pmy go fzf helper  Ctrl-<Space>
-[ -f $HOME/.dotfiles/tools/pmy ] && eval "$(pmy init)"
+# [ -f $HOME/.dotfiles/tools/pmy ] && eval "$(pmy init)"
 
 # navi cli cheat completion utility Ctrl+G
 if [ -e $HOME/.config/navi ]; then
 #  source "$(navi widget zsh)"
   source <(navi widget zsh)
-fi
-# ls alternative file manip utility  - br
-if [ -f /usr/bin/broot ]; then
-  source /home/sm/.config/broot/launcher/bash/br
 fi
 
 alias bb='b $(buku -p -f 10 | fzf)'
@@ -287,12 +211,74 @@ alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-bindkey "^b" fzf-cd-widget
-#
+
+## Peco Functions 
+function peco-files() {
+  local current_lbuffer="$LBUFFER"
+  local current_rbuffer="$RBUFFER"
+  if command -v fd >/dev/null 2>&1; then
+    local file="$(command fd --type file --hidden --no-ignore --exclude .git/ --color never 2>/dev/null | peco)"
+  elif command -v rg >/dev/null 2>&1; then
+    local file="$(rg --glob "" --files --hidden --no-ignore-vcs --iglob !.git/ --color never 2>/dev/null | peco)"
+  elif command -v ag >/dev/null 2>&1; then
+    local file="$(ag --files-with-matches --unrestricted --skip-vcs-ignores --ignore .git/ --nocolor -g "" 2>/dev/null | peco)"
+  else
+    local file="$(
+    command find \( -path '*/\.*' -o -fstype dev -o -fstype proc \) -type f -print 2> /dev/null \
+      | sed 1d \
+      | cut -b3- \
+      | awk '{a[length($0)" "NR]=$0}END{PROCINFO["sorted_in"]="@ind_num_asc"; for(i in a) print a[i]}' - \
+      | peco
+    )"
+  fi
+
+  if [ -n "$file" ]; then
+    file=$(echo "$file" | tr --delete '\n')
+    file=$(printf %q "$file")
+    BUFFER="${current_lbuffer}${file}${current_rbuffer}"
+    CURSOR=$#BUFFER
+  fi
+}
+zle -N peco-files
+bindkey '^Xf' peco-files
+
+#if [[ -z "$ZSH_CDR_DIR" ]]; then
+#  ZSH_CDR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/cdr"
+#fi
+#mkdir --parents "$ZSH_CDR_DIR"
+
+#autoload -Uz chpwd_recent_dirs cdr
+#autoload -U add-zsh-hook
+#add-zsh-hook chpwd chpwd_recent_dirs
+#zstyle ':chpwd:*' recent-dirs-file "$ZSH_CDR_DIR"/recent-dirs
+#zstyle ':chpwd:*' recent-dirs-max 1000
+# fall through to cd
+#zstyle ':chpwd:*' recent-dirs-default yes
+
+
+# anyframeのセットアップ
+#zinit light mollifier/anyframe
+# Ctrl+x -> b
+# peco でディレクトリの移動履歴を表示
+bindkey '^xb' anyframe-widget-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# Ctrl+x -> r
+# peco でコマンドの実行履歴を表示
+bindkey '^xr' anyframe-widget-execute-history
+
+# Ctrl+x -> Ctrl+b
+# peco でGitブランチを表示して切替え
+bindkey '^x^b' anyframe-widget-checkout-git-branch
+
+# Ctrl+x -> Ctrl+k 
+# peco kill process
+bindkey '^x^k' anyframe-widget-kill
+
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
     /opt/shell-color-scripts/colorscript.sh random
+    alias d='/opt/shell-color-scripts/colorscript.sh random'
 fi
 
-source $HOME/.dotfiles/home.local/bin/currentwordcompletion.zsh
-alias vilu="nvim -u ~/.config/nvimDj/init.vim" 

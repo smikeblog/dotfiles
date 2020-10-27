@@ -220,6 +220,7 @@ super + shift + b
 # description: Undo balancing (equalize windows)
 super + ctrl + b
 	bspc node @/ -E
+
 # 2}}}
 
 # APPLICATION KEYBINDINGS (Super + Alt + Key) {{{2
@@ -327,13 +328,14 @@ super + e ; {l,m,s,p}
 
 # GUI -ctrl+g 
 # description: (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
-super + g ; {0-5}
+super + g ; {0-7}
    { \
+     notify-send -i xx "NOT USED" "Launchers 1 ... 5\n 1. Xed\n 2. Qutebrowser\n 3. VLC Player\n 4. VSCode IDE\n 5. PcMan FileN\n 6. Thunderburd Email\n" && xx, \
      notify-send -i xed "Run GUI program" "Launching Xed TextEditor" && xed, \
      notify-send -i qutebrowser "Run GUI program" "Launching Web Browser" && qutebrowser, \
      notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
-     notify-send -i vscode "Run GUI program" "Launching VS Code" && code, \
-     notify-send -i system-file-manager "Run GUI program" "Launching File Manager" && pcmanfm, \
+     notify-send -i system-file-manager "Run GUI " "Launching File Manager" && pcmanfm, \
+     notify-send -u low vscode "Run GUI program" "Launching VS Code" && code, \
      notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
    }
 
