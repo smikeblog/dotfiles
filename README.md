@@ -39,9 +39,12 @@ My dotfile configuration
 ##  7.  make links to zsh and vim lite configs
 ### 7.1 zsh
 	  ln -s ~/.dotfiles/zsh.links/profile ~/.profile
-	  ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc
 	  ln -s ~/.dotfiles/zsh.links/zshrc.custom ~/.zshrc.custom
 	  ln -s ~/.dotfiles/zsh.links/zshfunc.custom ~/.zshfunc.custom
+     a) for zgit manager and prezto prompt 
+	  ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc
+     b) for zinit manager and powerlevel10k pure theme run script
+      ~/.dotfiles/zinit/installLink.sh 
 ### 7.2 vifm
 	  ln -s ~/.dotfiles/vifm/ ~/.config/
 ### 7.3 nvim
