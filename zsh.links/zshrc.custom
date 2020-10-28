@@ -126,6 +126,9 @@ alias sm.antivir='sudo rkhunter -c'
 alias s3='$HOME/space/sublime_text_3/sublime_text -a '
 
 # utils
+if ! _has l; then
+  alias l=lsd
+fi
 # https://github.com/athityakumar/colorls
 if _has exa; then
   alias lx='exa --color=always --group-directories-first'
@@ -193,7 +196,7 @@ if [ -e $HOME/.config/navi ]; then
   source <(navi widget zsh)
 fi
 
-alias bb='b $(buku -p -f 10 | fzf)'
+alias bb='$BROWSER $(buku -p -f 10 | fzf)'
 alias bspk="~/.config/sxhkd/show_help.sh"
 
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
@@ -260,7 +263,7 @@ bindkey '^Xf' peco-files
 #zinit light mollifier/anyframe
 # Ctrl+x -> b
 # peco でディレクトリの移動履歴を表示
-bindkey '^xb' anyframe-widget-cdr
+bindkey '^x^f' anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
@@ -275,6 +278,10 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 # Ctrl+x -> Ctrl+k 
 # peco kill process
 bindkey '^x^k' anyframe-widget-kill
+
+# Ctrl+x -> Ctrl+g 
+# peco kill process
+bindkey '^x^g' anyframe-widget-select-widget
 
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then

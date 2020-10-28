@@ -86,9 +86,9 @@ else
 fi
 
 # EDITOR
-if _has nvim; then
+if _has vim; then
   export EDITOR=vim VISUAL=vim
-elif _has vim; then
+elif _has nvim; then
   export EDITOR=nvim VISUAL=nvim
 elif _has vi; then
   export EDITOR=vi VISUAL=vi
@@ -597,29 +597,4 @@ function ru() { trans en:ru "$*" }
 function en() { trans ru:en "$*" }
 
 ##### THE END ***
-
-
-
-smfzf-cd-widget() {
-  local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  if [ -z "$BUFFER" ]; then
-    BUFFER="cd ${(q)dir}"
-    zle accept-line
-  else
-    print -sr "cd ${(q)dir}"
-    cd "$dir"
-  fi
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle fzf-redraw-prompt
-  return $ret
-}
-zle -N smfzf-cd-widget
 

@@ -13,7 +13,8 @@ settings:
   bindings.commands:
     global:
       normal:
-        sm: open https://smike.gq
+        sg: open https://github.com/smikeblog
+        sm: open https://smike.ga
         xb: config-cycle tabs.show always switching
         xt: config-cycle statusbar.hide
         xx: config-cycle statusbar.hide ;; config-cycle tabs.show always switching
@@ -22,7 +23,7 @@ settings:
   statusbar.hide:
     global: false
   tabs.show:
-    global: always
+    global: never
   url.searchengines:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
