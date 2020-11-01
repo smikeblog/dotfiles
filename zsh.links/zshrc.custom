@@ -83,9 +83,15 @@ bindkey -s "^P" "ranger_cd\n"
 ## 1}}}
 
 ## some aliases   {{{1
-# Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
-alias vilu="nvim -u ~/.config/nvimDj/init.vim" 
+# Alias for altering some symbol with newline
+# Example: echo $PATH TRN :
+__rt__() { tr -- "$2" "$1" ; }
+alias -g TRN='| __rt__ "\n" '
 
+alias vilu="nvim -u ~/.config/nvimDj/init.vim" 
+alias vlua="nvim -u ~/.config/nvimLua/init.vim" 
+
+# Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
 fi
@@ -147,7 +153,8 @@ alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias  k='k -h'
 # Pipe Aliases
 alias -g V='| vim -'
-alias -g DN='&> /dev/null'
+alias -g NE='2> /dev/null'
+alias -g NUL='&> /dev/null'
 alias -g W=' | writecmd '
 alias -g S=' | sort '
 alias -g P=' | peco '

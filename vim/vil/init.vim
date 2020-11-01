@@ -6,7 +6,7 @@ if ! filereadable(expand('~/.local/share/nvim/autoload/plug.vim'))
 endif
 
 """ Plugins and vim-plug   {{{
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.local/share/nvim/pluvled')
 
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'

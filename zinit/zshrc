@@ -209,3 +209,4 @@ export PATH="$PATH:$HOME/.dotfiles/tools"
 if [[ -f ~/.zshrc.custom ]]; then
   source ~/.zshrc.custom
 fi
+fpath+=${ZDOTDIR:-~}/.zsh_functions

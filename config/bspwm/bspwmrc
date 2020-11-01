@@ -4,39 +4,68 @@
 export WIRELESS=wlan0
 export mNETWORK=eth1
 
-sxhkd -c ./config/sxhkd/sxhkdrc &
+sxhkd -m 1 &
+#sxhkd -c ./config/sxhkd/sxhkdrc &
 # picom --experimental-backends &
 ## exec picom -b &
 nitrogen --restore &
 # pcmanfm -d &
 #conky &
-./.config/polybar/launch.sh &
 # setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
 #setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
 setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll" &
+
+./.config/polybar/launch.sh &
 killall btops
 ~/bin/btops &
 
 nm-applet &
 
 # numlockx &
-xsettinsd &
+#xsettinsd &
 
-# prevent monitor to sleep when view movies
-xset -dpms; xset s off &
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+if [ -f /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ] ; then
+    /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+fi
+
+if hash pcmanfm > /dev/null 2>&1 ; then
+    dbus-launch pcmanfm -d &
+fi
+if hash udiskie > /dev/null 2>&1 ; then
+    udiskie &
+fi
+if hash tilda > /dev/null 2>&1 ; then
+    tilda &
+fi
+if hash compton > /dev/null 2>&1 ; then
+    compton &
+fi
 
 xfce4-power-manager &
 killall clipit
 clipit &
 ### MONITORS ####
+# from : https://github.com/aca/dotfiles/blob/master/.config/bspwm/bspwmrc
+if [ "$(bspc query -M --names | wc -l)" = 3 ]; then
+  bspc monitor $(xrandr -q | grep '^eDP.*\bconnected' | awk '{print $1}') -d 1 2 3
+  bspc monitor $(xrandr -q | grep '^DP.*\bconnected' | awk '{print $1}' | awk 'NR==1') -d 4 5 6
+  bspc monitor $(xrandr -q | grep '^DP.*\bconnected' | awk '{print $1}' | awk 'NR==2') -d 7 8 9 
+else
+  bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
+fi
+bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors true
+
 
 #bspc monitor DisplayPort-0 -d 1 2 3
 #bspc monitor DisplayPort-1 -d 4 5 6
 #bspc monitor HDMI-A-0 -d 7 8 9
 #bspc monitor DVI-I-1 -d 1 2 3 4 5 6 7 8 9 0
 bspc monitor -d 1 2 3 4 5 6 7 8 9
+
+# prevent monitor to sleep when view movies
+xset -dpms; xset s off &
 
 #### BSPWM configuration ####
 #bspc config border_radius       8

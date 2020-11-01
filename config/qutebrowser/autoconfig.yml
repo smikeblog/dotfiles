@@ -18,12 +18,14 @@ settings:
         xb: config-cycle tabs.show always switching
         xt: config-cycle statusbar.hide
         xx: config-cycle statusbar.hide ;; config-cycle tabs.show always switching
+  content.user_stylesheets:
+    global: ~/.local/share/qutebrowser/userstylesheets/default.css
   qt.force_software_rendering:
     global: chromium
   statusbar.hide:
-    global: false
+    global: true
   tabs.show:
-    global: never
+    global: always
   url.searchengines:
     global:
       DEFAULT: https://duckduckgo.com/?q={}
