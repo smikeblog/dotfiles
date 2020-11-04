@@ -596,5 +596,12 @@ zzz() {
 function ru() { trans en:ru "$*" }
 function en() { trans ru:en "$*" }
 
+# {{{2 Cute clock
+# clock - A bash clock that can run in your terminal window.
+clok ()
+{
+while true;do clear;echo "===========";date +"%r";echo "===========";sleep 1;done
+}
+# }}}
 ##### THE END ***
 

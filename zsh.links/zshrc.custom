@@ -294,6 +294,7 @@ bindkey '^x^g' anyframe-widget-select-widget
 
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
+    sleep 0.2
     /opt/shell-color-scripts/colorscript.sh random
     alias d='/opt/shell-color-scripts/colorscript.sh random'
 fi
