@@ -161,7 +161,6 @@ map re ${{
 	lf -remote "send $id push :rename<space>$filename<a-b><c-b>"
 }}
 
-
 ## Unmap the default mapping so the rest of the following mapping won't collide
 #map r
 # Simple rename:

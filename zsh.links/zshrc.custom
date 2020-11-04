@@ -161,6 +161,8 @@ alias -g P=' | peco '
 
 # kill process fuzzy search with ~/.dotfiles/tools/sk (skim)
 alias pskl='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
+# list processes 
+alias qp="ps auxwww|more"
 
 alias rofim='rofi -show window -sidebar-mode \
   -modi run,window,drun,keys \
