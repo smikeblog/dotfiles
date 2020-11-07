@@ -1,0 +1,27 @@
+#!/bin/sh
+
+ 
+
+echo "########  FREE RAM  #########"
+
+
+
+free -h | awk '/^Mem:/ {print $3 "/" $2}'
+
+
+echo "Biggest memory hogs"
+
+ps axch -o cmd:15,%mem --sort=-%mem | head
+
+
+echo "#######  CPU TEMP  ###########"
+
+
+
+sensors | awk '/^Core 0:/ {print $3}'
+
+echo "Biggest CPU hogs"
+
+ps axch -o cmd:15,%cpu --sort=-%cpu | head 
+
+

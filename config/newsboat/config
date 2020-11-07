@@ -3,7 +3,8 @@ auto-reload yes
 
 # define
 browser "firefox %u"
-external-url-viewer "urlscan"
+#browser "xdg-open"
+#external-url-viewer "urlscan"
 html-renderer "w3m -T text/html"
 player "mpv"
 download-retries 4
@@ -11,7 +12,7 @@ pager internal
 article-sort-order date-asc
 datetime-format "%Y-%m-%d"
 
-external-url-viewer "urlscan -dc -r 'linkhandler {}'"
+external-url-viewer "urlscan -dc -r '~/.local/bin/linkhandler {}'"
 
 bind-key j down
 bind-key k up
@@ -45,6 +46,6 @@ macro t set browser "tsp youtube-dl --add-metadata -ic"; open-in-browser ; set b
 macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best"; open-in-browser ; set browser linkhandler
 macro v set browser "setsid nohup mpv"; open-in-browser ; set browser linkhandler
 macro w set browser "qutebrowser"; open-in-browser ; set browser linkhandler
-#macro w set browser "w3m"; open-in-browser ; set browser linkhandler
-macro p set browser "dmenuhandler"; open-in-browser ; set browser linkhandler
+macro W set browser "w3m"; open-in-browser ; set browser linkhandler
+macro p set browser "~/.local/bin/dmenuhandler"; open-in-browser ; set browser linkhandler
 macro c set browser "xsel -b <<<" ; open-in-browser ; set browser linkhandler

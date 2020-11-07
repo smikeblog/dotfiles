@@ -40,6 +40,8 @@ if hash tilda > /dev/null 2>&1 ; then
 fi
 if hash compton > /dev/null 2>&1 ; then
     compton &
+elif hash picom > /dev/null 2>&1 ; then
+    picom &
 fi
 
 xfce4-power-manager &
@@ -118,7 +120,7 @@ bspc rule -a file-roller state=floating center=true
 bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
-bspc rule -a "qutebrowser" desktop='^3' follow=on
+#bspc rule -a "qutebrowser" desktop='^3' follow=on
 bspc rule -a Firefox private=pc
 
 bspc rule -a XTerm:dropXterm state=floating

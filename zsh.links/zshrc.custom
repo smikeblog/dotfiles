@@ -299,3 +299,5 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
     alias d='/opt/shell-color-scripts/colorscript.sh random'
 fi
 
+alias cdf=cd_with_fzf
+alias s="syscheck"
