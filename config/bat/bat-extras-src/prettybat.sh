@@ -6,8 +6,7 @@
 # Issues:     https://github.com/eth-p/bat-extras/issues
 # -----------------------------------------------------------------------------
 # shellcheck disable=SC1090
-#LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")/../lib" && pwd)"
-LIB="$HOME/.dotfiles/config/bat/lib"
+LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")/../lib" && pwd)"
 source "${LIB}/constants.sh"
 source "${LIB}/opt.sh"
 source "${LIB}/opt_hook_version.sh"

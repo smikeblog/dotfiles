@@ -2,7 +2,8 @@
 
 #### AUTOSTART ####
 export WIRELESS=wlan0
-export mNETWORK=eth1
+#export mNETWORK=eth1
+export mNETWORK="$(ip link | awk '/state UP/ {print $2}' | sed 's/:$//' )"
 
 sxhkd -m 1 &
 #sxhkd -c ./config/sxhkd/sxhkdrc &

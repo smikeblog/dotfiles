@@ -6,8 +6,7 @@
 # Issues:     https://github.com/eth-p/bat-extras/issues
 # -----------------------------------------------------------------------------
 # shellcheck disable=SC1090 disable=SC2155
-# LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")/../lib" && pwd)"
-LIB="$HOME/.dotfiles/config/bat/lib"
+LIB="$(cd "$(dirname "${BASH_SOURCE[0]}")" && cd "$(dirname "$(readlink "${BASH_SOURCE[0]}" || echo ".")")/../lib" && pwd)"
 if [[ -n "${MANPAGER}" ]]; then BAT_PAGER="$MANPAGER"; fi
 source "${LIB}/constants.sh"
 source "${LIB}/pager.sh"

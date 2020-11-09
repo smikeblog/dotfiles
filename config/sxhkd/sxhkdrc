@@ -247,7 +247,8 @@ super + Return
 #	$TERMINAL
 # description: terminal emulator
 super + alt + Return
-	tilix --profile=bspwm
+	alacritty
+#	tilix --profile=bspwm
 # description: xfce4-terminal emulator
 super + shift + Return
 	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat

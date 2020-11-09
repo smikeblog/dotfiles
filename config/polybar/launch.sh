@@ -53,4 +53,4 @@ case $desktop in
 esac
 
 #for future scripts - how to find interface
-#interface-name=$(ifconfig -a | sed -n 's/^\([^ ]\+\).*/\1/p' | grep -Fvx -e lo:| sed 's/.$//')
+#interface-name="$(ip link | awk '/state UP/ {print $2}' | sed 's/:$//' )"
