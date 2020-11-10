@@ -17,8 +17,8 @@ nitrogen --restore &
 setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll" &
 
 ./.config/polybar/launch.sh &
-killall btops
-~/bin/btops &
+#killall btops
+#~/bin/btops &
 
 nm-applet &
 

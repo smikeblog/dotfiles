@@ -220,13 +220,14 @@ StartInMusicDir = yes
 # Example:    Theme = laras_theme
 #
 #Theme = hringriin_theme
-Theme = hringriin_theme
+#Theme = hringriin_theme
+Theme = green_theme
 
 # The theme used when running on an xterm.
 #
 # Example:    XTermTheme = transparent-background
 #
-XTermTheme = dt_theme
+# XTermTheme = dt_theme
 # Should MOC try to autoload the default lyrics file for an audio?  (The
 # default lyrics file is a text file with the same file name as the audio
 # file name with any trailing "extension" removed.)
@@ -295,8 +296,8 @@ Precache = yes
 #             Fastdir3 = /mp3/rap
 #             Fastdir4 = /mp3/etc
 #
-#Fastdir1 =
-#Fastdir2 =
+Fastdir1 = ~/Music
+#Fastdir2 = ~/Music/
 #Fastdir3 =
 #Fastdir4 =
 #Fastdir5 =
