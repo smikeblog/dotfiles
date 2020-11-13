@@ -1,19 +1,13 @@
 # https://github.com/NICHOLAS85/dotfiles/blob/xps_13_9365_refresh/.zshrc
-
+TMPDIR="$HOME/.cache/ZINIT_TMPDIR"
 # Used to programatically disable plugins when opening the terminal view in dolphin
-
-if [[ -z "$ZSH_CDR_DIR" ]]; then
-  ZSH_CDR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/cdr"
-fi
-mkdir --parents "$ZSH_CDR_DIR"
-
 if [[ $MYPROMPT = dolphin ]]; then
     isdolphin=true
 else
     isdolphin=false
     autoload -Uz chpwd_recent_dirs add-zsh-hook
     add-zsh-hook chpwd chpwd_recent_dirs
-    zstyle ':chpwd:*' recent-dirs-file "$ZSH_CDR_DIR/chpwd-recent-dirs"
+    zstyle ':chpwd:*' recent-dirs-file "$TMPDIR/chpwd-recent-dirs"
     (){
         local chpwdrdf
         zstyle -g chpwdrdf ':chpwd:*' recent-dirs-file
@@ -48,12 +42,12 @@ autoload -Uz _zinit
 #module_path+=( "${HOME}/.zinit/bin/zmodules/Src" )
 #zmodload zdharma/zplugin &>/dev/null
 
-#if [[ ! -d "${ZINIT[PLUGINS_DIR]}/_local---config-files" ]]; then
-#    print -P "%F{33}▓▒░ %F{220}Installing local config-files…%f"
-#    curl https://codeload.github.com/NICHOLAS85/dotfiles/tar.gz/xps_13_9365_refresh | \
-#    tar -xz --strip=3 dotfiles-xps_13_9365/.zinit/plugins/_local---config-files
-#    mv _local---config-files "${ZINIT[PLUGINS_DIR]}/"
-#fi
+if [[ ! -d "${ZINIT[PLUGINS_DIR]}/_local---config-files" ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing local config-files…%f"
+    curl https://codeload.github.com/NICHOLAS85/dotfiles/tar.gz/xps_13_9365_refresh | \
+    tar -xz --strip=3 dotfiles-xps_13_9365/.zinit/plugins/_local---config-files
+    mv _local---config-files "${ZINIT[PLUGINS_DIR]}/"
+fi
 
 # Functions to make configuration less verbose
 # zt() : First argument is a wait time and suffix, ie "0a". Anything that doesn't match will be passed as if it were an ice mod. Default ices depth'3' and lucid
@@ -185,8 +179,6 @@ zt 0c light-mode null for \
         zdharma/zsh-diff-so-fancy \
     sbin \
         paulirish/git-open \
-    sbin'm*/micro' from"gh-r" ver'nightly' bpick'*linux64*' reset \
-        zyedidia/micro \
     sbin'*/rm-trash' atload'alias rm="rm-trash ${rm_opts}"' reset \
     patch"$pchf/%PLUGIN%.patch" \
         nateshmbhat/rm-trash \
@@ -204,10 +196,12 @@ zinit light supercrabtree/k
 zinit light jimeh/zsh-peco-history
 zinit light Aloxaf/fzf-tab
 
-export PATH="$PATH:$HOME/.dotfiles/tools" 
+export PATH="$PATH:$HOME/.dotfiles/tools"
 
 # load user custom functions
 if [[ -f ~/.zshrc.custom ]]; then
   source ~/.zshrc.custom
 fi
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+#GITSTATUS_LOG_LEVEL=DEBUG
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

@@ -315,3 +315,4 @@ fi
 
 alias cdf=cd_with_fzf
 alias s="syscheck"
+alias ezp='vim /home/sm/.profile' 

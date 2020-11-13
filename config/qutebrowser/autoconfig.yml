@@ -23,7 +23,7 @@ settings:
   qt.force_software_rendering:
     global: chromium
   statusbar.hide:
-    global: true
+    global: false
   tabs.show:
     global: always
   url.searchengines:

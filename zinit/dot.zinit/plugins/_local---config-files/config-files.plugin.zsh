@@ -40,7 +40,7 @@ HISTORY_SUBSTRING_SEARCH_FUZZY=set
 
 export OPENCV_LOG_LEVEL=ERROR # Hide nonimportant errors for howdy
 export rm_opts=(-I -v)
-export EDITOR=vim
+export EDITOR=micro
 export SYSTEMD_EDITOR=${EDITOR}
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=true # etckeeper on bedrock
 FZF_DEFAULT_OPTS="
@@ -118,7 +118,7 @@ alias bedots='command sudo DOTBARE_FZF_DEFAULT_OPTS="$DOTBARE_FZF_DEFAULT_OPTS" 
 #         Other         #
 #########################
 
-bindkey -v                  # vi (EMACS) bindings
+bindkey -e                  # EMACS bindings
 setopt append_history       # Allow multiple terminal sessions to all append to one zsh command history
 setopt hist_ignore_all_dups # delete old recorded entry if new entry is a duplicate.
 setopt no_beep              # don't beep on error

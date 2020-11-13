@@ -1,9 +1,8 @@
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export QT_SCALE_FACTOR=1
-#export EDITOR=/usr/bin/vim
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Set vim mode to the shell default is emacs
 set -o vi
@@ -21,6 +20,7 @@ export PISTOL_CHROMA_STYLE=dracula
 
 # sm add rust path -> moved to .profile
 [ -d $HOME/.cargo ] && export PATH="$HOME/.cargo/bin:$PATH"
+
 # sm add GO path -> moved to .profile
 # For example, if you installed Go to your home directory you should add commands like the following to  $HOME/.profile
 export GOROOT="/usr/local/go"
@@ -67,4 +67,3 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # [ -f $HOME/scripts/linux-console-colors-from-xresources ] && source "$HOME/scripts/linux-console-colors-from-xresources"
 
-export PATH="$HOME/.cargo/bin:$PATH"
