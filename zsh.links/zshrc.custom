@@ -1,6 +1,13 @@
+# Vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
 # Load ,profile file wich is common for bash and zsh
 if [ -f ~/.profile ]; then
     source ~/.profile
+fi
+if [ -f ~/.zprofile ]; then
+    source ~/.zprofile
 fi
 
 # load user custom functions
@@ -18,10 +25,6 @@ else
     echo "Could not find the init script ${ZSH_INIT}"
 fi
 
-# Vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 if [ -e $HOME/.dotfiles/tools/sk ]; then
   source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
   source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
@@ -34,12 +37,9 @@ if [ -e $HOME/.fzf/shell/completion.zsh ]; then
 fi
 
 # use vim as manpager
-# export MANPAGER="/bin/sh -c \"col -b | vim -i NONE -u $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
-#export MANPAGER="nvim +set\ filetype=man -"
 export MANPAGER='nvim +Man!'
 
 ## === fzf-tab.zsh settings ===
-
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps --pid=$word -o cmd --no-headers -w -w'
 zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
@@ -62,13 +62,11 @@ colors
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
 
-# bind o to open urls from terminal screen
-# [[ -n "$TMUX" ]] && tmux bind-key 'o' run-shell -b "$HOME/scripts/fzf-url.sh";
-# bindkey -s '^u' 'fzf-url.sh\n'
- bindkey -s '^u' 'mrofi\n'
+# bind "Cttrl-u"to open rofi in win select mode
+bindkey -s '^u' 'mrofi\n'
 
 ### ----------------------------------------------------
-## use lf as cd utility with Ctrl+o binding  {{{1
+## use lf/ranger as cd utility with Ctrl+o/Ctrl+p bindings  {{{1
 lfcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
@@ -88,7 +86,7 @@ ranger_cd() {
     fi
     rm -f -- "$temp_file"
 }
-# This will run the function by Ctrl+O through returning
+# This will run the function by Ctrl+p through returning
 # the string "ranger-cd" in addition to a new-line character
 # to act as Enter key-press
 bindkey -s "^P" "ranger_cd\n"
@@ -97,13 +95,16 @@ bindkey -s "^P" "ranger_cd\n"
 ## 1}}}
 
 ## some aliases   {{{1
+
 # Alias for altering some symbol with newline
 # Example: echo $PATH TRN :
 __rt__() { tr -- "$2" "$1" ; }
 alias -g TRN='| __rt__ "\n" '
 
+# Lua based testing configs
 alias vilu="nvim -u ~/.config/nvimDj/init.vim" 
 alias vlua="nvim -u ~/.config/nvimLua/init.vim" 
+alias vlu="nvim -u ~/.config/neovim/init.vim" 
 
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
@@ -125,7 +126,7 @@ alias vidt="nvim -u ~/.dotfiles/initDT.vim $1"
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 
 if _has vifm; then
-  alias vv='COLORTERM=tmux-256color vifm -c "vsplit" . ' # vi file manager
+  alias v.='COLORTERM=tmux-256color vifm -c "vsplit" . ' # vi file manager
 fi
 
 # cli translate  - https://github.com/soimort/translate-shell
@@ -146,9 +147,6 @@ alias sm.antivir='sudo rkhunter -c'
 alias s3='$HOME/space/sublime_text_3/sublime_text -a '
 
 # utils
-if ! _has l; then
-  alias l=lsd
-fi
 # https://github.com/athityakumar/colorls
 if _has exa; then
   alias lx='exa --color=always --group-directories-first'
@@ -162,6 +160,9 @@ fi
 if _has lsd; then
   alias lct2='lsd -t --tree=2 --group-dirs=first'
   alias lc='lsd -lhA --group-dirs=first'
+  if ! _has l; then
+    alias l=lsd
+  fi
 fi
 alias lcgt2='colorls --gs -t --tree=2 --sd'
 alias  k='k -h'
@@ -191,17 +192,17 @@ alias rofim='rofi -show window -sidebar-mode \
   -color-enabled true
 '
 
-alias ...="cd ../.."
 alias l.="ls -A | egrep '^\.' "
 alias l..='cd .. && l'
 alias ez="$EDITOR $HOME/.zshrc"
 alias ezf="$EDITOR $HOME/.zshfunc.custom"
 alias ezc="$EDITOR $HOME/.zshrc.custom"
+alias ezp='vim /home/sm/.profile' 
 
 # bulk association
-alias -s {tex,md,rmd,txt}=vil
+alias -s {tex,md,rmd,txt,custom}=vil
 alias -s {mp3,m4a,flac}="mpv"
-alias -s {png,jpg,tiff,bmp}="sxiv"
+alias -s {png,jpg,tiff,bmp,jpeg}="sxiv"
 
 if [ -f /usr/bin/pacman ]; then
   alias pkglist="pacman -Qneq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-pkglist.txt"
@@ -215,13 +216,21 @@ fi
 
 # navi cli cheat completion utility Ctrl+G
 if [ -e $HOME/.config/navi ]; then
-#  source "$(navi widget zsh)"
   source <(navi widget zsh)
 fi
 
-alias bb='$BROWSER $(buku -p -f 10 | fzf)'
+# buku bookmarks with fzf
+if _has opera ; then
+  BROWSER=opera
+  alias bb='$BROWSER $(buku -p -f 10 | sk)'
+else
+  alias bb='$BROWSER $(buku -p -f 10 | sk)'
+fi
+
+# sxhkd help page show
 alias bspk="~/.config/sxhkd/show_help.sh"
 
+# Calendar vim notes show for today yestoday and all peco select
 alias ntod='vi ~/Sync/smNotes/$(date "+%Y-%m-%d").md'
 alias nytod='vi ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | tail -n 1)'
 alias npec='glow ~/Sync/smNotes/$(ls ~/Sync/smNotes | sort | peco)'
@@ -238,7 +247,7 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 
-## Peco Functions 
+## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g) 
 function peco-files() {
   local current_lbuffer="$LBUFFER"
   local current_rbuffer="$RBUFFER"
@@ -315,4 +324,3 @@ fi
 
 alias cdf=cd_with_fzf
 alias s="syscheck"
-alias ezp='vim /home/sm/.profile' 

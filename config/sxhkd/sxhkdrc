@@ -29,8 +29,15 @@ super + Escape
 
 # BSPWM HOTKEYS
 
-# description: Show keybindings
+# fzf keybinding show
+#isuper + @F7
+#	st -e $HOME/scripts/sxhkd_help.sh
+# description: binding help
 super + @F1
+	$HOME/scripts/sxhkd_help.sh
+
+# description: Show keybindings
+super + shift +  @F1
 	xterm -geometry 125x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
 #	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 
@@ -68,8 +75,8 @@ super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # description: set the node flags marked,locked,sticky,private
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+#super + ctrl + {m,x,y,z}
+#	bspc node -g {marked,locked,sticky,private}
 
 # description: toggle tiled/float state
 super + d
@@ -81,7 +88,7 @@ super + d
 #
 
 # description: Flip layout vertically/horizontally
-super + {_,shift + }a
+alt + super + {_,shift + }a
 	bspc node @/ -C {forward,backward}
 
 # description: Mirror leaves horizontal,vertical
@@ -92,9 +99,11 @@ super + {comma,period}
 super + shift + {comma,period}
 	bspc node @/ -R {90,270}
 
-# description: swap the current<=>biggest nodes
+# description: swap the current<=>selected node
 super + alt + g
-	bspc node -s biggest.local
+    bspc node -s $(xorg-choose-window oijklmhnup \
+        -b $(bspc query -N -n focused))
+#	bspc node -s biggest.local
 
 # description: focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -103,8 +112,8 @@ super + {_,shift + }{h,j,k,l}
 #	bspc node -f {left,down,up,right} || bspc node -f {prev, prev, next, next}
 
 # description: focus the next/previous node in the current desktop
-super + {_,shift + }i
-	bspc node -f {next,prev}.local
+#super + {_,shift + }i
+#	bspc node -f {next,prev}.local
 
 # description: focus the next/previous desktop in the current monitor
 super + bracket{left,right}
@@ -171,13 +180,13 @@ alt + shift + {h,j,k,l}
 ## 	bspwm_resize {west,south,north,east} 50`
 
 # description: expand a floating window on all sides.
-super + alt + Left
+super + alt + Right
 	bspc node -z left -20 0; \
 	bspc node -z bottom 0 10; \
 	bspc node -z top 0 -10; \
 	bspc node -z right 20 0
 # description: contract a floating window on all sides.
-super + alt + Right
+super + alt + Left
 	bspc node -z left 20 0; \
 	bspc node -z bottom 0 -10; \
 	bspc node -z top 0 10; \
@@ -254,17 +263,13 @@ super + shift + Return
 	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
 # 3}}}
 
-# description: launch irssi chat client
-super + alt + i
-    st -e irssi
-
 # description: launch newsboat feed reeder
 super + alt + n
     st -e newsboat
 
 # description: launch vifm with ueberzug image preview
 super + alt + v
-     st -e ./.local/bin/vu
+     st -e ./.local/bin/vv
 #     st -e ./.config/vifm/scripts/vifmrun
 
 # launch htop
@@ -323,7 +328,7 @@ alt + @F6
 # # preselection).  Sticky stays in the focused desktop.  Private tries to
 # # keep its dimensions and tiling position.
 # description: node l-locked m-marked s-sticky p-private
-super + e ; {l,m,s,p}
+super + a ; {l,m,s,p}
     bspc node -g {locked,marked,sticky,private}
 
 
@@ -390,11 +395,11 @@ super + c : {h,j,k,l}
 
 # description: Mode for dynamic gaps.
 super + c : bracket{left,right}
-  bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
+ 	bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
 
 # description: Move floating windows with the arrow keys
 super + c : {Left,Down,Up,Right}
-  bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 # DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
@@ -419,9 +424,6 @@ alt + ctrl + s
 # description: common system montoring programs
 alt + ctrl + m
   ~/.dmenu/dmenu-sysmon.sh
-# description: passmenu
-alt + ctrl + p
-   exec passmenu
 # description: reddio Reddit viewer
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
@@ -430,29 +432,53 @@ shift + Print
    ~/.dmenu/dmenu-scrot.sh
 # 3}}}
 
-# Commands for receptacles are defined in the "advanced operations"
-# section.
-#
+## }}}
+
+# description: insert/clear receptacle on current desktop
+super + {_,shift} + i
+ 	insert={true,false}; \
+ 	insert && bspc node -i || \
+ 	for win in `bspc query -N -n .leaf.!window.local`; do bspc node $win -k ; done;
+
+
+# Advanced operations (receptacles and scripted actions)
+
+# Dynamic desktop behaviour:  this invokes a script of mine that
+# # implements dynamic desktops (see dotfiles).  If the given desktop
+# # number is missing, it is created on the spot.  Empty desktops are then
+# # removed automatically.
+# #
+# # super + <number> = focus the given desktop
+# # super + shift + <number> = send focused window to given desktop
+# # super + ctrl + shift + <number> = as above, but send to next monitor
+# # super + ctrl + <number> = switches the active (visible) desktop of the
+# # unfocused monitor, without focusing it (focus stays on the current
+# # desktop/monitor).  It also inserts a receptacle, meaning that the next
+# # created window will go there without calling focus to itself (see my
+# # bspwm_external_rules).
 # NOTE the leading `;` runs this command asynchronously.
-super + {_,shift + ,ctrl + shift +,ctrl +}{1-9}
-	;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {1-9}
+#super + {_,shift + ,ctrl + shift +,ctrl +}{1-9}
+#    ;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {1-9}
+#
 
-# fzf keybinding show
-#isuper + @F7
-#	st -e $HOME/scripts/sxhkd_help.sh
-# description: binding help
-super + shift +  @F1
-	$HOME/scripts/sxhkd_help.sh
-#	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/sxhkd_help.sh
-
-# Kill/remove the first matching receptacle from the current desktop.
-# description: kill/remove With shift, kill them all at once.
-super + n ; super + {_, shift + }r
-	{ \
-	bspc node 'any.leaf.!window.local' -k, \
-	bspwm_multifaceted_operation --kill-all-receptacles \
-	}
-
+# # ------------------------------------------------------
+# # NOTE The behaviour of preselections and receptacles is regulated by my
+# # bspwm_external_rules command (which is called from within bspwmrc).
+#
+# # Insert receptacle following the tiling scheme or preselection.
+# # Receptacles are empty frames that function as placeholders for
+# # windows.
+# #
+# # description: Whereas bspwm_smart_move (defined above) will automatically insert
+# # a receptacle in the given direction by splitting the entire viewport.
+super + n ; r
+    bspc node -i
+#
+#   # Insert the marked window (or focused if no marks) in the first
+#   # matching receptacle (or preselection if no receptacles).
+super + n ; i
+    bspwm_smart_presel
+#
 # description: Summon all marked windows across all desktops to the current desktop.
 super + n ; m
 	bspwm_multifaceted_operation --summon-all-marked
@@ -472,3 +498,54 @@ super + n ; super + {_,shift + }q
 super + n ; {_, shift + }l
 	bspwm_multifaceted_operation {--lock-all-local,--unlock-all-local}
 
+# Kill/remove the first matching receptacle from the current desktop.
+# description: kill/remove With shift, kill them all at once.
+super + n ; super + {_, shift + }r
+	{ \
+	bspc node 'any.leaf.!window.local' -k, \
+	bspwm_multifaceted_operation --kill-all-receptacles \
+	}
+#
+# # Bring the windows of the given desktop to the current one.  With
+# # shift, send the current window to the given one.
+# super + n ; super + {_, shift + }{0-9}
+#     bspwm_multifaceted_operation {--bring-desktop-here,--send-desktop-there} {0-9}
+#       
+# # Close {or kill} all windows in the present desktop except the focused
+# # or any marked ones.
+# super + n ; super + {_,shift + }q
+#     bspwm_multifaceted_operation --{close,kill}-all-local-non-focused
+#
+# # Assign the locked flag to all windows in the current desktop.  With
+# # shift, remove the locked flag from all.
+# super + n ; {_, shift + }l
+#     bspwm_multifaceted_operation {--lock-all-local,--unlock-all-local}
+#
+#
+# # Continuous input mode
+# # =====================
+# # EXPLAIN: The following key chords have a colon sign `:' before their
+# # last part.  By pressing the keys to the left of the colon, you can
+# # then pass the commands by only using the keys to the right of the
+# # colon.  This eliminates the need for repeated chord presses that
+# # involve the modifier keys.  Exit the mode with "Escape".
+# #
+# # NOTE: All of the following are mirrors of their afore-mentioned
+# # couterparts.
+#
+# # Resize node in the given direction.
+# super + c : {h,j,k,l}
+#     own_script_bspwm_node_resize {west,south,north,east} 50
+#
+# # Gaps presets.
+# super + c : {y,u,i,o}
+#     bspc config window_gap {0,5,10,20}
+#
+# # Mode for dynamic gaps.
+# super + c : bracket{left,right}
+#     bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
+#
+# # Move floating windows with the arrow keys
+# super + c : {Left,Down,Up,Right}
+#     bspc node -v {-20 0,0 20,0 -20,20 0}
+#
