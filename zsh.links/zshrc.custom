@@ -324,3 +324,4 @@ fi
 
 alias cdf=cd_with_fzf
 alias s="syscheck"
+alias fbfd="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
