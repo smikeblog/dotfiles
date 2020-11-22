@@ -1,5 +1,5 @@
 # https://github.com/NICHOLAS85/dotfiles/blob/xps_13_9365_refresh/.zshrc
-TMPDIR="$HOME/.cache/ZINIT_TMPDIR"
+TMPDIR="$HOME/.local/ZINIT_TMPDIR"
 # Used to programatically disable plugins when opening the terminal view in dolphin
 if [[ $MYPROMPT = dolphin ]]; then
     isdolphin=true

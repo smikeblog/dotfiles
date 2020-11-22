@@ -14,7 +14,7 @@ nitrogen --restore &
 #conky &
 # setxkbmap -layout "us,ru" -option "grp:lalt_lshift_toggle,grp_led:scroll" &
 #setxkbmap -layout "us,ru" -option "grp:shifts_toggle,grp_led:scroll" &
-setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll" &
+setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll",caps:escape &
 
 ./.config/polybar/launch.sh &
 #killall btops
