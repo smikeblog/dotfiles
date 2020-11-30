@@ -32,7 +32,6 @@ export GOBIN="$HOME/Code/go/bin"
 export PATH="$GOBIN:$PATH"
 
 # Make local for single user bin and scripts directories i.e. not global apps
-## moved to zshfunc_custom
 #[ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 [ -d $HOME/scripts ] && export PATH="$HOME/scripts:$PATH"
 [ -d $HOME/.dotfiles/tools ] && export PATH="$HOME/.dotfiles/tools/:$PATH"
@@ -59,13 +58,10 @@ source "$HOME/scripts/base16-snazzy.sh"
 # load alias list
 # [ -f $HOME/.aliases ] && source $HOME/.aliases
 
-# source ~/.dotfiles/profileSmike
-
 # export path to ruby gem directory
 [ -d $HOME/.gem/ruby/2.7.0/bin ] && PATH="$PATH:$HOME/.gem/ruby/2.7.0/bin"
 export PATH
 
+# export path to yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-# [ -f $HOME/scripts/linux-console-colors-from-xresources ] && source "$HOME/scripts/linux-console-colors-from-xresources"
 

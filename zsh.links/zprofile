@@ -65,5 +65,3 @@ ex=🎯:\
 "
 ## 2}}}
 
-
-export PATH="$HOME/.cargo/bin:$PATH"
