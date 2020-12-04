@@ -39,22 +39,41 @@ fi
 # use vim as manpager
 export MANPAGER='nvim +Man!'
 
-## === fzf-tab.zsh settings ===
+export _EXTRACT="
+# trim input
+in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+# get ctxt for current completion
+local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+"
+zstyle ':fzf-tab:*' single-group ''
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
-zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps --pid=$word -o cmd --no-headers -w -w'
-zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
-zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-zstyle ":completion:*:git-checkout:*" sort false
-zstyle ":fzf-tab:*" fzf-flags '--color=bg+:23'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$_EXTRACT'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+lsd_preview() {
+	zstyle "$1" extra-opts --preview=$_EXTRACT'lsd --group-dirs first --color always --icon always --icon-theme fancy ${~ctxt[hpre]}$in'
+}
+lsd_preview ':fzf-tab:complete:cd:*'
+lsd_preview ':fzf-tab:complete:lsd:*'
+lsd_preview ':fzf-tab:complete:exa:*'
+lsd_preview ':fzf-tab:complete:ls:*'
+lsd_preview ':fzf-tab:complete:_fzz:*'
+zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre]}$in'
+
+## === fzf-tab.zsh settings ===
+#zstyle ':fzf-tab:complete:_zlua:*' query-string input
+#zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps --pid=$word -o cmd --no-headers -w -w'
+#zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
+#zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
+#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+#zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
+#zstyle ":completion:*:git-checkout:*" sort false
+#zstyle ":fzf-tab:*" fzf-flags '--color=bg+:23'
+#zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # ==== ====
 
 # Modules
 autoload colors zsh/terminfo
-autoload -Uz compinit && compinit -u
+# autoload -Uz compinit && compinit -u
 autoload -U is-at-least
 colors
 
@@ -102,9 +121,9 @@ __rt__() { tr -- "$2" "$1" ; }
 alias -g TRN='| __rt__ "\n" '
 
 # Lua based testing configs
-alias vilu="nvim -u ~/.config/nvimDj/init.vim" 
-alias vlua="nvim -u ~/.config/nvimLua/init.vim" 
-alias vlu="nvim -u ~/.config/neovim/init.vim" 
+alias vilu="nvim -u ~/.config/nvimDj/init.vim"
+alias vlua="nvim -u ~/.config/nvimLua/init.vim"
+alias vlu="nvim -u ~/.config/neovim/init.vim"
 
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
@@ -176,7 +195,7 @@ alias -g P=' | peco '
 
 # kill process fuzzy search with ~/.dotfiles/tools/sk (skim)
 alias pskl='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
-# list processes 
+# list processes
 alias qp="ps auxwww|more"
 
 alias rofim='rofi -show window -sidebar-mode \
@@ -197,7 +216,7 @@ alias l..='cd .. && l'
 alias ez="$EDITOR $HOME/.zshrc"
 alias ezf="$EDITOR $HOME/.zshfunc.custom"
 alias ezc="$EDITOR $HOME/.zshrc.custom"
-alias ezp='vim /home/sm/.profile' 
+alias ezp='vim /home/sm/.profile'
 
 # bulk association
 alias -s {tex,md,rmd,txt,custom}=vil
@@ -247,7 +266,7 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 
-## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g) 
+## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)
 function peco-files() {
   local current_lbuffer="$LBUFFER"
   local current_rbuffer="$RBUFFER"
@@ -307,11 +326,11 @@ bindkey '^xr' anyframe-widget-execute-history
 # peco でGitブランチを表示して切替え
 bindkey '^x^b' anyframe-widget-checkout-git-branch
 
-# Ctrl+x -> Ctrl+k 
+# Ctrl+x -> Ctrl+k
 # peco kill process
 bindkey '^x^k' anyframe-widget-kill
 
-# Ctrl+x -> Ctrl+g 
+# Ctrl+x -> Ctrl+g
 # peco kill process
 bindkey '^x^g' anyframe-widget-select-widget
 
