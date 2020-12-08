@@ -530,3 +530,4 @@ nmap <space> t
 nnoremap dv :!vimdiff %c %D/%c<CR>
 nnoremap dV :!vimdiff %c %C<CR>
 
+windo set viewcolumns=-{name}..,6{size},11{perms}

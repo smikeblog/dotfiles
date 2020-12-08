@@ -1,0 +1,32 @@
+#!/bin/sh
+
+function picom-tgle {
+    if pgrep -x "picom" > /dev/null
+    then
+        killall picom
+    else
+        picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
+	    until pidof compton > /dev/null; do 
+		    sleep 0.1s
+	    done
+    fi
+}
+
+function compton-tgle {
+    command -v compton > /dev/null || { echo "Compton(Picom) is not installed."; exit 1; }
+
+    if pgrep -x compton; then
+	    pkill -x compton
+    else
+	    compton --config "$HOME/.dotfiles/config/compton/compton.conf" &
+	    until pidof compton > /dev/null; do 
+		    sleep 0.1s
+	    done
+    fi
+}
+
+if hash picom > /dev/null 2&1 ; then 
+    picom-tgle
+else
+    compton-tgle
+fi

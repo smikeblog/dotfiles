@@ -28,7 +28,7 @@ My dotfile configuration
        cd ~/.dotfiles
 ##  6.  Nerd fonts for Powerline and update fonts cache
 	Note: for polybar are used UbuntuMono and Fontawesome fonts
-    NOTE: for MXLinux on st fix emojis err with font: 
+    NOTE: for MXLinux on st fix emojis err with font:
           wget http://ftp.br.debian.org/debian/pool/main/t/ttf-ancient-fonts/fonts-symbola_2.60-1_all.deb
 	https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/UbuntuMono.zip
 	https://fontawesome.com/download
@@ -41,10 +41,10 @@ My dotfile configuration
 	  ln -s ~/.dotfiles/zsh.links/profile ~/.profile
 	  ln -s ~/.dotfiles/zsh.links/zshrc.custom ~/.zshrc.custom
 	  ln -s ~/.dotfiles/zsh.links/zshfunc.custom ~/.zshfunc.custom
-     a) for zgit manager and prezto prompt 
+     a) for zgit manager and prezto prompt
 	  ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc
      b) for zinit manager and powerlevel10k pure theme run script
-      ~/.dotfiles/zinit/installLink.sh 
+      ~/.dotfiles/zinit/installLink.sh
 ### 7.2 vifm
 	  ln -s ~/.dotfiles/vifm/ ~/.config/
 ### 7.3 nvim
@@ -134,3 +134,10 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://github.com/Canop/broot
 	https://gitlab.com/dwt1/shell-color-scripts
 #### }}}
+
+
+### {{{ Experimental
+	 -- picom effects
+	    https://github.com/jonaburg/picom
+
+}}}

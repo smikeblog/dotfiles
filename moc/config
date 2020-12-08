@@ -220,8 +220,8 @@ StartInMusicDir = yes
 # Example:    Theme = laras_theme
 #
 #Theme = hringriin_theme
-#Theme = hringriin_theme
-Theme = green_theme
+#Theme = green_theme
+Theme = simple_theme
 
 # The theme used when running on an xterm.
 #
