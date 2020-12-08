@@ -48,7 +48,7 @@ super + b
 
 # description: Picom Toggle
 ctrl + alt + o
-    ~/scripts/toggle_compton
+    ~/scripts/toggle-compositor
 ##    ~/.config/picom/picom-toggle.sh
 
 # description: quit/restart bspwm

@@ -39,10 +39,16 @@ fi
 if hash tilda > /dev/null 2>&1 ; then
     tilda &
 fi
-if hash compton > /dev/null 2>&1 ; then
-    compton &
-elif hash picom > /dev/null 2>&1 ; then
-    picom &
+if hash picom > /dev/null 2>&1 ; then
+        picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
+	    until pidof compton > /dev/null; do 
+		    sleep 0.1s
+        done
+elif hash compton > /dev/null 2>&1 ; then
+	    compton --config "$HOME/.dotfiles/config/compton/compton.conf" &
+	    until pidof compton > /dev/null; do 
+		    sleep 0.1s
+	    done
 fi
 
 xfce4-power-manager &
