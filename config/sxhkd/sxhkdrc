@@ -49,7 +49,6 @@ super + b
 # description: Picom Toggle
 ctrl + alt + o
     ~/scripts/toggle-compositor
-##    ~/.config/picom/picom-toggle.sh
 
 # description: quit/restart bspwm
 super + shift + {q,r}
@@ -257,7 +256,6 @@ super + Return
 # description: terminal emulator
 super + alt + Return
 	alacritty
-#	tilix --profile=bspwm
 # description: xfce4-terminal emulator
 super + shift + Return
 	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
@@ -363,7 +361,7 @@ super + x ; {0-7}
 # # The other is of the entire X session (including all active monitors).
 # # Note that `scrot` also has an interactive mode that I do not use.
 # description: Scrot Window Screenshot
-alt + ctrl + t
+ctrl + Print
   scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Window view screenshot" "Saved image to Desktop"
 
@@ -426,6 +424,9 @@ alt + ctrl + m
 # description: reddio Reddit viewer
 alt + ctrl + r
    ~/.dmenu/dmenu-reddio.sh
+# description: run Appimage dmenu
+alt + ctrl + t
+   ~/.dmenu/dmenu-trading.sh
 # description: Screenshot take/upload scripts dmenu
 shift + Print
    ~/.dmenu/dmenu-scrot.sh
@@ -548,3 +549,4 @@ super + n ; super + {_, shift + }r
 # super + c : {Left,Down,Up,Right}
 #     bspc node -v {-20 0,0 20,0 -20,20 0}
 #
+#----------------------------------------------------------------Media Controls

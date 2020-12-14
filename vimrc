@@ -1,5 +1,3 @@
-
-
 " Install vim-plug if missing
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -20,9 +18,6 @@ Plug 'tpope/vim-commentary'
 Plug 'machakann/vim-sandwich'
 Plug 'junegunn/goyo.vim'
 Plug 'aonemd/kuroi.vim'
-" Plug 'tpope/vim-rails'
-" Plug 'fatih/vim-go'
-" Plug 'mattn/emmet-vim'
 call plug#end()
 
 set lazyredraw                                     "lazily redraw screen while executing macros, and other commands

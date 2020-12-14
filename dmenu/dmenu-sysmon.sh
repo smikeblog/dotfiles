@@ -11,6 +11,7 @@ sleep 0.2
 
 declare -a options=("htop
 glances
+pulsemixer
 gotop
 iftop
 iotop
@@ -26,7 +27,8 @@ case $choice in
 		echo "Program terminated." && exit 1
 	;;
 	htop| \
-	gotop| \
+	pulsemixer| \
+    gotop| \
 	glances| \
 	nmon| \
 	s-tui)

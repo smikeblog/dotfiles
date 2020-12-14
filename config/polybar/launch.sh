@@ -44,10 +44,10 @@ case $desktop in
     bspwm)
     if type "xrandr" > /dev/null; then
       for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-        MONITOR=$m polybar --reload mainbar-bspwm -c ~/.config/polybar/config &
+        MONITOR=$m polybar --reload mainbar-bspwm -c ~/.config/polybar/config.ini &
       done
     else
-    polybar --reload mainbar-bspwm -c ~/.config/polybar/config &
+    polybar --reload mainbar-bspwm -c ~/.config/polybar/config.ini &
     fi
     ;;
 esac
