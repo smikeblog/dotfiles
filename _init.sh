@@ -39,11 +39,11 @@ unset my_zsh_fpath
 #
 # Load all scripts ${ZSHCONFIG}/lib/*.zsh
 #
-##my_zsh_lib=${ZSHCONFIG}/lib
-##if [[ -d "$my_zsh_lib" ]]; then
-##   for file in $my_zsh_lib/*.zsh; do
-##      source $file
-##   done
-##fi
-##unset my_zsh_lib
+my_zsh_lib=${ZSHCONFIG}/lib
+if [[ -d "$my_zsh_lib" ]]; then
+   for file in $my_zsh_lib/*.zsh; do
+      source $file
+   done
+fi
+unset my_zsh_lib
 # source  ${ZSHCONFIG}/reposm/zshfuncs/3_functions.zsh

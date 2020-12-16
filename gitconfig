@@ -1,6 +1,7 @@
 [core]
   pager = delta --dark --plus-color="#2F4F4F" --minus-color="#660033" --theme='Sublime Snazzy' 
-	sshCommand = ssh -i /home/sm/.ssh/id_yasa -o IdentitiesOnly=yes -F /dev/null
+  sshCommand = ssh -i /home/sm/.ssh/id_yasa -o IdentitiesOnly=yes -F /dev/null
+  editor = nvim
 
 [color]
  ui = true

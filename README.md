@@ -123,7 +123,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	https://prettier.io/docs/en/install.html
 	https://github.com/ggreer/the_silver_searcher
 	https://github.com/jarun/buku
-  https://github.com/Aloxaf/fzf-tab
+	https://github.com/Aloxaf/fzf-tab
 
 ### Other Optional
 	pacman -S shellcheck

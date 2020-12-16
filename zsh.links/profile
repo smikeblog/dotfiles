@@ -8,7 +8,7 @@ export QT_SCALE_FACTOR=1
 set -o vi
 
 # Set vim as default editor  - as viriable
-export VISUAL="vim"
+export VISUAL= "vim"
 export EDITOR="$VISUAL"
 export BROWSER="palemoon"
 export READER="zathura"
@@ -64,4 +64,5 @@ export PATH
 
 # export path to yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 

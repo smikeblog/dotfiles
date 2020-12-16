@@ -24,17 +24,17 @@ if [[ -s ${ZSH_INIT} ]]; then
 else
     echo "Could not find the init script ${ZSH_INIT}"
 fi
+#    -MOVED TO dotfiles/lib
+#if [ -e $HOME/.dotfiles/tools/sk ]; then
+#  source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
+#  source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
+#fi
 
-if [ -e $HOME/.dotfiles/tools/sk ]; then
-  source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
-  source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
-fi
-
-# fzf via system package manager
-if [ -e $HOME/.fzf/shell/completion.zsh ]; then
-  source $HOME/.fzf/shell/key-bindings.zsh
-  source $HOME/.fzf/shell/completion.zsh
-fi
+# fzf via system package manager  -MOVED TO dotfiles/lib
+#if [ -e $HOME/.fzf/shell/completion.zsh ]; then
+#  source $HOME/.fzf/shell/key-bindings.zsh
+#  source $HOME/.fzf/shell/completion.zsh
+#fi
 
 # use vim as manpager
 export MANPAGER='nvim +Man!'
@@ -266,7 +266,7 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 
-## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)
+## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)  {{{
 function peco-files() {
   local current_lbuffer="$LBUFFER"
   local current_rbuffer="$RBUFFER"
@@ -295,6 +295,7 @@ function peco-files() {
 }
 zle -N peco-files
 bindkey '^Xf' peco-files
+
 
 #if [[ -z "$ZSH_CDR_DIR" ]]; then
 #  ZSH_CDR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/cdr"
@@ -334,6 +335,8 @@ bindkey '^x^k' anyframe-widget-kill
 # peco kill process
 bindkey '^x^g' anyframe-widget-select-widget
 
+### }}}
+
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
     sleep 0.2
@@ -343,4 +346,5 @@ fi
 
 alias cdf=cd_with_fzf
 alias s="syscheck"
-alias fbfd="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
+alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
+alias calv='vi +CalendarH' 
