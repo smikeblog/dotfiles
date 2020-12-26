@@ -13,7 +13,6 @@
 
 set vicmd="nvim -u ~/.vil/init.vim"
 " set vicmd=elvis\ -g\ termcap
-" set vicmd=vile
 
 " this makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  while using `cp` and alike is a more universal
@@ -443,13 +442,13 @@ vnoremap w :view<cr>gv
 " open file in existing instance of gvim
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
 " open in thinkvim and plain nvim
-nnoremap o :!nvim  %f<cr>
-nnoremap O :!nvim -N -u NONE -U NONE %f<cr>
+nnoremap oO :!nvim  %f<cr>
+nnoremap Oo :!nvim -N -u NONE -U NONE %f<cr>
 " open file in new instance of gvim
 " nnoremap o :!gvim %f<cr>
 " open Golang set in vim and nvim
-nnoremap Oo :!vim -u ~/.vimrc.go %f<cr>
-nnoremap oO :!nvim -u ~/.config/nvimChi/init.vim %f<cr>
+nnoremap O :!vim -u ~/.vimrc.go %f<cr>
+nnoremap o :!nvim -u ~/.config/nvimDj/init.vim %f<cr>
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l

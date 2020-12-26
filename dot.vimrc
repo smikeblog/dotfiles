@@ -10,6 +10,10 @@
 "     \__\::::/      \__\/      \  \:\
 "         ~~~~                   \__\/
 
+let g:VimTemplates_beamer_name='slides.tex'
+
+set guioptions=
+
  " Set compatibility to Vim only.
 set nocompatible
 
@@ -111,26 +115,6 @@ let &statusline = s:statusline_expr()
 
 " -----------------------------------------------------------------------------
 
-" Set status line display OLD one {{{1
-"set laststatus=2
-"hi StatusLine ctermfg=black ctermbg=NONE cterm=NONE
-"hi StatusLineNC ctermfg=black ctermbg=black cterm=NONE
-"hi User1 ctermfg=NONE ctermbg=141
-"red
-"hi User2 ctermfg=NONE ctermbg=23
-"blue
-"set statusline=%=%1* 		" Switch to right-side
-"set statusline+=\ \ 		" Padding
-"set statusline+=%f 			" Path to the file (short)
-"set statusline+=\ %2*\ 		" Padding & switch colour
-"set statusline+=%l 		    " Current line
-"set statusline+=\  		    " Padding
-"set statusline+=of		    " of text
-"set statusline+=\  		    " Padding
-"set statusline+=%L 		    " Current line
-"set statusline+=\  		    " Padding
-"" 2}}}
-
 """"""=== Y >,< <l>rc <l>cc <l>s ===================================== {{{
 
 " Quickly select the text that was just pasted. This allows you to, e.g.,
@@ -214,4 +198,6 @@ source ~/.dotfiles/vim/dot.vim/colors/dracula.vim
 
 " source calendar & diary script
 source ~/.dotfiles/vim/dot.vim/calendar.vim
+
+source ~/.fzf/plugin/fzf.vim 
 

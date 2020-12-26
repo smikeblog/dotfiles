@@ -51,7 +51,7 @@ if hash tilda > /dev/null 2>&1 ; then
     tilda &
 fi
 if hash picom > /dev/null 2>&1 ; then
-        picom --experimental-backends --config "$HOME/.config/picom/picom.conf" &
+        picom --experimental-backends --fading --config "$HOME/.config/picom/picom.conf" &
 	    until pidof compton > /dev/null; do 
 		    sleep 0.1s
         done
@@ -62,7 +62,7 @@ elif hash compton > /dev/null 2>&1 ; then
 	    done
 fi
 
-xfce4-power-manager &
+#xfce4-power-manager &
 
 # prevent monitor to sleep when view movies
 xset -dpms; xset s off &
@@ -118,6 +118,7 @@ bspc rule -a file-roller state=floating center=true
 bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
+bspc rule -a "Mail" desktop='^9' follow=on
 #bspc rule -a "qutebrowser" desktop='^3' follow=on
 bspc rule -a Firefox private=pc
 

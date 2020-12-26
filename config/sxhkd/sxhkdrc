@@ -87,7 +87,7 @@ super + d
 #
 
 # description: Flip layout vertically/horizontally
-alt + super + {_,shift + }a
+super + alt + {_,shift + }m
 	bspc node @/ -C {forward,backward}
 
 # description: Mirror leaves horizontal,vertical
@@ -160,8 +160,7 @@ super + ctrl + shift + space
 ##super + alt + {h,j,k,l}
 ##	bspwm_smart_move {west,south,north,east}
 
-# move the floating windows
-# description: super + alt + {_,shift + }{h,j,k,l}
+# description: move the floating window
 ctrl + shift + {h,j,k,l}
  	floating_motions {_,edge-}{west,south,north,east}
 
@@ -190,14 +189,6 @@ super + alt + Left
 	bspc node -z bottom 0 -10; \
 	bspc node -z top 0 10; \
 	bspc node -z right -20 0
-
-# expand a window by moving one of its side outward
-#ctrl + alt + {h,j,k,l}
-#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# contract a window by moving one of its side inward
-#ctrl + alt + shift + {h,j,k,l}
-#	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # description: expand/contract a window
 alt + control + {h,j,k,l}
@@ -275,8 +266,12 @@ super + alt + v
 #    st -e htop
 
 # description: audio mixer run
-super + alt + m
+super + alt + a
   st -e ~/scripts/pulsemixer
+
+# description: audio mixer run
+#super + alt + m
+#  st -e ~/scripts/pulsemixer
 
 ## LUNCHERs Alt+{F2,F3,F5,F6} {{{3
 # description: luncher F2
@@ -334,11 +329,10 @@ super + a ; {l,m,s,p}
 # description: (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
 super + g ; {0-7}
    { \
-     notify-send -i xx "NOT USED" "Launchers 1 ... 5\n 1. Xed\n 2. VLC Player\n 3. VSCode IDE\n 4. PcMan FileN\n 5. Thunderburd Email\n" && xx, \
+     notify-send -i xx "NOT USED" "Launchers 1 ... 5\n 1. Xed\n 2. VLC Player\n 3. PcMan FileN\n 4. Thunderburd Email\n" && xx, \
      notify-send -i xed "Run GUI program" "Launching Xed TextEditor" && xed, \
      notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
      notify-send -i system-file-manager "Run GUI " "Launching File Manager" && pcmanfm, \
-     notify-send -u low vscode "Run GUI program" "Launching VS Code" && code, \
      notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
    }
 

@@ -348,3 +348,4 @@ alias cdf=cd_with_fzf
 alias s="syscheck"
 alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
 alias calv='vi +CalendarH' 
+alias i="fzf-ranger-scope.sh"
