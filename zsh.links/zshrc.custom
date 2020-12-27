@@ -24,17 +24,6 @@ if [[ -s ${ZSH_INIT} ]]; then
 else
     echo "Could not find the init script ${ZSH_INIT}"
 fi
-#    -MOVED TO dotfiles/lib
-#if [ -e $HOME/.dotfiles/tools/sk ]; then
-#  source $HOME/.dotfiles/home.local/bin/fzf-scripts/key-bindings-skim.zsh
-#  source $HOME/.dotfiles/home.local/bin/fzf-scripts/completion-skim.zsh
-#fi
-
-# fzf via system package manager  -MOVED TO dotfiles/lib
-#if [ -e $HOME/.fzf/shell/completion.zsh ]; then
-#  source $HOME/.fzf/shell/key-bindings.zsh
-#  source $HOME/.fzf/shell/completion.zsh
-#fi
 
 # use vim as manpager
 export MANPAGER='nvim +Man!'

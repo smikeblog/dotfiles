@@ -76,49 +76,25 @@ else
     alias ls='lsd --group-dirs=first'
 fi
 
-# Set variables if on ac mode
-if [[ $(cat /run/tlp/last_pwr) = 0 ]]; then
-    alias micro="micro -fastdirty false"
-fi
-
 #########################
 #       Aliases         #
 #########################
 
 # Access zsh config files
 alias zshconf="(){ setopt extendedglob local_options; kate ${HOME}/.zshrc ${0:h}/config-files.plugin.zsh ${0:h}/themes/\${MYPROMPT}-*~*.zwc }"
-alias zshconfatom="(){ setopt extendedglob local_options; atom ${HOME}/.zshrc ${0:h}/config-files.plugin.zsh ${0:h}/themes/\${MYPROMPT}-*~*.zwc &! }"
 
 alias t='tail -f'
 alias g='git'
 alias open='xdg-open'
-alias atom='atom-beta --disable-gpu'
-alias apm='apm-beta'
 alias ..='cd .. 2>/dev/null || cd "$(dirname $PWD)"' # Allows leaving from deleted directories
 # Aesthetic function for Dolphin, clear -x if cd while in Dolphin
 $isdolphin && alias cd='clear -x; cd'
-
-# dot file management
-alias dots='DOTBARE_DIR="$HOME/.dots" DOTBARE_TREE="$HOME" DOTBARE_BACKUP="${ZPFX:-${XDG_DATA_HOME:-$HOME/.local/share}}/dotbare" dotbare'
-export DOTBARE_FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"
-
-(( ${+commands[brl]} )) && {
-(){ local stratum strata=( /bedrock/run/enabled_strata/* )
-for stratum in ${strata:t}; do
-hash -d "${stratum}"="/bedrock/strata/${stratum}"
-alias "${stratum}"="strat ${stratum}"
-alias "r${stratum}"="strat -r ${stratum}"
-[[ -d "/bedrock/strata/${stratum}/etc/.git" ]] && \
-alias "${stratum:0:1}edots"="command sudo strat -r ${stratum} git --git-dir=/etc/.git --work-tree=/etc"
-done }
-alias bedots='command sudo DOTBARE_FZF_DEFAULT_OPTS="$DOTBARE_FZF_DEFAULT_OPTS" DOTBARE_DIR="/bedrock/.git" DOTBARE_TREE="/bedrock" DOTBARE_BACKUP="${ZPFX:-${XDG_DATA_HOME:-$HOME/.local/share}}/bdotbare" dotbare'
-}
 
 #########################
 #         Other         #
 #########################
 
-bindkey -e                  # EMACS bindings
+bindkey -v                  # EMACS bindings
 setopt append_history       # Allow multiple terminal sessions to all append to one zsh command history
 setopt hist_ignore_all_dups # delete old recorded entry if new entry is a duplicate.
 setopt no_beep              # don't beep on error

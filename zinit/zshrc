@@ -121,8 +121,8 @@ zt 0a light-mode for \
         OMZL::completion.zsh \
     if'false' ver'dev' \
         marlonrichert/zsh-autocomplete \
-    has'systemctl' \
-        OMZP::systemd/systemd.plugin.zsh \
+#    has'systemctl' \
+#        OMZP::systemd/systemd.plugin.zsh \
         OMZP::sudo/sudo.plugin.zsh \
     blockf \
         zsh-users/zsh-completions \
@@ -180,9 +180,9 @@ zt 0c light-mode null for \
         zdharma/zsh-diff-so-fancy \
     sbin \
         paulirish/git-open \
-    sbin'*/rm-trash' atload'alias rm="rm-trash ${rm_opts}"' reset \
+#    sbin'*/rm-trash' atload'alias rm="rm-trash ${rm_opts}"' reset \
     patch"$pchf/%PLUGIN%.patch" \
-        nateshmbhat/rm-trash \
+#        nateshmbhat/rm-trash \
     sbin \
         kazhala/dotbare \
     id-as'Cleanup' nocd atinit'unset -f zct zt; SPACESHIP_PROMPT_ADD_NEWLINE=true; _zsh_autosuggest_bind_widgets' \
