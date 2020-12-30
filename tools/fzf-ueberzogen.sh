@@ -17,7 +17,7 @@
 readonly BASH_BINARY="$(which bash)"
 readonly REDRAW_COMMAND="toggle-preview+toggle-preview"
 readonly REDRAW_KEY="µ"
-declare -r -x DEFAULT_PREVIEW_POSITION="right"
+declare -r -x DEFAULT_PREVIEW_POSITION="up"
 declare -r -x UEBERZUG_FIFO="$(mktemp --dry-run --suffix "fzf-$$-ueberzug")"
 declare -r -x PREVIEW_ID="preview"
 

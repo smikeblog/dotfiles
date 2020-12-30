@@ -106,7 +106,8 @@ zt light-mode for \
     trigger-load'!ga;!gcf;!gclean;!gd;!glo;!grh;!gss' \
         wfxr/forgit \
     trigger-load'!zshz' blockf \
-        agkozak/zsh-z \
+        skywind3000/z.lua
+ #       agkozak/zsh-z \
     trigger-load'!updatelocal' blockf \
         smikeblog/updatelocal \
     trigger-load'!gencomp' pick'zsh-completion-generator.plugin.zsh' blockf \
@@ -123,8 +124,8 @@ zt 0a light-mode for \
         marlonrichert/zsh-autocomplete \
 #    has'systemctl' \
 #        OMZP::systemd/systemd.plugin.zsh \
-        OMZP::sudo/sudo.plugin.zsh \
-    blockf \
+#        OMZP::sudo/sudo.plugin.zsh \
+#    blockf \
         zsh-users/zsh-completions \
     compile'{src/*.zsh,src/strategies/*}' pick'zsh-autosuggestions.zsh' \
     atload'_zsh_autosuggest_start' \
@@ -192,6 +193,53 @@ zt 0c light-mode null for \
 ################
 #  smike block #
 ################
+
+# Common ICE modifiers
+
+z_lucid() {
+	zinit ice lucid ver'master' "$@"
+}
+zi0a() {
+	z_lucid wait'0a' "$@"
+}
+
+zi0b() {
+	z_lucid wait'0b' "$@"
+}
+
+zi0c() {
+	z_lucid wait'0c' "$@"
+}
+
+###########
+# Plugins #
+###########
+
+#zi0a
+#    zinit light skywind3000/z.lua
+
+zi_program() {
+	zi0a as'program' "$@"
+}
+
+zi_program has'fzf' pick'fzfp'
+zinit light Seirdy/stpv
+
+zi_program has'ueberzug' pick'stpvimg'
+zinit light Seirdy/stpv
+
+zi_program pick'stpv'
+zinit light Seirdy/stpv
+
+zi_program has'fzf'
+zinit light denisidoro/navi
+
+zi_program has'perl' pick'exiftool'
+zinit light exiftool/exiftool
+
+zi0a
+zinit light wfxr/emoji-cli
+
 zinit light mollifier/anyframe
 zinit light supercrabtree/k
 zinit light jimeh/zsh-peco-history

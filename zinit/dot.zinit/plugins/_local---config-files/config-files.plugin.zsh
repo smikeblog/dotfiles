@@ -53,7 +53,7 @@ FZF_DEFAULT_OPTS="
 --bind ctrl-s:toggle-sort
 --bind 'alt-e:execute($EDITOR {} >/dev/tty </dev/tty)'
 --preview \"(bat --color=always {} || ls -l --color=always {}) 2>/dev/null | head -200\"
---preview-window right:60%
+--preview-window right:70%
 "
 FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git 2>/dev/null"
 

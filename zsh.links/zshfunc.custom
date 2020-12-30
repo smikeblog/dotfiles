@@ -49,7 +49,6 @@ if _color; then
       export TERM=xterm-256color
   else
       export TERM=xterm-256color
-#    export TERM=rxvt
   fi
 else
   export TERM=xterm
@@ -392,11 +391,11 @@ fzf_git_reflog() {
 alias grl='fzf_git_reflog'
 #
 ### FZF related (depends on fd, xargs, xdg-open)
-open_with_fzf() {
-    fd -t f -H -I | fzf -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
+open_with_sk() {
+    fd -t f -H -I | sk -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
 }
-cd_with_fzf() {
-    cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+cd_with_sk() {
+    cd $HOME && cd "$(fd -t d | sk --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
 ## --- }}}4
 ## -- }}}1
@@ -404,28 +403,6 @@ cd_with_fzf() {
 ## ================== not Aliased =======
 ### funcs not aliased {{{2
 #
-# cdi - interactive cd {{{
-function cdi() {
-    if [[ "$#" != 0 ]]; then
-        builtin cd "$@";
-        return
-    fi
-    while true; do
-        local lsd=($(echo ".." && ls -p | grep '/$' | sed 's;/$;;'))
-        local dir="$(printf '%s\n' "${lsd[@]}" |
-            fzf --reverse --preview '
-                __cd_nxt="$(echo {})";
-                __cd_path="$(echo $(pwd)/${__cd_nxt} | sed "s;//;/;")";
-                echo $__cd_path;
-                echo;
-                ls -p --color=always "${__cd_path}";
-        ')"
-        [[ ${#dir} != 0 ]] || return 0
-        builtin cd "$dir" &> /dev/null
-    done
-}
-## }}}
-
 # fs - Determine size of a file or total size of a dir {{{
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -569,7 +546,7 @@ function fzf-man() {
     fi
 }
 zle -N fzf-man
-bindkey '^K' fzf-man
+bindkey '^xk' fzf-man
 
 ## from: https://github.com/knqyf263/pet/blob/master/README.md
 function pet-select() {
@@ -579,7 +556,7 @@ function pet-select() {
 }
 zle -N pet-select
 stty -ixon
-bindkey '^S' pet-select
+bindkey '^xs' pet-select
 
 ### }}}
 
