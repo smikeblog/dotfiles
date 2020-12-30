@@ -2,10 +2,21 @@
 # make a dir and change to that dir
 #mkdir -p $1 && cd $1;
 
-function mcd {
-  if [[ "$#" != 1 ]]; then
-    echo "Expects exactly one argument; provided $#" >&2
-    return 1
-  fi
-  mkdir -p "$1" && cd "$1"
+mcd()
+{
+    if [ ! -n "$1" ]; then
+        echo "Enter a directory name"
+    elif [ -d $1 ]; then
+        echo "\`$1' already exists"
+    else
+        mkdir $1 && cd $1
+    fi
 }
+
+# function mcd {
+#   if [[ "$#" != 1 ]]; then
+#     echo "Expects exactly one argument; provided $#" >&2
+#     return 1
+#   fi
+#   mkdir -p "$1" && cd "$1"
+# }

@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+#show me what my key config looks like - pressing enter goes to that command in the config
+keys()
+{
+    awk '/^[a-zA-Z]/ && last {print $0,"\t",last} {last=""} /^#/{last=$0}' ~/.config/sxhkd/sxhkdrc | column -t -s $'\t' | fzf --reverse | awk -F\# '{print $1}' | sed -e "s/ *$//" | xargs -I cmd nvim +/cmd ~/.config/sxhkd/sxhkdrc;
+}
