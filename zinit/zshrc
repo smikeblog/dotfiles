@@ -1,3 +1,8 @@
+#
+if [[ ! -d "$HOME/.zinit" ]]; then
+    command mkdir -p $HOME/.zinit
+    command sh -c $HOME/.dotfiles/zinit/installLink.sh
+fi
 # https://github.com/NICHOLAS85/dotfiles/blob/xps_13_9365_refresh/.zshrc
 TMPDIR="$HOME/.local/ZINIT_TMPDIR"
 # Used to programatically disable plugins when opening the terminal view in dolphin
