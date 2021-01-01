@@ -27,7 +27,7 @@ AUTOENV_AUTH_FILE="${ZPFX}/autoenv_auth"
 export CUSTOMIZEPKG_CONFIG="${HOME}/.config/customizepkg"
 
 # Directory checked for locally built projects (plugin NICHOLAS85/updatelocal)
-UPDATELOCAL_GITDIR="${HOME}/github/built"
+#UPDATELOCAL_GITDIR="${HOME}/github/built"
 
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20

@@ -108,8 +108,8 @@ zt light-mode for \
     trigger-load'!zshz' blockf \
         skywind3000/z.lua
  #       agkozak/zsh-z \
-    trigger-load'!updatelocal' blockf \
-        smikeblog/updatelocal \
+#    trigger-load'!updatelocal' blockf \
+#        smikeblog/updatelocal \
     trigger-load'!gencomp' pick'zsh-completion-generator.plugin.zsh' blockf \
     atload'alias gencomp="zinit silent nocd as\"null\" wait\"2\" atload\"zinit creinstall -q _local/config-files; zicompinit\" for /dev/null; gencomp"' \
         RobSis/zsh-completion-generator
