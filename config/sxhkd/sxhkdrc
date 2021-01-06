@@ -277,6 +277,10 @@ super + alt + a
 # description: luncher F2
 alt + @F2
 	xfce4-appfinder
+
+# description: lunch app finder
+super + shift + space
+	xfce4-appfinder
 # description: luncher F3
 alt + @F3
 	jgmenu_run >/dev/null 2>&1

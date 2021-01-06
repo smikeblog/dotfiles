@@ -37,8 +37,8 @@ nm-applet &
 
 #xsettinsd &
 
-if [ -f /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ] ; then
-    /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+if [ -f /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1 ] ; then
+    /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1 &
 fi
 
 if hash pcmanfm > /dev/null 2>&1 ; then
@@ -112,11 +112,15 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DVI-I-1)
 bspc rule -a Gnome-disks state=tiled
 bspc rule -a Xfce4-settings-manager state=tiled
 bspc rule -a Pavucontrol state=floating sticky=on
-bspc rule -a Xfce4-appfinder state=floating sticky=on
+bspc rule -a "Xfce4-appfinder" state=floating sticky=on
+bspc rule -a "Application Finder" state=floating sticky=on
 bspc rule -a vlc state=floating sticky=on
 bspc rule -a file-roller state=floating center=true
 bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
+bspc rule -a "xfce4-appfinder" state=floating center=true
+bspc rule -a "pcmanfm" state=floating center=true
+bspc rule -a "Pcmanfm" state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a "Mail" desktop='^8' follow=on
 #bspc rule -a "qutebrowser" desktop='^3' follow=on

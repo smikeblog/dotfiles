@@ -34,6 +34,12 @@ in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
 # get ctxt for current completion
 local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
 "
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */home/sm/.fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/home/sm/.fzf/bin"
+fi
+
 zstyle ':fzf-tab:*' single-group ''
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$_EXTRACT'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
@@ -110,8 +116,8 @@ __rt__() { tr -- "$2" "$1" ; }
 alias -g TRN='| __rt__ "\n" '
 
 # Lua based testing configs
-alias vilu="nvim -u ~/.config/nvimDj/init.vim"
-alias vlua="nvim -u ~/.config/nvimLua/init.vim"
+alias vidj="nvim -u ~/.config/nvimDj/init.vim"
+alias vilu="nvim -u ~/.config/nvimLua/init.vim"
 alias vlu="nvim -u ~/.config/neovim/init.vim"
 
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
@@ -164,6 +170,7 @@ if _has exa; then
   alias lt='exa -aT --color=always --group-directories-first' # tree listing
   alias la='ll -a'
   alias exa2='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
+  alias exa3='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=3 --ignore-glob=".git|node_modules"'
 fi
 if _has lsd; then
   alias lct2='lsd -t --tree=2 --group-dirs=first'
@@ -346,11 +353,13 @@ bindkey -M vicmd 's' sudo-command-line
 
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
-    sleep 0.2
-    /opt/shell-color-scripts/colorscript.sh random
+#    sleep 0.2
+#    /opt/shell-color-scripts/colorscript.sh random
     alias d='/opt/shell-color-scripts/colorscript.sh random'
 fi
 
+alias l="lsd --group-dirs first"
+alias ytdll="bash $HOME/scripts/ytdll" 
 alias cds=cd_with_sk
 alias s="syscheck"
 alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
@@ -359,4 +368,4 @@ alias i="fzfimg.sh"
 
 #eval "$(lua ~/.zinit/plugins/skywind3000---z.lua/z.lua  --init zsh)"
 source ~/.zinit/plugins/skywind3000---z.lua/z.lua.plugin.zsh
-alias l="lsd --group-dirs first"
+

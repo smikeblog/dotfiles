@@ -96,8 +96,8 @@ zt light-mode blockf for \
 # Plugins #
 ###########
 
-zt atinit'HISTFILE="${HOME}/.histfile"' for \
-    OMZL::history.zsh
+#zt atinit'HISTFILE="${HOME}/.histfile"' for \
+#    OMZL::history.zsh
 
 ######################
 # Trigger-load block #
@@ -113,8 +113,8 @@ zt light-mode for \
     trigger-load'!zshz' blockf \
         skywind3000/z.lua
  #       agkozak/zsh-z \
-#    trigger-load'!updatelocal' blockf \
-#        smikeblog/updatelocal \
+    trigger-load'!updatelocal' blockf \
+        smikeblog/updatelocal \
     trigger-load'!gencomp' pick'zsh-completion-generator.plugin.zsh' blockf \
     atload'alias gencomp="zinit silent nocd as\"null\" wait\"2\" atload\"zinit creinstall -q _local/config-files; zicompinit\" for /dev/null; gencomp"' \
         RobSis/zsh-completion-generator
@@ -131,7 +131,7 @@ zt 0a light-mode for \
 #        OMZP::systemd/systemd.plugin.zsh \
 #        OMZP::sudo/sudo.plugin.zsh \
 #    blockf \
-        zsh-users/zsh-completions \
+#        zsh-users/zsh-completions \
     compile'{src/*.zsh,src/strategies/*}' pick'zsh-autosuggestions.zsh' \
     atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions \
@@ -187,10 +187,10 @@ zt 0c light-mode null for \
     sbin \
         paulirish/git-open \
 #    sbin'*/rm-trash' atload'alias rm="rm-trash ${rm_opts}"' reset \
-    patch"$pchf/%PLUGIN%.patch" \
+#    patch"$pchf/%PLUGIN%.patch" \
 #        nateshmbhat/rm-trash \
-    sbin \
-        kazhala/dotbare \
+#    sbin \
+#        kazhala/dotbare \
     id-as'Cleanup' nocd atinit'unset -f zct zt; SPACESHIP_PROMPT_ADD_NEWLINE=true; _zsh_autosuggest_bind_widgets' \
         zdharma/null
 
