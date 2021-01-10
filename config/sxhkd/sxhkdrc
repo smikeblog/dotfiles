@@ -30,7 +30,8 @@ super + Escape
 # BSPWM HOTKEYS
 
 # fzf keybinding show
-#isuper + @F7
+ctrl + @F4
+    $HOME/.local/kitty.app/bin/kitty
 #	st -e $HOME/scripts/sxhkd_help.sh
 # description: rofi binding help  search
 super + s
@@ -421,7 +422,7 @@ alt + ctrl + m
   ~/.dmenu/dmenu-sysmon.sh
 # description: reddio Reddit viewer
 alt + ctrl + r
-   ~/.dmenu/dmenu-reddio.sh
+   ~/.dmenu/dmenu-record.sh
 # description: run Appimage dmenu
 alt + ctrl + t
    ~/.dmenu/dmenu-trading.sh

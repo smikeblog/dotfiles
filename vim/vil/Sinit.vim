@@ -1,5 +1,5 @@
 let mapleader =","
-" prevent clipboard regidter error 
+" prevent clipboard regidter error
 let g:yankring_clipboard_monitor=0
 
 " let g: highlightedyank_highlight_duration = 1000
@@ -17,8 +17,8 @@ nnoremap <silent> <leader>l :set list! list?<CR>
 "set listchars=tab:▸\ ,eol:¬
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←,eol:¬
 
-" Clears the current search
-nnoremap <silent> <F5> :nohlsearch<CR><C-l>
+" Toggle spell check.
+map <F5> :setlocal spell!<CR>
 
 " Some basics: {{{
 	nnoremap c "_c
@@ -74,9 +74,15 @@ nnoremap <silent> <F4> :Vifm<cr>
 	nnoremap S :%s//g<Left><Left>
 """ }}}
 
+" Spelling mistakes will also be colored red if you uncomment the colors.
+hi SpellBad cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
+
 " Open my bibliography file in split
-	map <leader>b :vsp<space>$BIB<CR>
-	map <leader>r :vsp<space>$REFER<CR>
+	map <leader>bb :vsp<space>$BIB<CR>
+	map <leader>rr :vsp<space>$REFER<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler <c-r>%<CR>
@@ -87,11 +93,10 @@ nnoremap <silent> <F4> :Vifm<cr>
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
 	autocmd VimLeave *.tex !texclear %
 
+" Ensure tabs don't get converted to spaces in Makefiles.
+	autocmd FileType make setlocal noexpandtab
+
 " Ensure files are read as what I want:
-	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-    map <leader>v :VimwikiIndex
-	let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
 
@@ -216,6 +221,19 @@ set completeopt=menu,menuone,noselect
 " suppress annoy messages.
 set shortmess+=c
 
+" Profile Vim by running this command once to start it and again to stop it.
+function! s:profile(bang)
+  if a:bang
+    profile pause
+    noautocmd qall
+  else
+    profile start /tmp/profile.log
+    profile func *
+    profile file *
+  endif
+endfunction
+
+command! -bang Profile call s:profile(<bang>0)
 
 
 " CtrlSF {{{

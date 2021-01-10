@@ -2,7 +2,7 @@
 #
 # Bookmark management utility
 #
-# Copyright © 2015-2020 Arun Prakash Jana <engineerarun@gmail.com>
+# Copyright © 2015-2021 Arun Prakash Jana <engineerarun@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ import argparse
 import calendar
 import cgi
 import collections
+import contextlib
 import json
 import logging
 import os
@@ -56,7 +57,7 @@ try:
 except ImportError:
     TypedDict = None  # type: ignore
 
-__version__ = '4.4'
+__version__ = '4.5'
 __author__ = 'Arun Prakash Jana <engineerarun@gmail.com>'
 __license__ = 'GPLv3'
 
@@ -87,7 +88,7 @@ COLORMAP = {k: '\x1b[%sm' % v for k, v in {
     'x': '0', 'X': '1', 'y': '7', 'Y': '7;1', 'z': '2',
 }.items()}
 
-USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:77.0) Gecko/20100101 Firefox/77.0'
+USER_AGENT = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0'
 MYHEADERS = None  # Default dictionary of headers
 MYPROXY = None  # Default proxy
 TEXT_BROWSERS = ['elinks', 'links', 'links2', 'lynx', 'w3m', 'www-browser']
@@ -226,14 +227,18 @@ class BukuCrypt:
                     if len(chunk) == 0:
                         break
                     if len(chunk) % 16 != 0:
-                        chunk = '%s%s' % (chunk, ' ' * (16 - len(chunk) % 16))
+                        chunk = b'%b%b' % (chunk, b' ' * (16 - len(chunk) % 16))
 
-                    outfp.write(encryptor.update(chunk) + encryptor.finalize())
+                    outfp.write(encryptor.update(chunk))
+
+                outfp.write(encryptor.finalize())
 
             os.remove(dbfile)
             print('File encrypted')
             sys.exit(0)
         except Exception as e:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(encfile)
             LOGERR(e)
             sys.exit(1)
 
@@ -314,9 +319,8 @@ class BukuCrypt:
                         chunk = infp.read(BukuCrypt.CHUNKSIZE)
                         if len(chunk) == 0:
                             break
-
-                        outfp.write(decryptor.update(chunk) + decryptor.finalize())
-
+                        outfp.write(decryptor.update(chunk))
+                    outfp.write(decryptor.finalize())
                     outfp.truncate(size)
 
             # Match hash of generated file with that of original DB file
@@ -329,14 +333,20 @@ class BukuCrypt:
                 os.remove(encfile)
                 print('File decrypted')
         except struct.error:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(dbfile)
             LOGERR('Tainted file')
             sys.exit(1)
         except Exception as e:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(dbfile)
             LOGERR(e)
             sys.exit(1)
 
 
 BookmarkVar = Tuple[int, str, Optional[str], str, str, int]
+# example:
+# (1, 'http://example.com', 'example title', ',tags1,', 'randomdesc', 0))
 
 
 class BukuDb:
@@ -1474,6 +1484,11 @@ class BukuDb:
             True if record should not be committed to the DB,
             leaving commit responsibility to caller. Default is False.
 
+        Raises
+        ------
+        TypeError
+            If any of index, low, or high variable is not integer.
+
         Returns
         -------
         bool
@@ -1578,9 +1593,10 @@ class BukuDb:
         bool
             True on success, False on failure.
         """
-        resp = read_in('Delete the search results? (y/n): ')
-        if resp != 'y':
-            return False
+        if self.chatty:
+            resp = read_in('Delete the search results? (y/n): ')
+            if resp != 'y':
+                return False
 
         # delete records in reverse order
         pos = len(results) - 1
@@ -1943,7 +1959,7 @@ class BukuDb:
         id_list = cmdstr[:index].split()
         try:
             tags = self.get_tagstr_from_taglist(id_list, taglist)
-            if tags == DELIM:
+            if tags == DELIM and flag != 2:
                 return -1
         except ValueError:
             return -1
@@ -2409,19 +2425,12 @@ class BukuDb:
         if filepath.endswith('.db'):
             return self.mergedb(filepath)
 
+        newtag = None
+        append_tags_resp = 'y'
         if not tacit:
-            resp = input('Generate auto-tag (YYYYMonDD)? (y/n): ')
-            if resp == 'y':
+            if input('Generate auto-tag (YYYYMonDD)? (y/n): ') == 'y':
                 newtag = gen_auto_tag()
-            else:
-                newtag = None
-        else:
-            newtag = None
-
-        if not tacit:
             append_tags_resp = input('Append tags when bookmark exist? (y/n): ')
-        else:
-            append_tags_resp = 'y'
 
         items = []
         if filepath.endswith('.md'):
@@ -2626,10 +2635,10 @@ class BukuDb:
             url = arg
 
         # Try fetching cached page from Wayback Machine
-        api_url = 'https://archive.org/wayback/available/?url=' + quote_plus(url)
+        api_url = 'https://archive.org/wayback/available?url=' + quote_plus(url)
         manager = get_PoolManager()
         resp = manager.request('GET', api_url)
-        respobj = json.loads(resp.data.decode('utf-8'))
+        respobj = json.loads(resp.data)
         try:
             if (
                     len(respobj['archived_snapshots']) and
@@ -2725,7 +2734,7 @@ SYMBOLS:
       #                    tags
 
 Version %s
-Copyright © 2015-2020 %s
+Copyright © 2015-2021 %s
 License: %s
 Webpage: https://github.com/jarun/buku
 ''' % (__version__, __author__, __license__))
@@ -2786,8 +2795,8 @@ PROMPT KEYS:
             assert len(arg) == 5
             for c in arg:
                 assert c in COLORMAP
-        except AssertionError:
-            raise argparse.ArgumentTypeError('%s is not a valid color string' % arg)
+        except AssertionError as e:
+            raise argparse.ArgumentTypeError('%s is not a valid color string' % arg) from e
         return arg
 
     # Help
@@ -2799,7 +2808,7 @@ PROMPT KEYS:
         file : file, optional
             File to write program info to. Default is sys.stdout.
         """
-        super(ExtendedArgumentParser, self).print_help(file)
+        super().print_help(file)
         self.program_info(file)
 
 
@@ -2809,6 +2818,19 @@ PROMPT KEYS:
 
 
 ConverterResult = TypedDict('ConverterResult', {'data': str, 'count': int}) if TypedDict else Dict[str, Any]
+
+
+def convert_tags_to_org_mode_tags(tags: str) -> str:
+    """convert buku tags to org-mode compatible tags."""
+    if tags != DELIM:
+        buku_tags = tags.split(DELIM)[1:-1]
+        buku_tags = [re.sub(r'[^a-zA-Z0-9_@]', ' ', tag) for tag in buku_tags]
+        buku_tags = [re.sub(r'\s+', ' ', tag) for tag in buku_tags]
+        buku_tags = list(
+            sorted(set(map(lambda x: x.replace(' ', '_'), buku_tags)), reverse=False))
+        if buku_tags:
+            return ' :{}:\n'.format(':'.join(buku_tags))
+    return '\n'
 
 
 def convert_bookmark_set(
@@ -2850,17 +2872,7 @@ def convert_bookmark_set(
                 out += '* [[{}][Untitled]]'.format(row[1])
             else:
                 out += '* [[{}][{}]]'.format(row[1], row[2])
-
-            if row[3] != DELIM:
-                # add additional whitespaces for tags that end or start with a colon
-                tag_string = row[3].replace(',:', ', ,:').replace(':,', ':, ,')
-                buku_tags = tag_string.split(DELIM)[1:-1]
-                # if colons are inside a tag, add one additional colon
-                buku_tags = [re.sub(r'(?<=[\w,\:]):(?=\w)', '::', tag) for tag in buku_tags]
-                out += ' :{}:\n'.format(':'.join(buku_tags))
-            else:
-                out += '\n'
-
+            out += convert_tags_to_org_mode_tags(row[3])
             count += 1
     elif export_type == 'html':
         timestamp = str(int(time.time()))
@@ -2954,14 +2966,14 @@ def walk(root):
             walk(element)
 
 
-def import_md(filepath, newtag):
+def import_md(filepath: str, newtag: Optional[str]):
     """Parse bookmark Markdown file.
 
     Parameters
     ----------
     filepath : str
         Path to Markdown file.
-    newtag : str
+    newtag : str, optional
         New tag for bookmarks in Markdown file.
 
     Returns
@@ -2988,19 +3000,16 @@ def import_md(filepath, newtag):
                     if is_nongeneric_url(url):
                         continue
 
-                    yield (
-                        url, title, delim_wrap(newtag)
-                        if newtag else None, None, 0, True
-                    )
+                    yield (url, title, delim_wrap(newtag), None, 0, True)
 
-def import_org(filepath, newtag):
+def import_org(filepath: str, newtag: Optional[str]):
     """Parse bookmark org file.
 
     Parameters
     ----------
     filepath : str
         Path to org file.
-    newtag : str
+    newtag : str, optional
         New tag for bookmarks in org file.
 
     Returns
@@ -3066,10 +3075,7 @@ def import_org(filepath, newtag):
                         if newtag.lower() not in tags:
                             tags_string = (newtag + DELIM) + tags_string
 
-                    yield (
-                        url, title, delim_wrap(tags_string)
-                        if newtag else None, None, 0, True
-                    )
+                    yield (url, title, delim_wrap(tags_string), None, 0, True)
 
 def import_firefox_json(json, add_bookmark_folder_as_tag=False, unique_tag=None):
     """Open Firefox JSON export file and import data.
@@ -4077,6 +4083,8 @@ def copy_to_clipboard(content):
             copier_params = ['xsel', '-b', '-i']
         elif shutil.which('xclip') is not None:
             copier_params = ['xclip', '-selection', 'clipboard']
+        elif shutil.which('wl-copy') is not None:
+            copier_params = ['wl-copy']
         # If we're using Termux (Android) use its 'termux-api'
         # add-on to set device clipboard.
         elif shutil.which('termux-clipboard-set') is not None:
@@ -4173,7 +4181,7 @@ def print_rec_with_filter(records, field_filter=0):
         sys.exit(1)
 
 
-def print_single_rec(row, idx=0):  # NOQA
+def print_single_rec(row: BookmarkVar, idx: Optional[int] = 0):  # NOQA
     """Print a single DB record.
 
     Handles both search results and individual record.
@@ -4209,6 +4217,8 @@ def print_single_rec(row, idx=0):  # NOQA
 
     try:
         print(''.join(str_list))
+    except UnicodeEncodeError:
+        sys.stdout.buffer.write((''.join(str_list) + '\n').encode('utf-8'))
     except BrokenPipeError:
         sys.stdout = os.fdopen(1)
         sys.exit(1)
@@ -4959,12 +4969,12 @@ POSITIONAL ARGUMENTS:
                          N=4: URL, title, tag; N=5: title, tag;
                          N0 (10, 20, 30, 40, 50) omits DB index
     -j, --json [file]    JSON formatted output for -p and search.
-                         prints to stdout if no arguments are provided.
+                         prints to stdout if argument missing.
                          otherwise writes to given file
     --colors COLORS      set output colors in five-letter string
     --nc                 disable color output
     -n, --count N        show N results per page (default 10)
-    --np                 do not show the prompt, run and exit
+    --np                 do not show the subprompt, run and exit
     -o, --open [...]     browse bookmarks by indices and ranges
                          open a random bookmark, if no arguments
     --oa                 browse all search results immediately
@@ -4974,11 +4984,11 @@ POSITIONAL ARGUMENTS:
     --expand index|URL   expand a tny.im shortened url
     --cached index|URL   browse a cached page from Wayback Machine
     --suggest            show similar tags when adding bookmarks
-    --tacit              reduce verbosity
+    --tacit              reduce verbosity, skip some confirmations
     --threads N          max network connections in full refresh
                          default N=4, min N=1, max N=10
     -V                   check latest upstream version available
-    -z, --debug          show debug information and verbose logs''')
+    -g, --debug          show debug information and verbose logs''')
     addarg = power_grp.add_argument
     addarg('--ai', action='store_true', help=hide)
     addarg('-e', '--export', nargs=1, help=hide)
@@ -5000,7 +5010,7 @@ POSITIONAL ARGUMENTS:
     addarg('--tacit', action='store_true', help=hide)
     addarg('--threads', type=int, default=4, choices=range(1, 11), help=hide)
     addarg('-V', dest='upstream', action='store_true', help=hide)
-    addarg('-z', '--debug', action='store_true', help=hide)
+    addarg('-g', '--debug', action='store_true', help=hide)
     # Undocumented APIs
     # Fix uppercase tags allowed in releases before v2.7
     addarg('--fixtags', action='store_true', help=hide)

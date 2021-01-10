@@ -36,7 +36,7 @@ skim-file-widget() {
 }
 zle     -N   skim-file-widget
 #bindkey '^T' skim-file-widget
-bindkey '\en' skim-file-widget
+bindkey '^N' skim-file-widget
 
 # Ensure precmds are run after cd
 skim-redraw-prompt() {

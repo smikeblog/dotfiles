@@ -8,6 +8,9 @@ endif
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/pluvled')
 
+" Add spelling errors to the quickfix list (vim-ingo-library is a dependency).
+Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'
+
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'haorenW1025/floatLf-nvim'
@@ -20,7 +23,7 @@ Plug 'aonemd/kuroi.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'
@@ -101,4 +104,25 @@ function! FzfSpell()
 endfunction
 
 nnoremap z= :call FzfSpell()<CR>
+
+
+" Spelling mistakes will also be colored red if you uncomment the colors.
+hi SpellBad cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline "ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
+
+" Toggle quickfix window.
+function! QuickFix_toggle()
+    for i in range(1, winnr('$'))
+        let bnum = winbufnr(i)
+        if getbufvar(bnum, '&buftype') == 'quickfix'
+            cclose
+            return
+        endif
+    endfor
+
+    copen
+endfunction
+nnoremap <silent> <Leader>tq :call QuickFix_toggle()<CR>
 

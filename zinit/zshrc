@@ -84,10 +84,12 @@ zt for if'zct dolphin' \
     if'zct p10k' \
         zdharma/null
 
-zt light-mode compile'*handler' for \
+#zt light-mode compile'*handler' for \
+zt light-mode for \
         zinit-zsh/z-a-patch-dl \
-        zinit-zsh/z-a-bin-gem-node \
-        zinit-zsh/z-a-submods
+        zinit-zsh/z-a-submods \
+        smikeblog/z-a-linkman \
+        smikeblog/z-a-linkbin
 
 zt light-mode blockf for \
         _local/config-files
@@ -102,97 +104,202 @@ zt light-mode blockf for \
 ######################
 # Trigger-load block #
 ######################
+#       agkozak/zsh-z \
+
+#zt light-mode for \
+#    trigger-load'!x' \
+#        OMZ::plugins/extract/extract.plugin.zsh \
+#    trigger-load'!man' \
+#        ael-code/zsh-colored-man-pages \
+#    trigger-load'!ga;!gcf;!gclean;!gd;!glo;!grh;!gss' \
+#        wfxr/forgit \
+#    trigger-load'!zshz' blockf \
+#        skywind3000/z.lua
+#    trigger-load'!updatelocal' blockf \
+#        smikeblog/updatelocal \
+#    trigger-load'!gencomp' pick'zsh-completion-generator.plugin.zsh' blockf \
+#    atload'alias gencomp="zinit silent nocd as\"null\" wait\"2\" atload\"zinit creinstall -q _local/config-files; zicompinit\" for /dev/null; gencomp"' \
+#        RobSis/zsh-completion-generator
+
+######################
+# Trigger-load block #
+######################
 
 zt light-mode for \
-    trigger-load'!x' \
-        OMZ::plugins/extract/extract.plugin.zsh \
+    trigger-load'!x' svn \
+        OMZ::plugins/extract \
     trigger-load'!man' \
         ael-code/zsh-colored-man-pages \
-    trigger-load'!ga;!gcf;!gclean;!gd;!glo;!grh;!gss' \
+    trigger-load'!ga;!grh;!glo;!gd;!gcf;!gclean;!gss;!gcp' \
         wfxr/forgit \
     trigger-load'!zshz' blockf \
-        skywind3000/z.lua
- #       agkozak/zsh-z \
-    trigger-load'!updatelocal' blockf \
+        skywind3000/z.lua \
+    trigger-load'!updatelocal' blockf compile'f*/*~*.zwc' \
         smikeblog/updatelocal \
-    trigger-load'!gencomp' pick'zsh-completion-generator.plugin.zsh' blockf \
-    atload'alias gencomp="zinit silent nocd as\"null\" wait\"2\" atload\"zinit creinstall -q _local/config-files; zicompinit\" for /dev/null; gencomp"' \
-        RobSis/zsh-completion-generator
+    trigger-load'!zhooks' \
+        agkozak/zhooks \
+    trigger-load'!gcomp' blockf \
+    atclone'command rm -rf lib/*;git ls-files -z lib/ |xargs -0 git update-index --skip-worktree' \
+    submods'RobSis/zsh-completion-generator -> lib/zsh-completion-generator;
+    nevesnunes/sh-manpage-completions -> lib/sh-manpage-completions' \
+    atload' gcomp(){gencomp "${@}" && zinit creinstall -q ${ZINIT[SNIPPETS_DIR]}/config 1>/dev/null}' \
+         Aloxaf/gencomp
+
 
 ##################
 # Wait'0a' block #
 ##################
 
 zt 0a light-mode for \
+        OMZL::history.zsh \
         OMZL::completion.zsh \
-    if'false' ver'dev' \
-        marlonrichert/zsh-autocomplete \
-#    has'systemctl' \
-#        OMZP::systemd/systemd.plugin.zsh \
-#        OMZP::sudo/sudo.plugin.zsh \
-#    blockf \
-#        zsh-users/zsh-completions \
-    compile'{src/*.zsh,src/strategies/*}' pick'zsh-autosuggestions.zsh' \
-    atload'_zsh_autosuggest_start' \
-        zsh-users/zsh-autosuggestions \
-    pick'fz.sh' atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert __fz_zsh_completion)' \
-        changyuheng/fz
+        OMZP::systemd/systemd.plugin.zsh \
+        OMZP::sudo/sudo.plugin.zsh \
+    as'completion' blockf \
+        zsh-users/zsh-completions \
+    as'completion' nocompile mv'*.zsh -> _git' patch"${pchf}/%PLUGIN%.patch" reset \
+        felipec/git-completion \
+    ver'develop' atpull'zinit cclear' atload'_zsh_autosuggest_start' \
+        zsh-users/zsh-autosuggestions
 
 ##################
 # Wait'0b' block #
 ##################
 
-zt 0b light-mode for \
-    pack'no-dir-color-swap' patch"$pchf/%PLUGIN%.patch" reset \
-        trapd00r/LS_COLORS \
-    compile'{hsmw-*,test/*}' \
-        zdharma/history-search-multi-word \
-        OMZP::command-not-found/command-not-found.plugin.zsh \
-    pick'autopair.zsh' nocompletions atload'bindkey "^H" backward-kill-word; ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' \
+zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
+    atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(__fz_zsh_completion)' \
+        changyuheng/fz \
+    atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' \
         hlissner/zsh-autopair \
-    trackbinds bindmap'\e[1\;6D -> ^[[1\;5B; \e[1\;6C -> ^[[1\;5A' patch"$pchf/%PLUGIN%.patch" \
-    reset pick'dircycle.zsh' \
+    pack'no-dir-color-swap' atload"zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}" \
+        trapd00r/LS_COLORS \
+        kadaan/per-directory-history \
+    compile'h*' \
+        zdharma/history-search-multi-word \
+    trackbinds bindmap'\e[1\;6D -> ^[[1\;5B; \e[1\;6C -> ^[[1\;5A' \
         michaelxmcbride/zsh-dircycle \
+    blockf nocompletions compile'functions/*~*.zwc' \
+        marlonrichert/zsh-edit \
+    blockf compile'lib/*f*~*.zwc' \
+        Aloxaf/fzf-tab
+
+zt 0b light-mode for \
     autoload'#manydots-magic' \
         knu/zsh-manydots-magic \
+    atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
+    atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}}}' \
+    compile'.*fast*~*.zwc' nocompletions atpull'%atclone' \
+        zdharma/fast-syntax-highlighting \
     pick'autoenv.zsh' nocompletions \
         Tarrasch/zsh-autoenv \
-    atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
-        zdharma/fast-syntax-highlighting \
-    atload'bindkey "$terminfo[kcuu1]" history-substring-search-up;
-    bindkey "$terminfo[kcud1]" history-substring-search-down' \
-        zsh-users/zsh-history-substring-search \
-    as'completion' mv'*.zsh -> _git' \
-        felipec/git-completion \
+    atload'bindkey "${terminfo[kcuu1]}" history-substring-search-up;
+    bindkey "${terminfo[kcud1]}" history-substring-search-down' \
+        zsh-users/zsh-history-substring-search
+##################
+# Wait'0c' block #
+##################
+zt 0c light-mode binary from'gh-r' lman lbin for \
+    lbin'**/gh' atclone'./**/gh completion --shell zsh > _gh' atpull'%atclone' \
+        cli/cli \
+    atclone'./just --completions zsh > _just' atpull'%atclone' \
+        casey/just \
+    bpick'*linux64*' \
+        zyedidia/micro \
+    atclone'mv -f **/*.zsh _bat' atpull'%atclone' \
+        @sharkdp/bat \
+        @sharkdp/hyperfine \
+        @sharkdp/fd
+zt 0c light-mode binary for \
+    lbin \
+        laggardkernel/git-ignore \
+    lbin from'gh-r' \
+        Peltoche/lsd 
+zt 0c light-mode null for \
+    lbin'!**/winapps' patch"${pchf}/%PLUGIN%.patch" reset \
+        Fmstrat/winapps \
+    lbin'*d.sh;*n.sh' \
+        bkw777/notify-send.sh \
+    lbin'antidot* -> antidot' from'gh-r' atclone'./**/antidot* update 1>/dev/null' atpull'%atclone' \
+        doron-cohen/antidot \
+    lbin from'gh-r' bpick'*x_x86*' \
+        charmbracelet/glow \
+    lbin'nnn* -> nnn' from'gh-r' bpick'*nerd*' \
+        jarun/nnn \
+    lbin \
+        paulirish/git-open \
+    lbin'*/delta;git-dsf' from'gh-r' patch"${pchf}/%PLUGIN%.patch" \
+        dandavison/delta \
+    lbin from'gh-r' dl'https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1' lman \
+        junegunn/fzf \
+    id-as'Cleanup' nocd atinit'unset -f zt; _zsh_autosuggest_bind_widgets' \
+        zdharma/null
+
+##################
+# Wait'0a' block #
+##################
+
+#zt 0a light-mode for \
+#        OMZL::completion.zsh \
+#    if'false' ver'dev' \
+#        marlonrichert/zsh-autocomplete \
+#    blockf \
+#        zsh-users/zsh-completions \
+#    compile'{src/*.zsh,src/strategies/*}' pick'zsh-autosuggestions.zsh' \
+#    atload'_zsh_autosuggest_start' \
+#        zsh-users/zsh-autosuggestions \
+#    pick'fz.sh' atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert __fz_zsh_completion)' \
+#        changyuheng/fz
+
+##################
+# Wait'0b' block #
+##################
+
+#zt 0b light-mode for \
+#    pack'no-dir-color-swap' patch"$pchf/%PLUGIN%.patch" reset \
+#        trapd00r/LS_COLORS \
+#    compile'{hsmw-*,test/*}' \
+#        zdharma/history-search-multi-word \
+#        OMZP::command-not-found/command-not-found.plugin.zsh \
+#    pick'autopair.zsh' nocompletions atload'bindkey "^H" backward-kill-word; ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' \
+#        hlissner/zsh-autopair \
+#    trackbinds bindmap'\e[1\;6D -> ^[[1\;5B; \e[1\;6C -> ^[[1\;5A' patch"$pchf/%PLUGIN%.patch" \
+#    reset pick'dircycle.zsh' \
+#        michaelxmcbride/zsh-dircycle \
+#    autoload'#manydots-magic' \
+#        knu/zsh-manydots-magic \
+#    pick'autoenv.zsh' nocompletions \
+#        Tarrasch/zsh-autoenv \
+#    atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
+#        zdharma/fast-syntax-highlighting \
+#    atload'bindkey "$terminfo[kcuu1]" history-substring-search-up;
+#    bindkey "$terminfo[kcud1]" history-substring-search-down' \
+#        zsh-users/zsh-history-substring-search \
+#    as'completion' mv'*.zsh -> _git' \
+#        felipec/git-completion \
 
 ##################
 # Wait'0c' block #
 ##################
 
-zt 0c light-mode for \
-    pack'bgn-binary' \
-        junegunn/fzf \
-    sbin from'gh-r' submods'smikeblog/zsh-fast-alias-tips -> plugin' pick'plugin/*.zsh' \
-        sei40kr/fast-alias-tips-bin
-
-zt 0c light-mode binary for \
-    sbin'fd*/fd;fd*/fd -> fdfind' from"gh-r" \
-         @sharkdp/fd \
-    sbin'bin/git-ignore' atload'export GI_TEMPLATE="$PWD/.git-ignore"; alias gi="git-ignore"' \
-        laggardkernel/git-ignore
-
-zt 0c light-mode null for \
-    sbin"bin/git-dsf;bin/diff-so-fancy" \
-        zdharma/zsh-diff-so-fancy \
-    sbin \
-        paulirish/git-open \
-#    sbin'*/rm-trash' atload'alias rm="rm-trash ${rm_opts}"' reset \
-#    patch"$pchf/%PLUGIN%.patch" \
-#        nateshmbhat/rm-trash \
+#zt 0c light-mode for \
+#    pack'bgn-binary' \
+#        junegunn/fzf \
+#    sbin from'gh-r' submods'smikeblog/zsh-fast-alias-tips -> plugin' pick'plugin/*.zsh' \
+#        sei40kr/fast-alias-tips-bin
+#
+#zt 0c light-mode binary for \
+#    sbin'fd*/fd;fd*/fd -> fdfind' from"gh-r" \
+#         @sharkdp/fd \
+#    sbin'bin/git-ignore' atload'export GI_TEMPLATE="$PWD/.git-ignore"; alias gi="git-ignore"' \
+#        laggardkernel/git-ignore
+#
+#zt 0c light-mode null for \
+#    sbin"bin/git-dsf;bin/diff-so-fancy" \
+#        zdharma/zsh-diff-so-fancy \
 #    sbin \
-#        kazhala/dotbare \
-    id-as'Cleanup' nocd atinit'unset -f zct zt; SPACESHIP_PROMPT_ADD_NEWLINE=true; _zsh_autosuggest_bind_widgets' \
-        zdharma/null
+#        paulirish/git-open \
+#    id-as'Cleanup' nocd atinit'unset -f zct zt; SPACESHIP_PROMPT_ADD_NEWLINE=true; _zsh_autosuggest_bind_widgets' \
+#        zdharma/null
 
 
 ################
@@ -219,7 +326,6 @@ zi0c() {
 ###########
 # Plugins #
 ###########
-
 #zi0a
 #    zinit light skywind3000/z.lua
 
@@ -246,9 +352,9 @@ zi0a
 zinit light wfxr/emoji-cli
 
 zinit light mollifier/anyframe
-zinit light supercrabtree/k
 zinit light jimeh/zsh-peco-history
 zinit light Aloxaf/fzf-tab
+zinit light supercrabtree/k
 
 export PATH="$PATH:$HOME/.dotfiles/tools"
 

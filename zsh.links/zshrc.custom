@@ -4,7 +4,12 @@ export KEYTIMEOUT=1
 
 # Load ,profile file wich is common for bash and zsh
 if [ -f ~/.profile ]; then
-    source ~/.profile
+# zsh does not run .profile by default, we call it here
+# so as to keep .profile independent.
+    emulate sh
+    . $HOME/.profile
+    emulate zsh
+#    source ~/.profile
 fi
 if [ -f ~/.zprofile ]; then
     source ~/.zprofile
@@ -52,17 +57,6 @@ lsd_preview ':fzf-tab:complete:exa:*'
 lsd_preview ':fzf-tab:complete:ls:*'
 lsd_preview ':fzf-tab:complete:_fzz:*'
 zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre]}$in'
-
-## === fzf-tab.zsh settings ===
-#zstyle ':fzf-tab:complete:_zlua:*' query-string input
-#zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview 'ps --pid=$word -o cmd --no-headers -w -w'
-#zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags '--preview-window=down:3:wrap'
-#zstyle ':fzf-tab:complete:kill:*' popup-pad 0 3
-#zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-#zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-#zstyle ":completion:*:git-checkout:*" sort false
-#zstyle ":fzf-tab:*" fzf-flags '--color=bg+:23'
-#zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # ==== ====
 
@@ -226,9 +220,6 @@ fi
 
 ##   1}}}
 
-# pmy go fzf helper  Ctrl-<Space>
-# [ -f $HOME/.dotfiles/tools/pmy ] && eval "$(pmy init)"
-
 # navi cli cheat completion utility Ctrl+G
 if [ -e $HOME/.config/navi ]; then
   source <(navi widget zsh)
@@ -292,24 +283,9 @@ function peco-files() {
 zle -N peco-files
 bindkey '^Xf' peco-files
 
-
-#if [[ -z "$ZSH_CDR_DIR" ]]; then
-#  ZSH_CDR_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/zsh/cdr"
-#fi
-#mkdir --parents "$ZSH_CDR_DIR"
-
-#autoload -Uz chpwd_recent_dirs cdr
-#autoload -U add-zsh-hook
-#add-zsh-hook chpwd chpwd_recent_dirs
-#zstyle ':chpwd:*' recent-dirs-file "$ZSH_CDR_DIR"/recent-dirs
-#zstyle ':chpwd:*' recent-dirs-max 1000
-# fall through to cd
-#zstyle ':chpwd:*' recent-dirs-default yes
-
-
 # anyframeのセットアップ
 #zinit light mollifier/anyframe
-# Ctrl+x -> b
+# Ctrl+x -> Ctrl+f
 # peco でディレクトリの移動履歴を表示
 bindkey '^x^f' anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
@@ -328,10 +304,12 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 bindkey '^x^k' anyframe-widget-kill
 
 # Ctrl+x -> Ctrl+g
-# peco kill process
+# peco launch select-widget
 bindkey '^x^g' anyframe-widget-select-widget
 
 ### }}}
+
+## desc: [Ctrl+s]-insert sudo before command in cli {{{
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     if [[ $BUFFER == sudo\ * ]]; then
@@ -347,9 +325,32 @@ sudo-command-line() {
     fi
 }
 zle -N sudo-command-line
-# Defined shortcut keys: [Esc] [Esc]
+# Defined shortcut keys: [Ctrl+s]
 bindkey '^s' sudo-command-line
 bindkey -M vicmd 's' sudo-command-line
+## }}}
+
+#####################
+# FZF SETTINGS      #
+##################### {{{
+export FZF_DEFAULT_OPTS="
+--ansi
+--layout=default
+--info=inline
+--height=50%
+--multi
+--preview-window=right:50%
+--preview-window=sharp
+--preview-window=cycle
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --theme=gruvbox --line-range :500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--prompt='λ -> '
+--pointer='|>'
+--marker='✓'
+--bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
+"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+## }}}
 
 ###Random colorscript
 if [ -f /opt/shell-color-scripts/colorscript.sh ]; then

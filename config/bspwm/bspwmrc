@@ -130,3 +130,4 @@ bspc rule -a XTerm:dropXterm state=floating
 bspc rule -a Xterm state=floating center=true
 bspc rule -a dropdown sticky=on state=floating hidden=on
 
+bspc rule -a 'vlc' desktop="^4" border=off follow=on

@@ -271,11 +271,11 @@ Theme = simple_theme
 Precache = yes
 
 # Remember the playlist after exit?
-#SavePlaylist = yes
+#SavePlaylist = no 
 
 # When using more than one client (interface) at a time, do they share
 # the playlist?
-#SyncPlaylist = yes
+#SyncPlaylist = no 
 
 # Choose a keymap file (relative to '~/.moc/' or using an absolute path).
 # An annotated example keymap file is included ('keymap.example').
