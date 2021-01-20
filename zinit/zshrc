@@ -174,9 +174,8 @@ zt 0b light-mode for \
 ##################
 # Wait'0c' block #
 ##################
+
 zt 0c light-mode binary from'gh-r' lman lbin for \
-    lbin'**/gh' atclone'./**/gh completion --shell zsh > _gh' atpull'%atclone' \
-        cli/cli \
     atclone'./just --completions zsh > _just' atpull'%atclone' \
         casey/just \
     bpick'*linux64*' \
@@ -193,14 +192,10 @@ zt 0c light-mode binary for \
 zt 0c light-mode null for \
     lbin'*d.sh;*n.sh' \
         bkw777/notify-send.sh \
-    lbin'antidot* -> antidot' from'gh-r' atclone'./**/antidot* update 1>/dev/null' atpull'%atclone' \
-        doron-cohen/antidot \
     lbin from'gh-r' bpick'*x_x86*' \
         charmbracelet/glow \
     lbin'nnn* -> nnn' from'gh-r' bpick'*nerd*' \
         jarun/nnn \
-    lbin \
-        paulirish/git-open \
     lbin'*/delta;git-dsf' from'gh-r' patch"${pchf}/%PLUGIN%.patch" \
         dandavison/delta \
     lbin from'gh-r' dl'https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1' lman \
