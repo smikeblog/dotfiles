@@ -120,9 +120,14 @@ set statusline="  hint: %z%= %a %10u:%-7g %15s %20d  "
 mark r /
 mark h ~/
 mark b ~/bin/
+mark w ~/Blog/
+mark s ~/.dotfiles/
+mark l ~/.local/
 mark c ~/Code
 mark d ~/Downloads
 mark p ~/Pictures
+mark t ~/Templates
+mark v ~/Videos
 
 " ------------------------------------------------------------------------------
 
@@ -511,8 +516,8 @@ nnoremap <f8> :delete<cr>
 
 " ===================== FZF
 " from https://wiki.vifm.info/index.php/How_to_integrate_fzf_for_fuzzy_finding
-command! FZFlocate :set noquickview | :execute 'goto "'.system('locate $HOME | fzf --height 10 2>/dev/tty ').'"%IU' | redraw
-command! FZFfind :set noquickview | :execute 'goto "'.system('find | fzf --height 10 2>/dev/tty ').'"%IU' | redraw
+command! FZFlocate :set noquickview | :execute 'goto "'.system('locate $HOME | fzf --height 20 2>/dev/tty ').'"%IU' | redraw
+command! FZFfind :set noquickview | :execute 'goto "'.system('find | fzf --height 20 2>/dev/tty ').'"%IU' | redraw
 
 " We can then add the following mappings to run these commands from normal mode:
 " In this example I have chosen CTRL-g and CTRL-f.

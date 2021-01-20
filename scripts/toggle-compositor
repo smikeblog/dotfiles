@@ -25,6 +25,7 @@ function compton-tgle {
     fi
 }
 
+sleep 0.1s
 if hash picom > /dev/null 2&1 ; then 
     picom-tgle
 else

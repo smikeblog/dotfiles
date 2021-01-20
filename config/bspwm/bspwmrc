@@ -40,12 +40,11 @@ nm-applet &
 if [ -f /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1 ] ; then
     /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1 &
 fi
-
-if hash pcmanfm > /dev/null 2>&1 ; then
-    dbus-launch pcmanfm -d &
-fi
 if hash udiskie > /dev/null 2>&1 ; then
     udiskie &
+fi
+if hash pcmanfm > /dev/null 2>&1 ; then
+    dbus-launch pcmanfm -d &
 fi
 if hash tilda > /dev/null 2>&1 ; then
     tilda &

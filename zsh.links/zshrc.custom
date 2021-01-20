@@ -62,16 +62,8 @@ zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre
 
 # Modules
 autoload colors zsh/terminfo
-# autoload -Uz compinit && compinit -u
 autoload -U is-at-least
 colors
-
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
-
-# bind "Cttrl-u"to open rofi in win select mode
-bindkey -s '^u' 'mrofi\n'
 
 ### ----------------------------------------------------
 ## use lf/ranger as cd utility with Ctrl+o/Ctrl+p bindings  {{{1
@@ -84,7 +76,7 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
-bindkey -s '^o' 'lfcd\n'
+#bindkey -s '^o' 'lfcd\n'
 
 ranger_cd() {
     temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
@@ -97,7 +89,7 @@ ranger_cd() {
 # This will run the function by Ctrl+p through returning
 # the string "ranger-cd" in addition to a new-line character
 # to act as Enter key-press
-bindkey -s "^P" "ranger_cd\n"
+#bindkey -s "^P" "ranger_cd\n"
 
 ###   2}}}
 ## 1}}}
@@ -253,6 +245,19 @@ alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
 
+
+#### ===================================================================
+##
+##           Mapping (Bind) keys
+#### ===================================================================
+bindkey -s '^o' 'lfcd\n'           # cd lf
+bindkey -s "^P" "ranger_cd\n"      # cd ranger
+# Edit line in vim with ctrl-e:
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
+# bind "Cttrl-u"to open rofi in win select mode
+bindkey -s '^u' 'mrofi\n'
+
 ## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)  {{{
 function peco-files() {
   local current_lbuffer="$LBUFFER"
@@ -291,9 +296,11 @@ bindkey '^x^f' anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# Ctrl+x -> r
+# Ctrl+x -> r ; Ctrl+x -> Ctrl+r
 # peco でコマンドの実行履歴を表示
 bindkey '^xr' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-put-history
+
 
 # Ctrl+x -> Ctrl+b
 # peco でGitブランチを表示して切替え
@@ -361,12 +368,11 @@ fi
 
 alias l="lsd --group-dirs first"
 alias ytdll="bash $HOME/scripts/ytdll" 
-alias cds=cd_with_sk
 alias s="syscheck"
+alias cds=cd_with_sk
 alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
-alias calv='vi +CalendarH' 
+alias calvi='vi +CalendarH' 
 alias i="fzfimg.sh"
 
 #eval "$(lua ~/.zinit/plugins/skywind3000---z.lua/z.lua  --init zsh)"
 source ~/.zinit/plugins/skywind3000---z.lua/z.lua.plugin.zsh
-

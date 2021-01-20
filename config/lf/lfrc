@@ -51,7 +51,28 @@ cmd open ${{
         *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
     esac
 }}
-
+# FZF
+cmd fzf ${{
+	DIR=$(fd -t d | fzf)
+	[ -z "$DIR" ] || lf -remote "send $id cd '$DIR'"
+}}
+cmd fzf-home ${{
+#	DIR=$(fd -t d . "$HOME" | fzf)
+  DIR=$(fzf --bind 'ctrl-d:reload("$HOME/.dotfiles/tools/fd" --full-path $HOME -t d),ctrl-f:reload(find . -type d)' \
+      --height=50% --layout=reverse \
+      --header 'Press CTRL-D for DIRs and CTRL-F for files')
+	[ -z "$DIR" ] || lf -remote "send $id cd '$DIR'"
+}}
+## <Ctrl+f> - jump to a file or directory in lf using fuzzy matching
+cmd fzf_jump ${{
+   res="$(find . -maxdepth 1 | sk --reverse --header='Jump to location')"
+   if [ -f "$res" ]; then
+     cmd="select"
+   elif [ -d "$res" ]; then
+     cmd="cd"
+   fi
+lf -remote "send $id $cmd \"$res\""
+}}
 # make sure trash folder exists
 %mkdir -p ~/.trash
 
@@ -99,13 +120,46 @@ cmd zip ${{
     zip -r $1.zip $1
     rm -rf $1
 }}
-
+# Create symlinks
+cmd symlink &{{
+	load=$(lf -remote 'load')
+	list=$(echo "$load" | sed '1d')
+	if [ -z "$list" ]; then
+		lf -remote "send $id echo 'No files in buffer.'"
+	else
+		ln -s $list "$PWD"
+		lf -remote 'send load'
+		lf -remote 'send clear'
+	fi
+}}
+cmd symlink-force &{{
+	load=$(lf -remote 'load')
+	list=$(echo "$load" | sed '1d')
+	if [ -z "$list" ]; then
+		lf -remote "send $id echo 'No files in buffer.'"
+	else
+		ln -sf $list "$PWD"
+		lf -remote 'send load'
+		lf -remote 'send clear'
+	fi
+}}
+# Rename files using editor
+cmd vi-rename ${{
+	vimv $fx
+	lf -remote "send $id echo '$(cat /tmp/.vimv-latest)'"
+	lf -remote 'send load'
+	lf -remote 'send clear'
+}}
+###########################
 map a
+# FZF
+map <space> fzf
+map <c-n> fzf-home
+map <c-f> :fzf_jump
 # Bindings
 map za    # delete za setting map za set info size:time
 map za set hidden!
 map zv set info size:time
-map <c-f> :fzf_jump
 #map c $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
 #map J $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
 map g top
@@ -130,24 +184,15 @@ map O $mimeopen --ask $f
 #map o &rifle $f
 #map O $mimeopen --ask-default $f
 
+# Symlink
+map al symlink
+map af symlink-force
 cmd aj %lf -remote "send $id cd '$(autojump $1)'"
 map aA push :aj<space>
 
 ## Unmap the default mapping so the rest of the following mapping won't collide
-#map r
+map r
 # Simple rename:
-map r rename
-
-## <Ctrl+f> - jump to a file or directory in lf using fuzzy matching
-cmd fzf_jump ${{
-   res="$(find . -maxdepth 1 | sk --reverse --header='Jump to location')"
-   if [ -f "$res" ]; then
-     cmd="select"
-   elif [ -d "$res" ]; then
-     cmd="cd"
-   fi
-lf -remote "send $id $cmd \"$res\""
-}}
-map <c-f> :fzf_jump
-
+map rr rename
+map rv vi-rename
 

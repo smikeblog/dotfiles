@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+FZF_DEFAULT_OPTS=""
 
 function CREATE_PREVIEW {
     local path="$(realpath "$1")"

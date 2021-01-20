@@ -330,7 +330,7 @@ fzf_find_edit() {
 }
 # }}}
 alias ffe='fzf_find_edit'
-bindkey -s '^y' 'ffe\n'
+bindkey -s '^X^e' 'ffe\n'
 
 # fge grep edit {{{
 fzf_grep_edit(){
@@ -405,6 +405,8 @@ open_with_sk() {
 cd_with_sk() {
     cd $HOME && cd "$(fd -t d | sk --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
 }
+alias ske='open_with_sk'
+bindkey -s '^X^i' 'ske\n'
 ## --- }}}4
 ## -- }}}1
 #

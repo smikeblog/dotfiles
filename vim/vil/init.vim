@@ -11,8 +11,6 @@ call plug#begin('~/.local/share/nvim/pluvled')
 " Add spelling errors to the quickfix list (vim-ingo-library is a dependency).
 Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'
 
-Plug 'tjdevries/colorbuddy.vim'
-Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'haorenW1025/floatLf-nvim'
 
 Plug 'j5shi/CommandlineComplete.vim'
@@ -20,10 +18,11 @@ Plug 'voldikss/vim-floaterm'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
+Plug 'gruvbox-community/gruvbox'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'
@@ -40,11 +39,11 @@ Plug 'elentok/plaintasks.vim'
 Plug 'machakann/vim-highlightedyank'
 " Plug 'ap/vim-css-color'                           " Color previews for CSS
 " Plug 'vimwiki/vimwiki'
-Plug 'kovetskiy/sxhkd-vim'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
 Plug 'laher/fuzzymenu.vim'
 Plug 'SidOfc/mkdx'
+Plug 'kovetskiy/sxhkd-vim'
 Plug 'chrisbra/vim-zsh'
 
 call plug#end()
@@ -54,14 +53,8 @@ call plug#end()
 " Load config modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" disable python2 and set full path to python3
-let g:loaded_python_provider=0
-let g:python3_host_prog="/usr/bin/python3"
-
+source $HOME/.vil/general.vim
 source $HOME/.dotfiles/vim/vil/Sinit.vim
-"source $HOME/.config/nvim/general.vim
-"source $HOME/.config/nvim/plugins.vim
-"source $HOME/.config/nvim/keys.vim
 source $HOME/.dotfiles/vim/vil/Snippets.vim
 
 source $HOME/.dotfiles/vim/dot.vim/calendar.vim
