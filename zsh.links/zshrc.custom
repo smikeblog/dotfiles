@@ -129,6 +129,8 @@ if _has vifm; then
   alias v.='COLORTERM=tmux-256color vifm -c "vsplit" . ' # vi file manager
 fi
 
+bindkey -s '^f' 'cd "$(dirname "$(sk)")"\n'
+
 # cli translate  - https://github.com/soimort/translate-shell
 alias trans-enru='trans -shell en:ru '
 alias trans-enen='gawk -f <(curl -Ls git.io/translate) -- -shell '
@@ -251,7 +253,7 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 ##           Mapping (Bind) keys
 #### ===================================================================
 bindkey -s '^o' 'lfcd\n'           # cd lf
-bindkey -s "^P" "ranger_cd\n"      # cd ranger
+bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
@@ -367,11 +369,11 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
 fi
 
 alias l="lsd --group-dirs first"
-alias ytdll="bash $HOME/scripts/ytdll" 
+alias ytdll="bash $HOME/scripts/ytdll"
 alias s="syscheck"
 alias cds=cd_with_sk
 alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
-alias calvi='vi +CalendarH' 
+alias calvi='vi +CalendarH'
 alias i="fzfimg.sh"
 
 #eval "$(lua ~/.zinit/plugins/skywind3000---z.lua/z.lua  --init zsh)"

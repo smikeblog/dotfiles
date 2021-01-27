@@ -17,7 +17,7 @@ setxkbmap -layout "us,ru" -option "grp:ctrls_toggle,grp_led:scroll",caps:escape 
 if [ "$(bspc query -M --names | wc -l)" = 3 ]; then
   bspc monitor $(xrandr -q | grep '^eDP.*\bconnected' | awk '{print $1}') -d 1 2 3
   bspc monitor $(xrandr -q | grep '^DP.*\bconnected' | awk '{print $1}' | awk 'NR==1') -d 4 5 6
-  bspc monitor $(xrandr -q | grep '^DP.*\bconnected' | awk '{print $1}' | awk 'NR==2') -d 7 8 9 
+  bspc monitor $(xrandr -q | grep '^DP.*\bconnected' | awk '{print $1}' | awk 'NR==2') -d 7 8 9
 else
   bspc monitor -d 1 2 3 4 5 6 7 8 9
 fi
@@ -51,12 +51,12 @@ if hash tilda > /dev/null 2>&1 ; then
 fi
 if hash picom > /dev/null 2>&1 ; then
         picom --experimental-backends --fading --config "$HOME/.config/picom/picom.conf" &
-	    until pidof compton > /dev/null; do 
+	    until pidof compton > /dev/null; do
 		    sleep 0.1s
         done
 elif hash compton > /dev/null 2>&1 ; then
 	    compton --config "$HOME/.dotfiles/config/compton/compton.conf" &
-	    until pidof compton > /dev/null; do 
+	    until pidof compton > /dev/null; do
 		    sleep 0.1s
 	    done
 fi
