@@ -12,19 +12,67 @@
 fpath=("${0:h}/functions" "${fpath[@]}")
 autoload -Uz $fpath[1]/*(.:t)
 
+
+_zsh_autosuggest_strategy_dir_history(){ # Avoid Zinit picking this up as a completion
+    emulate -L zsh
+    if $_per_directory_history_is_global && [[ -r "$_per_directory_history_path" ]]; then
+        setopt EXTENDED_GLOB
+        local prefix="${1//(#m)[\\*?[\]<>()|^~#]/\\$MATCH}"
+        local pattern="$prefix*"
+        if [[ -n $ZSH_AUTOSUGGEST_HISTORY_IGNORE ]]; then
+        pattern="($pattern)~($ZSH_AUTOSUGGEST_HISTORY_IGNORE)"
+        fi
+        [[ "${dir_history[(r)$pattern]}" != "$prefix" ]] && \
+        typeset -g suggestion="${dir_history[(r)$pattern]}"
+    fi
+}
+
+_zsh_autosuggest_strategy_custom_history () {
+        emulate -L zsh
+        setopt EXTENDED_GLOB
+        local prefix="${1//(#m)[\\*?[\]<>()|^~#]/\\$MATCH}"
+        local pattern="$prefix*"
+        if [[ -n $ZSH_AUTOSUGGEST_HISTORY_IGNORE ]]
+        then
+                pattern="($pattern)~($ZSH_AUTOSUGGEST_HISTORY_IGNORE)"
+        fi
+        [[ "${history[(r)$pattern]}" != "$prefix" ]] && \
+        typeset -g suggestion="${history[(r)$pattern]}"
+}
+
 ! $isdolphin && add-zsh-hook chpwd chpwd_ls
 
 #########################
 #       Variables       #
 #########################
 
+[[ -z ${fpath[(re)/usr/share/zsh/site-functions]} && -d /usr/share/zsh/site-functions ]] && fpath=( "${fpath[@]}" /usr/share/zsh/site-functions )
+[[ -z ${path[(re)$HOME/bin]} && -d "$HOME/bin" ]] && path=( "$HOME/bin" "${path[@]}" )
+[[ -z ${path[(re)$HOME/.local/bin]} && -d "$HOME/.local/bin" ]] && path=( "$HOME/.local/bin" "${path[@]}" )
+ZINIT[ZCOMPDUMP_PATH]="${ZSH_CACHE_DIR:-${XDG_CACHE_HOME:-$HOME/.cache/zinit}}/zcompdump-${HOST/.*/}-${ZSH_VERSION}"
 pchf="${0:h}/patches"
 thmf="${0:h}/themes"
 GENCOMPL_FPATH="${0:h}/completions"
-WD_CONFIG="${ZPFX}/warprc"
+GENCOMP_DIR="${0:h}/completions"
 ZSHZ_DATA="${ZPFX}/z"
 AUTOENV_AUTH_FILE="${ZPFX}/autoenv_auth"
+PER_DIRECTORY_HISTORY_BASE="${ZPFX}/per-directory-history"
+export HISTFILE="${XDG_DATA_HOME}/zsh/history"
 export CUSTOMIZEPKG_CONFIG="${HOME}/.config/customizepkg"
+export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
+export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
+export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
+export TMPPREFIX="${TMPDIR%/}/zsh"
+
+
+
+#pchf="${0:h}/patches"
+#thmf="${0:h}/themes"
+#GENCOMPL_FPATH="${0:h}/completions"
+#WD_CONFIG="${ZPFX}/warprc"
+#ZSHZ_DATA="${ZPFX}/z"
+#AUTOENV_AUTH_FILE="${ZPFX}/autoenv_auth"
+#export CUSTOMIZEPKG_CONFIG="${HOME}/.config/customizepkg"
 
 # Directory checked for locally built projects (plugin NICHOLAS85/updatelocal)
 #UPDATELOCAL_GITDIR="${HOME}/github/built"
@@ -33,7 +81,8 @@ ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="?(#c100,)"
 ZSH_AUTOSUGGEST_MANUAL_REBIND=set
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+#ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_STRATEGY=(dir_history custom_history completion)
 FAST_ALIAS_TIPS_PREFIX="» $(tput setaf 6)"
 FAST_ALIAS_TIPS_SUFFIX="$(tput sgr0) «"
 HISTORY_SUBSTRING_SEARCH_FUZZY=set
@@ -105,28 +154,55 @@ setopt interactive_comments # Allow comments even in interactive shells (especia
 setopt pushd_ignore_dups    # don't push multiple copies of the same directory onto the directory stack
 setopt auto_pushd           # make cd push the old directory onto the directory stack
 setopt pushdminus           # swapped the meaning of cd +1 and cd -1; we want them to mean the opposite of what they mean
+setopt pushd_silent         # Silence pushd
+setopt glob_dots            # Show dotfiles in completions
+setopt extended_glob
 
 # Fuzzy matching of completions for when you mistype them:
-zstyle ':completion:*' completer _complete _match _approximate
+#zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*' completer _complete _match _list _ignored _correct _approximate
 zstyle ':completion:*:match:*' original only
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 
 # Pretty completions
-zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%d'
-zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+#zstyle ':completion:*:matches' group 'yes'
+#zstyle ':completion:*:options' description 'yes'
+#zstyle ':completion:*:options' auto-description '%d'
+#zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+#zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:descriptions' format '[%d]'
+#zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*' group-name ''
+#zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+#zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
-zstyle ':completion:*' use-cache true
-zstyle ':completion:*' rehash true
+zstyle ':completion:*' use-cache on
+# do not include pwd after ../
+zstyle ':completion:*' ignore-parents parent pwd
+# Hide nonexistant matches, speeds up completion a bit
+zstyle ':completion:*' accept-exact '*(N)'
+# divide man pages by sections
+zstyle ':completion:*:manuals' separate-sections true
+
+# fzf-tab
+zstyle ':fzf-tab:*' fzf-bindings 'space:accept'   # Space as accept
+zstyle ':fzf-tab:*' print-query ctrl-c        # Use input as result when ctrl-c
+zstyle ':fzf-tab:*' accept-line enter         # Accept selected entry on enter
+zstyle ':fzf-tab:*' prefix ''                 # No dot prefix
+zstyle ':fzf-tab:*' single-group color header # Show header for single groups
+zstyle ':fzf-tab:complete:(cd|ls|lsd):*' fzf-preview 'ls -1 --color=always -- $realpath'
+zstyle ':fzf-tab:complete:((micro|cp|rm):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
+zstyle ':fzf-tab:complete:micro:argument-rest' fzf-flags --preview-window=right:65%
+zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-preview "git --git-dir=$UPDATELOCAL_GITDIR/\${word}/.git log --color --date=short --pretty=format:'%Cgreen%cd %h %Creset%s %Cred%d%Creset ||%b' ..FETCH_HEAD 2>/dev/null"
+zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-flags --preview-window=down:5:wrap
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+  '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+
 
 bindkey '^[[1;5C' forward-word   # [Ctrl-RightArrow] - move forward one word
 bindkey '^[[1;5D' backward-word  # [Ctrl-LeftArrow]  - move backward one word

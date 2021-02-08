@@ -726,7 +726,7 @@ packadd! indentLine
 packadd! auto-pairs
 packadd! bclose.vim
 packadd! fzf.vim
-packadd! lf.vim
+packadd! floatLf-nvim
 packadd! sxhkd-vim
 
 " }}}

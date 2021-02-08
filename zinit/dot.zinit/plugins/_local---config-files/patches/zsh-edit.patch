@@ -8,7 +8,7 @@ Fix autoloading with Zinit, remove cdpath hook
 -  autoload -Uz add-zsh-hook $fdir/*~*.zwc
 -
 -  add-zsh-hook chpwd _cdpath
-+  autoload -Uz add-zsh-hook $fdir/*~*.zwc(.:t)
++  autoload -Uz add-zsh-hook $fdir/_*~*.zwc(.:t)
  
    local widget
  
