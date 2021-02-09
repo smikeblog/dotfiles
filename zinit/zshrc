@@ -1,4 +1,12 @@
-#
+# Install rust language if not installed
+if [[ !  -d "$HOME/.cargo" ]]; then
+#    echo "rust lang is installed"
+#else
+    echo "WARNING: \"cargo\" command is not found. Install rust first"
+    echo "home: https://www.rust-lang.org/tools/install"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+# make links and copy configs
 if [[ ! -d "$HOME/.zinit" ]]; then
     command mkdir -p $HOME/.zinit
     command sh -c $HOME/.dotfiles/zinit/installLink.sh
