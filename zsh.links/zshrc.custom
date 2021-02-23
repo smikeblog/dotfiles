@@ -367,6 +367,10 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
 #    /opt/shell-color-scripts/colorscript.sh random
     alias d='/opt/shell-color-scripts/colorscript.sh random'
 fi
+### prevent rstudio crash on nuoveau drivers
+if [ -f ~/bin/rsudio ]; then
+    export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-gpu";
+fi
 
 alias l="lsd --group-dirs first"
 alias ytdll="bash $HOME/scripts/ytdll"
