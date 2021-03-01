@@ -174,6 +174,10 @@ zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
         michaelxmcbride/zsh-dircycle \
     blockf nocompletions compile'functions/*~*.zwc' \
         marlonrichert/zsh-edit \
+    atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
+    atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
+    compile'.*fast*~*.zwc' nocompletions atpull'%atclone' \
+        zdharma/fast-syntax-highlighting
 
 zt 0b light-mode for \
     blockf compile'lib/*f*~*.zwc' \
@@ -181,10 +185,6 @@ zt 0b light-mode for \
     autoload'#manydots-magic' \
         knu/zsh-manydots-magic \
         RobSis/zsh-reentry-hook \
-    atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
-    atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}}}' \
-    compile'.*fast*~*.zwc' nocompletions atpull'%atclone' \
-        zdharma/fast-syntax-highlighting \
     pick'autoenv.zsh' nocompletions \
         Tarrasch/zsh-autoenv \
     atload'bindkey "${terminfo[kcuu1]}" history-substring-search-up;
@@ -203,11 +203,13 @@ zt 0c light-mode binary from'gh-r' lman lbin for \
         @sharkdp/bat \
         @sharkdp/hyperfine \
         @sharkdp/fd
+
 zt 0c light-mode binary for \
     lbin \
         laggardkernel/git-ignore \
     lbin from'gh-r' \
         Peltoche/lsd 
+
 zt 0c light-mode null for \
     lbin'*d.sh;*n.sh' \
         bkw777/notify-send.sh \
