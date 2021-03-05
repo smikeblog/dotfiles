@@ -64,19 +64,6 @@ export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 export LESSHISTFILE="${XDG_CACHE_HOME}/less/history"
 export TMPPREFIX="${TMPDIR%/}/zsh"
 
-
-
-#pchf="${0:h}/patches"
-#thmf="${0:h}/themes"
-#GENCOMPL_FPATH="${0:h}/completions"
-#WD_CONFIG="${ZPFX}/warprc"
-#ZSHZ_DATA="${ZPFX}/z"
-#AUTOENV_AUTH_FILE="${ZPFX}/autoenv_auth"
-#export CUSTOMIZEPKG_CONFIG="${HOME}/.config/customizepkg"
-
-# Directory checked for locally built projects (plugin NICHOLAS85/updatelocal)
-#UPDATELOCAL_GITDIR="${HOME}/github/built"
-
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="?(#c100,)"
@@ -143,7 +130,7 @@ $isdolphin && alias cd='clear -x; cd'
 #         Other         #
 #########################
 
-bindkey -v                  # EMACS bindings
+bindkey -v                  # vim bindings
 setopt append_history       # Allow multiple terminal sessions to all append to one zsh command history
 setopt hist_ignore_all_dups # delete old recorded entry if new entry is a duplicate.
 setopt no_beep              # don't beep on error
@@ -194,7 +181,7 @@ zstyle ':fzf-tab:*' accept-line enter         # Accept selected entry on enter
 zstyle ':fzf-tab:*' prefix ''                 # No dot prefix
 zstyle ':fzf-tab:*' single-group color header # Show header for single groups
 zstyle ':fzf-tab:complete:(cd|ls|lsd):*' fzf-preview 'ls -1 --color=always -- $realpath'
-zstyle ':fzf-tab:complete:((micro|cp|rm):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
+zstyle ':fzf-tab:complete:((micro|cp|rm):argument-rest|xed:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
 zstyle ':fzf-tab:complete:micro:argument-rest' fzf-flags --preview-window=right:65%
 zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-preview "git --git-dir=$UPDATELOCAL_GITDIR/\${word}/.git log --color --date=short --pretty=format:'%Cgreen%cd %h %Creset%s %Cred%d%Creset ||%b' ..FETCH_HEAD 2>/dev/null"
 zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-flags --preview-window=down:5:wrap

@@ -180,6 +180,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ### Other Optional
 
     pacman -S shellcheck
+    https://github.com/ckardaris/ucollage
     https://github.com/mvdan/sh
     pip3 install awesome-finder
     cargo install runiq
