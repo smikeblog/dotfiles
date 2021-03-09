@@ -43,6 +43,7 @@ Thumbs.db
 #############
 viminfo
 vifm/vifminfo
+vifm/vifminfo.json
 nbproject
 .~lock.*
 .buildpath
