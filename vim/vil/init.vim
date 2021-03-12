@@ -63,7 +63,7 @@ if !empty(glob("~/.local.vim"))
     source $HOME/.local.vim
 endif
 
-
+source $HOME/.fzf/plugin/fzf.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Temporary for testing modules

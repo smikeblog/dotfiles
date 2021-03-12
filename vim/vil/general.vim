@@ -68,7 +68,7 @@ augroup END
 
     " Disable python2 and define python3 path
 let g:python3_host_prog = '/usr/bin/python3'
-let g:loaded_python2_provider = 0
+let g:loaded_python_provider = 0
 
 " You can't stop me
 cmap w!! w !sudo tee %

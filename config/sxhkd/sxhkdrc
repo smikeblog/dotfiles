@@ -157,10 +157,6 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE {{{2
 
-# bspwm_smart_move is part of my dotfiles (link in the description).
-##super + alt + {h,j,k,l}
-##	bspwm_smart_move {west,south,north,east}
-
 # description: move the floating window
 ctrl + shift + {h,j,k,l}
  	floating_motions {_,edge-}{west,south,north,east}
@@ -197,12 +193,11 @@ alt + control + {h,j,k,l}
                  bottom 0 20 || bspc node -z top 0 20,\
                  top 0 -20 || bspc node -z bottom 0 -20,\
                  right 20 0 || bspc node -z left 20 0}
-# description: expand/contract a window by moving one of its side outward/inward
+# description: expand/contract a wind by moving side outward/inward
 super + c : {h,j,k,l}
      STEP=20; SELECTION={1,2,3,4}; \
          bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
              bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
-#
 
 # description: increase/decrease window gap on focused desktop
 super + alt + bracket{left,right}
