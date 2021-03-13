@@ -59,10 +59,6 @@ super + shift + {q,r}
 super + shift + c
 	bspc node -c
 
-# description: alternate the tiled/monocle layout
-super + m
-	bspc desktop -l next
-
 # description: send the newest marked node to the newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
@@ -78,9 +74,22 @@ super + {t,shift + t,f,shift + f}
 #super + ctrl + {m,x,y,z}
 #	bspc node -g {marked,locked,sticky,private}
 
+# description: alternate the tiled/monocle layout
+super + m
+	bspc desktop -l next
+
 # description: toggle tiled/float state
 super + d
     bspc node focused -t \~floating
+
+# Set the node flags.  Locked is a node that cannot be closed with `bspc
+# # node --close`.  Marked is a specific selector that allows operating on
+# # the given item (such as sending the marked item to the newest
+# # preselection).  Sticky stays in the focused desktop.  Private tries to
+# # keep its dimensions and tiling position.
+# description: node l-locked m-marked s-sticky p-private
+super + a ; {l,m,s,p}
+    bspc node -g {locked,marked,sticky,private}
 
 ### }}}
 
@@ -314,15 +323,6 @@ alt + @F6
 #     bspc node @north -r -150 || bspc node @south -r -150, \
 #     bspc node @north -r +150 || bspc node @south -r +150 \
 #}
-
-# Set the node flags.  Locked is a node that cannot be closed with `bspc
-# # node --close`.  Marked is a specific selector that allows operating on
-# # the given item (such as sending the marked item to the newest
-# # preselection).  Sticky stays in the focused desktop.  Private tries to
-# # keep its dimensions and tiling position.
-# description: node l-locked m-marked s-sticky p-private
-super + a ; {l,m,s,p}
-    bspc node -g {locked,marked,sticky,private}
 
 
 # GUI -ctrl+g 
