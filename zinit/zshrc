@@ -99,8 +99,11 @@ zt for if'zct dolphin' \
 zt light-mode for \
         zinit-zsh/z-a-patch-dl \
         zinit-zsh/z-a-submods \
-        smikeblog/z-a-linkman \
-        smikeblog/z-a-linkbin
+        NICHOLAS85/z-a-linkbin \
+        NICHOLAS85/z-a-linkman 
+
+#        smikeblog/z-a-linkman \
+#        smikeblog/z-a-linkbin
 
 zt light-mode blockf for \
         _local/config-files

@@ -1,10 +1,6 @@
 # This file provides my current word completion
 # Unlike standard completion provided by zsh, this completion is based on the current word rather than the current command
 
-
-
-
-
 # Prompts the user to select a wordlist from the wordlists folder
 wordlistSelect() {
 	fd -a --type f --hidden --follow --color=always --exclude .git --exclude \*.md --exclude \*.gif --exclude \*.jpg --exclude \*.png --exclude \*.lua --exclude \*.jar --exclude \*.pl '' /usr/share/wordlists/ | fzf --preview 'bat --color=always {}'

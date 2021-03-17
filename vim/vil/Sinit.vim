@@ -100,6 +100,11 @@ hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
     " highlight Type cterm=italic term=italic gui=italic
     " highlight Normal ctermbg=none
 
+" galaxyline
+"luafile '~/.vil/lua/statusline.lua'
+"execute 'luafile' . '~/.vil/plugin/lua/galaxyline.lua'
+"execute 'luafile' . '~/.vil/lua/spaceline.lua'
+" execute 'luafile' . '~/.vil/lua/init.lua'
 
 " vim-airline
 if !exists('g:airline_symbols')
@@ -222,4 +227,8 @@ let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
 let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
                                        " plugin which unfortunately interferes with mkdx list indentation.
 
-
+let g:spaceline_seperate_style = 'curve'
+" two char wide fade-in blocks
+let g:spaceline_scroll_chars = [
+  \ '  ', '░ ', '▒ ', '▓ ', '█ ', '█░', '█▒', '█▓', '██'
+  \ ]

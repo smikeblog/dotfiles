@@ -1,4 +1,9 @@
 moc_cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+
 # Compiled source #
 ###################
 *.com
@@ -98,3 +103,4 @@ sublime-text-3/Packages/User/
 /moc/softmixer
 /moc/pid
 /moc/playlist.m3u
+

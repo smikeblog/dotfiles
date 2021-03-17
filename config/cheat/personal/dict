@@ -1,0 +1,13 @@
+# Lookup word in a dictionary (ex. cat)
+  curl dict://dict.org/d:cat | less
+
+# Lookup synonims
+  curl dict://dict.org/d:cat:moby-thesaurus
+
+# Translate to other language (German)
+  curl dict://dict.org/d:cat:fd-deu
+
+# See results from all available dictionaries
+  curl dict://dict.org/d:cat:all
+
+  

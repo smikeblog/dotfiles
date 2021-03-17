@@ -1,0 +1,54 @@
+# inspired by morhetz' gruvbox theme
+# https://github.com/morhetz/gruvbox
+
+#colordef    black       =   157     157     157
+colordef    black       =   114     125     129
+#colordef    red         =   800     141     114
+colordef    red         =   659     600     518
+colordef    green       =   596     592     102
+colordef    yellow      =   566     562     109
+colordef    blue        =   271     522     533
+
+# purple
+colordef    magenta     =   694     384     525
+
+# aqua
+colordef    cyan        =   408     616     416
+colordef    white       =   922     859     698
+colordef    grey        =   659     600     518
+
+background              =   black       black
+frame                   =   green       black   dim
+window_title            =   cyan        black   reverse
+directory               =   blue        black
+selected_directory      =   blue        black   reverse
+playlist                =   green       black
+selected_playlist       =   green       black   reverse
+file                    =   white       black
+selected_file           =   white       black   reverse
+marked_file             =   cyan        black
+marked_selected_file    =   cyan        black   reverse
+marked_info             =   cyan        black
+marked_selected_info    =   cyan        black
+info                    =   red         black
+selected_info           =   red         black
+status                  =   red         black
+title                   =   blue        black
+state                   =   red         black   bold
+current_time            =   yellow      black
+time_left               =   yellow      black   reverse
+total_time              =   yellow      black   dim
+time_total_frames       =   yellow      black
+sound_parameters        =   blue        black
+legend                  =   blue        black   dim
+disabled                =   magenta     black   dim
+enabled                 =   magenta     black   bold
+empty_mixer_bar         =   grey        black   bold
+filled_mixer_bar        =   grey        black   bold,reverse
+empty_time_bar          =   red         black
+filled_time_bar         =   red         black   reverse
+entry                   =   white       black
+entry_title             =   grey        black
+error                   =   red         black   bold,standout
+message                 =   grey        black   dim
+plist_time              =   yellow      black   dim

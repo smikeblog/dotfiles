@@ -1,0 +1,28 @@
+```sh
+-- to search reddit.com site for news
+
+reddio [-chqvV] [<command> [<args>]]
+
+  -c <file> Use <file> instead of the default config
+  -q        Quiet
+  -v        Verbose mode
+  -V        Print version information and exit
+  -h        Print this help and exit
+
+Commands:
+  comment delete edit login logout message print submit
+  (un)follow (un)hide (un)marknsfw (un)read (un)save
+  (un)spoiler (un)subscribe upvote downvote unvote.
+
+A unique part, of the beginning of the command, is also valid. For
+example, 'p' for print or 'logi' for login.
+
+Examples:
+reddio print -l 2 r/commandline
+#read news for commandlite topic
+
+reddio print -l 1 -f '${new:+New message(s)!$nl}' message/unread
+#Check for new messages and comment replies
+
+from : https://gitlab.com/aaronNG/reddio
+

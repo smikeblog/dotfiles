@@ -27,7 +27,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -45,6 +44,13 @@ Plug 'laher/fuzzymenu.vim'
 Plug 'SidOfc/mkdx'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'chrisbra/vim-zsh'
+
+"Plug 'glepnir/spaceline.vim'
+"Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" If you want to display icons, then use one of these plugins:
+Plug 'kyazdani42/nvim-web-devicons' " lua
+Plug 'ryanoasis/vim-devicons' " vimscript
+Plug 'bling/vim-airline'
 
 call plug#end()
 """ }}}
@@ -98,12 +104,6 @@ endfunction
 
 nnoremap z= :call FzfSpell()<CR>
 
-
-" Spelling mistakes will also be colored red if you uncomment the colors.
-hi SpellBad cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellLocal cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellRare cterm=underline "ctermfg=203 guifg=#ff5f5f
-hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
 
 " Toggle quickfix window.
 function! QuickFix_toggle()

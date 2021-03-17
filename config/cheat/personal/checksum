@@ -1,0 +1,27 @@
+# for OS iso download the provided checksum file and run(ex. for MXLinux)
+```sh
+md5sum -c MX-19.3_x64.iso.md5
+```
+
+# You can create a simple function in your .bashrc or .zshrc configurations and run it in the following way:
+```sh
+sha256 <expected-sha-256-sum> <name-of-the-file>
+
+# Function-Example for sha256 :
+'''sh
+sha256() {
+    echo "$1 $2" | sha256sum --check
+}
+'''
+# Oneliner function for md5:
+```sh
+md5() { echo "$1  $2"|md5sum -c; }
+```
+
+## In the example we're downloading a source tarball from the lua site and verifying its sha1 sum
+```sh
+  wget http://lua.org/ftp/lua-5.3.3.tar.gz
+  echo "a0341bc3d1415b814cc738b2ec01ae56045d64ef ./lua-5.3.3.tar.gz" | sha1sum -c -
+```
+
+

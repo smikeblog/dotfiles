@@ -1,8 +1,0 @@
-# To cut out the third field of text or stdoutput that is delimited by a #:
-cut -d# -f3
-
-# cplit a line separated by "_", "." 
-  cut -d_ -f2 <<< "3302491505_8139829707_13970101.csv"             ## 8139829707
-  cut -d\. -f3 <<< "3302491505_8139829707_13970101.csv.txt"        ## txt
-  cut -d\. -f1 <<< "3302491505_8139829707_13970101.csv.txt"        ## 3302491505_8139829707_13970101 
-

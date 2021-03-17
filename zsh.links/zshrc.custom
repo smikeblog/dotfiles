@@ -140,6 +140,8 @@ if _has npx; then
   alias writegood="npx write-good $1"
 fi
 
+alias bigf='find ~ -xdev -type f -size +500M'  # display "big" files > 500M
+
 # 3 days weather
 alias sm.weather='curl wttr.in/chisinau'
 
@@ -351,7 +353,7 @@ export FZF_DEFAULT_OPTS="
 --preview-window=right:50%
 --preview-window=sharp
 --preview-window=cycle
---preview '([[ -f {} ]] && (bat --style=numbers --color=always --theme=gruvbox --line-range :500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
+--preview '([[ -f {} ]] && (bat --style=numbers --color=always --theme=gruvbox-dark --line-range :500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 --prompt='λ -> '
 --pointer='|>'
 --marker='✓'
@@ -379,6 +381,20 @@ alias cds=cd_with_sk
 alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
 alias calvi='vi +CalendarH'
 alias i="fzfimg.sh"
+
+
+# ALT-I - Paste the selected entry from locate output into the command line
+fzf-locate-widget() {
+  local selected
+  if selected=$(locate / | fzf -q "$LBUFFER"); then
+    LBUFFER=$selected
+  fi
+  zle redisplay
+}
+zle     -N    fzf-locate-widget
+bindkey '\ei' fzf-locate-widget
+
+
 
 #eval "$(lua ~/.zinit/plugins/skywind3000---z.lua/z.lua  --init zsh)"
 source ~/.zinit/plugins/skywind3000---z.lua/z.lua.plugin.zsh

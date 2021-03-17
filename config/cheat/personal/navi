@@ -1,0 +1,14 @@
+
+# find cheatsheet repositories with:
+  navi repo browse
+
+# use cheatsheets from tldr by running:
+  navi --tldr <query>
+
+# use cheatsheets from cheat.sh by running:
+  navi --cheatsh <query>
+
+NOTE: navi home: https://github.com/denisidoro/navi
+
+
+
