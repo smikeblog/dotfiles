@@ -9,15 +9,15 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 " ========================
 call plug#begin('~/.local/share/nvim/plugins')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-commentary'
-Plug 'machakann/vim-sandwich'
-Plug 'junegunn/goyo.vim'
-Plug 'aonemd/kuroi.vim'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-commentary'
+" Plug 'machakann/vim-sandwich'
+" Plug 'junegunn/goyo.vim'
+" Plug 'aonemd/kuroi.vim'
 call plug#end()
 
 set lazyredraw                                     "lazily redraw screen while executing macros, and other commands

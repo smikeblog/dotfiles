@@ -1,6 +1,8 @@
 #settings
 
 # Basic vars
+# Vars that depend on environmental variables
+#$lf -remote "send $id set previewer ${$HOME/.config}/lf/scope"
 set previewer ~/.config/lf/lib/preview
 set color256
 set icons
@@ -38,19 +40,35 @@ map <enter> shell
 # This command is called when current file is not a directory. You may want to
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
+# cmds/functions
 cmd open ${{
     case $(file --mime-type $f -b) in
-        image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
-        text/troff) man ./ $f;;
+	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
         text/*) $EDITOR $fx;;
-	    image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
-	    image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
-	    audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
-	    video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
-	    application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
-        *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
+	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+	image/svg+xml) display -- $f ;;
+	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
+	audio/*) mpv --audio-display=no $f ;;
+	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
     esac
 }}
+
+# cmd open ${{
+#     case $(file --mime-type $f -b) in
+#         image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
+#         text/troff) man ./ $f;;
+#         text/*) $EDITOR $fx;;
+# 	    image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
+# 	    image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
+# 	    audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
+# 	    video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
+# 	    application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
+#         *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
+#     esac
+# }}
+
 # FZF
 cmd fzf ${{
 	DIR=$(fd -t d | fzf)
@@ -172,8 +190,7 @@ map R reload
 map x $$f
 map X !$f
 map o &mimeopen $f
-map O $mimeopen --ask $f
-
+map O $mimeopen --ask 
 
 # execute current file (must be executable)
 #map x $$f

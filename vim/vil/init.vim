@@ -1,10 +1,13 @@
-if ! filereadable(expand('~/.local/share/nvim/autoload/plug.vim'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.local/share/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.local/share/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall
+" Install vim-plug if missing
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  augroup VimPlugAutoInstall
+    autocmd!
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  augroup END
 endif
-
+" ========================
 """ Plugins and vim-plug   {{{
 call plug#begin('~/.local/share/nvim/pluvled')
 
@@ -15,14 +18,13 @@ Plug 'haorenW1025/floatLf-nvim'
 
 Plug 'j5shi/CommandlineComplete.vim'
 Plug 'voldikss/vim-floaterm'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
 Plug 'gruvbox-community/gruvbox'
 Plug 'liuchengxu/space-vim-dark'
-"Plug 'morhetz/gruvbox'
 Plug 'scrooloose/nerdtree'
-"Plug 'junegunn/fzf' ", { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf' ", { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'

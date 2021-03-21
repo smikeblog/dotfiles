@@ -55,6 +55,7 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit installer's chunk
 
+# A binary Zsh module which transparently and automatically compiles sourced scripts
 module_path+=( "${HOME}/.zinit/bin/zmodules/Src" )
 zmodload zdharma/zplugin &>/dev/null
 
@@ -124,7 +125,7 @@ zt light-mode for \
     trigger-load'!ga;!grh;!glo;!gd;!gcf;!gclean;!gss;!gcp' \
         wfxr/forgit \
     trigger-load'!zshz' blockf \
-        skywind3000/z.lua \
+        agkozak/zsh-z \
     trigger-load'!updatelocal' blockf compile'f*/*~*.zwc' \
         smikeblog/updatelocal \
     trigger-load'!zhooks' \
@@ -141,8 +142,6 @@ zt light-mode for \
 ##################
 
 zt 0a light-mode for \
-        OMZL::history.zsh \
-        OMZL::completion.zsh \
         OMZP::systemd/systemd.plugin.zsh \
         OMZP::sudo/sudo.plugin.zsh \
     atload'zstyle ":completion:*" special-dirs false' \
@@ -151,8 +150,21 @@ zt 0a light-mode for \
         zsh-users/zsh-completions \
     as'completion' nocompile mv'*.zsh -> _git' patch"${pchf}/%PLUGIN%.patch" reset \
         felipec/git-completion \
-    atload'_zsh_autosuggest_start' \
+    ver'develop' atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions
+
+#        OMZL::history.zsh \
+#        OMZL::completion.zsh \
+#        OMZP::systemd/systemd.plugin.zsh \
+#        OMZP::sudo/sudo.plugin.zsh \
+#    atload'zstyle ":completion:*" special-dirs false' \
+#        OMZL::completion.zsh \
+#    as'completion' atpull'zinit cclear' blockf \
+#        zsh-users/zsh-completions \
+#    as'completion' nocompile mv'*.zsh -> _git' patch"${pchf}/%PLUGIN%.patch" reset \
+#        felipec/git-completion \
+#    atload'_zsh_autosuggest_start' \
+#        zsh-users/zsh-autosuggestions
 
 #    ver'develop' atload'_zsh_autosuggest_start' \
 
@@ -193,6 +205,7 @@ zt 0b light-mode for \
     atload'bindkey "${terminfo[kcuu1]}" history-substring-search-up;
     bindkey "${terminfo[kcud1]}" history-substring-search-down' \
         zsh-users/zsh-history-substring-search
+
 ##################
 # Wait'0c' block #
 ##################

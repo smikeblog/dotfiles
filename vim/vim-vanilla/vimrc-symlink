@@ -669,14 +669,14 @@ map <Space>\  :nohlsearch<CR>:echo 'Search highlight cleared'<CR>
 
 " -- Load some packages ---------------------------------------------------- {{{
 "
-packadd! vim-highlightedyank
-packadd! vim-matchup
-packadd! indentLine
-packadd! auto-pairs
-packadd! bclose.vim
-packadd! fzf.vim
-packadd! vim-floaterm
-packadd! sxhkd-vim
+ packadd! vim-highlightedyank
+ packadd! vim-matchup
+ packadd! indentLine
+ packadd! auto-pairs
+ packadd! bclose.vim
+ packadd! fzf.vim
+ packadd! vim-floaterm
+ packadd! sxhkd-vim
 
 " }}}
 

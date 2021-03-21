@@ -394,7 +394,3 @@ fzf-locate-widget() {
 zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
-
-
-#eval "$(lua ~/.zinit/plugins/skywind3000---z.lua/z.lua  --init zsh)"
-source ~/.zinit/plugins/skywind3000---z.lua/z.lua.plugin.zsh
