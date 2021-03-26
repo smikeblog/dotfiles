@@ -14,6 +14,10 @@ call plug#begin('~/.local/share/nvim/pluvled')
 " Add spelling errors to the quickfix list (vim-ingo-library is a dependency).
 Plug 'inkarkat/vim-ingo-library' | Plug 'inkarkat/vim-SpellCheck'
 
+" Leaderf-snippet
+  Plug 'Yggdroot/LeaderF'
+  Plug 'skywind3000/Leaderf-snippet'
+
 Plug 'haorenW1025/floatLf-nvim'
 
 Plug 'j5shi/CommandlineComplete.vim'
@@ -26,7 +30,7 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf' }
 Plug 'junegunn/fzf.vim'
-Plug 'dyng/ctrlsf.vim'
+"Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'jreybert/vimagit'
 Plug 'tpope/vim-commentary'
@@ -35,7 +39,7 @@ Plug 'prettier/vim-prettier', {
   \ 'branch': 'release/0.x'
   \ }
 "Plug 'vifm/vifm.vim'
-Plug 'elentok/plaintasks.vim'
+"Plug 'elentok/plaintasks.vim'
 " Highlight Yanked String
 Plug 'machakann/vim-highlightedyank'
 " Plug 'ap/vim-css-color'                           " Color previews for CSS
@@ -52,6 +56,10 @@ Plug 'chrisbra/vim-zsh'
 " If you want to display icons, then use one of these plugins:
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'ryanoasis/vim-devicons' " vimscript
+" Leaderf-snippet
+  Plug 'Yggdroot/LeaderF'
+  Plug 'skywind3000/Leaderf-snippet'
+
 Plug 'bling/vim-airline'
 
 call plug#end()

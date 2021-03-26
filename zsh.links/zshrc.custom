@@ -394,3 +394,4 @@ fzf-locate-widget() {
 zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
+alias vsk='vim -u ~/.vim/vim-init/init.vim'

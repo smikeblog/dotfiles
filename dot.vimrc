@@ -10,8 +10,6 @@
 "     \__\::::/      \__\/      \  \:\
 "         ~~~~                   \__\/
 
-let g:VimTemplates_beamer_name='slides.tex'
-
 set guioptions=
 
  " Set compatibility to Vim only.

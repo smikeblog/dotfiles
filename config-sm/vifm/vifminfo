@@ -1,0 +1,795 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'b
+	/home/sm/bin/
+	..
+1616236162
+'c
+	/home/sm/Code
+	..
+1616236162
+'d
+	/home/sm/Downloads
+	..
+1616236162
+'h
+	/home/sm/
+	..
+1616236162
+'l
+	/home/sm/.local/
+	..
+1616236162
+'p
+	/home/sm/Pictures
+	..
+1616236162
+'r
+	/
+	..
+1616236162
+'s
+	/home/sm/.dotfiles/
+	..
+1616236162
+'t
+	/home/sm/Templates
+	..
+1616236162
+'v
+	/home/sm/Videos
+	..
+1616236162
+'w
+	/home/sm/Blog/
+	..
+1616236162
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/sm/.config
+	bspwm
+13
+d/home/sm/.config/bspwm
+	..
+0
+d/home/sm/.config
+	polybar
+51
+d/home/sm/.config/polybar
+	panel
+3
+d/home/sm/.config/polybar/panel
+	..
+0
+d/home/sm/.config/polybar
+	..
+0
+d/home/sm/.config
+	..
+0
+d/home/sm
+	.rustup
+28
+d/home/sm/Code/testing
+	.git
+1
+d/home/sm/Temp
+	..
+0
+d/home/sm
+	..
+0
+d/home
+	sm2
+3
+d/home/sm2
+	.vim
+15
+d/home/sm2/.vim
+	autoload
+2
+d/home/sm2/.vim/autoload
+	..
+0
+d/home/sm2/.vim
+	Makefiles
+1
+d/home/sm2/.vim/Makefiles
+	..
+0
+d/home/sm2/.vim
+	colors
+3
+d/home/sm2/.vim/colors
+	..
+0
+d/home/sm2/.vim
+	doc
+4
+d/home/sm2/.vim/doc
+	..
+0
+d/home/sm2/.vim
+	doc
+4
+d/home/sm2/.vim/doc
+	..
+0
+d/home/sm2/.vim
+	myultisnips
+5
+d/home/sm2/.vim/myultisnips
+	..
+0
+d/home/sm2/.vim
+	snippet
+12
+d/home/sm2/.vim/snippet
+	..
+0
+d/home/sm2/.vim
+	spell
+13
+d/home/sm2/.vim/spell
+	..
+0
+d/home/sm2/.vim
+	templates
+14
+d/home/sm2/.vim/templates
+	..
+0
+d/home/sm2/.vim
+	undodir
+15
+d/home/sm2/.vim/undodir
+	..
+0
+d/home/sm2/.vim
+	..
+0
+d/home/sm2
+	.vim
+15
+d/home/sm
+	..
+0
+d/home
+	sm2
+3
+d/home/sm2
+	.local
+7
+d/home/sm2/.local
+	share
+4
+d/home/sm2/.local/share
+	qutebrowser
+22
+d/home/sm2/.local/share/qutebrowser
+	..
+0
+d/home/sm2/.local/share
+	qutebrowser
+22
+d/home/sm2/.local/share/qutebrowser
+	userstylesheets
+3
+d/home/sm2/.local/share/qutebrowser/userstylesheets
+	..
+0
+d/home/sm2/.local/share/qutebrowser
+	..
+0
+d/home/sm2/.local/share
+	qutebrowser
+22
+d/home/sm2/.local/share/qutebrowser
+	greasemonkey
+1
+d/home/sm2/.local/share/qutebrowser/greasemonkey
+	..
+0
+d/home/sm2/.local/share/qutebrowser
+	sessions
+2
+d/home/sm2/.local/share/qutebrowser/sessions
+	..
+0
+d/home/sm2/.local/share/qutebrowser
+	userstylesheets
+3
+d/home/sm2/.local/share/qutebrowser/userstylesheets
+	..
+0
+d/home/sm2/.local/share/qutebrowser
+	webengine
+4
+d/home/sm2/.local/share/qutebrowser/webengine
+	..
+0
+d/home/sm2/.local/share/qutebrowser
+	webengine
+4
+d/home/sm/Temp
+	48exqj
+3
+d/home/sm/Downloads
+	wgetrc.txt
+7
+d/home/sm/.config/nvim
+	..
+0
+d/home/sm/.config
+	nvimLua
+41
+d/home/sm/.config/nvimLua
+	lua
+4
+d/home/sm/.config/nvimLua/lua
+	lsp
+1
+d/home/sm/.config/nvimLua/lua/lsp
+	..
+0
+d/home/sm/.config/nvimLua/lua
+	..
+0
+d/home/sm/.config/nvimLua
+	..
+0
+d/home/sm/.config
+	nvim
+40
+d/home/sm/.config/nvim
+	lua
+4
+d/home/sm/.config/nvim/lua
+	lsp
+1
+d/home/sm/.config/nvim/lua/lsp
+	css-ls.lua
+2
+d/home/sm/.config
+	nvim
+23
+d/home/sm
+	..
+0
+d/home
+	sm2
+3
+d/home/sm2
+	.dotfiles
+3
+d/home/sm2/.dotfiles
+	tools
+18
+d/home/sm2/.dotfiles/tools
+	..
+0
+d/home/sm2/.dotfiles
+	vifm
+19
+d/home/sm2/.dotfiles/vifm
+	..
+0
+d/home/sm2/.dotfiles
+	..
+0
+d/home/sm
+	.config
+5
+d/home/sm/.config
+	rangerO
+43
+d/home/sm/.config/rangerO
+	plugins
+1
+d/home/sm/.config/rangerO/plugins
+	..
+0
+d/home/sm/.dotfiles/config-sm/tmux
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	tmux
+5
+d/home/sm/.dotfiles/config-sm/tmux
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	tmux
+5
+d/home/sm/.dotfiles/config-sm/tmux
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	home.moc
+2
+d/home/sm/.dotfiles/config-sm/home.moc
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	alacritty
+1
+d/home/sm/.dotfiles/config-sm/alacritty
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	alacritty
+1
+d/home/sm/.dotfiles/config-sm/alacritty
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	tmux
+6
+d/home/sm/.dotfiles/config-sm/tmux
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	moc
+2
+d/home/sm/.dotfiles/config-sm/moc
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	git
+3
+d/home/sm/.dotfiles/config-sm/git
+	..
+0
+d/home/sm/.dotfiles/config-sm
+	bat
+2
+d/home/sm/.dotfiles/config-sm/bat
+	make-bat-links.sh
+8
+d
+
+# Right window history (oldest to newest):
+D/home/sm/.vim
+	vim-init
+6
+D/home/sm/.vim/vim-init
+	..
+0
+D/home/sm/.vim
+	..
+0
+D/home/sm
+	.config
+5
+D/home/sm/.config
+	neovim
+24
+D/home/sm/.config/neovim
+	lua
+1
+D/home/sm/.config/neovim/lua
+	..
+0
+D/home/sm/.config/neovim
+	lua
+1
+D/home/sm/.config/neovim/lua
+	..
+0
+D/home/sm/.config/neovim
+	..
+0
+D/home/sm/.config
+	nvim
+19
+D/home/sm/.config/nvim
+	vim-plug
+11
+D/home/sm/.config/nvim/vim-plug
+	..
+0
+D/home/sm/.config/nvim
+	general
+3
+D/home/sm/.config/nvim/general
+	..
+0
+D/home/sm/.config/nvim
+	autoload
+2
+D/home/sm/.config/nvim/autoload
+	plugged
+1
+D/home/sm/.config/nvim/autoload/plugged
+	..
+0
+D/home/sm/.config/nvim/autoload
+	..
+0
+D/home/sm/.config/nvim
+	..
+0
+D/home/sm/.config
+	qpdfview
+36
+D/home/sm
+	Repos
+51
+D/home/sm/Repos
+	vim-init-skywind
+23
+D/home/sm
+	.local
+7
+D/home/sm/.local
+	share
+5
+D/home/sm/.local/share
+	nvim
+14
+D/home/sm/.local/share/nvim
+	site
+3
+D/home/sm/.local/share/nvim/site
+	pack
+3
+D/home/sm/.local/share/nvim/site/pack
+	foo
+1
+D/home/sm/.local/share/nvim/site/pack/foo
+	opt
+1
+D/home/sm/.local/share/nvim/site/pack/foo/opt
+	..
+0
+D/home/sm/.local/share/nvim/site/pack
+	..
+0
+D/home/sm/.local/share/nvim/site
+	..
+0
+D/home/sm/.local/share/nvim
+	site
+4
+D/home/sm
+	.vim_go_runtime
+28
+D/home/sm/.vim_go_runtime
+	vimrc
+3
+D/home/sm/.vim_go_runtime/vimrc
+	..
+0
+D/home/sm/.vim_go_runtime
+	..
+0
+D/home/sm
+	.vim
+27
+D/home/sm/.vim
+	..
+0
+D/home/sm
+	.local
+18
+D/home/sm/.local
+	share
+5
+D/home/sm/.local/share
+	qutebrowser
+18
+D/home/sm/.local/share/qutebrowser
+	..
+0
+D/home/sm/.local/share
+	..
+0
+D/home/sm/.local
+	..
+0
+D/home/sm
+	.config
+4
+D/home/sm/.config
+	newsboat
+17
+D/home/sm/.config/newsboat
+	..
+0
+D/home/sm/.config
+	newsboat
+17
+D/home/sm
+	Videos
+57
+D/home/sm/Videos
+	..
+0
+D/home/sm
+	Pictures
+51
+D/home/sm/Pictures
+	manjWallpapers
+1
+D/home/sm/Pictures/manjWallpapers
+	wallhaven-340944-haircut.jpg
+44
+D/home/sm/Pictures
+	manjWallpapers
+1
+D/home/sm/Pictures/manjWallpapers
+	waters.jpg
+45
+D/home/sm
+	Temp
+55
+D/home/sm/Temp
+	fzf-scripts-master
+2
+D/home/sm/Temp/fzf-scripts-master
+	..
+0
+D/home/sm/Temp
+	fzf-scripts-master
+2
+D/home/sm
+	.config
+5
+D/home/sm/.config
+	nvimLua
+22
+D/home/sm/.config/nvimLua
+	lua
+4
+D/home/sm/.config/nvimLua/lua
+	lsp
+1
+D/home/sm/.config/nvimLua/lua/lsp
+	..
+0
+D/home/sm/.config/nvimLua/lua
+	..
+0
+D/home/sm/.config/nvimLua
+	..
+0
+D/home/sm/.config
+	nvim
+21
+D/home/sm/.config/nvim
+	lua
+4
+D/home/sm/.config/nvim/lua
+	lsp
+1
+D/home/sm/.config/nvim/lua/lsp
+	..
+0
+D/home/sm/.config/nvim/lua
+	..
+0
+D/home/sm/.config/nvim
+	..
+0
+D/home/sm/.config
+	ranger
+40
+D/home/sm/.config/ranger
+	..
+0
+D/home/sm/.config
+	ranger
+40
+D/home/sm
+	.dotfiles
+9
+D/home/sm/.dotfiles
+	config-sm
+4
+D/home/sm/.dotfiles/config-sm
+	ranger
+4
+D/home/sm/.dotfiles/config-sm/ranger
+	plugins
+1
+D/home/sm/.dotfiles/config-sm/ranger/plugins
+	..
+0
+D/home/sm/.dotfiles/config-sm/ranger
+	..
+0
+D/home/sm/.dotfiles/config-sm
+	..
+0
+D/home/sm/.dotfiles
+	..
+0
+D/home/sm
+	.dotfiles
+9
+D/home/sm/.dotfiles
+	config
+3
+D/home/sm/.dotfiles/config
+	..
+0
+D/home/sm/.dotfiles
+	tmux
+14
+D/home/sm/.dotfiles/tmux
+	..
+0
+D/home/sm/.dotfiles
+	..
+0
+D/home/sm
+	.dotfiles
+9
+D/home/sm/.dotfiles
+	tmux
+14
+D/home/sm/.dotfiles/tmux
+	..
+0
+D/home/sm/.dotfiles
+	autoloaded
+2
+D/home/sm/.dotfiles/autoloaded
+	..
+0
+D/home/sm/.dotfiles
+	config
+3
+D/home/sm/.dotfiles/config
+	bat
+2
+D/home/sm/.dotfiles/config/bat
+	..
+0
+D/home/sm/.dotfiles/config
+	btops
+11
+D
+
+# Command line history (oldest to newest):
+:empty
+:mkdir opt
+:q
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+p/home/sm/.dotfiles/cheat/config.yml
+p/home/sm/.dotfiles/config/cheat/conf.yml
+pzsh_history
+pinst-MXLinux-19Mar2021.md
+p.zinitO
+p/home/sm/.zinit/plugins/felipec---git-completion/_git
+plfLuk
+plf
+pvim-init
+p.git
+pseaHouses_1280x1024.png
+pnoWindows_1280x1024.png
+pchinaMars_1280x1024.png
+pforest-lush.jpg
+pforest-path.jpg
+pforest-foggy.jpg
+pcity-montreal.jpg
+pnoApple.jpg
+popen.jpg
+pManjarouosG2.png
+pManjaro-uosG2.png
+pnvimLua
+p/home/sm/.dotfiles/tmux/tmux.conf
+pmoc
+
+# Local filter history (oldest to newest):
+
+# Registers:
+""/home/sm/.local/share/vifm/Trash/001_gitconfig
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+t/home/sm/.local/share/vifm/Trash/000_.zlua
+	/home/sm/.zlua
+t/home/sm/.local/share/vifm/Trash/000_dot.local_share_nvim_site
+	/home/sm/.local/share/nvim/site/dot.local_share_nvim_site
+t/home/sm/.local/share/vifm/Trash/000_nvimSM
+	/home/sm/.dotfiles/nvim/nvimSM
+t/home/sm/.local/share/vifm/Trash/000_vimm
+	/home/sm/.dotfiles/vim/vimm
+t/home/sm/.local/share/vifm/Trash/000_tilix
+	/home/sm/.dotfiles/tilix
+t/home/sm/.local/share/vifm/Trash/000_pentadactyl-gruvbox
+	/home/sm/.dotfiles/pentadactyl-gruvbox
+t/home/sm/.local/share/vifm/Trash/000_autoload
+	/home/sm/.local/share/nvim/autoload
+t/home/sm/.local/share/vifm/Trash/000_.git
+	/home/sm/.vim/vim-init/.git
+t/home/sm/.local/share/vifm/Trash/000_neovim
+	/home/sm/.config/neovim
+t/home/sm/.local/share/vifm/Trash/000_nvimLua
+	/home/sm/.config/nvimLua
+t/home/sm/.local/share/vifm/Trash/000_plugged
+	/home/sm/.config/nvim/autoload/plugged
+t/home/sm/.local/share/vifm/Trash/000_nvim
+	/home/sm/.cache/nvim
+t/home/sm/.local/share/vifm/Trash/000_mesa_shader_cache
+	/home/sm/.cache/mesa_shader_cache
+t/home/sm/.local/share/vifm/Trash/000_sessions
+	/home/sm/.cache/sessions
+t/home/sm/.local/share/vifm/Trash/000_tags
+	/home/sm/.cache/tags
+t/home/sm/.local/share/vifm/Trash/000_vim
+	/home/sm/.cache/vim
+t/home/sm/.local/share/vifm/Trash/000_.fluxbox
+	/home/sm/.fluxbox
+t/home/sm/.local/share/vifm/Trash/000_mc
+	/home/sm/.config/mc
+t/home/sm/.local/share/vifm/Trash/000_vim-init
+	/home/sm/.vim/vim-init
+t/home/sm/.local/share/vifm/Trash/000_fzf.vim
+	/home/sm/.local/share/nvim/site/pack/foo/start/fzf.vim
+t/home/sm/.local/share/vifm/Trash/001_neovim
+	/home/sm/Repos/neovim
+t/home/sm/.local/share/vifm/Trash/000_qutebrowser
+	/home/sm/.local/share/qutebrowser
+t/home/sm/.local/share/vifm/Trash/000_webengine
+	/home/sm/.local/share/qutebrowser/webengine
+t/home/sm/.local/share/vifm/Trash/000_book.png
+	/home/sm/Pictures/manjWallpapers/book.png
+t/home/sm/.local/share/vifm/Trash/000_raven.jpg
+	/home/sm/Pictures/manjWallpapers/raven.jpg
+t/home/sm/.local/share/vifm/Trash/000_bash-ls.lua
+	/home/sm/.config/nvim/lua/lsp/bash-ls.lua
+t/home/sm/.local/share/vifm/Trash/000_rc.conf
+	/home/sm/.dotfiles/config-sm/ranger/rc.conf
+t/home/sm/.local/share/vifm/Trash/000_tmux.conf
+	/home/sm/.dotfiles/config-sm/tmux/tmux.conf
+t/home/sm/.local/share/vifm/Trash/000_tmux@.service
+	/home/sm/.dotfiles/config-sm/tmux/tmux@.service
+t/home/sm/.local/share/vifm/Trash/000_tmux
+	/home/sm/.dotfiles/tmux
+t/home/sm/.local/share/vifm/Trash/000__install.sh
+	/home/sm/.dotfiles/config-sm/home.moc/_install.sh
+t/home/sm/.local/share/vifm/Trash/000_gitconfig
+	/home/sm/.dotfiles/config-sm/git/gitconfig
+t/home/sm/.local/share/vifm/Trash/001_gitconfig
+	/home/sm/.dotfiles/gitconfig
+t/home/sm/.local/share/vifm/Trash/000_bat-modules
+	/home/sm/bin/bat-modules
+t/home/sm/.local/share/vifm/Trash/000_batdiff
+	/home/sm/bin/batdiff
+t/home/sm/.local/share/vifm/Trash/000_batgrep
+	/home/sm/bin/batgrep
+t/home/sm/.local/share/vifm/Trash/000_batman
+	/home/sm/bin/batman
+t/home/sm/.local/share/vifm/Trash/000_batpretty
+	/home/sm/bin/batpretty
+t/home/sm/.local/share/vifm/Trash/000_batwatch
+	/home/sm/bin/batwatch
+
+# State:
+f
+i1
+[.0
+[F
+F
+I1
+].0
+]F
+s0

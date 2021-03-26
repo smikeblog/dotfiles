@@ -13,9 +13,9 @@ ln -s $HOME/.dotfiles/vim/vil $HOME/.vil
 ln -s $HOME/.dotfiles/vim/vimrc.go-symlink $HOME/.go.vimrc
 ln -s $HOME/.dotfiles/vim//vimrc $HOME/.vimrcD
 ln -s $HOME/.dotfiles/home.Xresources $HOME/.Xresources
-ln -s $HOME/.dotfiles/home-baraction.sh $HOME/baraction.sh
-ln -s $HOME/.dotfiles/home.pentadactylrc $HOME/.pentadactylrc
-ln -s $HOME/.dotfiles/pentadactyl-gruvbox/ $HOME/pentadactyl-gruvbox
+# ln -s $HOME/.dotfiles/home-baraction.sh $HOME/baraction.sh
+# ln -s $HOME/.dotfiles/home.pentadactylrc $HOME/.pentadactylrc
+# ln -s $HOME/.dotfiles/pentadactyl-gruvbox/ $HOME/pentadactyl-gruvbox
 ##
 echo "links to $HOME/.config/"
 ln -s $HOME/.dotfiles/vifm/ $HOME/.config/vifm 
@@ -57,3 +57,8 @@ mkdir -p $HOME/.config/cheat $HOME/.config/cheat/
 ln -s $HOME/.dotfiles/cheat/personal $HOME/.config/cheat/
 ln -s $HOME/.dotfiles/cheat/work $HOME/.config/cheat/
 ln -s $HOME/.dotfiles/cheat/config.yml $HOME/.config/cheat/
+
+##
+echo "wgetrc default set"
+cp -r $HOME/.dotfiles/doc/wgetrc $HOME/.wgetrc
+

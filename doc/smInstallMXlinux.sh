@@ -45,6 +45,12 @@ which python
 python --version
 python3 --version
 
+##ruby related
+sudo apt install ruby ruby-dev
+
+## ctags
+sudo apt install exuberant-stags
+
 ## clone my dotfiles
 git clone https://github.com/smikeblog/dotfiles ~/.dotfiles
 
