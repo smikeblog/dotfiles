@@ -89,7 +89,7 @@ zct() {
 zt light-mode for \
     pick'async.zsh' \
         mafredri/zsh-async \
-        romkatv/powerlevel10k \
+        romkatv/powerlevel10k 
 
 zt for if'zct dolphin' \
         zdharma/null \
@@ -150,24 +150,8 @@ zt 0a light-mode for \
         zsh-users/zsh-completions \
     as'completion' nocompile mv'*.zsh -> _git' patch"${pchf}/%PLUGIN%.patch" reset \
         felipec/git-completion \
-    ver'develop' atload'_zsh_autosuggest_start' \
+    atload'_zsh_autosuggest_start' \
         zsh-users/zsh-autosuggestions
-
-#        OMZL::history.zsh \
-#        OMZL::completion.zsh \
-#        OMZP::systemd/systemd.plugin.zsh \
-#        OMZP::sudo/sudo.plugin.zsh \
-#    atload'zstyle ":completion:*" special-dirs false' \
-#        OMZL::completion.zsh \
-#    as'completion' atpull'zinit cclear' blockf \
-#        zsh-users/zsh-completions \
-#    as'completion' nocompile mv'*.zsh -> _git' patch"${pchf}/%PLUGIN%.patch" reset \
-#        felipec/git-completion \
-#    atload'_zsh_autosuggest_start' \
-#        zsh-users/zsh-autosuggestions
-
-#    ver'develop' atload'_zsh_autosuggest_start' \
-
 
 ##################
 # Wait'0b' block #
@@ -291,8 +275,6 @@ zinit light wfxr/emoji-cli
 zinit light mollifier/anyframe
 zinit light jimeh/zsh-peco-history
 zinit light supercrabtree/k
-
-export PATH="$PATH:$HOME/.dotfiles/tools"
 
 # load user custom functions
 if [[ -f ~/.zshrc.custom ]]; then
