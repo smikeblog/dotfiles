@@ -378,7 +378,7 @@ alias l="lsd --group-dirs first"
 alias ytdll="bash $HOME/scripts/ytdll"
 alias s="syscheck"
 alias cds=cd_with_sk
-alias calf="fd . ~/Sync/diary/ --extension cal | fzfv "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
+alias calf="fd . ~/Sync/diary/ --extension md | fzf "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
 alias calvi='vi +CalendarH'
 alias i="fzfimg.sh"
 

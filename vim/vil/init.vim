@@ -1,3 +1,13 @@
+" markdown mkdx settings
+let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
+                        \ 'enter': { 'shift': 1 },
+                        \ 'links': { 'external': { 'enable': 1 } },
+                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                        \ 'fold': { 'enable': 1 } }
+let g:polyglot_disabled = ['markdown'] " for vim-polyglot users, it loads Plasticboy's markdown
+                                       " plugin which unfortunately interferes with mkdx list indentation.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Install vim-plug if missing
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -65,13 +75,12 @@ Plug 'bling/vim-airline'
 call plug#end()
 """ }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load config modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 source $HOME/.vil/general.vim
 source $HOME/.dotfiles/vim/vil/Sinit.vim
 source $HOME/.dotfiles/vim/vil/Snippets.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 source $HOME/.dotfiles/vim/dot.vim/calendar.vim
 " load local.vim environment specific config if it exists

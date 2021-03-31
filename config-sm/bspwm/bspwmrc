@@ -67,8 +67,8 @@ bspc rule -a "Application Finder" state=floating sticky=on
 bspc rule -a file-roller state=floating center=true
 bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
-bspc rule -a "pcmanfm" state=floating center=true
-bspc rule -a "Pcmanfm" state=floating center=true
+bspc rule -a "pcmanfm" state=floating
+bspc rule -a "Pcmanfm" state=floating
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a "Mail" desktop='^8' follow=on
 bspc rule -a Firefox private=pc
