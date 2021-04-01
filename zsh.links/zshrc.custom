@@ -96,6 +96,8 @@ ranger_cd() {
 
 ## some aliases   {{{1
 
+alias b='buku --suggest'
+
 # Alias for altering some symbol with newline
 # Example: echo $PATH TRN :
 __rt__() { tr -- "$2" "$1" ; }
@@ -256,9 +258,10 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 #### ===================================================================
 bindkey -s '^o' 'lfcd\n'           # cd lf
 bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
+
 # Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+#autoload edit-command-line; zle -N edit-command-line
+#bindkey '^e' edit-command-line
 # bind "Cttrl-u"to open rofi in win select mode
 bindkey -s '^u' 'mrofi\n'
 

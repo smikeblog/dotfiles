@@ -1,0 +1,4 @@
+function dsf() {
+    diff -u $@ | delta --theme='Dracula'
+}
+
