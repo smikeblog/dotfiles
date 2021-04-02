@@ -20,7 +20,7 @@ My dotfile configuration
 
 ## 3. install neovim and compile vim with scripting lang (py+rb+pl+lua)
 
-### 3.1 on debian install neovim .appimage from
+### 3.1 on debian install neovim.appimage from
 
        https://github.com/neovim/neovim/wiki/Installing-Neovim
        curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
@@ -146,8 +146,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
     https://github.com/sharkdp/bat
     https://github.com/cheat/cheat
-    https://github.com/dandavison/delta
-    https://github.com/sharkdp/fd
     https://github.com/charmbracelet/glow
     https://github.com/xxxserxxx/gotop
     https://github.com/gokcehan/lf
@@ -170,6 +168,8 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 ### Other Mandatory
 
+    https://github.com/dandavison/delta                          # zinit installed
+    https://github.com/sharkdp/fd                                # zinit installed
     https://www.soimort.org/translate-shell/
     https://gitlab.com/wavexx/screenkey
     https://prettier.io/docs/en/install.html
