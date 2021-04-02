@@ -1,0 +1,17 @@
+--- marlonrichert---zsh-edit/zsh-edit.plugin.zsh	2021-03-09 21:16:04.229000087 -0500
++++ marlonrichert---zsh-edit/zsh-edit.plugin.zsh-patch	2021-03-09 21:20:13.444048906 -0500
+@@ -7,12 +7,13 @@
+ 
+   local fdir=${${(%):-%x}:h}/functions
+   typeset -gU FPATH fpath=( $fdir $fpath )
+-  autoload -Uz add-zsh-hook $fdir/_*~*.zwc
++  autoload -Uz add-zsh-hook $fdir/_edit_subword
+ 
+   local widget
+   for widget in {forward,backward,kill,backward-kill}-word; do
+     zle -N $widget _edit_subword
+   done
++  return
+   for widget in yank yank-pop reverse-yank-pop; do
+     zle -N $widget _visual_yank
+   done

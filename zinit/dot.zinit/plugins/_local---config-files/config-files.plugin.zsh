@@ -156,7 +156,7 @@ alias bedots='command sudo DOTBARE_FZF_DEFAULT_OPTS="$DOTBARE_FZF_DEFAULT_OPTS" 
 #         Other         #
 #########################
 
-bindkey -v                  # EMACS bindings
+bindkey -e                  # EMACS bindings
 #setopt inc_append_history       # Allow multiple terminal sessions to all append to one zsh command history
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
@@ -228,5 +228,5 @@ bindkey -s '^[[5~' ''            # Do nothing on pageup and pagedown. Better tha
 bindkey -s '^[[6~' ''
 bindkey '^[[3;5~' kill-word      # ctrl+del   delete next word
 # bindkey '^h' _complete_help
-bindkey '^X^I' expand-or-complete-prefix # Fix autopair completion within brackets
-bindkey '^X^H' backward-kill-word
+bindkey '^I' expand-or-complete-prefix # Fix autopair completion within brackets
+bindkey '^H' backward-kill-word
