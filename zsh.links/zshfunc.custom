@@ -6,6 +6,13 @@ _has() {
   return $( whence $1 &>/dev/null )
 }
 
+function have_cmd {
+    if ! hash $1 2>/dev/null; then
+        echo "zshrc: Command '$1' is not installed"
+        return 1
+    fi
+}
+
 # Returns whether the given statement executed cleanly. Try to avoid this
 # because this slows down shell loading.
 _try() {

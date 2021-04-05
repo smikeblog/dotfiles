@@ -36,6 +36,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-surround'
 Plug 'aonemd/kuroi.vim'
 Plug 'gruvbox-community/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf' ", { 'dir': '~/.fzf' }
@@ -70,7 +71,9 @@ Plug 'ryanoasis/vim-devicons' " vimscript
   Plug 'Yggdroot/LeaderF'
   Plug 'skywind3000/Leaderf-snippet'
 
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 """ }}}

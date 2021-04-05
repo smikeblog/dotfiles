@@ -10,6 +10,7 @@ function run {
 run setxkbmap -layout 'us,ru' -option 'grp:ctrls_toggle,grp_led:scroll',caps:escape
 
 if [ -f /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1 ] ; then
+    killall -9 run /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1
     run /usr/lib/po*kit*-gnome/polkit-gnome-authentication-agent-1
 fi
 
@@ -28,8 +29,8 @@ elif hash compton > /dev/null 2>&1 ; then
     run compton
 fi
 
-run xfce4-power-manager
 run nm-applet
+run xfce4-power-manager
 
 run xset -dpms
 run xset s off

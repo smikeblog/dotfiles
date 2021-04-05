@@ -1,6 +1,8 @@
 #! /bin/sh
 
 #### AUTOSTART ####
+killall -9 sxhkd dunst picom 
+
 export mNETWORK="$(ip link | awk '/state UP/ {print $2}' | sed 's/:$//' )"
 
 sxhkd -m 1 &
@@ -79,3 +81,6 @@ bspc rule -a dropdown sticky=on state=floating hidden=on
 
 bspc rule -a vlc state=floating sticky=on
 bspc rule -a 'vlc' desktop="^4" border=off follow=on
+
+
+(ps x | grep bspswallow | grep -v grep) || bspswallow &

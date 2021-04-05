@@ -1,5 +1,7 @@
 let mapleader =","
-colorscheme gruvbox
+set bg=dark
+colorscheme gruvbox8_hard
+let g:airline_theme='deus'
 
 " Display hidden characters
 " inverts display of unprintable characters
@@ -66,6 +68,9 @@ hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
 	vnoremap <C-c> "+y
 	map <C-p> "+P
 
+"	-- copy to system clipboard
+vnoremap { "<A-Y>", "\"+y" }
+
 " Automatically deletes all trailing whitespace on save.
 	autocmd BufWritePre * %s/\s\+$//e
 
@@ -90,13 +95,13 @@ hi SpellCap cterm=underline "ctermfg=203 guifg=#ff5f5f
 "" Convenience variables {{{
 "*****************************************************************************
 
-    highlight SpecialKey ctermfg=19 guifg=#333333
-    highlight NonText ctermfg=19 guifg=#333333
-
-    " make comments and HTML attributes italic
-    highlight Comment cterm=italic term=italic gui=italic
-    highlight htmlArg cterm=italic term=italic gui=italic
-    highlight xmlAttrib cterm=italic term=italic gui=italic
+"    highlight SpecialKey ctermfg=19 guifg=#333333
+"    highlight NonText ctermfg=19 guifg=#333333
+"
+"    " make comments and HTML attributes italic
+"    highlight Comment cterm=italic term=italic gui=italic
+"    highlight htmlArg cterm=italic term=italic gui=italic
+"    highlight xmlAttrib cterm=italic term=italic gui=italic
     " highlight Type cterm=italic term=italic gui=italic
     " highlight Normal ctermbg=none
 
