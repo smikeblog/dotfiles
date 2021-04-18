@@ -263,9 +263,6 @@ zinit light Seirdy/stpv
 zi_program pick'stpv'
 zinit light Seirdy/stpv
 
-zi_program has'fzf'
-zinit light denisidoro/navi
-
 zi_program has'perl' pick'exiftool'
 zinit light exiftool/exiftool
 
@@ -275,6 +272,41 @@ zinit light wfxr/emoji-cli
 zinit light mollifier/anyframe
 zinit light jimeh/zsh-peco-history
 zinit light supercrabtree/k
+
+# NEOVIM
+zinit ice from"gh-r" as"program" bpick"*appimage*" ver"nightly" mv"nvim* -> nvim" pick"nvim"
+zinit light neovim/neovim
+
+# LAZYGIT
+zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
+zinit light 'jesseduffield/lazygit'
+
+# EXA
+zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
+zinit light ogham/exa
+zinit ice wait blockf atpull'zinit creinstall -q .'
+
+# BAT-EXTRAS
+zinit ice wait"1" as"program" pick"src/batgrep.sh" lucid
+zinit ice wait"1" as"program" pick"src/batdiff.sh" lucid
+zinit light eth-p/bat-extras
+
+# RIPGREP
+zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
+zinit light BurntSushi/ripgrep
+
+# TREE-SITTER
+zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
+zinit light tree-sitter/tree-sitter
+# XURLS
+zinit ice as"program" from"gh-r" mv"xurls* -> xurls" pick"xurls"
+zinit light mvdan/xurls
+# PRETTYPING
+zinit ice lucid wait'' as"program" pick"prettyping" atload'alias ping=prettyping'
+zinit load "denilsonsa/prettyping"
+
+zinit ice svn wait lucid
+zinit snippet PZT::modules/spectrum
 
 # load user custom functions
 if [[ -f ~/.zshrc.custom ]]; then

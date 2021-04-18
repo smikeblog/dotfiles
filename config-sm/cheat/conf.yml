@@ -42,13 +42,13 @@ cheatpaths:
   # Maybe your company or department maintains a repository of cheatsheets as
   # well. It's probably sensible to list those second.
   - name: work
-    path: ~/.dotfiles/config/cheat/work
+    path: ~/.dotfiles/config-sm/cheat/work
     tags: [ work ]
     readonly: false
 
   # If you have personalized cheatsheets, list them last. They will take
   # precedence over the more global cheatsheets.
   - name: personal
-    path: ~/.dotfiles/config/cheat/personal
+    path: ~/.dotfiles/config-sm/cheat/personal
     tags: [ personal ]
     readonly: false

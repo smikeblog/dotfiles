@@ -51,6 +51,10 @@ super + b
 ctrl + alt + o
     ~/scripts/toggle-compositor
 
+# description: ScreenKey Toggle
+ctrl + alt + k
+    ~/scripts/toggle-screenkey
+
 # description: quit/restart bspwm
 super + shift + {q,r}
 	bspc {quit,wm -r}
