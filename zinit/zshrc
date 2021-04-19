@@ -207,7 +207,9 @@ zt 0c light-mode binary for \
     lbin \
         laggardkernel/git-ignore \
     lbin from'gh-r' \
-        Peltoche/lsd
+        Peltoche/lsd \
+    lbin from'gh-r' \
+        denisidoro/navi
 
 zt 0c light-mode null for \
     lbin'*d.sh;*n.sh' \
@@ -306,10 +308,6 @@ zinit light mvdan/xurls
 # PRETTYPING
 zinit ice lucid wait'' as"program" lbin"prettyping" atload'alias ping=prettyping'
 zinit load "denilsonsa/prettyping"
-
-# NAVI
-zinit ice wait"2" lucid from"gh-r" as"program" mv"navi* -> navi" lbin"navi"
-zinit light denisidoro/navi
 
 zinit ice svn wait lucid
 zinit snippet PZT::modules/spectrum
