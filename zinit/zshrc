@@ -257,14 +257,14 @@ zi_program() {
 	zi0a as'program' "$@"
 }
 
-zi_program has'fzf' pick'fzfp'
-zinit light Seirdy/stpv
-
-zi_program has'ueberzug' pick'stpvimg'
-zinit light Seirdy/stpv
-
-zi_program pick'stpv'
-zinit light Seirdy/stpv
+#zi_program has'fzf' pick'fzfp'
+#zinit light Seirdy/stpv
+#
+#zi_program has'ueberzug' pick'stpvimg'
+#zinit light Seirdy/stpv
+#
+#zi_program pick'stpv'
+#zinit light Seirdy/stpv
 
 zi_program has'perl' pick'exiftool'
 zinit light exiftool/exiftool
