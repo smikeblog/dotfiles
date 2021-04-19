@@ -89,7 +89,7 @@ zct() {
 zt light-mode for \
     pick'async.zsh' \
         mafredri/zsh-async \
-        romkatv/powerlevel10k 
+        romkatv/powerlevel10k
 
 zt for if'zct dolphin' \
         zdharma/null \
@@ -101,7 +101,7 @@ zt light-mode for \
         zinit-zsh/z-a-patch-dl \
         zinit-zsh/z-a-submods \
         NICHOLAS85/z-a-linkbin \
-        NICHOLAS85/z-a-linkman 
+        NICHOLAS85/z-a-linkman
 
 #        smikeblog/z-a-linkman \
 #        smikeblog/z-a-linkbin
@@ -177,7 +177,6 @@ zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
     atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
     compile'.*fast*~*.zwc' nocompletions atpull'%atclone' \
         zdharma/fast-syntax-highlighting
-
 zt 0b light-mode for \
     blockf compile'lib/*f*~*.zwc' \
         Aloxaf/fzf-tab \
@@ -208,13 +207,15 @@ zt 0c light-mode binary for \
     lbin \
         laggardkernel/git-ignore \
     lbin from'gh-r' \
-        Peltoche/lsd 
+        Peltoche/lsd
 
 zt 0c light-mode null for \
     lbin'*d.sh;*n.sh' \
         bkw777/notify-send.sh \
     lbin from'gh-r' bpick'*x_x86*' \
         charmbracelet/glow \
+    lbin'lf* -> lf' from'gh-r' bpick'*linux-amd64*' \
+        gokcehan/lf \
     lbin'nnn* -> nnn' from'gh-r' bpick'*nerd*' \
         jarun/nnn \
     lbin'*/delta;git-dsf' from'gh-r' patch"${pchf}/%PLUGIN%.patch" \
@@ -274,15 +275,16 @@ zinit light jimeh/zsh-peco-history
 zinit light supercrabtree/k
 
 # NEOVIM
-zinit ice from"gh-r" as"program" bpick"*appimage*" ver"nightly" mv"nvim* -> nvim" pick"nvim"
+zinit ice from"gh-r" as"program" bpick"*appimage*" ver"nightly" mv"nvim* -> nvim" lbin"nvim"
 zinit light neovim/neovim
 
 # LAZYGIT
-zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
+#zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
+zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" lbin"!lazygit" atload"alias lg='lazygit'"
 zinit light 'jesseduffield/lazygit'
 
 # EXA
-zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa"
+zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa" lbin"!exa"
 zinit light ogham/exa
 zinit ice wait blockf atpull'zinit creinstall -q .'
 
@@ -292,18 +294,22 @@ zinit ice wait"1" as"program" pick"src/batdiff.sh" lucid
 zinit light eth-p/bat-extras
 
 # RIPGREP
-zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" pick"ripgrep/rg"
+zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" lbin"!ripgrep/rg"
 zinit light BurntSushi/ripgrep
 
 # TREE-SITTER
-zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" pick"tree-sitter"
+zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" lbin"!tree-sitter"
 zinit light tree-sitter/tree-sitter
 # XURLS
-zinit ice as"program" from"gh-r" mv"xurls* -> xurls" pick"xurls"
+zinit ice as"program" from"gh-r" mv"xurls* -> xurls" lbin"!xurls"
 zinit light mvdan/xurls
 # PRETTYPING
-zinit ice lucid wait'' as"program" pick"prettyping" atload'alias ping=prettyping'
+zinit ice lucid wait'' as"program" lbin"prettyping" atload'alias ping=prettyping'
 zinit load "denilsonsa/prettyping"
+
+# NAVI
+zinit ice wait"2" lucid from"gh-r" as"program" mv"navi* -> navi" lbin"navi"
+zinit light denisidoro/navi
 
 zinit ice svn wait lucid
 zinit snippet PZT::modules/spectrum
