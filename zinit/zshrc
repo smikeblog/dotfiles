@@ -96,9 +96,12 @@ zt for if'zct dolphin' \
     if'zct p10k' \
         zdharma/null
 
-#        zinit-zsh/z-a-bin-gem-node \
 zt light-mode for \
+        zinit-zsh/z-a-readurl \
         zinit-zsh/z-a-patch-dl \
+        zinit-zsh/z-a-bin-gem-node \
+        zinit-zsh/z-a-unscope \
+        zinit-zsh/z-a-default-ice \
         zinit-zsh/z-a-submods \
         NICHOLAS85/z-a-linkbin \
         NICHOLAS85/z-a-linkman
@@ -232,45 +235,13 @@ zt 0c light-mode null for \
 #  smike block #
 ################
 
-# Common ICE modifiers
-
-z_lucid() {
-	zinit ice lucid ver'master' "$@"
-}
-zi0a() {
-	z_lucid wait'0a' "$@"
-}
-
-zi0b() {
-	z_lucid wait'0b' "$@"
-}
-
-zi0c() {
-	z_lucid wait'0c' "$@"
-}
 
 ###########
 # Plugins #
 ###########
 
-zi_program() {
-	zi0a as'program' "$@"
-}
-
-#zi_program has'fzf' pick'fzfp'
-#zinit light Seirdy/stpv
-#
-#zi_program has'ueberzug' pick'stpvimg'
-#zinit light Seirdy/stpv
-#
-#zi_program pick'stpv'
-#zinit light Seirdy/stpv
-
-zi_program has'perl' pick'exiftool'
+	zinit ice lucid ver'master' wait'0a' as'program' has'perl' pick'exiftool'
 zinit light exiftool/exiftool
-
-zi0a
-zinit light wfxr/emoji-cli
 
 zinit light mollifier/anyframe
 zinit light jimeh/zsh-peco-history
@@ -282,11 +253,11 @@ zinit light neovim/neovim
 
 # LAZYGIT
 #zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" atload"alias lg='lazygit'"
-zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" lbin"!lazygit" atload"alias lg='lazygit'"
+zinit ice lucid wait"0" as"program" from"gh-r" mv"lazygit* -> lazygit" lbin"lazygit" atload"alias lg='lazygit'"
 zinit light 'jesseduffield/lazygit'
 
 # EXA
-zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa" lbin"!exa"
+zinit ice wait"2" lucid from"gh-r" as"program" mv"bin/exa* -> exa" lbin"exa"
 zinit light ogham/exa
 zinit ice wait blockf atpull'zinit creinstall -q .'
 
@@ -296,14 +267,14 @@ zinit ice wait"1" as"program" pick"src/batdiff.sh" lucid
 zinit light eth-p/bat-extras
 
 # RIPGREP
-zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" lbin"!ripgrep/rg"
+zinit ice from"gh-r" as"program" mv"ripgrep* -> ripgrep" lbin"ripgrep/rg"
 zinit light BurntSushi/ripgrep
 
 # TREE-SITTER
-zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" lbin"!tree-sitter"
+zinit ice as"program" from"gh-r" mv"tree* -> tree-sitter" lbin"tree-sitter"
 zinit light tree-sitter/tree-sitter
 # XURLS
-zinit ice as"program" from"gh-r" mv"xurls* -> xurls" lbin"!xurls"
+zinit ice as"program" from"gh-r" mv"xurls* -> xurls" lbin"xurls"
 zinit light mvdan/xurls
 # PRETTYPING
 zinit ice lucid wait'' as"program" lbin"prettyping" atload'alias ping=prettyping'
@@ -312,6 +283,38 @@ zinit load "denilsonsa/prettyping"
 zinit ice svn wait lucid
 zinit snippet PZT::modules/spectrum
 
+
+#====================
+#====================
+#====================
+
+
+zinit wait'1' lucid \
+  from"gh-r" as"program" bpick'*lnx*' \
+  light-mode for @dalance/procs
+
+zinit wait'1' lucid \
+  from"gh-r" as"program" pick"mmv*/mmv" \
+  light-mode for @itchyny/mmv
+
+# snippet
+[[ $- == *i* ]] && stty -ixon
+zinit wait'1' lucid blockf nocompletions \
+  from"gh-r" as"program" pick"pet" bpick'*linux_amd64.tar.gz' \
+  atclone'chown -R $(id -nu):$(id -ng) .; zinit creinstall -q knqyf263/pet' \
+  atpull'%atclone' \
+  atload"source $HOME/.dotfiles/zsh-plug-funcs/pet_atload.zsh" \
+  for @knqyf263/pet
+
+# etc #
+zinit wait'1' lucid \
+  as"program" pick"emojify" \
+  light-mode for @mrowa44/emojify
+
+
+#====================
+#====================
+#====================
 # load user custom functions
 if [[ -f ~/.zshrc.custom ]]; then
   source ~/.zshrc.custom
