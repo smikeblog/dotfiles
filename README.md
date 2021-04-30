@@ -146,37 +146,37 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ### provided from ~/.dotfiles/
 
     https://github.com/sharkdp/bat                               # zinit installed
-    https://github.com/cheat/cheat
-    https://github.com/charmbracelet/glow
-    https://github.com/xxxserxxx/gotop
+    https://github.com/dandavison/delta                          # zinit installed
+    https://github.com/sharkdp/fd                                # zinit installed
+    https://github.com/cheat/cheat                               # zinit installed
+    https://github.com/charmbracelet/glow                        # zinit installed
     https://github.com/gokcehan/lf                               # zinit installed
     https://github.com/Peltoche/lsd                              # zinit installed
     https://github.com/denisidoro/navi                           # zinit installed
-    https://github.com/peco/peco
-    https://github.com/knqyf263/pet
+    https://github.com/knqyf263/pet                              # zinit installed
+    https://github.com/dalance/procs                             # zinit installed
+    https://github.com/wfxr/forgit                               # zinit installed
+    https://github.com/sharkdp/ripgrep                           # zinit installed
+    https://github.com/Aloxaf/fzf-tab                            # zinit installed
     https://github.com/doronbehar/pistol
     https://github.com/relastle/pmy
-    https://github.com/dalance/procs
+    https://github.com/peco/peco
     https://github.com/monochromegane/the_platinum_searcher
-    https://github.com/sharkdp/ripgrep                           # zinit installed
+    https://github.com/xxxserxxx/gotop
     https://github.com/lotabout/skim
     https://github.com/lunaryorn/mdcat
     https://github.com/dbrgn/tealdeer
     https://github.com/cjbassi/ytop/releases
-    https://github.com/wfxr/forgit
     https://github.com/bvaisvil/zenith
     https://github.com/seebye/fzf-ueberzogen
 
 ### Other Mandatory
 
-    https://github.com/dandavison/delta                          # zinit installed
-    https://github.com/sharkdp/fd                                # zinit installed
     https://www.soimort.org/translate-shell/
     https://gitlab.com/wavexx/screenkey
     https://prettier.io/docs/en/install.html
     https://github.com/ggreer/the_silver_searcher
     https://github.com/jarun/buku
-    https://github.com/Aloxaf/fzf-tab                            # zinit installed
 
 ### Other Optional
 
