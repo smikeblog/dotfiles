@@ -18,7 +18,8 @@ My dotfile configuration
 
       chsh -s $(which zsh)
 
-## 3. install neovim and compile vim with scripting lang (py+rb+pl+lua)
+## 3. install neovim and compile vim with scripting lang (py+rb+pl+lua) 
+### 3.a. 2021 - now is managed by zinit 
 
 ### 3.1 on debian install neovim.appimage from
 
@@ -77,7 +78,7 @@ My dotfile configuration
 
       ln -s ~/.dotfiles/vifm/ ~/.config/
 
-### 7.3 nvim
+### 7.3 nvim (2021 - if zsh=b) then appimage is used and managed by zinit )
 
       nvim -u ~/.dotfiles/vimrc +PlugInstall
       ln -s ~/.dotfiles/vim/vil ~/.vil
@@ -144,20 +145,20 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 ### provided from ~/.dotfiles/
 
-    https://github.com/sharkdp/bat
+    https://github.com/sharkdp/bat                               # zinit installed
     https://github.com/cheat/cheat
     https://github.com/charmbracelet/glow
     https://github.com/xxxserxxx/gotop
-    https://github.com/gokcehan/lf
-    https://github.com/Peltoche/lsd
-    https://github.com/denisidoro/navi
+    https://github.com/gokcehan/lf                               # zinit installed
+    https://github.com/Peltoche/lsd                              # zinit installed
+    https://github.com/denisidoro/navi                           # zinit installed
     https://github.com/peco/peco
     https://github.com/knqyf263/pet
     https://github.com/doronbehar/pistol
     https://github.com/relastle/pmy
     https://github.com/dalance/procs
     https://github.com/monochromegane/the_platinum_searcher
-    https://github.com/sharkdp/ripgrep
+    https://github.com/sharkdp/ripgrep                           # zinit installed
     https://github.com/lotabout/skim
     https://github.com/lunaryorn/mdcat
     https://github.com/dbrgn/tealdeer
@@ -175,7 +176,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://prettier.io/docs/en/install.html
     https://github.com/ggreer/the_silver_searcher
     https://github.com/jarun/buku
-    https://github.com/Aloxaf/fzf-tab
+    https://github.com/Aloxaf/fzf-tab                            # zinit installed
 
 ### Other Optional
 
