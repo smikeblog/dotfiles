@@ -248,7 +248,7 @@ zinit light jimeh/zsh-peco-history
 zinit light supercrabtree/k
 
 # NEOVIM
-zinit ice from"gh-r" as"program" bpick"*appimage*" ver"nightly" mv"nvim* -> nvim" lbin"nvim"
+zinit ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" lbin"nvim"
 zinit light neovim/neovim
 
 # LAZYGIT
