@@ -80,7 +80,7 @@ AUTOPAIR_CTRL_BKSPC_WIDGET=".backward-kill-word"
 export GI_TEMPLATE="${ZPFX}/git-ignore-template"
 export OPENCV_LOG_LEVEL=ERROR # Hide nonimportant errors for howdy
 export rm_opts=(-I -v)
-export EDITOR=micro
+export EDITOR=vim
 export SYSTEMD_EDITOR=${EDITOR}
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=true # etckeeper on bedrock
 
@@ -212,8 +212,8 @@ zstyle ':fzf-tab:*' fzf-pad 4
 zstyle ':fzf-tab:*' prefix ''                 # No dot prefix
 zstyle ':fzf-tab:*' single-group color header # Show header for single groups
 zstyle ':fzf-tab:complete:(cd|ls|lsd):*' fzf-preview '[[ -d $realpath ]] && ls -1 --color=always -- $realpath'
-zstyle ':fzf-tab:complete:((micro|cp|rm|bat):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
-zstyle ':fzf-tab:complete:micro:argument-rest' fzf-flags --preview-window=right:65%
+zstyle ':fzf-tab:complete:((vim|cp|rm|bat):argument-rest|kate:*)' fzf-preview 'bat --color=always -- $realpath 2>/dev/null || ls --color=always -- $realpath'
+zstyle ':fzf-tab:complete:vim:argument-rest' fzf-flags --preview-window=right:65%
 zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-preview "git --git-dir=$UPDATELOCAL_GITDIR/\${word}/.git log --color --date=short --pretty=format:'%Cgreen%cd %h %Creset%s %Cred%d%Creset ||%b' ..FETCH_HEAD 2>/dev/null"
 zstyle ':fzf-tab:complete:updatelocal:argument-rest' fzf-flags --preview-window=down:5:wrap
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
