@@ -158,9 +158,9 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://github.com/wfxr/forgit                               # zinit installed
     https://github.com/sharkdp/ripgrep                           # zinit installed
     https://github.com/Aloxaf/fzf-tab                            # zinit installed
+    https://github.com/peco/peco                                 # zinit installed
     https://github.com/doronbehar/pistol
     https://github.com/relastle/pmy
-    https://github.com/peco/peco
     https://github.com/monochromegane/the_platinum_searcher
     https://github.com/xxxserxxx/gotop
     https://github.com/lotabout/skim
@@ -172,6 +172,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 ### Other Mandatory
 
+		https://github.com/imsnif/bandwhich                            # zinit installed
     https://www.soimort.org/translate-shell/
     https://gitlab.com/wavexx/screenkey
     https://prettier.io/docs/en/install.html
@@ -181,6 +182,8 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ### Other Optional
 
     pacman -S shellcheck
+    https://github.com/Bugswriter/tuxi/blob/main/tuxi
+    https://github.com/EricChiang/pup                            # zinit installed
     https://github.com/ckardaris/ucollage
     https://github.com/mvdan/sh
     pip3 install awesome-finder
