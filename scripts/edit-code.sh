@@ -76,4 +76,4 @@ if [[ -f rollup.config.js ]]; then
     fi
 fi
 
-codei .
+nvim .
