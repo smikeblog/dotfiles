@@ -398,3 +398,4 @@ zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
 alias vsk='vim -u ~/.vim/vim-init/init.vim'
+alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'

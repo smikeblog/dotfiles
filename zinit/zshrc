@@ -97,17 +97,12 @@ zt for if'zct dolphin' \
         zdharma/null
 
 zt light-mode for \
-        zinit-zsh/z-a-readurl \
         zinit-zsh/z-a-patch-dl \
-        zinit-zsh/z-a-bin-gem-node \
-        zinit-zsh/z-a-unscope \
-        zinit-zsh/z-a-default-ice \
         zinit-zsh/z-a-submods \
+        NICHOLAS85/z-a-linkman \
         NICHOLAS85/z-a-linkbin \
-        NICHOLAS85/z-a-linkman
-
-#        smikeblog/z-a-linkman \
-#        smikeblog/z-a-linkbin
+        atinit'Z_A_USECOMP=1' \
+        NICHOLAS85/z-a-eval
 
 zt light-mode blockf for \
         _local/config-files
@@ -159,13 +154,14 @@ zt 0a light-mode for \
 ##################
 # Wait'0b' block #
 ##################
+#    pack'no-dir-color-swap' atload"zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}" \
 
 zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
     atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(__fz_zsh_completion)' \
         changyuheng/fz \
     atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(autopair-insert)' \
         hlissner/zsh-autopair \
-    pack'no-dir-color-swap' atload"zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}" \
+    eval'dircolors -b LS_COLORS' atload"zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}" \
         trapd00r/LS_COLORS \
     atload'add-zsh-hook chpwd chwpd_dir-history-var;
     add-zsh-hook zshaddhistory append_dir-history-var; chwpd_dir-history-var' \
@@ -227,6 +223,8 @@ zt 0c light-mode null for \
         dandavison/delta \
     lbin from'gh-r' dl'https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1' lman \
         junegunn/fzf \
+    lbin from'gh-r' \
+        ericchiang/pup \
     id-as'Cleanup' nocd atinit'unset -f zt; _zsh_autosuggest_bind_widgets' \
         zdharma/null
 
@@ -247,8 +245,9 @@ zinit light mollifier/anyframe
 zinit light jimeh/zsh-peco-history
 zinit light supercrabtree/k
 
-# NEOVIM
-zinit ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" lbin"nvim"
+# NEOVoM
+zinit ice from"gh-r" as"program" bpick"*appimage*" ver"nightly" mv"nvim* -> nvim" lbin"nvim"
+#zinit ice from"gh-r" as"program" bpick"*appimage*" mv"nvim* -> nvim" lbin"nvim"
 zinit light neovim/neovim
 
 # LAZYGIT
@@ -313,6 +312,9 @@ zinit wait"2b" lucid \
 #====================
 #====================
 
+# bandwhich network bandwidth monitor
+zinit ice lucid wait"0" as"program" id-as"bandwhich" from"gh-r"
+zinit light imsnif/bandwhich
 
 zinit wait'1' lucid \
   from"gh-r" as"program" bpick'*lnx*' \
@@ -331,21 +333,28 @@ zinit wait'1' lucid blockf nocompletions \
   atload"source $HOME/.dotfiles/zsh-plug-funcs/pet_atload.zsh" \
   for @knqyf263/pet
 
+zinit ice from"gh-r" as"program" pick"*/peco"
+zinit light "peco/peco"
+
 # etc #
 zinit wait'1' lucid \
   as"program" pick"emojify" \
   light-mode for @mrowa44/emojify
 
+# RANGER
+# zinit ice depth'1' as"program" pick"ranger.py"
+# zinit light ranger/ranger
 
 #====================
 #====================
 #====================
+
 # load user custom functions
 if [[ -f ~/.zshrc.custom ]]; then
   source ~/.zshrc.custom
 fi
 
-#GITSTATUS_LOG_LEVEL=DEBUG
+# GITSTATUS_LOG_LEVEL=DEBUG
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
