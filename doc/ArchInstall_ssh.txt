@@ -3,7 +3,7 @@ ArchInstall
 High level overview
 from : https://www.youtube.com/watch?v=rUEnS1zj1DM
 
-0.  Download your iso
+0.  Download iso
 1.  Boot from the .iso (either in VirtualBox or by making a bootable USB)
 2.  Partition your disks
 3.  Format your disks (ext4 for boot and root)
@@ -19,7 +19,7 @@ from : https://www.youtube.com/watch?v=rUEnS1zj1DM
 12. Configure local and timezone
 
 13. exit chroot, unmount, and reboot into your arch environment
-14. Enjoy a feeling of superiority and bully people who use Ubuntu.
+14. Enjoy a feeling of superiority and bully people who use Linux.
 
 ===============================================================================
 
@@ -27,6 +27,7 @@ from : https://www.youtube.com/watch?v=rUEnS1zj1DM
 XX. Preparation
 https://www.youtube.com/watch?v=315qks3HoFk&list=PLIXhUtjbeUQtsEwCGkSvE4xRX68SokKJS&index=5
 Through ssh (video5:36)
+
 01. Boot from installation media
     a) check WWW connection
         $ ip addr
@@ -41,9 +42,9 @@ Through ssh (video5:36)
         $ systemctl status sshd.service
     d) find ip address of the computer
         $ ip addr
-    e) from other computer ssh into the instalation computer(my local is 192.168.0.3)
+    e) from other computer ssh into the instalation computer(my local at install time was 192.168.0.3)
         $ ssh root@192.168.0.3 # 192.168.0.3
-            NOTE: if connection error - check ~/.ssh/known_hosts file and delete old ip entry
+    NOTE: if connection error - check ~/.ssh/known_hosts file and delete old ip entry
     NOTE: ssh finished - logged as root on instalation computer
 
 02. (NON-EFI) Partition (usually I use root home swap(swap not always) partitions)
@@ -51,13 +52,13 @@ Through ssh (video5:36)
     a) list the available partitions
         $ fdisk -l
     b) root and home is recommended to format using EXT4 file system
-        $ mkfs.ext4 /dev/sdxx   # sdxx is drive name i.e sda1, sda2 ... fdisk -l or lsblk
+        $ mkfs.ext4 /dev/sdxx   # sdxx is drive name i.e sda1, sda2 ... from fdisk -l or lsblk
     c)  setup swap
         $ free -m  # check sys memory
         $ mkswap /dev/sdxx # sdxx is drive for swap
         $ swapon /dev/sdxx # activate swap
         $ free -m  # check swap and sys memory
-03. Mount created partitions (mine are: root - sda1 and home -sda5 no swap)
+03. Mount created partitions (mine on current install are: root - sda1 and home -sda5 no swap)
         $ mount /dev/sda1 /mnt
         $ mkdir /mnt/home
         $ mount /dev/sda5 /mnt/home
@@ -138,19 +139,8 @@ Through ssh (video5:36)
 
 ##########################################3
 ##########################################3
-##########################################3
-# 
-# THATs ALL for BASE Arch istall
-# 
-##########################################3
-##########################################3
-##########################################3
-
-    Install XFCE
-        $ pacman -S xfce4 xfce4-goodies
-        $ exit   # exit ssh session
-##########################################3
 EFI system install step 02:
+##########################################3
 
 02. (EFI) as example partitions are sda1 - boot, sda2 - swap, sda3 - root, sda4 -home
     a) list partitions
@@ -189,3 +179,17 @@ ii) install grub
         # grub-mkconfig -o /boot/grub/grub.cfg
 
 
+##########################################3
+##########################################3
+##########################################3
+# 
+# THATs ALL for BASE Arch istall
+# 
+##########################################3
+##########################################3
+##########################################3
+
+    Install XFCE
+        $ pacman -S xfce4 xfce4-goodies
+        $ exit   # exit ssh session
+##########################################3
