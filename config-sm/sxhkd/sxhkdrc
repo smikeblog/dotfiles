@@ -30,6 +30,8 @@ super + Escape
 # BSPWM HOTKEYS
 
 # fzf keybinding show
+super + ctrl + Return
+    $HOME/.local/kitty.app/bin/kitty
 ctrl + @F4
     $HOME/.local/kitty.app/bin/kitty
 #	st -e $HOME/scripts/sxhkd_help.sh
@@ -170,9 +172,9 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE {{{2
 
-# description: move the floating window
-ctrl + shift + {h,j,k,l}
- 	floating_motions {_,edge-}{west,south,north,east}
+# ddescription: move the floating window
+#ctrl + shift + {h,j,k,l}
+# 	floating_motions {_,edge-}{west,south,north,east}
 
 # description: move a floating window
 super + {Left,Down,Up,Right}
@@ -294,27 +296,27 @@ super + shift + space
 alt + @F3
 	jgmenu_run >/dev/null 2>&1
 # description: rofi 
-alt + @F5
-  rofi -show drun -sidebar-mode \
-    -modi run,drun,window \
+super + @space
+  rofi -show window -sidebar-mode \
+    -modi combi,window,drun,keys,run \
     -hide-scrollbar true \
     -bw 2 \
-    -lines 12 \
+    -lines 15 \
     -padding 24 \
     -width 60 \
     -location 0 \
-    -columns 3 \
+    -columns 1 \
     -font "Noto Sans 9" \
     -color-enabled true
-# description: rofi -show window
-super + @space
-  rofi -modi window -show window -show-icons -sidebar-mode
-# description: rofi -show window menu
-alt + @F4
-	BspwmWindowMenu >/dev/null 2>&1
-# description: rofi -show desktop menu 
-alt + @F6
-	BspwmDesktopMenu >/dev/null 2>&1
+# Ddescription: rofi -show window
+#alt + @F5
+#  rofi -modi window -show window -show-icons -sidebar-mode
+# Ddescription: rofi -show window menu
+#alt + @F4
+#	BspwmWindowMenu >/dev/null 2>&1
+# Ddescription: rofi -show desktop menu 
+#alt + @F6
+#	BspwmDesktopMenu >/dev/null 2>&1
 # 3}}}
 
 # 2}}}
@@ -405,7 +407,7 @@ alt +  ctrl + Delete
 alt + shift + F3
 	~/scripts/rofi-terminal.sh
 # description: run  rofi program drun
-shift + ctrl + Return
+alt + shift + Return
 	rofi -show drun
 # description: run dmenu_run program
 alt + ctrl + Return
