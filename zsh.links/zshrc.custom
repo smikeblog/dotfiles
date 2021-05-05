@@ -225,7 +225,8 @@ fi
 
 # buku bookmarks with fzf
 if _has opera ; then
-  BROWSER=opera
+#  BROWSER=opera
+  BROWSER=$HOME/space/appimages/LibreWolf-x86_64.AppImage
   alias bb='$BROWSER $(buku -p -f 10 | sk)'
 else
   alias bb='$BROWSER $(buku -p -f 10 | sk)'
@@ -265,7 +266,7 @@ bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
 # bind "Cttrl-u"to open rofi in win select mode
 bindkey -s '^u' 'mrofi\n'
 
-## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+x+Ctrl+f,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)  {{{
+## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+xg,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)  {{{
 function peco-files() {
   local current_lbuffer="$LBUFFER"
   local current_rbuffer="$RBUFFER"
@@ -297,9 +298,9 @@ bindkey '^Xf' peco-files
 
 # anyframeのセットアップ
 #zinit light mollifier/anyframe
-# Ctrl+x -> Ctrl+f
+# Ctrl+x+g
 # peco でディレクトリの移動履歴を表示
-bindkey '^x^f' anyframe-widget-cdr
+bindkey '^xg' anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
