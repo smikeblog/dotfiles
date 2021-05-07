@@ -39,6 +39,11 @@ set ignorecase
 " When searching try to be smart about cases
 set smartcase
 
+" No backup, swapfile && writebackup
+  set nobackup
+  set noswapfile
+  set nowritebackup
+
 " Default Folding marker
 set foldmethod=marker
 

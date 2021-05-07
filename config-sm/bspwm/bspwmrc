@@ -80,7 +80,8 @@ bspc rule -a Xterm state=floating center=true
 bspc rule -a dropdown sticky=on state=floating hidden=on
 
 bspc rule -a vlc state=floating sticky=on
-bspc rule -a 'vlc' desktop="^4" border=off follow=on
+bspc rule -a 'vlc' desktop="^5" border=off follow=on
+bspc rule -a 'Opera' desktop="^4" follow=on
 
 
 (ps x | grep bspswallow | grep -v grep) || bspswallow &

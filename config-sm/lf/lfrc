@@ -3,7 +3,8 @@
 # Basic vars
 # Vars that depend on environmental variables
 #$lf -remote "send $id set previewer ${$HOME/.config}/lf/scope"
-set previewer ~/.config/lf/preview
+#set previewer ~/.config/lf/preview
+set previewer ~/.dotfiles/tools/pistol
 set color256
 set icons
 
@@ -191,6 +192,9 @@ map x $$f
 map X !$f
 map o &mimeopen $f
 map O $mimeopen --ask
+
+# preview with pistol
+map L $pistol $f | less
 
 # execute current file (must be executable)
 #map x $$f

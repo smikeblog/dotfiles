@@ -65,3 +65,4 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
+ # vim: ft=sh

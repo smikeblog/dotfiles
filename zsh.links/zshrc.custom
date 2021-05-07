@@ -41,9 +41,9 @@ local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
 "
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */home/sm/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/home/sm/.fzf/bin"
-fi
+#if [[ ! "$PATH" == */home/sm/.fzf/bin* ]]; then
+#  export PATH="${PATH:+${PATH}:}/home/sm/.fzf/bin"
+#fi
 
 zstyle ':fzf-tab:*' single-group ''
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
@@ -219,8 +219,8 @@ fi
 ##   1}}}
 
 # navi cli cheat completion utility Ctrl+G
-if [ -e $HOME/.config/navi ]; then
-  source <(navi widget zsh)
+if [ -e $HOME/.config/navi/ ]; then
+  source $HOME/.config/navi/shell/navi.plugin.zsh
 fi
 
 # buku bookmarks with fzf
@@ -400,3 +400,5 @@ bindkey '\ei' fzf-locate-widget
 
 alias vsk='vim -u ~/.vim/vim-init/init.vim'
 alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
+
+# vim: ft=zsh
