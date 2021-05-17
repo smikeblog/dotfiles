@@ -2,8 +2,6 @@
 
 # Basic vars
 # Vars that depend on environmental variables
-#$lf -remote "send $id set previewer ${$HOME/.config}/lf/scope"
-#set previewer ~/.config/lf/preview
 set previewer ~/.dotfiles/tools/pistol
 set color256
 set icons
@@ -12,7 +10,6 @@ set EDITOR vim
 
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell sh
-
 set shellopts '-e:--shwordsplit'
 
 # set '-eu' options for shell commands
@@ -92,12 +89,6 @@ cmd fzf_jump ${{
    fi
 lf -remote "send $id $cmd \"$res\""
 }}
-# make sure trash folder exists
-%mkdir -p ~/.trash
-
-# move current file or selected files to trash folder
-# (also see 'man mv' for backup/overwrite options)
-cmd trash %set -f; mv $fx ~/.trash
 
 # delete current file or selected files (prompting)
 cmd delete ${{
@@ -179,12 +170,8 @@ map <c-f> :fzf_jump
 map za    # delete za setting map za set info size:time
 map za set hidden!
 map zv set info size:time
-#map c $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
-#map J $lf -remote "send $id cd $(cut -d'	' -f2 ~/.config | fzf)"
 map g top
 map D delete
-#map C copyto
-#map M moveto
 map ad push %mkdir<space>
 map <enter> shell
 map R reload
