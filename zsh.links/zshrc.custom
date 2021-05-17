@@ -218,11 +218,6 @@ fi
 
 ##   1}}}
 
-# navi cli cheat completion utility Ctrl+G
-if [ -e $HOME/.config/navi/ ]; then
-  source $HOME/.config/navi/shell/navi.plugin.zsh
-fi
-
 # buku bookmarks with fzf
 if _has opera ; then
 #  BROWSER=opera
@@ -397,6 +392,11 @@ fzf-locate-widget() {
 }
 zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
+
+# navi cli cheat completion utility Ctrl+G
+if [ -e $HOME/.config/navi/ ]; then
+  eval "$(navi widget zsh)"
+fi
 
 alias vsk='vim -u ~/.vim/vim-init/init.vim'
 alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
