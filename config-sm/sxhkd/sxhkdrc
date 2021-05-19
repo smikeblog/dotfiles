@@ -261,6 +261,15 @@ super + alt + Return
 # description: xfce4-terminal emulator
 super + shift + Return
 	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
+
+#################################################################
+#     FUNCTION KEYS
+#################################################################
+
+#xfce4-terminal dropdown
+F12
+ 	xfce4-terminal --drop-down
+
 # 3}}}
 
 # description: launch newsboat feed reeder
@@ -411,7 +420,8 @@ alt + shift + Return
 	rofi -show drun
 # description: run dmenu_run program
 alt + ctrl + Return
-	dmenu_run
+	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+##	dmenu_run
 # description: edit common config files
 alt + ctrl + e
    ~/.dmenu/dmenu-edit-configs.sh

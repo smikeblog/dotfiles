@@ -141,7 +141,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
     Ranger filemaneger: https://github.com/ranger/ranger
     and mpv image preview method: https://github.com/ranger/ranger/wiki/Image-Previews
-    pip install ranger-fm
+    pip3 install ranger-fm ueberzug
 
 ### provided from ~/.dotfiles/
 
