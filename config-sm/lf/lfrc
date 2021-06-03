@@ -3,10 +3,7 @@
 # Basic vars
 # Vars that depend on environmental variables
 set previewer ~/.dotfiles/tools/pistol
-set color256
 set icons
-
-set EDITOR vim
 
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell sh
@@ -33,6 +30,20 @@ set scrolloff 10
 
 # use enter for shell commands
 map <enter> shell
+
+# ==============================================
+# change No. of columns(2-3-5) depending on window width
+cmd recol %{{
+    w=$(tput cols)
+    if [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 1:2"
+    elif [ $w -le 160 ]; then
+        lf -remote "send $id set ratios 1:2:3"
+    else
+        lf -remote "send $id set ratios 1:2:3:5"
+    fi
+}}
+# ==============================================
 
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
@@ -175,22 +186,20 @@ map D delete
 map ad push %mkdir<space>
 map <enter> shell
 map R reload
-map x $$f
-map X !$f
-map o &mimeopen $f
-map O $mimeopen --ask
 
 # preview with pistol
 map L $pistol $f | less
 
 # execute current file (must be executable)
-#map x $$f
-#map X !$f
+map x $$f
+map X !$f
 
 # dedicated keys for file opener actions
-# map o &mimeopen $f
+map Oo &mimeopen $f
+map oo $nvim $f
+map ox $xed $f
 #map o &rifle $f
-#map O $mimeopen --ask-default $f
+map OO $mimeopen --ask-default $f
 
 # Symlink
 map al symlink
@@ -200,6 +209,7 @@ map aA push :aj<space>
 
 ## Unmap the default mapping so the rest of the following mapping won't collide
 map r
+map rc recol
 # Simple rename:
 map rr rename
 map rv vi-rename
