@@ -1,4 +1,5 @@
 fzf \
+    --header=$'Press ?:toggle-preview\tCTRL-a:select-all\tCTRL-e:vimOpen\tCTRL-n:nvimOpen\n\n' \
     --layout=reverse \
     --info=inline \
     --height=80% \
@@ -9,8 +10,10 @@ fzf \
         echo {} 2> /dev/null | head -200' \
     --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008' \
     --prompt='∼ ' \
-    --pointer='▶' --marker='✓' --bind '?:toggle-preview' \
+    --pointer='▶' --marker='✓' \
     --bind 'ctrl-a:select-all' \
     --bind 'ctrl-y:execute-silent(echo {+} | pbcopy)' \
     --bind 'ctrl-e:execute(echo {+} | xargs -o vim)' \
+    --bind 'ctrl-n:execute(echo {+} | xargs -o nvim)' \
+    --bind '?:toggle-preview' \
     --bind 'ctrl-v:execute(code {+})'

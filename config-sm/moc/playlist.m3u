@@ -1,5 +1,5 @@
 #EXTM3U
-#MOCSERIAL: 512
+#MOCSERIAL: 256
 #EXTINF:-1,Русское Радио
 http://rusradio.hostingradio.ru/rusradio128.mp3
 #EXTINF:-1,Радиола
