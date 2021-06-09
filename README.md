@@ -196,8 +196,9 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 #### }}}
 
 ### {{{ Experimental
-
-     -- picom effects
+    -- kitty terminal binary install
+        https://sw.kovidgoyal.net/kitty/binary.html
+    -- picom effects
         https://github.com/jonaburg/picom
 
 }}}
