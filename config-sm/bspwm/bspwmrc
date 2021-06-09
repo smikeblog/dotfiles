@@ -60,28 +60,39 @@ xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_HDMI-A-0)
 xdo below -t $(xdo id -n root) $(xdo id -a polybar-main_DVI-I-1)
 
 ## applications
+
+### WINDOW RULES ###{{{
+#-----------Class-Name--------------------Workspaces---Focus----Follow------Other Settings-----------------------------#
+bspc rule -r *
+bspc rule -a Zathura                                  focus=on follow=on state=tiled
+bspc rule -a Connman-gtk                              focus=on follow=on state=floating
+bspc rule -a Pavucontrol                              focus=on follow=on state=floating
+bspc rule -a Pcmanfm                                  focus=on follow=on state=floating
+bspc rule -a SimpleScreenRecorder                     focus=on follow=on state=floating
+bspc rule -a Sxiv                                     focus=on follow=on state=floating
+bspc rule -a Lxappearance                             focus=on follow=on state=floating
+bspc rule -a java-lang-Thread                                            state=floating
+bspc rule -a Screenkey                     manage=off
+bspc rule -a pop-up                        state=floating
+#---------------------------------------------------------------------------------------------------------------------------#}}}
+
 bspc rule -a Gnome-disks state=tiled
 bspc rule -a Xfce4-settings-manager state=tiled
-bspc rule -a Pavucontrol state=floating sticky=on
 bspc rule -a "Xfce4-appfinder" state=floating sticky=on
 bspc rule -a "xfce4-appfinder" state=floating center=true
 bspc rule -a "Application Finder" state=floating sticky=on
 bspc rule -a file-roller state=floating center=true
-bspc rule -a lxappearance state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
-bspc rule -a "pcmanfm" state=floating
-bspc rule -a "Pcmanfm" state=floating
 bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a "Mail" desktop='^8' follow=on
 bspc rule -a Firefox private=pc
 
 bspc rule -a XTerm:dropXterm state=floating
 bspc rule -a Xterm state=floating center=true
-bspc rule -a dropdown sticky=on state=floating hidden=on
 
 bspc rule -a vlc state=floating sticky=on
 bspc rule -a 'vlc' desktop="^5" border=off follow=on
 bspc rule -a 'Opera' desktop="^4" follow=on
 
 
-(ps x | grep bspswallow | grep -v grep) || bspswallow &
+ps x | grep bspswallow | grep -v grep) || bspswallow &

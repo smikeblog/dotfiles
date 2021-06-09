@@ -37,6 +37,7 @@ My dotfile configuration
 ### 4.1 node -
 
     https://github.com/nodesource/distributions/blob/master/README.md
+    https://linuxize.com/post/how-to-install-yarn-on-debian-10/
 
 ### 4.2 ruby -
 

@@ -219,7 +219,7 @@ zt 0c light-mode null for \
         gokcehan/lf \
     lbin'nnn* -> nnn' from'gh-r' bpick'*nerd*' \
         jarun/nnn \
-    lbin'*/delta;git-dsf' from'gh-r' patch"${pchf}/%PLUGIN%.patch" \
+    lbin'*/delta' from'gh-r' patch"${pchf}/%PLUGIN%.patch" \
         dandavison/delta \
     lbin from'gh-r' dl'https://raw.githubusercontent.com/junegunn/fzf/master/man/man1/fzf.1' lman \
         junegunn/fzf \
