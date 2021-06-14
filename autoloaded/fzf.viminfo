@@ -1,5 +1,5 @@
 # v - open files in ~/.viminfo
-v() {
+fzf.viminfo() {
   local files
   files="$(
     grep '^>' "$HOME/.viminfo" \

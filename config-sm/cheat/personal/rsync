@@ -1,0 +1,59 @@
+# To copy files from remote to local, maintaining file properties and sym-links
+# (-a), zipping for faster transfer (-z), verbose (-v):
+rsync -avz host:file1 :file1 /dest/
+rsync -avz /source host:/dest
+
+# To copy files using checksum (-c) rather than time to detect if the file has
+# changed. (Useful for validating backups):
+rsync -avc <src> <dest>
+
+# To copy contents of /src/foo to destination:
+# This command will create /dest/foo if it does not already exist
+rsync -auv <src> <dest>
+
+# To explicitly copy <src> to <dest>
+rsync -auv <src> <dest>
+
+# To copy file from local to remote over ssh with non standard port 1234 to
+# destination folder in remoteuser's home directory:
+rsync -avz -e "ssh -p1234" <source> <username>@<host>:<dest>
+
+# 10 most Useful commands
+## from: https://linuxnightly.com/top-10-most-useful-rsync-commands/
+
+# archive( -a equal to -rlptgoD) and -v verbose 
+#synchronize our /src and /dst directories.
+rsync -av /src/ /dst 
+
+# exclude files and dirs
+rsync -av --exclude 'file1' --exclude 'dir2' /src/ /dst
+# Or, you can put your exclusions inside a text file, and 
+## tell rsync to exclude all files and folders listed
+rsync -av --exclude-from 'exclusions.txt' /src/ /dst
+
+# remote transfer via ssh (you'll be prompted for passwd)
+rsync -av -e ssh /src/ user@10.10.150.3:/path/to/dst
+
+# delete files from destination
+rsync -av --delete /src/ /dst
+
+# Dry Run - simulate a transfer and show you the results, 
+## without actually performing any synchronization
+rsync -av --delete --dry-run /src/ /dst
+
+# use checksums or check for data corruption with --dry-run option 
+rsync -avc /src/ /dst
+rsync -avc --dry-run /src/ /dst
+
+# resume transfer and show progres
+rsync -avPe ssh /src/ user@10.10.150.3:/path/to/dst
+
+# log rsync transfers
+rsync -av --log-file=transfer.log /src/ /dst
+
+# preserve Soft and Hard Links(By default, hard links are not preserved)
+## Soft links
+rsync -avL /src/ /dst
+## Hard links
+rsync -avH /src/ /dst
+

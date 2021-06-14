@@ -1,2 +1,0 @@
-fzf | xargs -r -I % $EDITOR % ;
-

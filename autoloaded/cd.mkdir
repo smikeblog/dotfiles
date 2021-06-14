@@ -2,7 +2,7 @@
 # make a dir and change to that dir
 #mkdir -p $1 && cd $1;
 
-mcd()
+cd.mkdir()
 {
     if [ ! -n "$1" ]; then
         echo "Enter a directory name"

@@ -44,16 +44,16 @@ super + shift +  @F1
 	xterm -geometry 125x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
 #	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
 
-# description: Hide-show polybar
+# description: Toggle Hide-show polybar
 super + b
 	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
      polybar-msg cmd toggle; bspc config top_padding 20 }
 
-# description: Picom Toggle
+# description: Toggle Picom
 ctrl + alt + o
     ~/scripts/toggle-compositor
 
-# description: ScreenKey Toggle
+# description: Toggle ScreenKey
 ctrl + alt + k
     ~/scripts/toggle-screenkey
 
@@ -84,7 +84,7 @@ super + {t,shift + t,f,shift + f}
 super + m
 	bspc desktop -l next
 
-# description: toggle tiled/float state
+# description: Toggle tiled/float state
 super + d
     bspc node focused -t \~floating
 

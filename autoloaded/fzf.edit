@@ -5,10 +5,10 @@
 
 emulate -L zsh
 
-fe() {
+fzf.edit() {
   local files
   files=($(fzf --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
-fe "$@"
+fzf.edit "$@"

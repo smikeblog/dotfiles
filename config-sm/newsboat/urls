@@ -4,16 +4,12 @@
 http://lukesmith.xyz/rss.xml
 https://distrowatch.com/news/dw.xml "~NEWSFEED: DistroWatch"
 http://lxer.com/module/newswire/headlines.rss "~NEWSFEED: LXer"
-https://www.linux.com/feeds/news/rss "~NEWSFEED: Linux.com"
-https://www.linuxjournal.com/news/feed "~NEWSFEED: Linux Journal"
 https://www.networkworld.com/category/linux/index.rss "~NEWSFEED: Network World (Linux)"
 http://feeds.feedburner.com/d0od "~NEWSFEED: OMG Ubuntu!"
 https://itsfoss.com/feed/ "~NEWSFEED: It's Foss"
 https://linux.softpedia.com/backend.xml "~NEWSFEED: Softpedia (Linux)"
 https://opensource.com/feed "~NEWSFEED: Opensource.com"
 https://www.techrepublic.com/rssfeeds/topic/open-source/ "~NEWSFEED: Tech Republic (Open Source)"
-http://feeds.arstechnica.com/arstechnica/open-source "~NEWSFEED: ArsTechnica (Open Source)"
-https://www.linuxinsider.com/perl/syndication/rssfull.pl "~NEWSFEED: Linux Insider"
 -------------------------
 -------YOUTUBE-----------
 -------------------------
@@ -31,9 +27,9 @@ https://www.reddit.com/r/commandline.rss "~REDDIT: r/commandline"
 https://www.reddit.com/r/linux4noobs.rss "~REDDIT: r/linux4noobs"
 https://www.reddit.com/r/linuxquestions.rss "~REDDIT: r/linuxquestion"
 https://www.reddit.com/r/linuxmasterrace.rss "~REDDIT: r/linuxmasterrace"
-https://www.reddit.com/r/linuxaudio.rss "~REDDIT: r/linuxaudio"
 https://www.reddit.com/r/ubuntu.rss "~REDDIT: r/ubuntu"
 https://www.reddit.com/r/ManjaroLinux.rss "~REDDIT: r/ManjaroLinux"
+https://www.reddit.com/r/MXLinux.rss "~REDDIT: r/MXLinux"
 https://www.reddit.com/r/archlinux.rss "~REDDIT: r/archlinux"
 https://www.reddit.com/r/neovim.rss "~REDDIT: r/neovim"
 https://www.reddit.com/r/vim.rss "~REDDIT: r/vim"
@@ -60,6 +56,5 @@ https://osdn.net/mag/rss "~OSDN: Magazine"
 -------------------------
 https://www.archlinux.org/feeds/packages/added/ "~ARCH: Packages Added"
 https://www.archlinux.org/feeds/packages/removed/ "~ARCH: Packages Removed"
-https://aur.archlinux.org/rss/ "~ARCH: Packages Added (AUR)"
 https://wiki.archlinux.org/api.php?hidebots=1&urlversion=1&days=7&limit=50&action=feedrecentchanges&feedformat=rss "~ARCH: Arch Wiki"
 

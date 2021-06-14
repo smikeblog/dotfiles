@@ -40,7 +40,7 @@ if (( $# == 0 )); then
    -bw 2 \
    -lines 15 \
    -padding 24 \
-   -width 60 \
+   -width 80 \
    -location 0 \
    -columns 2 \
    -font "Noto Sans 9" \
@@ -68,7 +68,7 @@ else
    -bw 2 \
    -lines 15 \
    -padding 24 \
-   -width 60 \
+   -width 80 \
    -location 0 \
    -columns 2 \
    -font "Noto Sans 9" \

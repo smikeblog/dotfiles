@@ -24,7 +24,7 @@
 		Super + bracket{left, right}  |- Focus the next/prev node in current monitor
 		Super + shift + 1-9           |- Move focused window to desktop with that number
 		Super + alt + g               |- Swap window with the biggest on desktop
-                                  |  or preselection if there is one
+		                              |  or preselection if there is one
 		Super + ctrl + <direction>    |- Preselect where the next window will be opened
 		Super + ctrl + 1-9            |- Preselect the next window ratio
 		Super + ctrl + <space>        |- Cancel the preselection for the focused node
@@ -36,7 +36,7 @@
 		Super + m                     |- Toggle monocle
 		Super + {grave,Tab}           |- Focus the last node/desktop
 		Super + ctrl + z              |- Make window private
-                                  |  (Avoids splitting it automatically)
+		                              |  (Avoids splitting it automatically)
 		Super + ctrl + m              |- Make window marked
 		Super + ctrl + x              |- Make window locked
 		Super + ctrl + y              |- Make window sticky
@@ -59,7 +59,7 @@
 		Alt + F3                      |- Jgmenu
 		Alt + F4                      |- Bspwm Window Menu
 		Alt + F5                      |- Bspwm Desktop Menu
-		Alt + ctrl + s	              |- Web search with surfraw
+		Alt + ctrl + s                |- Web search with surfraw
 		Super + w                     |- BROWSER
 		Super + alt + v               |- Explore files with Vifm
 		Super + alt + m               |- Audio Mixer (pulsemixer)
