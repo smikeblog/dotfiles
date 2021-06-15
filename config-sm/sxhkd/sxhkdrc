@@ -76,9 +76,9 @@ super + y
 super + {t,shift + t,f,shift + f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# description: set the node flags marked,locked,sticky,private
-#super + ctrl + {m,x,y,z}
-#	bspc node -g {marked,locked,sticky,private}
+# description: set window mode alternate,longgest-side,spiral
+super + ctrl + {a,w,s}
+    bspc config automatic_scheme {alternate,longest_side,spiral}
 
 # description: alternate the tiled/monocle layout
 super + m
@@ -372,12 +372,12 @@ super + x ; {0-7}
 # description: Scrot Window Screenshot
 ctrl + Print
   scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
-       && notify-send -i gnome-screenshot "Window view screenshot" "Saved image to Desktop"
+       && notify-send -i gnome-screenshot "Window view screenshot" "Saved window to Pictures"
 
 # description: Scrot Screen Screenshot
 Print
   scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
-       && notify-send -i gnome-screenshot "Screen view screenshot" "Saved image to Desktop"
+       && notify-send -i gnome-screenshot "Screen view screenshot" "Saved screen to Pictures"
 
 ## from https://gitlab.com/protesilaos/dotfiles/blob/master/bspwm/.config/sxhkd/sxhkdrc_bspc
 # Continuous input mode

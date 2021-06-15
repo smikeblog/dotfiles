@@ -103,11 +103,6 @@ alias b='buku --suggest'
 __rt__() { tr -- "$2" "$1" ; }
 alias -g TRN='| __rt__ "\n" '
 
-# Lua based testing configs
-alias vidj="nvim -u ~/.config/nvimDj/init.vim"
-alias vilu="nvim -u ~/.config/nvimLua/init.vim"
-alias vlu="nvim -u ~/.config/neovim/init.vim"
-
 # Luke Smith's config of nvim for vim. Use to compile and work with text, .tex, .md, .rmd ... files
 if [ -e $HOME/.vil/init.vim ]; then
   alias vil="nvim -u $HOME/.vil/init.vim $1"
@@ -356,6 +351,7 @@ export FZF_DEFAULT_OPTS="
 --prompt='λ -> '
 --pointer='|>'
 --marker='✓'
+--bind '?:toggle-preview' 
 --bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
 "
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
