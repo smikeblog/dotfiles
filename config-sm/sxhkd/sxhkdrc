@@ -371,16 +371,17 @@ super + g ; {0-7}
 #  ~/.dmenu/dmenu-sysmon.sh
 # description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-vil,4-vim,5-vimgo,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
 super + x ; {0-9}
-    ~/.local/bin/tools/with_zsh {~/.dmenu/dmenu-sysmon.sh, \
-                     ~/.dmenu/dmenu-record.sh, \
-                     htop, \
-                     nvim ~/.dotfiles/vim/vil/init.vim, \
-                     vim, \
-                     vim -u ~/.go.vimrc, \
-                     newsboat, \
-                     mocp, \
-                     ~/.dmenu/dmenu-qute.sh, \
-                     ~/.dmenu/dmenu-search.sh \
+    { \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-sysmon.sh), \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-record.sh), \
+        (st -e htop), \
+        (~/.local/bin/with_zsh nvim ~/.dotfiles/vim/vil/init.vim), \
+        (st -e vim), \
+        (st -e vim -u ~/.go.vimrc), \
+        (st -e newsboat), \
+        (st -e mocp), \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-qute.sh), \
+        ~/.local/bin/with_zsh ~/.dmenu/dmenu-search.sh \
     }
 
 # ----------------------------------
@@ -400,7 +401,7 @@ ctrl + shift + Print
 
 # description: Scrot Selection Screenshot
 super + Print
-  ~/bin/with_zsh "scrot -s 'part-%Y-%m-%d-%s_screenshot_\$wx\$h.jpg' -e 'mv \$f ~/Pictures/scrot_screenshots'" \
+  ~/.local/bin/with_zsh "scrot -s 'part-%Y-%m-%d-%s_screenshot_\$wx\$h.jpg' -e 'mv \$f ~/Pictures/scrot_screenshots'" \
        && notify-send -i gnome-screenshot "Selection jpg  screenshot" "Selection save to Pictures"
 
 # description: Scrot Selection Screenshot
