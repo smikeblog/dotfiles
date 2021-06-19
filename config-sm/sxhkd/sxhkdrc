@@ -16,12 +16,6 @@
 {super,alt} + {_,shift +} Tab
 	bspc {desktop,node} -f {next,prev}.local
 
-# WM INDEPENDENT KEYBINDINGS
-# description: drop xterm 
-@F4
-    tdrop -a -y 27 -x 500 xterm
-#    scratchpod.sh dropdown
-
 # description: reload sxhkd config(keybinding):
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -69,22 +63,29 @@ super + shift + c
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
+# description: swollow window
+super + v
+    xdo id | pidswallow -t
 
 # STATE/FLAGS ============================ {{{
 
-# description: set the window state tiled,pseudo-tiled,float,fullscreen
+# description: set layout -- tiled,monocle,even,grid,rgrid,tall,rtall,wide,rwid
+super + n ; super + {t,m,e,g,shift + g,y,shift + y,w,shift + w}
+    bsp-layout set {tiled,monocle,even,grid,rgrid,tall,rtall,wide,rwide}
+
+# description: set layout -- tiled,pseudo-tiled,float,fullscreen
 super + {t,shift + t,f,shift + f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# description: set window mode alternate,longgest-side,spiral
+# description: set wind mode -- alternate,longgest-side,spiral
 super + ctrl + {a,w,s}
     bspc config automatic_scheme {alternate,longest_side,spiral}
 
-# description: alternate the tiled/monocle layout
+# description: alternate layout -- tiled/monocle layout
 super + m
 	bspc desktop -l next
 
-# description: Toggle tiled/float state
+# description: Toggle layout -- tiled/float state
 super + d
     bspc node focused -t \~floating
 
@@ -93,7 +94,7 @@ super + d
 # # the given item (such as sending the marked item to the newest
 # # preselection).  Sticky stays in the focused desktop.  Private tries to
 # # keep its dimensions and tiling position.
-# description: node l-locked m-marked s-sticky p-private
+# description: node flag -- l-locked m-marked s-sticky p-private
 super + a ; {l,m,s,p}
     bspc node -g {locked,marked,sticky,private}
 
@@ -172,6 +173,10 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE {{{2
 
+# ddescription:  Move to preselection
+super + ctrl + m
+  bspc node -n last.\!automatic.local;
+
 # ddescription: move the floating window
 #ctrl + shift + {h,j,k,l}
 # 	floating_motions {_,edge-}{west,south,north,east}
@@ -179,6 +184,12 @@ super + ctrl + shift + space
 # description: move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-40 0,0 40,0 -40,40 0}
+
+# description: expand/contract a wind outward/inward
+super + shift + {Left,Down,Up,Right}
+     STEP=20; SELECTION={1,2,3,4}; \
+         bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+             bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
 #Resize nodes
 # description: resize nodes super + alt + {h,j,k,l}
@@ -214,22 +225,28 @@ super + c : {h,j,k,l}
          bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
              bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
 
-# description: increase/decrease window gap on focused desktop
+# description: Resize window gap on focused desktop
 super + alt + bracket{left,right}
 	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
-# description: Balance tree
-super + alt + b
-	bspc node @/ -B
+# description: Balance {Tree,Brother,Undo}
+super + alt + b: {t,b,u}
+	bspc node {@/ -B, \
+                @brother -B, \
+                @/ -E}
+
+## description: Balance tree
+#super + alt + b
+#	bspc node @/ -B
 
 # If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
-# description: Balance brother node. 
-super + shift + b
-	bspc node @brother -B
+## description: Balance brother node. 
+#super + shift + b
+#	bspc node @brother -B
 
-# description: Undo balancing (equalize windows)
-super + ctrl + b
-	bspc node @/ -E
+## description: Undo balancing (equalize windows)
+#super + ctrl + b
+#	bspc node @/ -E
 
 # 2}}}
 
@@ -352,16 +369,18 @@ super + g ; {0-7}
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
-# description: CLI ctrl+x (0-dmenu-sysmon,1-htop,2-vil,3-vim,4-vimgo,5-vimm,6-newsboat,7-mocp)
-super + x ; {0-7}
-  st -e {~/.dmenu/dmenu-sysmon.sh, \
+# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-vil,4-vim,5-vimgo,6-newsboat,7-mocp,8-dmenu-search)
+super + x ; {0-9}
+    ~/scripts/with_zsh {~/.dmenu/dmenu-sysmon.sh, \
+                     ~/.dmenu/dmenu-record.sh, \
                      htop, \
                      nvim ~/.dotfiles/vim/vil/init.vim, \
                      vim, \
                      vim -u ~/.go.vimrc, \
-                     nvim -u ~/.dotfiles/vim/vimm/init.vim, \
                      newsboat, \
-                     mocp \
+                     mocp, \
+                     ~/.dmenu/dmenu-qute.sh, \
+                     ~/.dmenu/dmenu-search.sh \
     }
 
 # ----------------------------------
@@ -375,9 +394,19 @@ ctrl + Print
        && notify-send -i gnome-screenshot "Window view screenshot" "Saved window to Pictures"
 
 # description: Scrot Screen Screenshot
-Print
+ctrl + shift + Print
   scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
        && notify-send -i gnome-screenshot "Screen view screenshot" "Saved screen to Pictures"
+
+# description: Scrot Selection Screenshot
+super + Print
+  ~/bin/with_zsh "scrot -s 'part-%Y-%m-%d-%s_screenshot_\$wx\$h.jpg' -e 'mv \$f ~/Pictures/scrot_screenshots'" \
+       && notify-send -i gnome-screenshot "Selection jpg  screenshot" "Selection save to Pictures"
+
+# description: Scrot Selection Screenshot
+super + ctrl + Print
+  scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Screen jpg screenshot" "Window save to Pictures"
 
 ## from https://gitlab.com/protesilaos/dotfiles/blob/master/bspwm/.config/sxhkd/sxhkdrc_bspc
 # Continuous input mode
@@ -399,7 +428,7 @@ super + c : {h,j,k,l}
                @west  -r +50 || bspc node @east  -r +50} 
 #  bspwm_resize {west,south,north,east} 50
 
-# description: Mode for dynamic gaps.
+# description: Resize dynamic gaps.
 super + c : bracket{left,right}
  	bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
 
@@ -444,11 +473,11 @@ shift + Print
 
 ## }}}
 
-# description: insert/clear receptacle on current desktop
-super + {_,shift} + i
- 	insert={true,false}; \
- 	insert && bspc node -i || \
- 	for win in `bspc query -N -n .leaf.!window.local`; do bspc node $win -k ; done;
+## description: insert/clear receptacle on current desktop
+#super + {_,shift} + i
+# 	insert={true,false}; \
+# 	insert && bspc node -i || \
+# 	for win in `bspc query -N -n .leaf.!window.local`; do bspc node $win -k ; done;
 
 
 # Advanced operations (receptacles and scripted actions)
@@ -470,61 +499,18 @@ super + {_,shift} + i
 #super + {_,shift + ,ctrl + shift +,ctrl +}{1-9}
 #    ;bspwm_dynamic_desktops {--df,--ns,--nm,--da} {1-9}
 #
-
-# # ------------------------------------------------------
-# # NOTE The behaviour of preselections and receptacles is regulated by my
-# # bspwm_external_rules command (which is called from within bspwmrc).
-#
-# # Insert receptacle following the tiling scheme or preselection.
-# # Receptacles are empty frames that function as placeholders for
-# # windows.
-# #
-# # description: Whereas bspwm_smart_move (defined above) will automatically insert
-# # a receptacle in the given direction by splitting the entire viewport.
-super + n ; r
-    bspc node -i
-#
-#   # Insert the marked window (or focused if no marks) in the first
-#   # matching receptacle (or preselection if no receptacles).
-super + n ; i
-    bspwm_smart_presel
-#
-# description: Summon all marked windows across all desktops to the current desktop.
-super + n ; m
-	bspwm_multifaceted_operation --summon-all-marked
-
-# Bring the windows of the given desktop to the current one.  With
-# description: shift, send the current window to the given one.
-super + n ; super + {_, shift + }{1-9}
-	bspwm_multifaceted_operation {--bring-desktop-here,--send-desktop-there} {1-9}
-
-# Close {or kill} all windows in the present desktop except the focused
-# description: close/kill all wind except focused or any marked ones.
-super + n ; super + {_,shift + }q
-	bspwm_multifaceted_operation --{close,kill}-all-local-non-focused
-
-# Assign the locked flag to all windows in the current desktop.  With
-# description: assign locked to all wind for surr desktop shift, remove the locked flag from all.
-super + n ; {_, shift + }l
-	bspwm_multifaceted_operation {--lock-all-local,--unlock-all-local}
-
-# Kill/remove the first matching receptacle from the current desktop.
-# description: kill/remove With shift, kill them all at once.
-super + n ; super + {_, shift + }r
-	{ \
-	bspc node 'any.leaf.!window.local' -k, \
-	bspwm_multifaceted_operation --kill-all-receptacles \
-	}
-#
-# # Bring the windows of the given desktop to the current one.  With
-# # shift, send the current window to the given one.
-# super + n ; super + {_, shift + }{0-9}
-#     bspwm_multifaceted_operation {--bring-desktop-here,--send-desktop-there} {0-9}
+# description: Bring/send the windows of the given desktop to the current one.
+super + n ; super + {_, shift + }{0-9}
+    ~/.local/bin/bspwm-scripts/bspwm_multifaceted_operation {--bring-desktop-here,--send-desktop-there} {0-9}
 #       
 # # Close {or kill} all windows in the present desktop except the focused
 # # or any marked ones.
-# super + n ; super + {_,shift + }q
-#     bspwm_multifaceted_operation --{close,kill}-all-local-non-focused
+# description: {close, kill} windows in this desktop except the focused/marked
+super + n ; super + c
+    ~/.local/bin/bspwm-scripts/bspwm_multifaceted_operation --{close,kill}-all-local-non-focused
+# description: {close, kill} all windows in this desktop
+super + n ; super + shift + c
+   bspc node 'any.local' --close
 #
 # # Assign the locked flag to all windows in the current desktop.  With
 # # shift, remove the locked flag from all.
