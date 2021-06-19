@@ -52,7 +52,8 @@ bspc config initial_polarity  second_child # second_child
 
   # Initialize layouts
   bsp-layout set tall 1
-  bsp-layout set tall 9
+  bsp-layout set wide tall 5
+  bsp-layout set grid 9
 # }}}
 
 #### BSPWM coloring #### {{{

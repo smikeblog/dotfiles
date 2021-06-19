@@ -431,6 +431,8 @@ source ~/.config/vifm/scripts/vifm_icons
 
 " sample mappings
 
+nnoremap Q :quit<cr>
+
 "Open directory under the cursor in other pane
 nnoremap zt :sync %c<CR><Tab>
 

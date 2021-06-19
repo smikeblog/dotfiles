@@ -2,4 +2,4 @@
 
 # List content when changing directory
 #cd.la () 
-{ builtin cd "$@"; exa -la --group-directories-first; }
+{ builtin cd "$@"; exa -la --icons --group-directories-first; }

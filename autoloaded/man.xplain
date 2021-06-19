@@ -1,1 +1,0 @@
-man -k . | dmenu -l 33 | awk '{ print $1 }' | xargs -r man -Tpdf | zathura - &

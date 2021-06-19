@@ -369,9 +369,9 @@ super + g ; {0-7}
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
-# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-vil,4-vim,5-vimgo,6-newsboat,7-mocp,8-dmenu-search)
+# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-vil,4-vim,5-vimgo,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
 super + x ; {0-9}
-    ~/scripts/with_zsh {~/.dmenu/dmenu-sysmon.sh, \
+    ~/.local/bin/tools/with_zsh {~/.dmenu/dmenu-sysmon.sh, \
                      ~/.dmenu/dmenu-record.sh, \
                      htop, \
                      nvim ~/.dotfiles/vim/vil/init.vim, \

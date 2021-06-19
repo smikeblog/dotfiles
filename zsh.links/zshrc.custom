@@ -396,6 +396,7 @@ fi
 
 alias vsk='vim -u ~/.vim/vim-init/init.vim'
 alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
+alias vim.ls="bash vimv"
 alias n="nvim ."
 
 # vim: ft=zsh

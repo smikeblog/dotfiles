@@ -1,5 +1,5 @@
 # frequency of used commands from history file
-sm.cusage_stat()
+sys.cpusage-stat()
 {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
     | grep -v "./" \
