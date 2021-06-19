@@ -37,3 +37,8 @@
   description = "find all broken sym links in current directory"
   command = "find . -type l ! -exec test -e {} \\; -print"
   output = ""
+
+[[snippets]]
+  description = "determine programmatically which WM is running"
+  command = "wmctrl -m | rg Name |  awk -F \": \" '{print $2}'"
+  output = ""
