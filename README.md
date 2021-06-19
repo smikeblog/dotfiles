@@ -18,8 +18,8 @@ My dotfile configuration
 
       chsh -s $(which zsh)
 
-## 3. install neovim and compile vim with scripting lang (py+rb+pl+lua) 
-### 3.a. 2021 - now is managed by zinit 
+## 3. install neovim and compile vim with scripting lang (py+rb+pl+lua)
+### 3.a. 2021 - now is managed by zinit
 
 ### 3.1 on debian install neovim.appimage from
 
@@ -59,7 +59,7 @@ My dotfile configuration
     https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/UbuntuMono.zip
     https://fontawesome.com/download
        also for terminal , vim and tmux:
-       cp fonts/ ~/.local/share/
+       cp ~/.dotfiles/fonts/ ~/.local/share/
        and finally index new fonts:
        fc-cache -vf ~/.local/share/fonts/
 
@@ -102,7 +102,12 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	cd ~/Downloads/build/bspwm && make && sudo make install
 	cd ~/Downloads/build/sxhkd && make && sudo make install
 ```
+  and install layouts scripts from:
+     https://github.com/phenax/bsp-layout/blob/master/src/layout.sh
+```
+  curl https://raw.githubusercontent.com/phenax/bsp-layout/master/install.sh | bash -;
 
+```
 #### make links to my .dotfiles
 
     ln -s ~/.dotfiles/config/bspwm ~/.config/
@@ -132,9 +137,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     sudo tar -C /usr/local tar -xzf go1.13.1.linux-amd64.tar.gz
     mkdir ~/go && mkdir ~/go/bin && mkdir ~/go/pkg && mkdir ~/go/src
 
-#### get go sources for btops and compile
-
-    go get github.com/cmschuetz/btops
 
 #}}}
 
