@@ -30,41 +30,6 @@ else
     echo "Could not find the init script ${ZSH_INIT}"
 fi
 
-# use vim as manpager
-export MANPAGER='nvim +Man!'
-
-export _EXTRACT="
-# trim input
-in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
-# get ctxt for current completion
-local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
-"
-# Setup fzf
-# ---------
-#if [[ ! "$PATH" == */home/sm/.fzf/bin* ]]; then
-#  export PATH="${PATH:+${PATH}:}/home/sm/.fzf/bin"
-#fi
-
-zstyle ':fzf-tab:*' single-group ''
-zstyle ':fzf-tab:complete:_zlua:*' query-string input
-zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$_EXTRACT'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
-lsd_preview() {
-	zstyle "$1" extra-opts --preview=$_EXTRACT'lsd --group-dirs first --color always --icon always --icon-theme fancy ${~ctxt[hpre]}$in'
-}
-lsd_preview ':fzf-tab:complete:cd:*'
-lsd_preview ':fzf-tab:complete:lsd:*'
-lsd_preview ':fzf-tab:complete:exa:*'
-lsd_preview ':fzf-tab:complete:ls:*'
-lsd_preview ':fzf-tab:complete:_fzz:*'
-zstyle ':fzf-tab:complete:man:*' extra-opts --preview=$_EXTRACT'man ${~ctxt[hpre]}$in'
-
-# ==== ====
-
-# Modules
-autoload colors zsh/terminfo
-autoload -U is-at-least
-colors
-
 ### ----------------------------------------------------
 ## use lf/ranger as cd utility with Ctrl+o/Ctrl+p bindings  {{{1
 lfcd () {
@@ -241,8 +206,6 @@ alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 
-
-
 #### ===================================================================
 ##
 ##           Mapping (Bind) keys
@@ -254,7 +217,7 @@ bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
 #autoload edit-command-line; zle -N edit-command-line
 #bindkey '^e' edit-command-line
 # bind "Cttrl-u"to open rofi in win select mode
-bindkey -s '^u' 'mrofi\n'
+bindkey -s '^u' 'rofi.m\n'
 
 ## desk: Peco Functions (Ctrl+xf, Ctrl+xr, Ctrl+xg,Ctrl+x+Ctrl+k,Ctrl+x+Ctrl+b,Ctrl+x+Ctrl+g)  {{{
 function peco-files() {
@@ -363,10 +326,6 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
 #    sleep 0.2
 #    /opt/shell-color-scripts/colorscript.sh random
     alias d='/opt/shell-color-scripts/colorscript.sh random'
-fi
-### prevent rstudio crash on nuoveau drivers
-if [ -f ~/bin/rsudio ]; then
-    export RSTUDIO_CHROMIUM_ARGUMENTS="--disable-gpu";
 fi
 
 alias l="lsd --group-dirs first"

@@ -108,7 +108,16 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
   curl https://raw.githubusercontent.com/phenax/bsp-layout/master/install.sh | bash -;
 
 ```
-#### make links to my .dotfiles
+#### Dmenu Scripts (dmscripts) from: https://gitlab.com/dwt1/dmscripts 
+```
+  git clone https://gitlab.com/dwt1/dmscripts.git
+  cd dmscripts
+  sudo make clean build
+  sudo make install
+
+```
+
+#### make links to .dotfiles
 
     ln -s ~/.dotfiles/config/bspwm ~/.config/
     ln -s ~/.dotfiles/config/sxhkd ~/.config/
@@ -121,22 +130,21 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 ### polybar
 
-#### debian
-
+#### debian based note: repo version is too old. It's better to compile sources 
+     https://github.com/polybar/polybar/wiki/Compiling
+```
     sudo apt install polybar
-
+```
 #### manjaro
-
+```
     yay -S polybar
-
-### install btops (to show only used workspaces and add additional dinamically) depends on Golang
-
+````
+### install Golang
 #### install and config golang according instructions from its site golang.org (look for current version ...)
-
-    wget https://dl.google.com/go/go1.13.1.linux-amd64.tar.gz
-    sudo tar -C /usr/local tar -xzf go1.13.1.linux-amd64.tar.gz
+     https://golang.org/dl/
+```
     mkdir ~/go && mkdir ~/go/bin && mkdir ~/go/pkg && mkdir ~/go/src
-
+```
 
 #}}}
 

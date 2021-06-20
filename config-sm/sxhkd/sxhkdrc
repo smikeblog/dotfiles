@@ -369,15 +369,15 @@ super + g ; {0-7}
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
-# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-vil,4-vim,5-vimgo,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
+# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-procs,4-vil,5-vim,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
 super + x ; {0-9}
     { \
         (~/.local/bin/with_zsh ~/.dmenu/dmenu-sysmon.sh), \
         (~/.local/bin/with_zsh ~/.dmenu/dmenu-record.sh), \
         (st -e htop), \
+        (st -e ~/.dotfiles/tools/gotop), \
         (~/.local/bin/with_zsh nvim ~/.dotfiles/vim/vil/init.vim), \
         (st -e vim), \
-        (st -e vim -u ~/.go.vimrc), \
         (st -e newsboat), \
         (st -e mocp), \
         (~/.local/bin/with_zsh ~/.dmenu/dmenu-qute.sh), \

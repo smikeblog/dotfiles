@@ -1,5 +1,5 @@
 #-------------------------------------------------------
 # Print all histories
-function sm.hist-all { history -E 1 }
+function sys.hist-all { history -E 1 }
 
 #-------------------------------------------------------

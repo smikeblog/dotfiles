@@ -39,6 +39,7 @@ _versionof() {
   fi
 }
 
+## }}}
 # ENVIRONMENT VARIABLES {{{1
 
 # Yes, this defeats the point of the TERM variable, but everything pretty much
@@ -313,7 +314,7 @@ fif() {
     rg --files-with-matches --no-messages "$1" | fzf $FZF_PREVIEW_WINDOW --preview "rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
-function fman(){
+function fzf.man(){
 	MAN="/usr/bin/man"
 	if [ -n "$1" ]; then
 		$MAN "$@"
@@ -405,17 +406,7 @@ fzf_git_reflog() {
 # }}}
 alias grl='fzf_git_reflog'
 #
-### FZF related (depends on fd, xargs, xdg-open)
-open_with_sk() {
-    fd -t f -H -I | sk -m --preview="xdg-mime query default {}" | xargs -ro -d "\n" xdg-open 2>&-
-}
-cd_with_sk() {
-    cd $HOME && cd "$(fd -t d | sk --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
-}
-alias ske='open_with_sk'
-bindkey -s '^X^i' 'ske\n'
 ## --- }}}4
-## -- }}}1
 #
 # Choose binary in $PATH with fzf
 insert_binary_from_path() {
@@ -426,6 +417,8 @@ insert_binary_from_path() {
 zle -N insert_binary_from_path
 bindkey '^[d' insert_binary_from_path  # Alt+d
 ## ================== not Aliased =======
+## -- }}}1
+
 ### funcs not aliased {{{2
 #
 # fs - Determine size of a file or total size of a dir {{{
@@ -451,23 +444,17 @@ function swap() {
 }
 ## }}}
 #
-function ff {
+function file.fd-find {
   command fd -p "${PWD}.*$1" ${@:2}
 }
-#
-
 #-------------------------------------------------------
-# Print all histories
-function history-all { history -E 1 }
-
 # fh - "find [in] history"
 # Inspired by: https://github.com/junegunn/fzf/wiki/examples#command-history
-function fh() {
+function sk.hist-find() {
   print -z $(fc -l 1 | sk --no-multi --tac -q "$*" | sed 's/ *[0-9]*\*\{0,1\} *//')
 }
-
 #-------------------------------------------------------
-zsh_stats()
+sys.zsh-stat()
 {
   fc -l 1 | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' \
     | grep -v "./" \
@@ -476,24 +463,15 @@ zsh_stats()
     | nl \
     |  head -n20
 }
-
 #-------------------------------------------------------
-sm.memuse()
+sys.memuse()
 {
 ps -eo pmem,comm | grep $1 | awk '{sum+=$1} END {print sum " % of RAM"}'
 }
 
 #-------------------------------------------------------
-sm.openports()
-{
-  declare -a array=($(tail -n +2 /proc/net/tcp | cut -d":" -f"3"|cut -d" " -f"1")) && for port in ${array[@]};
-  do echo $((0x$port));
-  done
-}
-
-#-------------------------------------------------------
 # Use 'gnome-open' to "run" things
-sm.run()
+sys.run()
 {
     [ -r "$*" ] &&
     {
@@ -503,7 +481,6 @@ sm.run()
         echo "'$*' not found or not readable!"
      }
 }
-
 #-------------------------------------------------------
 # Print README file colored by bat ( https://github.com/sharkdp/bat )
 readme() {
@@ -518,7 +495,7 @@ readme() {
 
 #-------------------------------------------------------
 ## show .md files with in terminal glow and less pager
-mdless() {
+show.md-less() {
   glow "$@" -s dark | less -r
 }
 
@@ -531,7 +508,7 @@ fi
 function peco-kill-process() {
     ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill
 }
-alias killp='peco-kill-process'
+alias killp='peco.kill-ps'
 
 #-------------------------------------------------------
 #---------list-all-man-pages----------------------------  {{{
@@ -552,7 +529,7 @@ function list-all-man-pages() {
     done
 }
 
-function fzf-man() {
+function fzf.man-dir() {
     local selected=$(list-all-man-pages \
                     | fzf --prompt='man> ' --pointer='▶' --marker='✓' \
                     --color='hl:148,hl+:154,pointer:032,marker:010,bg+:237,gutter:008' \
@@ -570,23 +547,23 @@ function fzf-man() {
          man "$selected"
     fi
 }
-zle -N fzf-man
-bindkey '^xk' fzf-man
+zle -N fzf.man-dir
+bindkey '^xk' fzf.man-dir
 
 ## from: https://github.com/knqyf263/pet/blob/master/README.md
-function pet-select() {
+function pet.select() {
   BUFFER=$(pet search --query "$LBUFFER")
   CURSOR=$#BUFFER
   zle redisplay
 }
-zle -N pet-select
+zle -N pet.select
 stty -ixon
-bindkey '^xs' pet-select
+bindkey '^xs' pet.select
 
 ### }}}
 
 # aur pkg
-aget () {
+pkg.aur-get () {
   git clone https://aur.archlinux.org/"$1".git
   # curl -fO https://aur.archlinux.org/cgit/aur.git/snapshot/"$1".tar.gz
   cd $1
@@ -597,13 +574,13 @@ aget () {
 
 # {{{2 Cute clock
 # clock - A bash clock that can run in your terminal window.
-clok ()
+sys.clock ()
 {
 while true;do clear;echo "===========";date +"%r";echo "===========";sleep 1;done
 }
-# }}}
+# }}} 
 
- cht() {
+cheat.curl() {
   curl cht.sh/$1/$2
 }
 
