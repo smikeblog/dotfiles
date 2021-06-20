@@ -50,18 +50,40 @@ My dotfile configuration
        mv ~/dotfiles ~/.dotfiles
        cd ~/.dotfiles
 
-## 6. Nerd fonts for Powerline and update fonts cache
+## 6. Nerd fonts setup and update fonts cache
+      Note: polybar uses UbuntuMono and FiraCode fonts
+     
+      For terminal , vim and tmux:
+      cp ~/.dotfiles/fonts/ ~/.local/share/
 
-    Note: for polybar are used UbuntuMono and Fontawesome fonts
-          belluzj/fantasque-sans
-    NOTE: for MXLinux on st fix emojis err with font:
-          wget http://ftp.br.debian.org/debian/pool/main/t/ttf-ancient-fonts/fonts-symbola_2.60-1_all.deb
-    https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/UbuntuMono.zip
-    https://fontawesome.com/download
-       also for terminal , vim and tmux:
-       cp ~/.dotfiles/fonts/ ~/.local/share/
-       and finally index new fonts:
+### 6.1 Nerd FiraCode
+```
+     wget $((curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | \
+        grep "browser_download_url" | \
+        grep "FiraCode.zip") | \
+        cut -d\: -f2,3 | jq -r )
+
+     mkdir -p ~/.local/share/fonts/FiraCodeNerd/
+     unzip FiraCode.zip -d ~/.local/share/fonts/FiraCodeNerd/
+```
+
+### 6.1 Nerd UbuntuMono
+```
+     wget $((curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest | \
+        grep "browser_download_url" | \
+        grep "UbuntuMono.zip") | \
+        cut -d\: -f2,3 | jq -r )
+
+     mkdir -p ~/.local/share/fonts/UbuntuMonoNerd/
+     unzip FiraCode.zip -d ~/.local/share/fonts/UbuntuMonoNerd/
+```
+
+     and finally index new fonts:
+```
        fc-cache -vf ~/.local/share/fonts/
+
+       rm FiraCode.zip  && rm UbuntuMono.zip
+```
 
 ## 7. make links to zsh and vim lite configs
 
@@ -146,12 +168,11 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ```
     sudo apt install polybar
 ```
-#### manjaro
+#### Arch
 ```
     yay -S polybar
 ````
-### install Golang
-#### install and config golang according instructions from its site golang.org (look for current version ...)
+### install and config golang according instructions from its site golang.org (look for current version ...)
      https://golang.org/dl/
 ```
     mkdir ~/go && mkdir ~/go/bin && mkdir ~/go/pkg && mkdir ~/go/src
@@ -162,7 +183,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ## Other used Tools {{{
 
     Ranger filemaneger: https://github.com/ranger/ranger
-    and mpv image preview method: https://github.com/ranger/ranger/wiki/Image-Previews
     pip3 install ranger-fm ueberzug
 
 ### provided from ~/.dotfiles/
@@ -189,13 +209,14 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://github.com/lunaryorn/mdcat
     https://github.com/dbrgn/tealdeer
     https://github.com/cjbassi/ytop/releases
+    https://www.soimort.org/translate-shell/
     https://github.com/bvaisvil/zenith
     https://github.com/seebye/fzf-ueberzogen
 
 ### Other Mandatory
 
 		https://github.com/imsnif/bandwhich                            # zinit installed
-    https://www.soimort.org/translate-shell/
+    https://github.com/EricChiang/pup                              # zinit installed
     https://gitlab.com/wavexx/screenkey
     https://prettier.io/docs/en/install.html
     https://github.com/ggreer/the_silver_searcher
@@ -205,7 +226,6 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
     pacman -S shellcheck
     https://github.com/Bugswriter/tuxi/blob/main/tuxi
-    https://github.com/EricChiang/pup                            # zinit installed
     https://github.com/ckardaris/ucollage
     https://github.com/mvdan/sh
     pip3 install awesome-finder
