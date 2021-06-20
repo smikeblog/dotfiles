@@ -110,6 +110,15 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ```
 #### Dmenu Scripts (dmscripts) from: https://gitlab.com/dwt1/dmscripts 
 ```
+    1. pandoc install to /usr/local/bin/
+```
+  cd ~/Downloads
+  mkdir pandot && cd pandot
+  wget -A "gz" $((curl -s https://api.github.com/repos/jgm/pandoc/releases/latest | grep "browser_download_url" | grep "amd64.tar") | cut -d\: -f2,3 | jq -r )
+  sudo tar xvzf *.gz --strip-components 1 -C /usr/local/bin
+  cd 
+  rm -rf ~/Downloads/pandot
+```
   git clone https://gitlab.com/dwt1/dmscripts.git
   cd dmscripts
   sudo make clean build
