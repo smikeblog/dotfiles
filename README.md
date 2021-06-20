@@ -119,6 +119,8 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
   cd 
   rm -rf ~/Downloads/pandot
 ```
+
+```
   git clone https://gitlab.com/dwt1/dmscripts.git
   cd dmscripts
   sudo make clean build
