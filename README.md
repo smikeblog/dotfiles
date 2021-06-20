@@ -109,7 +109,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 ```
 #### Dmenu Scripts (dmscripts) from: https://gitlab.com/dwt1/dmscripts 
-```
+
     1. pandoc install to /usr/local/bin/
 ```
   cd ~/Downloads
