@@ -51,8 +51,8 @@ bspc config automatic_scheme  alternate # longest_side|alternate|spiral
 bspc config initial_polarity  second_child # second_child
 
   # Initialize layouts
-  bsp-layout set tall 1
-  bsp-layout set wide tall 5
+  bsp-layout set tall 4
+  bsp-layout set wide 5
   bsp-layout set grid 9
 # }}}
 

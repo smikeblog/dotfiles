@@ -115,17 +115,18 @@ alias s3='$HOME/space/sublime_text_3/sublime_text -a '
 # utils
 # https://github.com/athityakumar/colorls
 if _has exa; then
-  alias lx='exa --color=always --group-directories-first'
-  alias lld='exa -lh --color=always --group-directories-first'
-  alias lll='exa -lah --color=always --group-directories-first'
-  alias ll='exa -lhF --git-ignore --group-directories-first --time-style=long-iso'
-  alias lt='exa -aT --color=always --group-directories-first' # tree listing
+  alias lx='exa --icons --color=always --group-directories-first'
+  alias lld='exa -lh --icons --color=always --group-directories-first'
+  alias lll='exa -lah --icons --color=always --group-directories-first'
+  alias ll='exa -lhF --git-ignore --icons --group-directories-first --time-style=long-iso'
+  alias lt='exa -aT -L=1 --icons --color=always --group-directories-first' # tree listing
   alias la='ll -a'
-  alias exa2='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
-  alias exa3='exa -alhF --git-ignore --group-directories-first --time-style=long-iso -T -L=3 --ignore-glob=".git|node_modules"'
+  alias exa2='exa -alhF --git-ignore --icons --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
+  alias exa5='exa -alhF --git-ignore --icons --group-directories-first --time-style=long-iso -T -L=5 --ignore-glob=".git|node_modules"'
 fi
 if _has lsd; then
   alias lct2='lsd -t --tree=2 --group-dirs=first'
+  alias lct5='lsd -t --tree=5 --group-dirs=first'
   alias lc='lsd -lhA --group-dirs=first'
   if ! _has l; then
     alias l=lsd
@@ -142,9 +143,9 @@ alias -g S=' | sort '
 alias -g P=' | peco '
 
 # kill process fuzzy search with ~/.dotfiles/tools/sk (skim)
-alias pskl='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
+alias ps.kil='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
 # list processes
-alias qp="ps auxwww|more"
+alias ps.list="ps auxwww|more"
 
 alias rofim='rofi -show window -sidebar-mode \
   -modi run,window,drun,keys \
@@ -172,9 +173,9 @@ alias -s {mp3,m4a,flac}="mpv"
 alias -s {png,jpg,tiff,bmp,jpeg}="sxiv"
 
 if [ -f /usr/bin/pacman ]; then
-  alias pkglist="pacman -Qneq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-pkglist.txt"
+  alias pkg.list="pacman -Qneq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-pkglist.txt"
 fi
-  alias aurlist="pacman -Qmeq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-aurlist.txt"
+  alias aur.list="pacman -Qmeq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-aurlist.txt"
 
 ##   1}}}
 
@@ -331,9 +332,9 @@ fi
 alias l="lsd --group-dirs first"
 alias ytdll="bash $HOME/scripts/ytdll"
 alias s="syscheck"
-alias cds=cd_with_sk
-alias calf="fd . ~/Sync/diary/ --extension md | fzf "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
-alias calvi='vi +CalendarH'
+alias cd.sk=cd_with_sk
+alias fzf.cal="fd . ~/Sync/diary/ --extension md | fzf "    #fzf --no-multi --preview 'bat --color=always -l yaml --line-range :200 {}' "
+alias vim.cal='vi +CalendarH'
 alias i="fzfimg.sh"
 
 
