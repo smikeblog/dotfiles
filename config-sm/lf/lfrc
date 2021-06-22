@@ -1,4 +1,5 @@
 #settings
+%[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
 
 # Basic vars
 # Vars that depend on environmental variables
@@ -171,6 +172,10 @@ cmd vi-rename ${{
 	lf -remote 'send load'
 	lf -remote 'send clear'
 }}
+
+# open-with command
+cmd open-with %"$@" $fx
+map ` push :open-with<space>
 ###########################
 map a
 # FZF

@@ -49,7 +49,7 @@ fi
 # source "$HOME/scripts/gruvbox_256palette.sh"
 #source "$HOME/scripts/base16-dracula.sh"
 #source "$HOME/scripts/base16-nord.sh"
-source "$HOME/scripts/base16-snazzy.sh"
+#source "$HOME/scripts/base16-snazzy.sh"
 
 # export homebin dir - done in zshfunc.custom
 # [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"

@@ -217,6 +217,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 
 		https://github.com/imsnif/bandwhich                            # zinit installed
     https://github.com/EricChiang/pup                              # zinit installed
+    https://github.com/muesli/duf
     https://gitlab.com/wavexx/screenkey
     https://prettier.io/docs/en/install.html
     https://github.com/ggreer/the_silver_searcher
@@ -225,6 +226,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ### Other Optional
 
     pacman -S shellcheck
+    https://github.com/theryangeary/choose
     https://github.com/Bugswriter/tuxi/blob/main/tuxi
     https://github.com/ckardaris/ucollage
     https://github.com/mvdan/sh
@@ -233,6 +235,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://github.com/athityakumar/colorls
     https://github.com/Canop/broot
     https://gitlab.com/dwt1/shell-color-scripts
+    https://github.com/bootandy/dust
 
 #### }}}
 

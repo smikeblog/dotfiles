@@ -111,6 +111,7 @@ alias sm.weather='curl wttr.in/chisinau'
 alias sm.antivir='sudo rkhunter -c'
 
 alias s3='$HOME/space/sublime_text_3/sublime_text -a '
+alias s4='$HOME/space/sublime_text/sublime_text -a '
 
 # utils
 # https://github.com/athityakumar/colorls
@@ -174,8 +175,8 @@ alias -s {png,jpg,tiff,bmp,jpeg}="sxiv"
 
 if [ -f /usr/bin/pacman ]; then
   alias pkg.list="pacman -Qneq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-pkglist.txt"
-fi
   alias aur.list="pacman -Qmeq > ~/Code/$(date +"%Y-%m-%d-@%H-%M")-aurlist.txt"
+fi
 
 ##   1}}}
 
@@ -215,8 +216,8 @@ bindkey -s '^o' 'lfcd\n'           # cd lf
 bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
 
 # Edit line in vim with ctrl-e:
-#autoload edit-command-line; zle -N edit-command-line
-#bindkey '^e' edit-command-line
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^e' edit-command-line
 # bind "Cttrl-u"to open rofi in win select mode
 bindkey -s '^u' 'rofi.m\n'
 
@@ -327,6 +328,7 @@ if [ -f /opt/shell-color-scripts/colorscript.sh ]; then
 #    sleep 0.2
 #    /opt/shell-color-scripts/colorscript.sh random
     alias d='/opt/shell-color-scripts/colorscript.sh random'
+    alias d1='/opt/shell-color-scripts/colorscript.sh -e 00default.sh'
 fi
 
 alias l="lsd --group-dirs first"
@@ -358,5 +360,6 @@ alias vsk='vim -u ~/.vim/vim-init/init.vim'
 alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
 alias vim.ls="bash vimv"
 alias n="nvim ."
+
 
 # vim: ft=zsh

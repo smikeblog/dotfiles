@@ -1,4 +1,24 @@
 
+
+## icons for lf experimental fiture {{{2
+export LF_COLORS="\
+~/Documents=01;36:\
+~/Downloads=01;36:\
+~/.local/share=01;36:\
+~/.config/lf/lfrc=36:\
+.git/=01;32:\
+.git=32:\
+.gitignore=32:\
+Makefile=32:\
+README.*=33:\
+*.txt=34:\
+*.md=34:\
+ln=01;36:\
+di=01;34:\
+ex=01;32:\
+"
+## 2}}}
+
 ## icons for lf experimental fiture {{{2
 
 # This is the list for lf icons:

@@ -12,44 +12,13 @@
 # `mod3` focus {next,previous} desktop in the current monitor.
 # Cyclical behaviour.  Move in the opposite direction while also holding
 # down `shift`.
-# description: cycle through desktops
+# description: cycle through desktops-windows(super-alt+Tab) 
 {super,alt} + {_,shift +} Tab
 	bspc {desktop,node} -f {next,prev}.local
 
 # description: reload sxhkd config(keybinding):
 super + Escape
-	pkill -USR1 -x sxhkd
-#	xterm -geometry 88x50 -name xterm_keys_help -e $HOME/scripts/sxhkd_help.sh
-
-# BSPWM HOTKEYS
-
-# fzf keybinding show
-super + ctrl + Return
-    $HOME/.local/kitty.app/bin/kitty
-ctrl + @F4
-    $HOME/.local/kitty.app/bin/kitty
-#	st -e $HOME/scripts/sxhkd_help.sh
-# description: rofi binding help  search
-super + s
-	$HOME/scripts/sxhkd_help.sh
-
-# description: Show keybindings
-super + shift +  @F1
-	xterm -geometry 125x50 -name xterm_keys_help -e $HOME/scripts/keybindings.sh
-#	tilix --profile=bspwm -e $HOME/scripts/keybindings.sh
-
-# description: Toggle Hide-show polybar
-super + b
-	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
-     polybar-msg cmd toggle; bspc config top_padding 20 }
-
-# description: Toggle Picom
-ctrl + alt + o
-    ~/scripts/toggle-compositor
-
-# description: Toggle ScreenKey
-ctrl + alt + k
-    ~/scripts/toggle-screenkey
+	pkill -USR1 -x sxhkd && notify-send "sxhkd successfully restarted"
 
 # description: quit/restart bspwm
 super + shift + {q,r}
@@ -59,7 +28,33 @@ super + shift + {q,r}
 super + shift + c
 	bspc node -c
 
-# description: send the newest marked node to the newest preselected node
+# BSPWM HOTKEYS
+
+# description: terminal KITTY
+super + ctrl + Return
+    $HOME/.local/kitty.app/bin/kitty
+# description: terminal KITTY
+ctrl + @F4
+    $HOME/.local/kitty.app/bin/kitty
+
+# description: key bindings rofi search
+super + s
+	$HOME/scripts/sxhkd_help.sh
+
+# description: Toggle Picom
+ctrl + alt + o
+    ~/scripts/toggle-compositor
+
+# description: Toggle ScreenKey
+ctrl + alt + k
+    ~/scripts/toggle-screenkey
+
+# description: Toggle polybar (Hide-show)
+super + b
+	{polybar-msg cmd toggle; bspc config top_padding +0 ,\
+     polybar-msg cmd toggle; bspc config top_padding 20 }
+
+# description: send newest marked to newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
@@ -296,19 +291,10 @@ super + alt + n
 # description: launch vifm with ueberzug image preview
 super + alt + v
      st -e ./.local/bin/vv
-#     st -e ./.config/vifm/scripts/vifmrun
-
-# launch htop
-#super + alt + h
-#    st -e htop
 
 # description: audio mixer run
 super + alt + a
   st -e ~/scripts/pulsemixer
-
-# description: audio mixer run
-#super + alt + m
-#  st -e ~/scripts/pulsemixer
 
 ## LUNCHERs Alt+{F2,F3,F5,F6} {{{3
 # description: luncher F2
@@ -324,7 +310,7 @@ alt + @F3
 # description: rofi 
 super + @space
   rofi -show window -sidebar-mode \
-    -modi combi,window,drun,keys,run \
+    -modi combi,window,drun,keys \
     -hide-scrollbar true \
     -bw 2 \
     -lines 15 \
@@ -334,20 +320,12 @@ super + @space
     -columns 1 \
     -font "Noto Sans 9" \
     -color-enabled true
-# Ddescription: rofi -show window
-#alt + @F5
-#  rofi -modi window -show window -show-icons -sidebar-mode
-# Ddescription: rofi -show window menu
-#alt + @F4
-#	BspwmWindowMenu >/dev/null 2>&1
-# Ddescription: rofi -show desktop menu 
-#alt + @F6
-#	BspwmDesktopMenu >/dev/null 2>&1
 # 3}}}
 
 # 2}}}
 
 #super + e : {1-4}
+## description: node -r 
 #super + e : { Home,End,Delete,Left }
 #    { \
 #     bspc node @west -r -150 || bspc node @east -r -150, \
@@ -369,7 +347,7 @@ super + g ; {0-7}
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
-# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-procs,4-vil,5-vim,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
+# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-gotop,4-vil,5-vim,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
 super + x ; {0-9}
     { \
         (~/.local/bin/with_zsh ~/.dmenu/dmenu-sysmon.sh), \
@@ -433,21 +411,19 @@ super + c : {h,j,k,l}
 super + c : bracket{left,right}
  	bspc config -d focused window_gap "$(($(bspc config -d focused window_gap) {-,+} 5 ))"
 
+# description: Equalize dynamic gaps.
+super + {_, shift +} equal
+ 	bspc config -d focused window_gap {8, 0}
+
 # description: Move floating windows with the arrow keys
 super + c : {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 # DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
-# description: Dmenu sys - Restart, Poweroff
-alt +  ctrl + Delete
-	$HOME/.dotfiles/home.local/bin/sysact
-# description: Run  rofi-terminal
-alt + shift + F3
-	~/scripts/rofi-terminal.sh
 # description: run  rofi program drun
 alt + shift + Return
-	rofi -show drun
+	rofi -show drun -width 50
 # description: run dmenu_run program
 alt + ctrl + Return
 	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
