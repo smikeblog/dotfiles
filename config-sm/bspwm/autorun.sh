@@ -35,3 +35,6 @@ run xfce4-power-manager
 run xset -dpms
 run xset s off
 
+# if hash skippy-xd > /dev/null 2>&1 ; then
+#     run skippy-xd --start-daemon
+# fi

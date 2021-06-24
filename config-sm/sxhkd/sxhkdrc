@@ -42,11 +42,11 @@ super + s
 	$HOME/scripts/sxhkd_help.sh
 
 # description: Toggle Picom
-ctrl + alt + o
+alt + ctrl + o
     ~/scripts/toggle-compositor
 
 # description: Toggle ScreenKey
-ctrl + alt + k
+alt + ctrl + k
     ~/scripts/toggle-screenkey
 
 # description: Toggle polybar (Hide-show)
@@ -60,7 +60,7 @@ super + y
 
 # description: swollow window
 super + v
-    xdo id | pidswallow -t
+	xdo id | pidswallow -t
 
 # STATE/FLAGS ============================ {{{
 

@@ -34,7 +34,8 @@ fi
 ## use lf/ranger as cd utility with Ctrl+o/Ctrl+p bindings  {{{1
 lfcd () {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+#    lfrun -last-dir-path="$tmp" "$@"
+    ~/.dotfiles/config-sm/lf/lfrun -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
@@ -60,6 +61,8 @@ ranger_cd() {
 ## 1}}}
 
 ## some aliases   {{{1
+
+alias lf="$HOME/.dotfiles/config-sm/lf/lfrun"
 
 alias b='buku --suggest'
 
@@ -149,7 +152,7 @@ alias ps.kil='ps aux | sk | awk "{ print \$2 }" | xargs kill -9'
 alias ps.list="ps auxwww|more"
 
 alias rofim='rofi -show window -sidebar-mode \
-  -modi run,window,drun,keys \
+  -modi drun,window,'calc:rcalc',keys \
   -hide-scrollbar true \
   -bw 2 \
   -lines 12 \

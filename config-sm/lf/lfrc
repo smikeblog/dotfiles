@@ -3,7 +3,10 @@
 
 # Basic vars
 # Vars that depend on environmental variables
-set previewer ~/.dotfiles/tools/pistol
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+
+#set previewer ~/.dotfiles/tools/pistol
 set icons
 
 # interpreter for shell commands (needs to be POSIX compatible)
