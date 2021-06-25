@@ -155,6 +155,8 @@ zt 0a light-mode for \
 # Wait'0b' block #
 ##################
 #    pack'no-dir-color-swap' atload"zstyle ':completion:*' list-colors \${(s.:.)LS_COLORS}" \
+#    blockf nocompletions compile'functions/*~*.zwc' \
+#        marlonrichert/zsh-edit \
 
 zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
     atload'ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(__fz_zsh_completion)' \
@@ -170,8 +172,6 @@ zt 0b light-mode patch"${pchf}/%PLUGIN%.patch" reset nocompile'!' for \
         zdharma/history-search-multi-word \
     trackbinds bindmap'\e[1\;6D -> ^[[1\;5B; \e[1\;6C -> ^[[1\;5A' \
         michaelxmcbride/zsh-dircycle \
-    blockf nocompletions compile'functions/*~*.zwc' \
-        marlonrichert/zsh-edit \
     atinit'zicompinit_fast; zicdreplay' atload'FAST_HIGHLIGHT[chroma-man]=' \
     atclone'(){local f;cd -q →*;for f (*~*.zwc){zcompile -Uz -- ${f}};}' \
     compile'.*fast*~*.zwc' nocompletions atpull'%atclone' \
@@ -238,7 +238,7 @@ zt 0c light-mode null for \
 # Plugins #
 ###########
 
-	zinit ice lucid ver'master' wait'0a' as'program' has'perl' pick'exiftool'
+zinit ice lucid ver'master' wait'0a' as'program' has'perl' pick'exiftool'
 zinit light exiftool/exiftool
 
 zinit light mollifier/anyframe

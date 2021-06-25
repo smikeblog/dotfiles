@@ -4,6 +4,8 @@ set formatoptions-=cro                  " Stop newline continution of comments
 syntax enable                           " Enables syntax highlighing
 set hidden                              " Required to keep multiple buffers open multiple buffers
 set nowrap                              " Display long lines as just one line
+set noswapfile
+set nobackup
 set encoding=utf-8                      " The encoding displayed
 set pumheight=10                        " Makes popup menu smaller
 set fileencoding=utf-8                  " The encoding written to file
@@ -37,9 +39,6 @@ set clipboard=unnamedplus               " Copy paste between vim and everything 
 set incsearch
 set spelllang=en_us,ru_ru
 set guifont=Fira\ Code\ Nerd\ Font
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" set mmp=1300
-" set autochdir                           " Your working directory will always be the same as your working directory
 " set foldcolumn=2                        " Folding abilities
 
  " au! BufWritePost $MYVIMRC source %      " auto source when writing to init.vm alternatively you can run :source $MYVIMRC

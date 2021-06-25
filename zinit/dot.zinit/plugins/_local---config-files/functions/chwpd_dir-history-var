@@ -1,6 +1,9 @@
 emulate -L zsh
 
+[[ -z "$funcstack[2]" ]] || return
+
 if [[ -r "$_per_directory_history_path" ]]; then
+    sleep 0.1
     fc -a -p "$_per_directory_history_path"
 fi
 

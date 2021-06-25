@@ -39,7 +39,7 @@ _zsh_autosuggest_strategy_custom_history () {
         typeset -g suggestion="${history[(r)$pattern]}"
 }
 
-[[ $MYPROMPT != dolphin ]] && add-zsh-hook chpwd chpwd_ls
+## [[ $MYPROMPT != dolphin ]] && add-zsh-hook chpwd chpwd_ls
 
 #########################
 #       Variables       #
@@ -76,6 +76,7 @@ ZSH_AUTOSUGGEST_COMPLETION_IGNORE="[[:space:]]*"   # Ignore leading whitespace
 ZSH_AUTOSUGGEST_MANUAL_REBIND=set
 ZSH_AUTOSUGGEST_STRATEGY=(dir_history custom_history completion)
 HISTORY_SUBSTRING_SEARCH_FUZZY=set
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=set
 AUTOPAIR_CTRL_BKSPC_WIDGET=".backward-kill-word"
 
 export GI_TEMPLATE="${ZPFX}/git-ignore-template"

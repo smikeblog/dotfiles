@@ -64,7 +64,7 @@ set norunexec
 " selected color scheme
 
 " colorscheme default
-" colorscheme onedark.vifm
+" colorscheme dracula.vifm
 colorscheme zenburn_1sm.vifm
 
 " format for displaying time in file list. for example:
@@ -111,8 +111,9 @@ endif
 
 " set custom status line look
 
-set statusline="  hint: %z%= %a %10u:%-7g %15s %20d  "
-
+" set statusline="  hint: %z%= %a %10u:%-7g %15E %20d  "
+set statusline="  hint: %z%= %a %10u:%-7g %15s:%E %20d  "
+" set statusline='  %t%= %A %10u:%-7g %15E %20d  '
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
@@ -153,6 +154,21 @@ command! vgrep vim "+grep %a"
 command! reload :write | restart
 
 " ------------------------------------------------------------------------------
+" cmpinternal — a trick to invoke external command. Calling execute "!compare-cmd ... %S" reparses command-line which leads to loosing results of command execution (they are overwritten by execution of if-else-endif block).
+" Double percent sign in arguments for the expand() function (e.g. expand('%%c')) — macros are automatically expanded for user-defined commands, so % symbol should be escaped with itself for expansion to be performed by expand() function. It's important as otherwise unescaped quotes or other special characters in file names can break command syntax.
+" expand('%%c') == expand('%%f') — check whether only one file is selected in current pane.
+"Run :cmp without selection or with single file selection to compare files under cursors in two panes.
+"Run :cmp after selecting two files in the current pane to compare them.
+   command! cmpinternal compare-cmd %a %S
+   command! cmp : if expand('%%c') == expand('%%f')
+              \ |     echo expand('Comparing %%"c and %%"C:t ...')
+              \ |     cmpinternal %c %C
+              \ | else
+              \ |     echo expand('Comparing files: %%"f ...')
+              \ |     cmpinternal %f
+              \ | endif
+
+" ------------------------------------------------------------------------------
 
 " the file type is for the default programs to be used with
 " a file extension.
@@ -181,8 +197,40 @@ command! reload :write | restart
 " program.
 
 " pdf
+    fileviewer *.pdf
+        \ vifmimg pdf %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer *.epub
+        \ vifmimg epub %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <video/*>
+        \ vifmimg video %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <image/*>
+        \ vifmimg draw %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <audio/*>
+        \ vifmimg audio %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <font/*>
+        \ vifmimg font %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+
+
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
-fileviewer *.pdf pdftotext -nopgbrk %c -
+"fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " postscript
 filextype *.ps,*.eps,*.ps.gz
@@ -204,8 +252,8 @@ filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
        \ ffplay -nodisp -autoexit %c,
        \ {play using mplayer}
        \ mplayer %f,
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
+"fileviewer *.mp3 mp3info
+"fileviewer *.flac soxi
 
 " video
 filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
@@ -217,10 +265,10 @@ filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \ ffplay -fs -autoexit %f,
         \ {view using mplayer}
         \ mplayer %f,
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]
-         \ ffprobe -pretty %c 2>&1
+"fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
+"          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
+"          \*.as[fx]
+"         \ ffprobe -pretty %c 2>&1
 
 " web
 filextype *.html,*.htm
@@ -240,17 +288,19 @@ filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
 " images
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ {view in sxiv}
-        \ rotdir %f | setsid sxiv -ai >/dev/null 2>&1 &,
-        \ {view in gpicview}
-        \ gpicview %c,
-        \ {view in shotwell}
-        \ shotwell,
+"filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+"        \ {view in sxiv}
+"        \ rotdir %f | setsid sxiv -ai >/dev/null 2>&1 &,
+"        \ {view in gpicview}
+"        \ gpicview %c,
+"        \ {view in shotwell}
+"        \ shotwell,
 " fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
 "         \ convert -identify %f -verbose /dev/null
-fileviewer *.jpg,*.jpeg,*.png,*.ico,*.gif vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
-
+"fileviewer *.jpg,*.jpeg,*.png,*.ico,*.gif vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
+filextype *.jpeg,*.jpg,*.png
+    \ {Open With sxiv}
+    \ sxiv %c &
 
 " openraster
 filextype *.ora
@@ -344,7 +394,7 @@ fileviewer *.7z 7z l %c
 ""filetype *.7z
 ""       \ {mount with fuse-7z}
 ""       \ fuse_mount|fuse-7z %source_file %destination_dir,
-fileviewer *.7z 7z l %c
+"fileviewer *.7z 7z l %c
 
 " office files
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
@@ -407,13 +457,9 @@ nnoremap l :if &previewprg == '' | set previewprg='git -c color.status=always s;
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
-" For icons
-source ~/.config/vifm/scripts/vifm_icons
-
 " ------------------------------------------------------------------------------
 " getting icons to display in vifm
-" you need the next 14 lines!
-
+source "$VIFM/scripts/vifm_icons"
 
 " ------------------------------------------------------------------------------
 
@@ -432,6 +478,7 @@ source ~/.config/vifm/scripts/vifm_icons
 " sample mappings
 
 nnoremap Q :quit<cr>
+nnoremap Z :cquit<cr>
 
 "Open directory under the cursor in other pane
 nnoremap zt :sync %c<CR><Tab>
@@ -449,13 +496,10 @@ vnoremap w :view<cr>gv
 " open file in existing instance of gvim
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
 " open in thinkvim and plain nvim
-nnoremap oO :!nvim  %f<cr>
-nnoremap Oo :!nvim -N -u NONE -U NONE %f<cr>
+nnoremap ,o :!nvim  %f<cr>
+nnoremap ,O :!nvim -N -u NONE -U NONE %f<cr>
 " open file in new instance of gvim
 " nnoremap o :!gvim %f<cr>
-" open Golang set in vim and nvim
-nnoremap O :!vim -u ~/.vimrc.go %f<cr>
-nnoremap o :!nvim -u ~/.config/nvimDj/init.vim %f<cr>
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
@@ -527,6 +571,8 @@ command! FZFfind :set noquickview | :execute 'goto "'.system('find | fzf --heigh
 
 nnoremap <c-g> :FZFlocate<cr>
 nnoremap <c-f> :FZFfind<cr>
+map fl :FZFlocate<cr>
+map fg :FZFfind<cr>
 
 map x :!sxiv -ft * 2>/dev/null &<CR>
 
@@ -538,3 +584,6 @@ nnoremap dv :!vimdiff %c %D/%c<CR>
 nnoremap dV :!vimdiff %c %C<CR>
 
 windo set viewcolumns=-{name}..,6{size},11{perms}
+
+
+" vim: filetype=vim:

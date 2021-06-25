@@ -1,6 +1,3 @@
-#settings
-%[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
-
 # Basic vars
 # Vars that depend on environmental variables
 set previewer ~/.config/lf/preview
@@ -11,7 +8,6 @@ set icons
 
 # interpreter for shell commands (needs to be POSIX compatible)
 set shell sh
-set shellopts '-e:--shwordsplit'
 
 # set '-eu' options for shell commands
 # These options are used to have safer shell commands. Option '-e' is used to
@@ -35,7 +31,30 @@ set scrolloff 10
 # use enter for shell commands
 map <enter> shell
 
+# ==============
+# = Commands
+# ==============
+
+# basic stuff
+cmd q quit
+cmd wq quit
+cmd edit $$EDITOR -- $f
+cmd suedit $suedit -- $f
+cmd jumpback push :mark-load<enter>'
+cmd open        &opener -l$id -- $f
+cmd openall     &opener -l$id -- $fx
+cmd openallfork &opener -fl$id -- $fx
+
 # ==============================================
+
+# Rename files using editor
+cmd vi-rename ${{
+	vimv $fx
+	lf -remote "send $id echo '$(cat /tmp/.vimv-latest)'"
+	lf -remote 'send load'
+	lf -remote 'send clear'
+}}
+
 # change No. of columns(2-3-5) depending on window width
 cmd recol %{{
     w=$(tput cols)
@@ -47,6 +66,19 @@ cmd recol %{{
         lf -remote "send $id set ratios 1:2:3:5"
     fi
 }}
+
+
+# ==============================================
+# if it's a symlink, go to where it's pointing;
+# if it's a file, open it with opener and fork it.
+cmd openfork &{{
+    if [ -d $f ]; then
+        lfselect $id $(readlink -f $f)
+    else
+        opener -fl$id -- $f
+    fi
+}}
+# ==============================================
 # ==============================================
 
 # define a custom 'open' command
@@ -54,33 +86,33 @@ cmd recol %{{
 # use either file extensions and/or mime types here. Below uses an editor for
 # text files and a file opener for the rest.
 # cmds/functions
-cmd open ${{
-    case $(file --mime-type $f -b) in
-	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*) $EDITOR $fx;;
-	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
-	image/svg+xml) display -- $f ;;
-	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
-	audio/*) mpv --audio-display=no $f ;;
-	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
-    esac
-}}
-
 # cmd open ${{
 #     case $(file --mime-type $f -b) in
-#         image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
-#         text/troff) man ./ $f;;
+# 	image/vnd.djvu|application/pdf|application/octet-stream) setsid -f zathura $fx >/dev/null 2>&1 ;;
 #         text/*) $EDITOR $fx;;
-# 	    image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
-# 	    image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
-# 	    audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
-# 	    video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
-# 	    application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
-#         *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
+# 	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
+# 	image/svg+xml) display -- $f ;;
+# 	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" | sxiv -aio 2>/dev/null | lf-select ;;
+# 	audio/*) mpv --audio-display=no $f ;;
+# 	video/*) setsid -f mpv $f -quiet >/dev/null 2>&1 ;;
+# 	application/pdf|application/vnd*|application/epub*) setsid -f zathura $fx >/dev/null 2>&1 ;;
+#         *) for f in $fx; do setsid -f $OPENER $f >/dev/null 2>&1; done;;
 #     esac
 # }}
+
+cmd open ${{
+    case $(file --mime-type $f -b) in
+        image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
+        text/troff) man ./ $f;;
+        text/*) $EDITOR $fx;;
+	    image/x-xcf|image/svg+xml) setsid gimp $f >/dev/null 2>&1 & ;;
+	    image/*) rotdir $f | setsid sxiv -ai >/dev/null 2>&1 & ;;
+	    audio/*) mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f ;;
+	    video/*) setsid mpv --input-ipc-server=/tmp/mpvsoc$(date +%%s) $f -quiet >/dev/null 2>&1 & ;;
+	    application/pdf) setsid zathura $fx >/dev/null 2>&1 & ;;
+        *) for f in $fx; do setsid $OPENER $f >/dev/null 2>&1 & done;;
+    esac
+}}
 
 # FZF
 cmd fzf ${{
@@ -176,6 +208,7 @@ cmd vi-rename ${{
 	lf -remote 'send clear'
 }}
 
+cmd finder $finder -f | lfselect $id
 # open-with command
 cmd open-with %"$@" $fx
 map ` push :open-with<space>
@@ -222,3 +255,6 @@ map rc recol
 map rr rename
 map rv vi-rename
 
+map E edit
+
+# vim: ft=zsh

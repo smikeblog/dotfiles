@@ -1,4 +1,5 @@
 emulate -L zsh
 if [[ "$OLDPWD" != "$PWD" ]]; then
+    sleep 0.1
     lsd --group-dirs=first
 fi

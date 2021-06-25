@@ -57,6 +57,20 @@ ranger_cd() {
 # to act as Enter key-press
 #bindkey -s "^P" "ranger_cd\n"
 
+#vicd() {
+vv() {
+    local dst="$(command vifmrun --choose-dir - "$@")"
+    if [ -z "$dst" ]; then
+        echo 'Directory picking cancelled/failed'
+        return 1
+    fi
+   { # try
+     (cd "$dst") &&
+     } || { # catch
+        echo " Catched error vifm-cd!!!"
+   }
+}
+
 ###   2}}}
 ## 1}}}
 
@@ -217,6 +231,7 @@ alias ytv-best="youtube-dl -f bestvideo+bestaudio "
 #### ===================================================================
 bindkey -s '^o' 'lfcd\n'           # cd lf
 bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
+bindkey -s "^Xv" "vv\n"      # cd ranger
 
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
@@ -307,6 +322,7 @@ bindkey -M vicmd 's' sudo-command-line
 # FZF SETTINGS      #
 ##################### {{{
 export FZF_DEFAULT_OPTS="
+--header=$'Press ?:toggle-preview\tCTRL-e:vimOpen\tCTRL-n:nvimOpen\n\n' \
 --ansi
 --layout=default
 --info=inline
@@ -319,8 +335,9 @@ export FZF_DEFAULT_OPTS="
 --prompt='λ -> '
 --pointer='|>'
 --marker='✓'
---bind '?:toggle-preview' 
---bind 'ctrl-e:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
+--bind '?:toggle-preview'
+--bind 'ctrl-e:execute(vim {} < /dev/tty > /dev/tty 2>&1)' > selected
+--bind 'ctrl-n:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
 "
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -355,11 +372,10 @@ zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
 # navi cli cheat completion utility Ctrl+G
-if [ -e $HOME/.config/navi/ ]; then
+if [ -d $HOME/.config/navi/ ]; then
   eval "$(navi widget zsh)"
 fi
 
-alias vsk='vim -u ~/.vim/vim-init/init.vim'
 alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
 alias vim.ls="bash vimv"
 alias n="nvim ."
