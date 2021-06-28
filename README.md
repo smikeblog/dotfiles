@@ -125,6 +125,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	cd ~/Downloads/build/sxhkd && make && sudo make install
 ```
   - install xorg-choose-window utility for choosing from visible windows in Xorg
+
     depends: XCB, xcb-util-keysyms, xcb-util-wm: http://xcb.freedesktop.org/
 ```
   cd ~/Downloads/build/
