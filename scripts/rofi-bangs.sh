@@ -42,8 +42,8 @@ LABELS["websearch"]=""
 # COMMANDS[";piratebay"]="chromium --disk-cache-dir=/tmp/cache http://thepiratebay.org/search/\" \${input}\""
 # LABELS[";piratebay"]=""
 
-# COMMANDS[".bin"]="spacefm -r '/home/dka/bin'"
-# LABELS[".bin"]=".bin"
+COMMANDS[".bin"]="vifmrun "$HOME/.config" "$HOME/.local/bin""
+LABELS[".bin"]=".bin"
 
 # COMMANDS["#screenshot"]='/home/dka/bin/screenshot-scripts/myscreenshot.sh'
 # LABELS["#screenshot"]="screenshot"

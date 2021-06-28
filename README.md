@@ -124,7 +124,16 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 	cd ~/Downloads/build/bspwm && make && sudo make install
 	cd ~/Downloads/build/sxhkd && make && sudo make install
 ```
-  and install layouts scripts from:
+  - install xorg-choose-window utility for choosing from visible windows in Xorg
+    depends: XCB, xcb-util-keysyms, xcb-util-wm: http://xcb.freedesktop.org/
+```
+  cd ~/Downloads/build/
+  git clone https://github.com/ink/xorg-choose-window.git
+  cd xorg-choose-window
+  sudo make uninstall
+  sudo make install
+```
+  - install layouts scripts from:
      https://github.com/phenax/bsp-layout/blob/master/src/layout.sh
 ```
   curl https://raw.githubusercontent.com/phenax/bsp-layout/master/install.sh | bash -;

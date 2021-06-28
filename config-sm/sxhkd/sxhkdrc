@@ -59,8 +59,12 @@ super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
 # description: swollow window
-super + v
+super + shift  + v
 	xdo id | pidswallow -t
+
+# description: dm-confedit: Edit Configs
+super + v
+	exec dm-hub
 
 # STATE/FLAGS ============================ {{{
 
@@ -288,10 +292,6 @@ F12
 super + alt + n
     st -e newsboat
 
-# description: launch vifm with ueberzug image preview
-super + alt + v
-     st -e ./.local/bin/vv
-
 # description: audio mixer run
 super + alt + a
   st -e ~/scripts/pulsemixer
@@ -310,7 +310,7 @@ alt + @F3
 # description: rofi 
 super + @space
   rofi -show window -sidebar-mode \
-    -modi combi,window,drun,keys \
+    -modi window,"calc:qalc +u8 -nocurrencies" \
     -hide-scrollbar true \
     -bw 2 \
     -lines 15 \
@@ -334,16 +334,20 @@ super + @space
 #     bspc node @north -r +150 || bspc node @south -r +150 \
 #}
 
+# description: record with dm-record
+alt + super + v
+    dm-record
 
 # GUI -ctrl+g 
+#     notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
 # description: (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
 super + g ; {0-7}
    { \
      notify-send -i xx "NOT USED" "Launchers 1 ... 5\n 1. Xed\n 2. VLC Player\n 3. PcMan FileN\n 4. Thunderburd Email\n" && xx, \
-     notify-send -i xed "Run GUI program" "Launching Xed TextEditor" && xed, \
-     notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
+     notify-send -i xed "Run GUI " "Launching Xed TextEditor" && xed, \
+     notify-send -i myBase "Run GUI program" "Launching myBase" && ~/space/myBase7/myBase.run, \
      notify-send -i system-file-manager "Run GUI " "Launching File Manager" && pcmanfm, \
-     notify-send -i thunderbird "Run GUI program" "Launching Email Client" && thunderbird \
+     notify-send -i thunderbird "Run GUI " "Launching Email Client" && thunderbird \
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
