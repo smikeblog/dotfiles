@@ -32,36 +32,30 @@ fi
 
 ### ----------------------------------------------------
 ## use lf/ranger as cd utility with Ctrl+o/Ctrl+p bindings  {{{1
+
 lfcd () {
-    emulate sh
-    lfrn() {
-        cleanup() {
-            exec 3>&-
-        	rm "$FIFO_UEBERZUG"
-        }
-        
-        if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-        	lf "$@"
-        else
-        	[ ! -d "$HOME/.cache/lf" ] && mkdir --parents "$HOME/.cache/lf"
-        	export FIFO_UEBERZUG="$HOME/.cache/lf/ueberzug-$$"
-        	mkfifo "$FIFO_UEBERZUG"
-        	ueberzug layer -s <"$FIFO_UEBERZUG" -p json &
-        	exec 3>"$FIFO_UEBERZUG"
-        	trap cleanup EXIT
-        	lf "$@" 3>&-
-        fi 
-    }
     tmp="$(mktemp)"
-#    lfrun -last-dir-path="$tmp" "$@"
-#     ${ZSHCONFIG}/config-sm/lf/lfrun -last-dir-path="$tmp" "$@"
-     lfrn -last-dir-path="$tmp" "$@"
+    fid="$(mktemp)"
+    lf -command '$printf $id > '"$fid"'' -last-dir-path="$tmp" "$@"
+    id="$(cat "$fid")"
+    archivemount_dir="/tmp/__lf_archivemount_$id"
+    if [ -f "$archivemount_dir" ]; then
+        cat "$archivemount_dir" | \
+            while read -r line; do
+                sudo umount "$line"
+                rmdir "$line"
+            done
+        rm -f "$archivemount_dir"
+    fi
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
-        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
     fi
-    emulate zsh
 }
 #bindkey -s '^o' 'lfcd\n'
 
@@ -401,5 +395,22 @@ alias bandwhich='sudo /home/sm/.zinit/plugins/bandwhich/bandwhich'
 alias vim.ls="bash vimv"
 alias n="nvim ."
 
+#export SKIM_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export SKIM_DEFAULT_COMMAND="fd --type f --color=always || git ls-tree -r --name-only HEAD || rg --files || find ."
+export SKIM_DEFAULT_OPTIONS="
+    --ansi 
+    --height=25 
+    --layout=reverse 
+    --margin=TRBL 
+    --prompt='SKIM > ' 
+    --header="Indexing::$PWD\t?:toggle-preview\tCTRL-e:vim\tCTRL-n:nvim\n\n" 
+    --multi 
+    --preview-window=':hidden' 
+    --preview='bat --style=numbers --color=always {}' 
+    --bind='alt-a:toggle-all'
+    --bind '?:toggle-preview'
+    --bind 'ctrl-e:execute(vim {} < /dev/tty > /dev/tty 2>&1)' > selected
+    --bind 'ctrl-n:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
+"
 
 # vim: ft=zsh

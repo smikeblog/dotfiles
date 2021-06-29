@@ -67,6 +67,25 @@ cmd recol %{{
     fi
 }}
 
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
+    paste "$old" "$new" |while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}} 
 
 # ==============================================
 # if it's a symlink, go to where it's pointing;
@@ -101,6 +120,11 @@ cmd openfork &{{
 # }}
 
 cmd open ${{
+rotdir() {
+[ -z "$1" ] && echo "usage: rotdir regex 2>&1" && exit 1
+base="$(basename "$1")"
+ls "$PWD" | awk -v BASE="$base" 'BEGIN { lines = ""; m = 0; } { if ($0 == BASE) { m = 1; } } { if (!m) { if (lines) { lines = lines"\n"; } lines = lines""$0; } else { print $0; } } END { print lines; }'
+}
     case $(file --mime-type $f -b) in
         image/vnd.djvu|application/pdf|application/octet-stream) setsid zathura $fx >/dev/null 2>&1 & ;;
         text/troff) man ./ $f;;
@@ -254,6 +278,7 @@ map rc recol
 # Simple rename:
 map rr rename
 map rv vi-rename
+map rb bulk-rename
 
 map E edit
 
