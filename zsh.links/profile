@@ -14,6 +14,10 @@ export BROWSER="palemoon"
 export READER="zathura"
 export TERMINAL="st"
 
+# neovim
+export PYTHON3_HOST_PROG=/usr/bin/python3
+export PYTHON_HOST_PROG=/usr/bin/python2
+
 # se tpreview colorscheme for pristol previewer
 export PISTOL_CHROMA_FORMATTER=terminal256
 export PISTOL_CHROMA_STYLE=dracula
