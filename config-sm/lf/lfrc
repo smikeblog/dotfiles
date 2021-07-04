@@ -47,14 +47,6 @@ cmd openallfork &opener -fl$id -- $fx
 
 # ==============================================
 
-# Rename files using editor
-cmd vi-rename ${{
-	vimv $fx
-	lf -remote "send $id echo '$(cat /tmp/.vimv-latest)'"
-	lf -remote 'send load'
-	lf -remote 'send clear'
-}}
-
 # change No. of columns(2-3-5) depending on window width
 cmd recol %{{
     w=$(tput cols)
