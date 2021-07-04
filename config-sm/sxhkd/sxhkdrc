@@ -172,11 +172,11 @@ super + ctrl + shift + space
 
 # MOVE/RESIZE {{{2
 
-# ddescription:  Move to preselection
+# description:  Move to preselection
 super + ctrl + m
   bspc node -n last.\!automatic.local;
 
-# ddescription: move the floating window
+## description: move the floating window
 #ctrl + shift + {h,j,k,l}
 # 	floating_motions {_,edge-}{west,south,north,east}
 

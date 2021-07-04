@@ -67,9 +67,6 @@ Plug 'chrisbra/vim-zsh'
 " If you want to display icons, then use one of these plugins:
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'ryanoasis/vim-devicons' " vimscript
-" Leaderf-snippet
-  Plug 'Yggdroot/LeaderF'
-  Plug 'skywind3000/Leaderf-snippet'
 
 " Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline'

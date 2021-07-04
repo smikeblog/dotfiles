@@ -115,8 +115,6 @@ if [ -e  $HOME/.dotfiles/vim/vim-vanilla/vimrc-symlink ]; then
 fi
 alias vin="nvim -N -u NONE -U NONE $1"
 
-alias vidt="nvim -u ~/.dotfiles/initDT.vim $1"
-
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get"
 
 if _has vifm; then
