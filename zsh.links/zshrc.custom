@@ -246,9 +246,11 @@ bindkey -s '^o' 'lfcd\n'           # cd lf
 bindkey -s "^Xo" "ranger_cd\n"      # cd ranger
 bindkey -s "^Xv" "vv\n"      # cd ranger
 
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+# Edit the current command line in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+
 # bind "Cttrl-u"to open rofi in win select mode
 bindkey -s '^u' 'rofi.m\n'
 
@@ -292,8 +294,8 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # Ctrl+x -> r ; Ctrl+x -> Ctrl+r
 # peco でコマンドの実行履歴を表示
-bindkey '^xr' anyframe-widget-execute-history
-bindkey '^x^r' anyframe-widget-put-history
+bindkey '^x^y' anyframe-widget-execute-history
+bindkey '^xr' anyframe-widget-put-history
 
 
 # Ctrl+x -> Ctrl+b
@@ -335,19 +337,20 @@ bindkey -M vicmd 's' sudo-command-line
 # FZF SETTINGS      #
 ##################### {{{
 export FZF_DEFAULT_OPTS="
---header=$'Press ?:toggle-preview\tCTRL-e:vimOpen\tCTRL-n:nvimOpen\n\n' \
+--header=$'Ps [?,C-s]:toggle-[preview,sort]\tC-[e,n]:Open[vim,nvim]\n\n' \
 --ansi
 --layout=default
 --info=inline
 --height=50%
 --multi
---preview-window=right:50%
+--preview-window=right:50%:hidden
 --preview-window=sharp
 --preview-window=cycle
 --preview '([[ -f {} ]] && (bat --style=numbers --color=always --theme=gruvbox-dark --line-range :500 {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 --prompt='λ -> '
---pointer='|>'
+--pointer='|▶'
 --marker='✓'
+--bind alt-p:preview-up,alt-n:preview-down
 --bind '?:toggle-preview'
 --bind 'ctrl-e:execute(vim {} < /dev/tty > /dev/tty 2>&1)' > selected
 --bind 'ctrl-n:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
@@ -412,3 +415,5 @@ export SKIM_DEFAULT_OPTIONS="
 "
 
 # vim: ft=zsh
+alias vv.='vv .'
+alias vv..='vv . .'

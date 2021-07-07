@@ -505,7 +505,7 @@ fi
 
 #-------------------------------------------------------
 # kill process
-function peco-kill-process() {
+function peco.kill-ps() {
     ps ax -o pid,time,command | peco --query "$LBUFFER" | awk '{print $1}' | xargs kill
 }
 alias killp='peco.kill-ps'
