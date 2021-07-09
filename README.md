@@ -88,24 +88,30 @@ My dotfile configuration
 ## 7. make links to zsh and vim lite configs
 
 ### 7.1 zsh
-
+```
       ln -s ~/.dotfiles/zsh.links/profile ~/.profile
       ln -s ~/.dotfiles/zsh.links/zshrc.custom ~/.zshrc.custom
       ln -s ~/.dotfiles/zsh.links/zshfunc.custom ~/.zshfunc.custom
+```
      a) for zgit manager and prezto prompt
-      ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc
+```
+      ln -s ~/.dotfiles/zsh.links/zshrc ~/.zshrc 
+```
+
      b) for zinit manager and powerlevel10k pure theme run script
-      ~/.dotfiles/zinit/installLink.sh
+```      ~/.dotfiles/zinit/installLink.sh ```
 
 ### 7.2 vifm
 
-      ln -s ~/.dotfiles/vifm/ ~/.config/
+```
+      ln -s ~/.dotfiles/vifm/ ~/.config/ 
+```
 
 ### 7.3 nvim (2021 - if zsh=b) then appimage is used and managed by zinit )
-
+```
       nvim -u ~/.dotfiles/vimrc +PlugInstall
       ln -s ~/.dotfiles/vim/vil ~/.vil
-
+```
 ## 7. logout && login for chsh to take effect
 
 #}}}
@@ -161,14 +167,14 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ```
 
 #### make links to .dotfiles
-
+```
     ln -s ~/.dotfiles/config/bspwm ~/.config/
     ln -s ~/.dotfiles/config/sxhkd ~/.config/
-
+```
 #### copy desktop file to nake it to appear in login manager
-
+```
     sudo cp ~/.dotfiles/doc/desktops/bspwm.desktop /usr/share/xsessions/
-
+```
 ## install dependencies polybar and btops
 
 ### polybar
@@ -183,8 +189,9 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     yay -S polybar
 ````
 ### install and config golang according instructions from its site golang.org (look for current version ...)
-     https://golang.org/dl/
+
 ```
+    https://golang.org/dl/
     mkdir ~/go && mkdir ~/go/bin && mkdir ~/go/pkg && mkdir ~/go/src
 ```
 
@@ -193,10 +200,12 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
 ## Other used Tools {{{
 
     Ranger filemaneger: https://github.com/ranger/ranger
+```
     pip3 install ranger-fm ueberzug
+```
 
 ### provided from ~/.dotfiles/
-
+```
     https://github.com/sharkdp/bat                               # zinit installed
     https://github.com/dandavison/delta                          # zinit installed
     https://github.com/sharkdp/fd                                # zinit installed
@@ -222,9 +231,9 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://www.soimort.org/translate-shell/
     https://github.com/bvaisvil/zenith
     https://github.com/seebye/fzf-ueberzogen
-
+```
 ### Other Mandatory
-
+```
 		https://github.com/imsnif/bandwhich                            # zinit installed
     https://github.com/EricChiang/pup                              # zinit installed
     https://github.com/muesli/duf
@@ -232,9 +241,9 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://prettier.io/docs/en/install.html
     https://github.com/ggreer/the_silver_searcher
     https://github.com/jarun/buku
-
+```
 ### Other Optional
-
+```
     pacman -S shellcheck
     https://github.com/theryangeary/choose
     https://github.com/Bugswriter/tuxi/blob/main/tuxi
@@ -246,7 +255,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://github.com/Canop/broot
     https://gitlab.com/dwt1/shell-color-scripts
     https://github.com/bootandy/dust
-
+```
 #### }}}
 
 ### {{{ Experimental

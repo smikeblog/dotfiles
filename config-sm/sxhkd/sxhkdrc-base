@@ -1,0 +1,204 @@
+#  ____ _____
+# |  _ \_   _|  Derek Taylor (DistroTube)
+# | | | || |  	http://www.youtube.com/c/DistroTube
+# | |_| || |  	http://www.gitlab.com/dwt1/
+# |____/ |_|
+#
+# A customized sxhkdrc for the bspwm window manager.
+# https://github.com/baskerville/sxhkd
+# https://github.com/baskerville/bspwm
+
+# With `alt` focus {next,previous} window in the current desktop.  With
+# `mod3` focus {next,previous} desktop in the current monitor.
+# Cyclical behaviour.  Move in the opposite direction while also holding
+# down `shift`.
+# description: cycle through desktops-windows(super-alt+Tab) 
+# description: reload sxhkd config(keybinding):
+super + Escape
+	pkill -USR1 -x sxhkd && notify-send "sxhkd successfully restarted"
+
+# description: terminal KITTY
+super + ctrl + Return
+    $HOME/.local/kitty.app/bin/kitty
+# description: terminal KITTY
+ctrl + @F4
+    $HOME/.local/kitty.app/bin/kitty
+
+# description: key bindings rofi search
+super + s
+  $HOME/scripts/sxhkd-base_help.sh
+
+# description: Toggle Picom
+alt + ctrl + o
+    ~/scripts/toggle-compositor
+
+# description: Toggle ScreenKey
+alt + ctrl + k
+    ~/scripts/toggle-screenkey
+
+# description: swollow window
+super + shift  + v
+	xdo id | pidswallow -t
+
+# description: dm-confedit: Edit Configs
+super + v
+	exec dm-hub
+
+# APPLICATION KEYBINDINGS (Super + Alt + Key) {{{2
+
+# browsers {{{3
+# description:browser qutebrowser 
+super + shift + w
+  qutebrowser
+# description: browser palemoon
+super + w
+  palemoon
+# launch lynx web browser
+#super + alt + l
+#    st -e lynx -cfg=~/.lynx/lynx.cfg -lss=~/.lynx/lynx.lss -vikeys gopher://distro.tube
+# 3}}}
+
+# description: terminal emulator {{{3
+super + Return
+	st
+#	$TERMINAL
+# description: terminal emulator
+super + alt + Return
+	alacritty
+# description: xfce4-terminal emulator
+super + shift + Return
+	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
+
+#################################################################
+#     FUNCTION KEYS
+#################################################################
+
+#xfce4-terminal dropdown
+F12
+ 	xfce4-terminal --drop-down
+
+# 3}}}
+
+# description: launch newsboat feed reeder
+super + alt + n
+    st -e newsboat
+
+# description: audio mixer run
+super + alt + a
+  st -e ~/scripts/pulsemixer
+
+## LUNCHERs Alt+{F2,F3,F5,F6} {{{3
+# description: luncher F2
+alt + @F2
+	xfce4-appfinder
+
+# description: lunch app finder
+super + shift + space
+	xfce4-appfinder
+# description: luncher F3
+alt + shift + @F2
+	jgmenu_run >/dev/null 2>&1
+# description: rofi 
+super + @space
+  rofi -show window -sidebar-mode \
+    -modi window,"calc:qalc +u8 -nocurrencies" \
+    -hide-scrollbar true \
+    -bw 2 \
+    -lines 15 \
+    -padding 24 \
+    -width 60 \
+    -location 0 \
+    -columns 1 \
+    -font "Noto Sans 9" \
+    -color-enabled true
+# 3}}}
+
+# 2}}}
+
+# description: record with dm-record
+alt + super + v
+    dm-record
+
+# GUI -ctrl+g 
+#     notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
+# description: (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
+super + g ; {0-7}
+   { \
+     notify-send -i xx "NOT USED" "Launchers 1 ... 5\n 1. Xed\n 2. VLC Player\n 3. PcMan FileN\n 4. Thunderburd Email\n" && xx, \
+     notify-send -i xed "Run GUI " "Launching Xed TextEditor" && xed, \
+     notify-send -i myBase "Run GUI program" "Launching myBase" && ~/space/myBase7/myBase.run, \
+     notify-send -i system-file-manager "Run GUI " "Launching File Manager" && pcmanfm, \
+     notify-send -i thunderbird "Run GUI " "Launching Email Client" && thunderbird \
+   }
+
+#  ~/.dmenu/dmenu-sysmon.sh
+# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-gotop,4-vil,5-vim,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
+super + x ; {0-9}
+    { \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-sysmon.sh), \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-record.sh), \
+        (st -e htop), \
+        (st -e ~/.dotfiles/tools/gotop), \
+        (~/.local/bin/with_zsh nvim ~/.dotfiles/vim/vil/init.vim), \
+        (st -e vim), \
+        (st -e newsboat), \
+        (st -e mocp), \
+        (~/.local/bin/with_zsh ~/.dmenu/dmenu-qute.sh), \
+        ~/.local/bin/with_zsh ~/.dmenu/dmenu-search.sh \
+    }
+
+# ----------------------------------
+#
+# # Screenshots (requires `scrot`).  First one is for the focused window.
+# # The other is of the entire X session (including all active monitors).
+# # Note that `scrot` also has an interactive mode that I do not use.
+# description: Scrot Window Screenshot
+ctrl + Print
+  scrot -u -z '%Y-%m-%d_%H:%M:%S_$wx$h$n.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Window view screenshot" "Saved window to Pictures"
+
+# description: Scrot Screen Screenshot
+ctrl + shift + Print
+  scrot -m -z '%Y-%m-%d_%H:%M:%S_$wx$h.png' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Screen view screenshot" "Saved screen to Pictures"
+
+# description: Scrot Selection Screenshot
+super + Print
+  ~/.local/bin/with_zsh "scrot -s 'part-%Y-%m-%d-%s_screenshot_\$wx\$h.jpg' -e 'mv \$f ~/Pictures/scrot_screenshots'" \
+       && notify-send -i gnome-screenshot "Selection jpg  screenshot" "Selection save to Pictures"
+
+# description: Scrot Selection Screenshot
+super + ctrl + Print
+  scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/scrot_screenshots' \
+       && notify-send -i gnome-screenshot "Screen jpg screenshot" "Window save to Pictures"
+
+# DMENU SCRIPTS (Alt+Ctrl+Key) {{{3
+# description: run  rofi program drun
+alt + shift + Return
+	rofi -show drun -width 50
+# description: run dmenu_run program
+alt + ctrl + Return
+	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+##	dmenu_run
+# description: edit common config files
+alt + ctrl + e
+   ~/.dmenu/dmenu-edit-configs.sh
+# description: surfraw
+alt + ctrl + s
+   ~/.dmenu/dmenu-surfraw.sh
+# description: common system montoring programs
+alt + ctrl + m
+  ~/.dmenu/dmenu-sysmon.sh
+# description: reddio Reddit viewer
+alt + ctrl + r
+   ~/.dmenu/dmenu-record.sh
+# description: run Appimage dmenu
+alt + ctrl + t
+   ~/.dmenu/dmenu-trading.sh
+# description: Screenshot take/upload scripts dmenu
+shift + Print
+   ~/.dmenu/dmenu-scrot.sh
+# 3}}}
+
+## }}}
+

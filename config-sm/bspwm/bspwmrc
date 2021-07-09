@@ -91,9 +91,9 @@ bspc rule -a pop-up                        state=floating
 
 bspc rule -a Gnome-disks state=tiled
 bspc rule -a Xfce4-settings-manager state=tiled
-bspc rule -a "Xfce4-appfinder" state=floating sticky=on
+bspc rule -a "Xfce4-appfinder" state=floating center=true
 bspc rule -a "xfce4-appfinder" state=floating center=true
-bspc rule -a "Application Finder" state=floating sticky=on
+bspc rule -a "Application Finder" state=floating center=true
 bspc rule -a file-roller state=floating center=true
 bspc rule -a gcolor2 state=floating center=true
 bspc rule -a "Pale moon" desktop='^2' follow=on
