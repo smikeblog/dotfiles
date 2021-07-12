@@ -100,15 +100,8 @@ bspc rule -a "Pale moon" desktop='^2' follow=on
 bspc rule -a "Mail" desktop='^8' follow=on
 bspc rule -a Firefox private=pc
 
-bspc rule -a XTerm:dropXterm state=floating
-bspc rule -a Xterm state=floating center=true
-
-bspc rule -a vlc state=floating sticky=on
 bspc rule -a 'vlc' desktop="^5" border=off follow=on
 bspc rule -a 'Opera' desktop="^4" follow=on
-
-
-#ps x | grep "~/.local/bin/bspswallow" | grep -v grep || "~/.local/bin/bspswallow" &
 
 pgrep bspswallow || bspswallow &
 

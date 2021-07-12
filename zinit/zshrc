@@ -341,10 +341,6 @@ zinit wait'1' lucid \
   as"program" pick"emojify" \
   light-mode for @mrowa44/emojify
 
-# RANGER
-# zinit ice depth'1' as"program" pick"ranger.py"
-# zinit light ranger/ranger
-
 #====================
 #====================
 #====================

@@ -253,7 +253,8 @@ map X !$f
 
 # dedicated keys for file opener actions
 map Oo &mimeopen $f
-map oo $nvim $f
+map oo $nv $f
+map on $nvim $f
 map ox $xed $f
 #map o &rifle $f
 map OO $mimeopen --ask-default $f

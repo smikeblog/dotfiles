@@ -1,6 +1,9 @@
 #!/bin/sh
 
  
+echo "########  Shell+Terminal  #########"
+ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)
+echo $(pstree -sA $$ | awk -F "---" '{ print $2 }')
 
 echo "########  FREE RAM  #########"
 

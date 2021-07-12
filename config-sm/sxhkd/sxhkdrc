@@ -33,9 +33,6 @@ super + shift + c
 # description: terminal KITTY
 super + ctrl + Return
     $HOME/.local/kitty.app/bin/kitty
-# description: terminal KITTY
-ctrl + @F4
-    $HOME/.local/kitty.app/bin/kitty
 
 # description: key bindings rofi search
 super + s
@@ -267,26 +264,16 @@ super + w
 super + alt + space
     st -e ~/.local/bin/bspwm-scripts/bspwm_show_active
 
-# description: terminal emulator {{{3
+# description: terminal ST {{{3
 super + Return
 	st
 #	$TERMINAL
-# description: terminal emulator
+# description: terminal Alacritty
 super + alt + Return
 	alacritty
-# description: xfce4-terminal emulator
+# description: terminal TMUX xfce4-terminal
 super + shift + Return
 	xfce4-terminal -e ~/.dotfiles/home.local/bin/tat
-
-#################################################################
-#     FUNCTION KEYS
-#################################################################
-
-#xfce4-terminal dropdown
-F12
- 	xfce4-terminal --drop-down
-
-# 3}}}
 
 # description: launch newsboat feed reeder
 super + alt + n
@@ -296,7 +283,22 @@ super + alt + n
 super + alt + a
   st -e ~/scripts/pulsemixer
 
-## LUNCHERs Alt+{F2,F3,F5,F6} {{{3
+#################################################################
+#     FUNCTION KEYS
+################################################################# {{{3
+## LUNCHERs Alt+{F2,F3,F5,F6}
+
+# description: terminal xfce4-dropdown
+alt + @F12
+	xfce4-terminal --hide-borders --drop-down
+
+# description: terminal xfce
+alt + @F4
+    xfce4-terminal --hide-borders
+# description: terminal KITTY
+ctrl + @F4
+    $HOME/.local/kitty.app/bin/kitty
+
 # description: luncher F2
 alt + @F2
 	xfce4-appfinder
@@ -338,7 +340,7 @@ super + @space
 alt + super + v
     dm-record
 
-# GUI -ctrl+g 
+# GUI -super+g 
 #     notify-send -i vlcplayer "Run GUI program" "Launching VLC Player" && vlc, \
 # description: (0-xed,1-qutebrowser,2-vlc,3-vscode,4-pcmanfm,5-thunderbird)
 super + g ; {0-7}
@@ -409,7 +411,6 @@ super + c : {h,j,k,l}
                @south -r +50 || bspc node @north -r +50, \ 
                @south -r -50 || bspc node @north -r -50, \ 
                @west  -r +50 || bspc node @east  -r +50} 
-#  bspwm_resize {west,south,north,east} 50
 
 # description: Resize dynamic gaps.
 super + c : bracket{left,right}
