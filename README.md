@@ -231,6 +231,7 @@ Note: I install WM for development environment alongside with DE (cinnamon or xf
     https://www.soimort.org/translate-shell/
     https://github.com/bvaisvil/zenith
     https://github.com/seebye/fzf-ueberzogen
+    https://github.com/JohnnyMorganz/StyLua
 ```
 ### Other Mandatory
 ```
