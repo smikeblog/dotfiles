@@ -25,7 +25,7 @@ settings:
   statusbar.hide:
     global: false
   tabs.show:
-    global: switching
+    global: always
   url.searchengines:
     global:
       DEFAULT: https://duckduckgo.com/?q={}

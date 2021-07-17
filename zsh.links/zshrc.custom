@@ -146,11 +146,11 @@ alias s4='$HOME/space/sublime_text/sublime_text -a '
 # utils
 # https://github.com/athityakumar/colorls
 if _has exa; then
-  alias lx='exa --icons --color=always --group-directories-first'
-  alias lld='exa -lh --icons --color=always --group-directories-first'
-  alias lll='exa -lah --icons --color=always --group-directories-first'
-  alias ll='exa -lhF --git-ignore --icons --group-directories-first --time-style=long-iso'
-  alias lt='exa -aT -L=1 --icons --color=always --group-directories-first' # tree listing
+  alias lx='exa --icons --color=always --group-directories-first -I .git --git-ignore'
+  alias lld='exa -lh --icons --color=always --group-directories-first -I .git --git-ignore'
+  alias lll='exa -lah --icons --color=always --group-directories-first -I .git --git-ignore'
+  alias ll='exa -lhF --git-ignore --icons --group-directories-first --time-style=long-iso -I .git --git-ignore'
+  alias lt='exa -aT -L=1 --icons --color=always --group-directories-first -I .git --git-ignore' # tree listing
   alias la='ll -a'
   alias exa2='exa -alhF --git-ignore --icons --group-directories-first --time-style=long-iso -T -L=2 --ignore-glob=".git|node_modules"'
   alias exa5='exa -alhF --git-ignore --icons --group-directories-first --time-style=long-iso -T -L=5 --ignore-glob=".git|node_modules"'
@@ -417,3 +417,4 @@ export SKIM_DEFAULT_OPTIONS="
 # vim: ft=zsh
 alias vv.='vv .'
 alias vv..='vv . .'
+

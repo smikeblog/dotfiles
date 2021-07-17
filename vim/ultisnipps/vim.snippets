@@ -1,0 +1,31 @@
+snippet f "function" b
+function ${1}(${2})
+	${3}
+endfunction
+endsnippet
+
+snippet f! "function bang"
+function! ${1}(${2})
+	${3}
+endfunction
+endsnippet
+
+snippet r "commented result"
+" => 
+endsnippet
+
+snippet [ "list"
+[${1},]
+endsnippet
+
+snippet { "dictionary"
+{${1},}
+endsnippet
+
+snippet <l "leader"
+<leader>${1}
+endsnippet
+
+snippet plug "vim-plug Paste Plugin" b
+Plug '${1:`!v substitute(@+, '\([^\/]*\/\/[^\/]*\/\)\([^/]*\/[^/]*\)\(.*\)', '\2', '' )`}'
+endsnippet

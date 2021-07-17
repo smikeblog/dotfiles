@@ -40,7 +40,7 @@ _versionof() {
 }
 
 ## }}}
-# ENVIRONMENT VARIABLES {{{1
+# ENVIRONMENT VARIABLES {{{
 
 # Yes, this defeats the point of the TERM variable, but everything pretty much
 # uses modern ANSI escape sequences. I've found that forcing everything to be
@@ -119,6 +119,26 @@ if [ -w ~/.zsh_history -o -w ~ ]; then
 HISTFILE=~/.zsh_history
 fi
 
+# uses ip or ifconfig, good on older or newer system 
+sys.my-ip() {
+        echo "--------------- Network Information ---------------"
+	# newer system like arch
+	ip addr | awk '/global/ {print $1,$2}' | cut -d\/ -f1
+	ip addr | awk '/global/ {print $3,$4}'
+	ip addr | awk '/ether/ {print $1,$2}'
+	ip addr | awk '/scope link/ {print $1,$2}' | cut -d\/ -f1
+	# older system like debian
+        ifconfig | awk '/inet addr/ {print $1,$2}' | awk -F: '{print $1,$2}'
+        ifconfig | awk '/Bcast/ {print $3}' | awk -F: '{print $1,$2}'
+        ifconfig | awk '/inet addr/ {print $4}' | awk -F: '{print $1,$2}'
+        ifconfig | awk '/HWaddr/ {print $4,$5}'
+        ifconfig | awk '/Scope:Link/ {print $1,$3}' | cut -d\/ -f1
+        echo Current IP $(curl -s http://checkip.dyndns.org/ | grep -o "[[:digit:].]\+")
+        echo "---------------------------------------------------"
+}
+
+#}}}
+
 # APPLICATION CUSTOMIZATIONS {{{1
 
 # GNU grep
@@ -174,7 +194,6 @@ _append_to_path /usr/sbin
 ## tool body {{{
 function web_search() {
   emulate -L zsh
-
 
 function open_command() {
   emulate -L zsh
@@ -283,6 +302,9 @@ dict() {
         curl "dict://dict.org/d:$1"
     fi
 }
+# nvim help from cli (Ex: :h diff)
+function :h { nv +":h $1" +'wincmd o' +'nnoremap q :q!<CR>' ;}
+
 ## ---- }}}3
 #
 ## FZF functions {{{4

@@ -1,0 +1,92 @@
+snippet al "General align" b
+\begin{align}
+	${VISUAL}${1:${2:x} &= ${3:42}}
+\end{align}
+endsnippet
+
+snippet als "General align*" b
+\begin{align*}
+	${VISUAL}${1:${2:x} &= ${3:42}}
+\end{align*}
+endsnippet
+
+snippet bb "Size-adjusting () brackets"
+\bb{${VISUAL}${0}}
+endsnippet
+
+snippet bc "Size-adjusting [] brackets"
+\bc{${VISUAL}${0}}
+endsnippet
+
+snippet frac "Fraction"
+\frac{${1:${VISUAL:1}}}{${2:\sqrt\{2\}}}
+endsnippet
+
+snippet nc "New command" b
+\newcommand{\\${1:name}}${2:[1]}{${3:command}}
+endsnippet
+
+snippet rnc "New command" b
+\renewcommand{\\${1:name}}${2:[1]}{${3:command}}
+endsnippet
+
+snippet vec "Vector" w
+\vec{$1}${2:_{$3}}
+endsnippet
+
+snippet intb "integral with boundaries"
+\integralb{${1:-\infty}}{${2:\infty}}{${3:x}} $4
+endsnippet
+
+snippet ga "alpha" w
+\alpha
+endsnippet
+
+snippet gb "beta" w
+\beta
+endsnippet
+
+snippet gc "gamma" w
+\alpha
+endsnippet
+
+snippet gd "delta" w
+\delta
+endsnippet
+
+snippet ge "epsilon" w
+\epsilon
+endsnippet
+
+snippet gt "theta" w
+\theta
+endsnippet
+
+snippet gk "kappa" w
+\kappa
+endsnippet
+
+snippet gl "lambda" w
+\lambda
+endsnippet
+
+snippet gs "sigma" w
+\sigma
+endsnippet
+
+snippet go "omega" w
+\omega
+endsnippet
+
+snippet fig "Figure command" b
+\fig{${1:.8}}{${2:file}}{${3:caption}}
+endsnippet
+
+# PhD thesis
+snippet figopt "Figure (with options) command" b
+\figopt{${1:.8}}{${2:file}}{${3:label}}{${4:caption}}
+endsnippet
+
+snippet doublefig "Double-figure command" b
+\doublefig{${1:.45}}{${2:file1}}{${3:caption1}}{${4:.45}}{${5:file2}}{${6:caption2}}{${7:main caption}}
+endsnippet

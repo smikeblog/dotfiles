@@ -35,10 +35,14 @@ super + ctrl + Return
     $HOME/.local/kitty.app/bin/kitty
 
 # description: key bindings rofi search
+super + shift + s
+	$HOME/scripts/sxhkd-bind
+
+# description: key bindings rofi search
 super + s
 	$HOME/scripts/sxhkd_help.sh
 
-# description: Toggle Picom
+# description: Toggle Compositor
 alt + ctrl + o
     ~/scripts/toggle-compositor
 

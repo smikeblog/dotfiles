@@ -1,0 +1,26 @@
+snippet finp "form input"
+<div>
+  <%= f.label ${1:descr} %>
+  <%= f.${2:text_field} ${3:name} %>
+</div>
+endsnippet
+
+snippet fsub "for submit"
+<%= f.submit '${1:OK}' %>
+endsnippet
+
+snippet fmsgs "display flash messsages"
+<% if @${1:obj}.errors.any? %>
+  <div class="error-explanation">
+    <h2>
+      <%= pluralize(@${2:obj}.errors.count, 'error') %>
+          prevented this ${3:obj} from being saved:
+    </h2>
+    <ul>
+      <% @${4:obj}.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+endsnippet

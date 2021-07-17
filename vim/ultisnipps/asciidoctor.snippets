@@ -1,0 +1,85 @@
+snippet iniadoc "new adoc default settings"
+= ${1:title}
+:toc: left
+:sectnums:
+:sectlevels: 6
+:toclevels: 6
+:setclinks:
+//:!icons: font
+:!webfonts:
+:hardbreaks:
+:source-highlighter: pygments
+:pygments-css: class
+:imagesdir: imgs
+:data-uri:
+
+${0}
+endsnippet
+
+snippet hey "description"
+hey!
+endsnippet
+
+snippet blksh "code block for shell script"
+[source,bash,lineos]
+----
+$1
+----
+endsnippet
+
+snippet blkrb "code block for ruby"
+[source,ruby,lineos]
+----
+$1
+----
+endsnippet
+
+snippet incf "include function in document"
+=== function: \`$1'
+
+.\`$1' function definition
+[source,scheme,lineos]
+----
+include::./definitions.scm[tag=$1]
+----
+
+$0
+endsnippet
+
+snippet blkjs "code block for javascript"
+[source,javascript,lineos]
+----
+$1
+----
+endsnippet
+
+snippet blkhtml "code block for html"
+[source,html,lineos]
+----
+$1
+----
+endsnippet
+
+snippet blkshs "code block shell session"
+[source,shell-session]
+----
+$1
+----
+endsnippet
+
+
+snippet qanda "QandA"
+'''
+// tags: ${1:anki tags}
+[role='qanda q', id='Q00${2:N}']
+--
+<<Q00$2>> ${3:question}
+--
+
+[role='qanda a']
+--
+${4:answer}
+--
+
+
+endsnippet
