@@ -21,7 +21,7 @@ mkfs.ext4 /dev/sda#(#letter drive)
 mount /dev/sda2 /mnt
 
 ## pre-mirror update ##
-nano /etc/pacman.d/mirrorlist
+vi /etc/pacman.d/mirrorlist
 (remove other countries until you reach United States)
 
 ## Mirror Update ##
@@ -42,16 +42,16 @@ pacman-key --populate archlinux
 
 ## fstab Setup ##
 genfstab -U /mnt >> /mnt/etc/fstab
-nano /mnt/etc/fstab
+vi /mnt/etc/fstab
 (add "discard" at the end and then save)
 
 ## Change Root ##
 arch-chroot /mnt /bin/bash
 
 ## Locale Setup ##
-nano /etc/locale.gen
+vi /etc/locale.gen
 locale-gen
-nano /etc/locale.conf
+vi /etc/locale.conf
 (add in the file: LANG=en_US.UTF-8)
 
 ## Time Setup ##
@@ -71,7 +71,7 @@ grub-install --recheck /dev/sda (or sdb if is in an other drive)
 grub-mkconfig -o /boot/grub/grub.cfg
 
 ## Hostname Setup ##
-nano /etc/hostname
+vi /etc/hostname
 (add a hostname in the file)
 
 ## Wired Network Setup ##
@@ -109,7 +109,7 @@ useradd -m -G wheel -s /bin/bash georgeb
 passwd georgeb (user password setup)
 
 ## Sudoers Setup ##
-nano /etc/sudoers
+vi /etc/sudoers
 (add after root username "georgeb ALL=(ALL) ALL",
 remove hashmark after wheel ALL=(ALL) NOPASSWD: ALL)
 
@@ -120,21 +120,21 @@ exit
 georgeb
 (and password)
 
-## Nano Config ##
-sudo nano /etc/nanorc
+## vi Config ##
+sudo vi /etc/virc
 
 ## Update Mirrors ##
 sudo pacman -Syy
 
 ## Config Pacman Config ##
-sudo nano /etc/pacman.conf
+sudo vi /etc/pacman.conf
 (remove hashmark after color, multilib)
 
 ## Update Mirrors Again ##
 sudo pacman -Syy
 
 ## Install Git ##
-sudo pacman -S git
+sudo pacman -S git subversion
 
 ## Yay Install (AUR) Helper ##
 git clone https://aur.archlinux.org/yay.git
@@ -200,7 +200,7 @@ sudo systemctl enable NetworkManager
 sudo systemctl enable lxdm
 
 ## Edit Lxdm Config ##
-sudo nano /etc/lxdm/lxdm.conf
+sudo vi /etc/lxdm/lxdm.conf
 (remove hashmark in autologin and add username,
 remove hashmark in numlock and put 1)
 
