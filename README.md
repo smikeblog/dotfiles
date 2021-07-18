@@ -23,10 +23,15 @@ My dotfile configuration
 
 ### 3.1 on debian install neovim.appimage from
 
-       https://github.com/neovim/neovim/wiki/Installing-Neovim
-       curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-       chmod u+x nvim.appimage
-       ./nvim.appimage
+      https://github.com/neovim/neovim/wiki/Installing-Neovim
+      # # get appimage binary
+      # curl -o /usr/local/bin/nvim -LO https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+      # # to get the nightly version instead:
+      # #curl -o /usr/local/bin/nvim -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+
+      curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+      chmod u+x nvim.appimage
+      ./nvim.appimage
 
 ### 3.2 on Manjaro + Arco
 

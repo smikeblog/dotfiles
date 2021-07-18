@@ -7,7 +7,15 @@ if comd_exists git; then
     echo "git is installed"
 else
     echo "WARNING: \"git\" command is not found. Install it first"
-    apt-get install -y git
+    apt-get install git
+fi
+
+# install subversion
+if comd_exists subversion; then
+    echo "sunversion is installed"
+else
+    echo "WARNING: \"subversion\" command is not found. Install it first"
+    apt-get install subversion
 fi
 
 # install curl
@@ -15,7 +23,7 @@ if comd_exists curl; then
     echo "curl is installed"
 else
     echo "WARNING: \"curl\" command is not found. Install it first"
-    apt-get install -y curl
+    apt-get install curl
 fi
 
 # install wget
@@ -23,7 +31,7 @@ if comd_exists wget; then
     echo "wget is installed"
 else
     echo "require wget but it's not installed. Install it first"
-    apt-get install -y wget
+    apt-get install wget
 fi
 
 # install vim stable
@@ -61,7 +69,7 @@ if comd_exists zsh; then
     echo "zsh is installed"
 else
     echo "require zsh but it's not installed. Install it first"
-    apt-get install -y zsh
+    apt-get install zsh
 fi
 
 # install tmux stable
@@ -69,7 +77,7 @@ if comd_exists tmux; then
     echo "tmux is installed"
 else
     echo "require tmux but it's not installed. Install it first"
-    apt-get install -y tmux
+    apt-get install tmux
 fi
 
 # install node lts
