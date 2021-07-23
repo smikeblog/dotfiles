@@ -13,13 +13,10 @@ declare -a options=(" awesome
  bash 
  bspwm 
  dwm 
- herbstluftwm 
- i3 
  polybar 
- qtile 
  st 
  sxhkd 
- xmonad 
+ kitty 
  zsh 
  quit ")
 
@@ -40,17 +37,8 @@ choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'Edit a config file: ')
 	if [ "$choice" == ' dwm ' ]; then
         exec st -e vim $HOME/dwm/config.h
 	fi
-	if [ "$choice" == ' herbstluftwm ' ]; then
-        exec st -e vim $HOME/.config/herbstluftwm/autostart
-	fi
-	if [ "$choice" == ' i3 ' ]; then
-        exec st -e vim $HOME/.i3/config
-	fi
 	if [ "$choice" == ' polybar ' ]; then
         exec st -e vim $HOME/.config/polybar/config
-	fi
-	if [ "$choice" == ' qtile ' ]; then
-        exec st -e vim $HOME/.config/qtile/config.py
 	fi
 	if [ "$choice" == ' st ' ]; then
         exec st -e vim $HOME/Downloads/build/st/config.h
@@ -58,8 +46,8 @@ choice=$(echo -e "${options[@]}" | dmenu -l -i -p 'Edit a config file: ')
 	if [ "$choice" == ' sxhkd ' ]; then
         exec st -e vim $HOME/.config/sxhkd/sxhkdrc
 	fi
-	if [ "$choice" == ' xmonad ' ]; then
-        exec st -e vim $HOME/.xmonad/xmonad.hs
+	if [ "$choice" == ' kitty ' ]; then
+        exec st -e vim $HOME/.config/kitty/kitty.conf
 	fi
 	if [ "$choice" == ' zsh ' ]; then
         exec st -e vim $HOME/.zshrc

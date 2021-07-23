@@ -357,7 +357,7 @@ super + g ; {0-7}
    }
 
 #  ~/.dmenu/dmenu-sysmon.sh
-# description: CLI ctrl+x (0-dmenu-sysmon,1-recordMenu,2-htop,3-gotop,4-vil,5-vim,6-newsboat,7-mocp,8-dmenu-qute,9-dmenu-search)
+# description: 0-dm-sysmon,1-recordMenu,2-htop,3-gotop,4-vil,5-vim,6-newsboat,7-mocp,8-dm-qute,9-dm-search
 super + x ; {0-9}
     { \
         (~/.local/bin/with_zsh ~/.dmenu/dmenu-sysmon.sh), \

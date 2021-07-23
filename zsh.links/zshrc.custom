@@ -414,7 +414,7 @@ export SKIM_DEFAULT_OPTIONS="
     --bind 'ctrl-n:execute(nvim {} < /dev/tty > /dev/tty 2>&1)' > selected
 "
 
-# vim: ft=zsh
 alias vv.='vv .'
 alias vv..='vv . .'
 
+# vim: ft=zsh

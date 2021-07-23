@@ -584,6 +584,10 @@ bindkey '^xs' pet.select
 
 ### }}}
 
+help.sxhkd () {
+    awk '/^[a-z]/ && last {print "|" $0,"\t",last,"|"} {last=""} /^#/{last=$0}' ~/.config/sxhkd/sxhkdrc | column -t -s $'\t' 
+}
+
 # aur pkg
 pkg.aur-get () {
   git clone https://aur.archlinux.org/"$1".git

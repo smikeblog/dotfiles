@@ -9,6 +9,7 @@
 
 
 declare -a options=(" r/archlinux 
+ r/help-1
  r/commandline 
  r/DistroTube 
  r/GopherHoles 
@@ -27,6 +28,11 @@ choice=$(echo -e "${options[@]}" | dmenu -l 10  -i -p 'Last 10 Posts From Reddit
 	if [ "$choice" == ' r/archlinux ' ]; then
         reddio print -l 15 r/archlinux | sed 's/\x1b\[[0-9;]*m//g' | dmenu -l 15 -i -p 'r/archlinux'
         exec st -e $SHELL -c 'reddio print -l 10 r/archlinux;$SHELL'
+	fi
+	if [ "$choice" == ' r/help-1 ' ]; then
+#        reddio print -l 15 r/archlinux | sed 's/\x1b\[[0-9;]*m//g' | dmenu -l 15 -i -p 'r/archlinux'
+#        exec st -e $SHELL -c 'reddio print -l 10 r/archlinux;$SHELL
+        exec st -e $SHELL -c rofi
 	fi
 	if [ "$choice" == ' r/commandline ' ]; then
         reddio print -l 15 r/archlinux | sed 's/\x1b\[[0-9;]*m//g' | dmenu -l 15 -i -p 'r/commandline'
